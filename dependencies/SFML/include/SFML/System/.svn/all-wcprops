@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System
+END
+Utf.inl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Utf.inl
+END
+Clock.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Clock.hpp
+END
+Time.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Time.hpp
+END
+Utf.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Utf.hpp
+END
+Thread.inl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Thread.inl
+END
+Mutex.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Mutex.hpp
+END
+ThreadLocalPtr.inl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/ThreadLocalPtr.inl
+END
+String.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/String.hpp
+END
+Thread.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Thread.hpp
+END
+ThreadLocalPtr.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/ThreadLocalPtr.hpp
+END
+Sleep.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Sleep.hpp
+END
+NonCopyable.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/NonCopyable.hpp
+END
+InputStream.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/InputStream.hpp
+END
+Vector2.inl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Vector2.inl
+END
+Vector3.inl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Vector3.inl
+END
+Export.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Export.hpp
+END
+ThreadLocal.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/ThreadLocal.hpp
+END
+Vector2.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Vector2.hpp
+END
+Vector3.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Vector3.hpp
+END
+Lock.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Lock.hpp
+END
+Err.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/System/Err.hpp
+END

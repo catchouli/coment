@@ -18,6 +18,12 @@ namespace coment
 		// Called by the client to initiate processing
 		void update();
 
+		// Enable processing of this system
+		void setEnabled(bool enabled);
+
+		// Get whether this system is enabled
+		bool getEnabled();
+
 		// Called during initialisation of this system
 		virtual void initialise();
 
@@ -71,6 +77,9 @@ namespace coment
 		World* _world;
 
 	private:
+		// Whether to process this system
+		bool _enabled;
+
 		// The bitmask to use for the entity system
 		BitMask _bitmask;
 

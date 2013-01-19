@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics
+END
+BlendMode.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/BlendMode.hpp
+END
+Rect.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Rect.hpp
+END
+Transformable.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Transformable.hpp
+END
+RenderTexture.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/RenderTexture.hpp
+END
+Shape.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Shape.hpp
+END
+Texture.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Texture.hpp
+END
+RenderStates.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/RenderStates.hpp
+END
+Font.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Font.hpp
+END
+Shader.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Shader.hpp
+END
+Sprite.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Sprite.hpp
+END
+RenderWindow.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/RenderWindow.hpp
+END
+PrimitiveType.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/PrimitiveType.hpp
+END
+View.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/View.hpp
+END
+Transform.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Transform.hpp
+END
+VertexArray.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/VertexArray.hpp
+END
+Vertex.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Vertex.hpp
+END
+Color.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Color.hpp
+END
+Export.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Export.hpp
+END
+Drawable.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Drawable.hpp
+END
+Image.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Image.hpp
+END
+CircleShape.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/CircleShape.hpp
+END
+Glyph.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Glyph.hpp
+END
+ConvexShape.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/ConvexShape.hpp
+END
+Text.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Text.hpp
+END
+RectangleShape.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/RectangleShape.hpp
+END
+RenderTarget.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/RenderTarget.hpp
+END
+Rect.inl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Graphics/Rect.inl
+END

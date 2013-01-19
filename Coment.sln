@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestProject", "TestProject\
 		{EACED591-60FE-4017-9136-C6BE8C7B4E3D} = {EACED591-60FE-4017-9136-C6BE8C7B4E3D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFMLTest", "SFMLTest\SFMLTest.vcxproj", "{B7124590-823C-4AAD-B589-2FD81A339B6B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample", "Sample\Sample.vcxproj", "{B7124590-823C-4AAD-B589-2FD81A339B6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

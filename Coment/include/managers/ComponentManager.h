@@ -28,7 +28,7 @@ namespace coment
 
 		// Add a component onto an entity
 		template <typename T>
-		void addComponent(EntityInfo& e, T component);
+		T* addComponent(EntityInfo& e, T component);
 
 		// Get a component from an entity
 		template <typename T>
@@ -48,7 +48,7 @@ namespace coment
 
 	// Add a component to an entity
 	template <typename T>
-	void ComponentManager::addComponent(EntityInfo& e, T c)
+	T* ComponentManager::addComponent(EntityInfo& e, T c)
 	{
 		// Get bag of components for this type
 		Bag<T>* componentMap = NULL;
@@ -76,6 +76,9 @@ namespace coment
 
 		// Set the entity's components bitmask
 		e.addComponent(T::type);
+
+		// Return the component we just added
+		return getComponent<T>(e);
 	}
 
 	// Get a component from an entity

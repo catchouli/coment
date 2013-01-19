@@ -326,7 +326,7 @@ namespace coment
 	template <int bitcount>
 	void Bitset<bitcount>::clear()
 	{
-		memset(_words, 0, bitcount/32);
+		memset(_words, 0, bitcount/8);
 	}
 
 	template <int bitcount>

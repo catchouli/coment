@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window
+END
+GlResource.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/GlResource.hpp
+END
+VideoMode.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/VideoMode.hpp
+END
+Joystick.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Joystick.hpp
+END
+Keyboard.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Keyboard.hpp
+END
+Event.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Event.hpp
+END
+Export.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Export.hpp
+END
+WindowHandle.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/WindowHandle.hpp
+END
+Context.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Context.hpp
+END
+ContextSettings.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/ContextSettings.hpp
+END
+Window.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Window.hpp
+END
+Mouse.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/Mouse.hpp
+END
+WindowStyle.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Window/WindowStyle.hpp
+END

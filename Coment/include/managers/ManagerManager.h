@@ -5,7 +5,8 @@
 #include "Manager.h"
 #include "../utils/Bag.h"
 
-namespace coment {
+namespace coment
+{
 	class ManagerManager : public Manager<ManagerManager>
 	{
 	public:
@@ -35,15 +36,18 @@ namespace coment {
 	template <typename T>
 	void ManagerManager::addManager(T* manager)
 	{
-		// Get the id for this manager.
+		// Get the id for this manager
 		int id = T::ID;
 		if (id < 0)
 		{
-			// Give this a new id.
+			// Give this a new id
 			T::ID = ManagerUtil::getNextID();
 		}
 
-		// Set the manager.
+		// Give this manager a pointer to the world
+		manager->_world = _world;
+
+		// Store a pointer to this manager
 		managers.set(T::ID, manager);
 	}
 }

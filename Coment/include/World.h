@@ -20,8 +20,12 @@ namespace coment
 	public:
 		// Constructor
 		World();
+
+		// Add a manager
+		template <typename T>
+		void addManager(T* manager);
 		
-		// Get the managers
+		// Get a manager
 		template <typename T>
 		T& getManager();
 
@@ -39,7 +43,7 @@ namespace coment
 		
 		// Add a component to an entity
 		template <typename T>
-		void addComponent(Entity e, T c);
+		T* addComponent(Entity e, T c);
 
 		// Get a component from an entity
 		template <typename T>
@@ -100,14 +104,21 @@ namespace coment
 		float _delta;
 	};
 
-	// Get the managers
+	// Add a manager
+	template <typename T>
+	void World::addManager(T* manager)
+	{
+		_managerManager.addManager(manager);
+	}
+
+	// Get a manager
 	template <typename T>
 	T& World::getManager()
 	{
 		return *_managerManager.getManager<T>();
 	}
 
-	// Set a manager.
+	// Set a manager
 	template <typename T>
 	void World::setManager(T& manager)
 	{
@@ -115,10 +126,10 @@ namespace coment
 	}
 
 	template <typename T>
-	void World::addComponent(Entity e, T c)
+	T* World::addComponent(Entity e, T c)
 	{
 		// Add the component to the component manager
-		_componentManager.addComponent(_entityManager.getEntityInfo(e), c);
+		return _componentManager.addComponent(_entityManager.getEntityInfo(e), c);
 	}
 
 	// Get a component from an entity

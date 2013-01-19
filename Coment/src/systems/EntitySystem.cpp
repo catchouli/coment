@@ -2,6 +2,13 @@
 
 namespace coment
 {
+	// Constructor
+	EntitySystem::EntitySystem()
+		: _enabled(true)
+	{
+
+	}
+
 	// Called by the client to initiate processing
 	void EntitySystem::update()
 	{
@@ -11,6 +18,18 @@ namespace coment
 			processEntities(_entities);
 			end();
 		}
+	}
+
+	// Enable processing of this system
+	void EntitySystem::setEnabled(bool enabled)
+	{
+		_enabled = enabled;
+	}
+
+	// Get whether this system is enabled
+	bool EntitySystem::getEnabled()
+	{
+		return _enabled;
 	}
 
 	// Called during initialisation of this system
@@ -34,8 +53,7 @@ namespace coment
 	// Returns whether this system should currently process entities
 	bool EntitySystem::checkProcessing()
 	{
-		// Return true by default (this can be overridden)
-		return true;
+		return _enabled;
 	}
 
 	// Called when an entity is added to this system
@@ -46,12 +64,6 @@ namespace coment
 
 	// Called when an entity is removed from this system
 	void EntitySystem::removed(Entity e)
-	{
-
-	}
-
-	// Constructor
-	EntitySystem::EntitySystem()
 	{
 
 	}

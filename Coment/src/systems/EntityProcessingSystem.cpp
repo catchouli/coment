@@ -7,10 +7,10 @@ namespace coment
 
 	}
 
-	// Process unconditionally by default
+	// Process only if the system is enabled by default
 	bool EntityProcessingSystem::checkProcessing()
 	{
-		return true;
+		return getEnabled();
 	}
 
 	// Automatically call process for each entity

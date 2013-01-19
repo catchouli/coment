@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio
+END
+SoundSource.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/SoundSource.hpp
+END
+SoundRecorder.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/SoundRecorder.hpp
+END
+Music.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/Music.hpp
+END
+Export.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/Export.hpp
+END
+SoundBuffer.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/SoundBuffer.hpp
+END
+SoundStream.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/SoundStream.hpp
+END
+Listener.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/Listener.hpp
+END
+Sound.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/Sound.hpp
+END
+SoundBufferRecorder.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/acun-platform/!svn/ver/4/trunk/dep/include/sfml/Audio/SoundBufferRecorder.hpp
+END
