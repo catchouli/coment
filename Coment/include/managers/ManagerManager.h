@@ -30,7 +30,7 @@ namespace coment
 	template <typename T>
 	T* ManagerManager::getManager() 
 	{
-		return (T*)managers.get(T::ID);
+		return (T*)managers[T::ID];
 	}
 
 	template <typename T>

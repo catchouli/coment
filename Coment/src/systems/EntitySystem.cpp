@@ -71,15 +71,13 @@ namespace coment
 	// Add an entity
 	void EntitySystem::addEntity(EntityInfo& e)
 	{
-		_entities.add(e);
+		_entities.push_back(e);
 	}
 		
 	// Remove an entity
 	void EntitySystem::removeEntity(EntityInfo& e)
 	{
-		int index = _entities.getIndex(e);
-		if (index > 0)
-			_entities.remove(index);
+		_entities.remove(e);
 	}
 
 	// Set the world

@@ -37,7 +37,7 @@ namespace coment
 	{
 		// Set the system's world to this ones
 		system.setWorld(_world);
-		_systemMap.add(&system);
+		_systemMap.push_back(&system);
 	}
 }
 

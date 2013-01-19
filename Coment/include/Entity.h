@@ -13,13 +13,9 @@ namespace coment
 		bool operator==(const Entity& other) const;
 		bool operator!=(const Entity& other) const;
 
-	protected:
-		friend class EntityManager;
-		template <typename> friend class Bag;
 
 		Entity(EntityId id = -1);
 
-	private:
 		EntityId _id;
 	};
 }

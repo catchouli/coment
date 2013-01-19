@@ -11,15 +11,15 @@ namespace coment
 	// Refresh an entity
 	void SystemManager::refresh(EntityInfo& e) 
 	{
-		for (unsigned int i = 0; i < _systemMap.getSize(); ++i)
+		for (unsigned int i = 0; i < _systemMap.size(); ++i)
 		{
 			// Check if this entity should be added.
-			if (e.compareBitmask(_systemMap.get(i)->getMask()))
+			if (e.compareBitmask(_systemMap[i]->getMask()))
 			{
 				// Check if the entity is already in that system.
 				if (!e.compareSystemBitmask(BitMask(1) << i))
 				{
-					_systemMap.get(i)->addEntity(e);
+					_systemMap[i]->addEntity(e);
 					e._systemMask.setBit(i);
 				}
 			}
@@ -28,7 +28,7 @@ namespace coment
 				// Check if the entity is already in that system.
 				if (!e.compareSystemBitmask(BitMask(1) << i))
 				{
-					_systemMap.get(i)->removeEntity(e);
+					_systemMap[i]->removeEntity(e);
 					e._systemMask.clearBit(i);
 				}
 			}
@@ -38,9 +38,9 @@ namespace coment
 	// Update all the systems.
 	void SystemManager::update()
 	{
-		for (int i = 0; i < _systemMap.getSize(); ++i) 
+		for (int i = 0; i < _systemMap.size(); ++i) 
 		{
-			_systemMap.get(i)->update();
+			_systemMap[i]->update();
 		}
 	}
 }

@@ -61,7 +61,8 @@ namespace coment
 		}
 
 		// Add a bag if this component hasn't been mapped
-		if (_componentsByType.get(c.type) == NULL) 
+		if (_componentsByType.size() < c.type+1 ||
+			_componentsByType[c.type] == nullptr) 
 		{
 			// Create a component map for this type
 			componentMap = new Bag<T>();
@@ -69,7 +70,7 @@ namespace coment
 			// Add the component map to our collection
 			_componentsByType.set(c.type, componentMap);
 		}
-		componentMap = (Bag<T>*)_componentsByType.get(c.type);
+		componentMap = (Bag<T>*)_componentsByType[c.type];
 
 		// Add the component to it
 		componentMap->set(e.getId(), c);
@@ -94,9 +95,9 @@ namespace coment
 			return NULL;
 
 		// Otherwise, return the component
-		Bag<T>* _componentMap = (Bag<T>*)_componentsByType.get(T::type);
+		Bag<T>* _componentMap = (Bag<T>*)_componentsByType.at(T::type);
 		
-		return &_componentMap->get(e.getId());
+		return &_componentMap->at(e.getId());
 	}
 
 	// Remove a component from an entity

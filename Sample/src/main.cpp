@@ -25,12 +25,10 @@
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
-const int INITIAL_BALLS = 100;
+const int INITIAL_BALLS = 10;
 
 int main(int argc, char** argv) 
 {
-	int numBalls = 0;
-
 	srand((unsigned int)time(0));
 
 	// Create window
@@ -57,7 +55,7 @@ int main(int argc, char** argv)
 	world.addManager(&inputManager);
 
 	// Create some balls
-	world.getManager<BallManager>().createBalls(100);
+	world.getManager<BallManager>().createBalls(INITIAL_BALLS);
 
 	// Create a clock to manage time
 	sf::Clock clock;

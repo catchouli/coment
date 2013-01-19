@@ -1,5 +1,5 @@
-#ifndef __BallManager_H__
-#define __BallManager_H__
+#ifndef __BALLMANAGER_H__
+#define __BALLMANAGER_H__
 
 #include <string>
 #include <map>
@@ -63,7 +63,7 @@ void BallManager::createBalls(int number)
 		_world->refresh(e);
 
 		// Add entity to bag
-		_balls.add(e);
+		_balls.push_back(e);
 	}
 }
 
@@ -71,13 +71,17 @@ void BallManager::destroyBalls(int number)
 {
 	for (int i = 0; i < number; ++i)
 	{
-		_world->remove(_balls.getLast());
+		if (_balls.size() > 0)
+		{
+			_world->remove(_balls.back());
+			_balls.pop_back();
+		}
 	}
 }
 
 int BallManager::getBallCount()
 {
-	return _balls.getSize();
+	return _balls.size();
 }
 
-#endif /* __BallManager_H__ */
+#endif /* __BALLMANAGER_H__ */

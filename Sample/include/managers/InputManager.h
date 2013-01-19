@@ -54,12 +54,12 @@ void InputManager::handleEvent(const sf::Event& event)
 		// Add 100 balls when user presses right arrow
 		else if (event.key.code == sf::Keyboard::Right)
 		{
-			_world->getManager<BallManager>().createBalls(100);
+			_world->getManager<BallManager>().createBalls(10);
 		}
 		// Remove 100 balls when user presses left arrow
 		else if (event.key.code == sf::Keyboard::Left)
 		{
-			//_world->getManager<BallManager>().destroyBalls(1);
+			_world->getManager<BallManager>().destroyBalls(1);
 		}
 	}
 }

@@ -47,21 +47,23 @@ namespace coment
 
 	void World::loopStart()
 	{
-		// Refresh entities queued for refresh
-		for (unsigned int i = 0; i < _refreshed.getSize(); ++i)
-		{
-			refreshEntity(_refreshed.get(i));
-		}
 
-		_refreshed.clear();
-
-		// Remove entities queued form removal
-		for (unsigned int i = 0; i < _removed.getSize(); ++i)
+		// Remove entities queued for removal
+		for (unsigned int i = 0; i < _removed.size(); ++i)
 		{
-			removeEntity(_removed.get(i));
+			removeEntity(_removed[i]);
 		}
 
 		_removed.clear();
+
+		// Refresh entities queued for refresh
+		// Make sure to do this after updating removed entities, as entities are refreshed after being removed
+		for (unsigned int i = 0; i < _refreshed.size(); ++i)
+		{
+			refreshEntity(_refreshed[i]);
+		}
+
+		_refreshed.clear();
 	}
 
 	void World::setDelta(float delta)
@@ -81,12 +83,12 @@ namespace coment
 
 	void World::remove(Entity e)
 	{
-		_removed.add(e);
+		_removed.push_back(e);
 	}
 
 	void World::refresh(Entity e) 
 	{
-		_refreshed.add(e);
+		_refreshed.push_back(e);
 	}
 
 	void World::removeEntity(Entity e)

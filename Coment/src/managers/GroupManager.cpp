@@ -23,7 +23,7 @@ namespace coment
 		if (it != _entitiesByGroup.end())
 		{
 			// Add to group
-			it->second.add(e);
+			it->second.push_back(e);
 		}
 		else
 		{
@@ -33,7 +33,7 @@ namespace coment
 			std::pair<EntityGroupMap::iterator, bool> result = _entitiesByGroup.insert(EntityGroupMap::value_type(group, bag));
 
 			// Add it to the new group bag
-			result.first->second.add(e);
+			result.first->second.push_back(e);
 		}
 		
 		// Set entity's group
@@ -60,9 +60,9 @@ namespace coment
 	void GroupManager::remove(Entity e)
 	{
 		// If the entity can possibly by in a group
-		if (e.getId() < _groupsByEntity.getSize())
+		if (e.getId() < _groupsByEntity.size())
 		{
-			std::string group = _groupsByEntity.get(e.getId());
+			std::string group = _groupsByEntity[e.getId()];
 
 			// If this group exists
 			if (group != "")
@@ -74,15 +74,15 @@ namespace coment
 				EntityGroupMap::iterator it =  _entitiesByGroup.find(group);
 				Bag<Entity>& group = it->second;
 
-				group.remove(group.getIndex(e));
+				group.remove(e);
 			}
 		}
 	}
 
 	std::string GroupManager::getGroup(Entity e)
 	{
-		if (e.getId() < _groupsByEntity.getSize())
-			return _groupsByEntity.get(e.getId());
+		if (e.getId() < _groupsByEntity.size())
+			return _groupsByEntity[e.getId()];
 		else
 			return "";
 	}

@@ -18,13 +18,13 @@ namespace coment
 		Entity nextEntity;
 
 		// If an old entity is available for reuse
-		if (_dead.getSize() != 0)
+		if (_dead.size() != 0)
 		{
 			// Get last dead entity and bring it back to life
-			nextEntity = _dead.getLast();
+			nextEntity = _dead.back();
+			_dead.pop_back();
 
-			_alive.add(nextEntity);
-			_dead.removeLast();
+			_alive.push_back(nextEntity);
 		}
 		else
 		{
@@ -38,7 +38,7 @@ namespace coment
 		}
 		
 		// Create new entity
-		_alive.add(nextEntity);
+		_alive.push_back(nextEntity);
 
 		// Update counters
 		_totalCreated++;
@@ -50,17 +50,16 @@ namespace coment
 
 	void EntityManager::removeEntity(EntityInfo& e)
 	{
-		unsigned int id = _alive.getIndex(e);
-
 		// If entity is alive
-		if (id > 0)
+		if (_alive.remove(e))
 		{
 			// Murder entity
-			_alive.remove(id);
-			_dead.add(e);
+			_dead.push_back(e);
 			
-			// Reset the component mask
+			// Reset the component and system bitmasks
 			e._componentMask.clear();
+			e._systemMask.clear();
+
 
 			// Update counters
 			_count--;
@@ -71,6 +70,6 @@ namespace coment
 	// Get the entity info for an entity
 	EntityInfo& EntityManager::getEntityInfo(Entity e) 
 	{
-		return _entities.get(e.getId());
+		return _entities[e.getId()];
 	}
 }
