@@ -13,7 +13,6 @@ namespace coment
 		bool operator==(const Entity& other) const;
 		bool operator!=(const Entity& other) const;
 
-
 		Entity(EntityId id = -1);
 
 		EntityId _id;

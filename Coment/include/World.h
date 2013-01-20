@@ -40,6 +40,10 @@ namespace coment
 		
 		// Create a new entity
 		Entity createEntity();
+
+		// Add a default constructed component to an entity
+		template <typename T>
+		T* addComponent(Entity e);
 		
 		// Add a component to an entity
 		template <typename T>
@@ -123,6 +127,12 @@ namespace coment
 	void World::setManager(T& manager)
 	{
 		_managerManager.addManager(&manager);
+	}
+
+	template <typename T>
+	T* World::addComponent(Entity e)
+	{
+		return addComponent(e, T());
 	}
 
 	template <typename T>

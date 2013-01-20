@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 
 		// Update title
 		char buf[1024];
-		sprintf_s(buf, "%i Balls, %f FPS, Rendering %s, Movement %s", world.getManager<BallManager>().getBallCount(), 1.0f / world.getDelta(), (renderSystem.getEnabled() ? "Enabled" : "Disabled"), (movementSystem.getEnabled() ? "Enabled" : "Disabled"));
+		sprintf_s(buf, "%i Balls, %.0f FPS, Rendering %s (Press R), Movement %s (Press M), right/left arrow keys to add/remove balls", world.getManager<BallManager>().getBallCount(), 1.0f / world.getDelta(), (renderSystem.getEnabled() ? "Enabled" : "Disabled"), (movementSystem.getEnabled() ? "Enabled" : "Disabled"));
 		window.setTitle(buf);
 	}
 
