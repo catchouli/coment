@@ -18,7 +18,11 @@ namespace coment
 
 		// Register a system with this manager
 		template <typename T>
-		void registerSystem(T& system);
+		T* addSystem();
+
+		// Register a system with this manager
+		template <typename T>
+		T* addSystem(T* system);
 
 		// Refresh an entity with the systems
 		void refresh(EntityInfo& e);
@@ -31,13 +35,27 @@ namespace coment
 		Bag<EntitySystem*> _systemMap;
 	};
 
-	// Registering a system
+	// Register a system
 	template <typename T>
-	void SystemManager::registerSystem(T& system)
+	T* SystemManager::addSystem()
 	{
-		// Set the system's world to this ones
-		system.setWorld(_world);
-		_systemMap.push_back(&system);
+		// Initialise the system
+		T* system = new T();
+		system->setWorld(_world);
+		_systemMap.push_back(system);
+
+		return system;
+	}
+
+	// Register a system
+	template <typename T>
+	T* SystemManager::addSystem(T* system)
+	{
+		// Initialise the system
+		system->setWorld(_world);
+		_systemMap.push_back(system);
+
+		return system;
 	}
 }
 

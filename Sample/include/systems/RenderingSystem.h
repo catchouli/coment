@@ -9,6 +9,7 @@ class RenderingSystem : public coment::EntityProcessingSystem
 {
 public:
 	RenderingSystem(sf::RenderTarget* target)
+		: _target(target)
 	{
 		// Register required components
 		registerComponent<Position>();
@@ -16,8 +17,12 @@ public:
 		registerComponent<Colour>();
 
 		// Do other initialisation
-		_target = target;
 		_shape = sf::CircleShape(20.0f, 30);
+	}
+
+	~RenderingSystem()
+	{
+		exit(0);
 	}
 
 	// Process entities

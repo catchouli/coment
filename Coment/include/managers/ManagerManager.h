@@ -11,7 +11,6 @@ namespace coment
 	{
 	public:
 		ManagerManager();
-		virtual ~ManagerManager();
 
 		// Get a manager.
 		template <typename T>
@@ -19,7 +18,11 @@ namespace coment
 
 		// Add a manager
 		template <typename T>
-		void addManager(T* manager);
+		T* addManager();
+
+		// Add a manager
+		template <typename T>
+		T* addManager(T* manager);
 
 	private:
 		// A bag of managers
@@ -34,7 +37,13 @@ namespace coment
 	}
 
 	template <typename T>
-	void ManagerManager::addManager(T* manager)
+	T* ManagerManager::addManager()
+	{
+		return addManager(new T());
+	}
+
+	template <typename T>
+	T* ManagerManager::addManager(T* manager)
 	{
 		// Get the id for this manager
 		int id = T::ID;
@@ -44,11 +53,14 @@ namespace coment
 			T::ID = ManagerUtil::getNextID();
 		}
 
-		// Give this manager a pointer to the world
-		manager->_world = _world;
+		// Initialise manager
+		((Manager*)manager)->initialise(_world);
 
 		// Store a pointer to this manager
 		managers.set(T::ID, manager);
+
+		// Return a pointer
+		return manager;
 	}
 }
 

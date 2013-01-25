@@ -2,7 +2,6 @@
 
 namespace coment
 {
-	// Create a new system manager
 	SystemManager::SystemManager()
 	{
 

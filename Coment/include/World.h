@@ -21,22 +21,24 @@ namespace coment
 		// Constructor
 		World();
 
+		// Destructor
+		~World();
+
 		// Add a manager
 		template <typename T>
-		void addManager(T* manager);
+		T* addManager();
+
+		// Add a manager
+		template <typename T>
+		T* addManager(T* manager);
 		
 		// Get a manager
 		template <typename T>
-		T& getManager();
+		T* getManager();
 
 		// Set a manager.
 		template <typename T>
 		void setManager(T& manager);
-
-		EntityManager& getEntityManager();
-		SystemManager& getSystemManager();
-		ComponentManager& getComponentManager();
-		GroupManager& getGroupManager();
 		
 		// Create a new entity
 		Entity createEntity();
@@ -44,10 +46,14 @@ namespace coment
 		// Add a default constructed component to an entity
 		template <typename T>
 		T* addComponent(Entity e);
-		
-		// Add a component to an entity
+
+		// Register a system to the system manager
 		template <typename T>
-		T* addComponent(Entity e, T c);
+		T* addSystem();
+
+		// Register a system to the system manager
+		template <typename T>
+		T* addSystem(T* system);
 
 		// Get a component from an entity
 		template <typename T>
@@ -59,10 +65,6 @@ namespace coment
 		
 		// Remove all components from an entity
 		void removeComponents(Entity e);
-
-		// Register a system to the system manager
-		template <typename T>
-		void registerSystem(T& system);
 
 		// Must be called at the start of each loop to update refreshed
 		// and deleted entities
@@ -92,11 +94,11 @@ namespace coment
 		
 	private:
 		// The manager instances
-		EntityManager _entityManager;
-		SystemManager _systemManager;
-		ComponentManager _componentManager;
-		GroupManager _groupManager;
-		ManagerManager _managerManager;
+		EntityManager* _entityManager;
+		SystemManager* _systemManager;
+		ComponentManager* _componentManager;
+		GroupManager* _groupManager;
+		ManagerManager* _managerManager;
 
 		// Entities due to be removed
 		Bag<Entity> _removed;
@@ -110,55 +112,63 @@ namespace coment
 
 	// Add a manager
 	template <typename T>
-	void World::addManager(T* manager)
+	T* World::addManager()
 	{
-		_managerManager.addManager(manager);
+		return _managerManager->addManager<T>();
+	}
+
+	// Add a manager
+	template <typename T>
+	T* World::addManager(T* manager)
+	{
+		return _managerManager->addManager(manager);
 	}
 
 	// Get a manager
 	template <typename T>
-	T& World::getManager()
+	T* World::getManager()
 	{
-		return *_managerManager.getManager<T>();
+		return _managerManager->getManager<T>();
 	}
 
 	// Set a manager
 	template <typename T>
 	void World::setManager(T& manager)
 	{
-		_managerManager.addManager(&manager);
+		_managerManager->addManager(&manager);
 	}
-
+	
+	// Add the component to the component manager
 	template <typename T>
 	T* World::addComponent(Entity e)
 	{
-		return addComponent(e, T());
+		return _componentManager->addComponent<T>(_entityManager->getEntityInfo(e));
+	}
+	
+	// Register a system with the system manager
+	template <typename T>
+	T* World::addSystem()
+	{
+		return _systemManager->addSystem<T>();
 	}
 
+	// Register a system with the system manager
 	template <typename T>
-	T* World::addComponent(Entity e, T c)
+	T* World::addSystem(T* system)
 	{
-		// Add the component to the component manager
-		return _componentManager.addComponent(_entityManager.getEntityInfo(e), c);
+		return _systemManager->addSystem(system);
 	}
 
 	// Get a component from an entity
 	template <typename T>
 	T* World::getComponent(Entity e)
 	{
-		return _componentManager.getComponent<T>(_entityManager.getEntityInfo(e));
+		return _componentManager->getComponent<T>(_entityManager->getEntityInfo(e));
 	}
 
 	// Remove a component from an entity
 	template <typename T>
 	void removeComponent(Entity e);
-
-	template <typename T>
-	void World::registerSystem(T& system)
-	{
-		// Register a system with the system manager
-		_systemManager.registerSystem(system);
-	}
 }
 
 #endif /* __WORLD_H__ */

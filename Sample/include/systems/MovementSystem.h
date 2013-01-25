@@ -8,14 +8,11 @@ class MovementSystem : public coment::EntityProcessingSystem
 {
 public:
 	MovementSystem(float width, float height)
+		: _width(width), _height(height)
 	{
 		// Register required components
 		registerComponent<Position>();
 		registerComponent<Velocity>();
-
-		// Do other initialisation
-		_width = width;
-		_height = height;
 	}
 
 	virtual void process(coment::Entity e)

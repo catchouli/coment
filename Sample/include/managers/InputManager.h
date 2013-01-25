@@ -13,7 +13,9 @@ class InputManager
 	: public coment::Manager<InputManager>
 {
 public:
-	InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);
+	InputManager();
+
+	void initialise(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);
 
 	void handleEvent(const sf::Event& e);
 
@@ -23,10 +25,16 @@ private:
 	coment::EntitySystem* _movementSystem;
 };
 
-InputManager::InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem)
-	: _window(window), _renderSystem(renderSystem), _movementSystem(movementSystem)
+InputManager::InputManager()
 {
-	
+
+}
+
+void InputManager::initialise(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem)
+{
+	_window = window;
+	_renderSystem = renderSystem;
+	_movementSystem = movementSystem;
 }
 
 void InputManager::handleEvent(const sf::Event& event)
@@ -54,12 +62,12 @@ void InputManager::handleEvent(const sf::Event& event)
 		// Add 100 balls when user presses right arrow
 		else if (event.key.code == sf::Keyboard::Right)
 		{
-			_world->getManager<BallManager>().createBalls(10);
+			_world->getManager<BallManager>()->createBalls(10);
 		}
 		// Remove 100 balls when user presses left arrow
 		else if (event.key.code == sf::Keyboard::Left)
 		{
-			_world->getManager<BallManager>().destroyBalls(1);
+			_world->getManager<BallManager>()->destroyBalls(10);
 		}
 	}
 }

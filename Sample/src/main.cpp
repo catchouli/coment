@@ -1,3 +1,9 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define new DEBUG_NEW
+
 #define SFML_STATIC
 
 // Coment includes
@@ -35,27 +41,46 @@ int main(int argc, char** argv)
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Coment SFML Test");
 	window.setVisible(true);
 
+	for (int i = 0; i < 1; ++i)
+	{
+		// Create entity world
+		coment::World world;
+
+		// Add systems to the world
+		RenderingSystem* renderingSystem = world.addSystem(new RenderingSystem(&window));
+		MovementSystem* movementSystem = world.addSystem(new MovementSystem(WIDTH, HEIGHT));
+	
+		// Add managers to world
+		BallManager* ballManager = world.addManager<BallManager>();
+		InputManager* inputManager = world.addManager<InputManager>();
+
+		// Initialise managers
+		ballManager->setDimensions(WIDTH, HEIGHT);
+		inputManager->initialise(&window, renderingSystem, movementSystem);
+
+		// Create some balls
+		ballManager->createBalls(INITIAL_BALLS);
+	}
+
+	_CrtDumpMemoryLeaks();
+
 	// Create entity world
 	coment::World world;
 
-	// Create systems to govern the world
-	RenderingSystem renderSystem(&window);
-	MovementSystem movementSystem((float)window.getSize().x, (float)window.getSize().y);
+	// Add systems to the world
+	RenderingSystem* renderingSystem = world.addSystem(new RenderingSystem(&window));
+	MovementSystem* movementSystem = world.addSystem(new MovementSystem(WIDTH, HEIGHT));
+	
+	// Add managers to world
+	BallManager* ballManager = world.addManager<BallManager>();
+	InputManager* inputManager = world.addManager<InputManager>();
 
-	// Add these systems to the world
-	world.registerSystem(renderSystem);
-	world.registerSystem(movementSystem);
-
-	// Create managers
-	BallManager ballManager(WIDTH, HEIGHT);
-	InputManager inputManager(&window, &renderSystem, &movementSystem);
-
-	// Register managers with world
-	world.addManager(&ballManager);
-	world.addManager(&inputManager);
+	// Initialise managers
+	ballManager->setDimensions(WIDTH, HEIGHT);
+	inputManager->initialise(&window, renderingSystem, movementSystem);
 
 	// Create some balls
-	world.getManager<BallManager>().createBalls(INITIAL_BALLS);
+	ballManager->createBalls(INITIAL_BALLS);
 
 	// Create a clock to manage time
 	sf::Clock clock;
@@ -65,10 +90,9 @@ int main(int argc, char** argv)
 	{
 		// Handle events
 		sf::Event event;
-		InputManager& inputManager = world.getManager<InputManager>();
 		while (window.pollEvent(event))
 		{
-			inputManager.handleEvent(event);
+			inputManager->handleEvent(event);
 		}
 
 		// Clear the window
@@ -86,7 +110,7 @@ int main(int argc, char** argv)
 
 		// Update title
 		char buf[1024];
-		sprintf_s(buf, "%i Balls, %.0f FPS, Rendering %s (Press R), Movement %s (Press M), right/left arrow keys to add/remove balls", world.getManager<BallManager>().getBallCount(), 1.0f / world.getDelta(), (renderSystem.getEnabled() ? "Enabled" : "Disabled"), (movementSystem.getEnabled() ? "Enabled" : "Disabled"));
+		sprintf_s(buf, "%i Balls, %.0f FPS, Rendering %s (Press R), Movement %s (Press M), right/left arrow keys to add/remove balls", world.getManager<BallManager>()->getBallCount(), 1.0f / world.getDelta(), (renderingSystem->getEnabled() ? "Enabled" : "Disabled"), (movementSystem->getEnabled() ? "Enabled" : "Disabled"));
 		window.setTitle(buf);
 	}
 

@@ -28,7 +28,7 @@ namespace coment
 
 		// Add a component onto an entity
 		template <typename T>
-		T* addComponent(EntityInfo& e, T component);
+		T* addComponent(EntityInfo& e);
 
 		// Get a component from an entity
 		template <typename T>
@@ -48,7 +48,7 @@ namespace coment
 
 	// Add a component to an entity
 	template <typename T>
-	T* ComponentManager::addComponent(EntityInfo& e, T c)
+	T* ComponentManager::addComponent(EntityInfo& e)
 	{
 		// Get bag of components for this type
 		Bag<T>* componentMap = NULL;
@@ -59,21 +59,21 @@ namespace coment
 			// Assign the component type the next available 
 			T::type = ComponentUtils::getNextType();
 		}
-
+		
 		// Add a bag if this component hasn't been mapped
-		if (_componentsByType.size() < c.type+1 ||
-			_componentsByType[c.type] == nullptr) 
+		if (_componentsByType.size() < T::type+1 ||
+			_componentsByType[T::type] == nullptr) 
 		{
 			// Create a component map for this type
 			componentMap = new Bag<T>();
 
 			// Add the component map to our collection
-			_componentsByType.set(c.type, componentMap);
+			_componentsByType.set(T::type, componentMap);
 		}
-		componentMap = (Bag<T>*)_componentsByType[c.type];
+		componentMap = (Bag<T>*)_componentsByType[T::type];
 
 		// Add the component to it
-		componentMap->set(e.getId(), c);
+		componentMap->set(e.getId(), T());
 
 		// Set the entity's components bitmask
 		e.addComponent(T::type);

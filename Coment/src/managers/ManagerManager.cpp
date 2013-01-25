@@ -1,12 +1,10 @@
 #include "managers/ManagerManager.h"
-using namespace coment;
 
-// Constructors
-ManagerManager::ManagerManager()
+namespace coment
 {
-}
+	// Constructor
+	ManagerManager::ManagerManager()
+	{
 
-// Destructors
-ManagerManager::~ManagerManager() 
-{
+	}
 }
