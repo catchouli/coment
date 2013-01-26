@@ -37,7 +37,7 @@ namespace coment
 	// Update all the systems.
 	void SystemManager::update()
 	{
-		for (int i = 0; i < _systemMap.size(); ++i) 
+		for (unsigned int i = 0; i < _systemMap.size(); ++i) 
 		{
 			_systemMap[i]->update();
 		}

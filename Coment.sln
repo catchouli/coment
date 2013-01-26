@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Coment", "Coment\Coment.vcxproj", "{EACED591-60FE-4017-9136-C6BE8C7B4E3D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestProject", "TestProject\TestProject.vcxproj", "{36FC61B8-6418-4D3C-B41C-09268F469DEE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EACED591-60FE-4017-9136-C6BE8C7B4E3D} = {EACED591-60FE-4017-9136-C6BE8C7B4E3D}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample", "Sample\Sample.vcxproj", "{B7124590-823C-4AAD-B589-2FD81A339B6B}"
 EndProject
 Global
@@ -20,10 +15,6 @@ Global
 		{EACED591-60FE-4017-9136-C6BE8C7B4E3D}.Debug|Win32.Build.0 = Debug|Win32
 		{EACED591-60FE-4017-9136-C6BE8C7B4E3D}.Release|Win32.ActiveCfg = Release|Win32
 		{EACED591-60FE-4017-9136-C6BE8C7B4E3D}.Release|Win32.Build.0 = Release|Win32
-		{36FC61B8-6418-4D3C-B41C-09268F469DEE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{36FC61B8-6418-4D3C-B41C-09268F469DEE}.Debug|Win32.Build.0 = Debug|Win32
-		{36FC61B8-6418-4D3C-B41C-09268F469DEE}.Release|Win32.ActiveCfg = Release|Win32
-		{36FC61B8-6418-4D3C-B41C-09268F469DEE}.Release|Win32.Build.0 = Release|Win32
 		{B7124590-823C-4AAD-B589-2FD81A339B6B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{B7124590-823C-4AAD-B589-2FD81A339B6B}.Debug|Win32.Build.0 = Debug|Win32
 		{B7124590-823C-4AAD-B589-2FD81A339B6B}.Release|Win32.ActiveCfg = Release|Win32

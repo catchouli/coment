@@ -22,7 +22,7 @@ public:
 
 	~RenderingSystem()
 	{
-		exit(0);
+
 	}
 
 	// Process entities

@@ -20,7 +20,7 @@ class BallManager
 	: public coment::Manager<BallManager>
 {
 public:
-	BallManager();
+	BallManager(int width, int height);
 
 	void setDimensions(int width, int height);
 	
@@ -36,15 +36,10 @@ private:
 	coment::Bag<coment::Entity> _balls;
 };
 
-BallManager::BallManager()
+BallManager::BallManager(int width, int height)
+	: _windowWidth(width), _windowHeight(height)
 {
 
-}
-
-void BallManager::setDimensions(int width, int height)
-{
-	_windowWidth = width;
-	_windowHeight = height;
 }
 
 void BallManager::createBalls(int number)
@@ -56,17 +51,17 @@ void BallManager::createBalls(int number)
 
 		// At a random position on the screen
 		Position* pos = _world->addComponent<Position>(e);
-		pos->x = rand() % _windowWidth;
-		pos->y = rand() % _windowHeight;
+		pos->x = (float)(rand() % _windowWidth);
+		pos->y = (float)(rand() % _windowHeight);
 
 		// With a random velocity between (10, 10) and (100, 100)
 		Velocity* vel = _world->addComponent<Velocity>(e);
-		vel->x = rand() % 90 + 10;
-		vel->y = rand() % 90 + 10;
+		vel->x = (float)(rand() % 90 + 10);
+		vel->y = (float)(rand() % 90 + 10);
 
 		// A random radius between 10 and 50
 		Radius* radius = _world->addComponent<Radius>(e);
-		radius->radius = rand() % 40 + 10;
+		radius->radius = (float)(rand() % 40 + 10);
 
 		// And a random colour
 		Colour* colour = _world->addComponent<Colour>(e);

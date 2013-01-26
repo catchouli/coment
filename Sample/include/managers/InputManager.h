@@ -13,9 +13,7 @@ class InputManager
 	: public coment::Manager<InputManager>
 {
 public:
-	InputManager();
-
-	void initialise(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);
+	InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);
 
 	void handleEvent(const sf::Event& e);
 
@@ -25,16 +23,10 @@ private:
 	coment::EntitySystem* _movementSystem;
 };
 
-InputManager::InputManager()
+InputManager::InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem)
+	: _window(window), _renderSystem(renderSystem), _movementSystem(movementSystem)
 {
 
-}
-
-void InputManager::initialise(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem)
-{
-	_window = window;
-	_renderSystem = renderSystem;
-	_movementSystem = movementSystem;
 }
 
 void InputManager::handleEvent(const sf::Event& event)
