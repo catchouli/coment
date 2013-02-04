@@ -11,7 +11,7 @@ namespace coment
 {
 	// Contains all the systems added to the world
 	class SystemManager
-		: public Manager<SystemManager>
+		: public Manager
 	{
 	public:
 		SystemManager();

@@ -14,7 +14,7 @@ namespace coment
 
 	// A class that manages all of the entities in a world
 	class EntityManager
-		: public Manager<EntityManager>
+		: public Manager
 	{
 	public:
 		// Constructors

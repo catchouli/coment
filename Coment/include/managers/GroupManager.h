@@ -15,7 +15,7 @@ namespace coment
 	typedef std::hash_map<std::string, Bag<Entity> > EntityGroupMap;
 
 	class GroupManager
-		: public Manager<GroupManager>
+		: public Manager
 	{
 	public:
 		GroupManager();

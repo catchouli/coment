@@ -2,12 +2,21 @@
 
 namespace coment
 {
-	// Intialize the next id
-	unsigned int ManagerUtil::nextID = 0;
-
-	// Get the next id;
-	unsigned int ManagerUtil::getNextID() 
+	Manager::Manager()
+		: _initialised(false)
 	{
-		return nextID++;
+
+	}
+
+	void Manager::initialise(World* world)
+	{
+		_world = world;
+
+		_initialised = true;
+	}
+	
+	bool Manager::getInitialised()
+	{
+		return _initialised;
 	}
 }

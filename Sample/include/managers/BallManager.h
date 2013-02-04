@@ -17,7 +17,7 @@
 #include <SFML/Graphics.hpp>
 
 class BallManager
-	: public coment::Manager<BallManager>
+	: public coment::Manager
 {
 public:
 	BallManager(int width, int height);

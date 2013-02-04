@@ -10,7 +10,7 @@
 #include <systems/EntitySystem.h>
 
 class InputManager
-	: public coment::Manager<InputManager>
+	: public coment::Manager
 {
 public:
 	InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);

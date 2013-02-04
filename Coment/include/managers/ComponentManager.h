@@ -1,23 +1,19 @@
-#include <iostream>
-
 #ifndef __COMPONENTMANAGER_H__
 #define __COMPONENTMANAGER_H__
 
+#include <hash_map>
 #include <memory>
 
 #include "Manager.h"
-
 #include "../Component.h"
-
 #include "../utils/Bag.h"
-
 #include "../exceptions/CompMapUnregistered.h"
 
 namespace coment
 {
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
-		: public Manager<ComponentManager>
+		: public Manager
 	{
 	public:
 		// Constructor
@@ -58,7 +54,7 @@ namespace coment
 
 		// Set the entity's components bitmask
 		e.addComponent(T::type);
-
+		
 		// Return the component we just added
 		return getComponent<T>(e);
 	}
