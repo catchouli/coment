@@ -15,14 +15,10 @@ namespace coment
 		// Get a manager.
 		template <typename T>
 		T* getManager();
-
+		
 		// Add a manager
 		template <typename T>
-		T* addManager();
-
-		// Add a manager
-		template <typename T>
-		T* addManager(T* manager);
+		T* addManager(T& manager);
 
 	private:
 		// A bag of managers
@@ -37,13 +33,7 @@ namespace coment
 	}
 
 	template <typename T>
-	T* ManagerManager::addManager()
-	{
-		return addManager(new T());
-	}
-
-	template <typename T>
-	T* ManagerManager::addManager(T* manager)
+	T* ManagerManager::addManager(T& manager)
 	{
 		// Get the id for this manager
 		int id = T::ID;
@@ -54,13 +44,13 @@ namespace coment
 		}
 
 		// Initialise manager
-		((Manager*)manager)->initialise(_world);
+		((Manager*)&manager)->initialise(_world);
 
 		// Store a pointer to this manager
-		managers.set(T::ID, manager);
+		managers.set(T::ID, &manager);
 
 		// Return a pointer
-		return manager;
+		return &manager;
 	}
 }
 

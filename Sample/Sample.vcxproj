@@ -49,12 +49,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>
       </Optimization>
-      <AdditionalIncludeDirectories>include;../Coment/include;../Sample/include;../dependencies/sfml/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;../Coment/include;../Sample/include;../dependencies/sfml/include;../dependencies/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Coment.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../dependencies/sfml/lib;../Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../dependencies/sfml/lib;../Debug;../dependencies/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

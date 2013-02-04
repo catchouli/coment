@@ -1,5 +1,7 @@
 #define SFML_STATIC
 
+#include <stdlib.h>
+
 // Coment includes
 #include <World.h>
 #include <systems/EntityProcessingSystem.h>
@@ -30,7 +32,7 @@ const int INITIAL_BALLS = 10;
 int main(int argc, char** argv) 
 {
 	srand((unsigned int)time(0));
-
+	
 	// Create window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Coment SFML Test");
 	window.setVisible(true);
@@ -43,20 +45,16 @@ int main(int argc, char** argv)
 	MovementSystem movementSystem((float)WIDTH, (float)HEIGHT);
 	
 	// Add systems to world
-	world.addSystem(&renderingSystem);
-	world.addSystem(&movementSystem);
+	world.addSystem(renderingSystem);
+	world.addSystem(movementSystem);
 
 	// Create and initialise managers
 	BallManager ballManager(WIDTH, HEIGHT);
 	InputManager inputManager(&window, &renderingSystem, &movementSystem);
 
 	// Add managers to world
-	world.addManager(&ballManager);
-	world.addManager(&inputManager);
-
-	// Initialise managers
-	world.addManager(&ballManager);
-	world.addManager(&inputManager);
+	world.addManager(ballManager);
+	world.addManager(inputManager);
 
 	// Create some balls
 	ballManager.createBalls(INITIAL_BALLS);

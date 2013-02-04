@@ -6,27 +6,24 @@ namespace coment
 		: _delta(0)
 	{
 		// Create manager manager
-		_managerManager = new ManagerManager();
-		_managerManager->initialise(this);
+		_managerManager.initialise(this);
 		
 		// Initialise default managers
-		_systemManager = _managerManager->addManager<SystemManager>();
-		_componentManager = _managerManager->addManager<ComponentManager>();
-		_groupManager = _managerManager->addManager<GroupManager>();
-		_entityManager = _managerManager->addManager<EntityManager>();
+		_managerManager.addManager(_systemManager);
+		_managerManager.addManager(_componentManager);
+		_managerManager.addManager(_groupManager);
+		_managerManager.addManager(_entityManager);
 	}
 
 	World::~World()
 	{
-		// Clean up managers
-		delete _managerManager;
-		_managerManager = nullptr;
+
 	}
 
 	Entity World::createEntity()
 	{
 		// Request an unused entity from the entity manager
-		return _entityManager->createEntity();
+		return _entityManager.createEntity();
 	}	
 
 	void World::loopStart()
@@ -62,7 +59,7 @@ namespace coment
 
 	void World::update()
 	{
-		_systemManager->update();
+		_systemManager.update();
 	}
 
 	void World::remove(Entity e)
@@ -78,24 +75,24 @@ namespace coment
 	void World::removeEntity(Entity e)
 	{		
 		// Get the entity info.
-		EntityInfo& info = _entityManager->getEntityInfo(e);
+		EntityInfo& info = _entityManager.getEntityInfo(e);
 
 		// Remove the entity.
-		_entityManager->removeEntity(info);
+		_entityManager.removeEntity(info);
 
 		// Refresh systems concerned with this entities
 		refresh(e);
 
 		// Remove entity from any groups it's in
-		_groupManager->remove(e);
+		_groupManager.remove(e);
 	}
 
 	void World::refreshEntity(Entity e)
 	{
 		// Get the entity info
-		EntityInfo& info = _entityManager->getEntityInfo(e);
+		EntityInfo& info = _entityManager.getEntityInfo(e);
 
 		// Refresh the entity
-		_systemManager->refresh(info);
+		_systemManager.refresh(info);
 	}
 }
