@@ -2,7 +2,7 @@
 #define __POSITION_H__
 
 struct Position
-	: public coment::Component<Position>
+	: public coment::Component
 {
 	Position()
 		: x(0), y(0)

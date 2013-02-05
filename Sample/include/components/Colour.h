@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-struct Colour : public coment::Component<Colour>, sf::Color
+struct Colour : public coment::Component, sf::Color
 {
 	Colour()
 		: sf::Color(255, 255, 255, 255)

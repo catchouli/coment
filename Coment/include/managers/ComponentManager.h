@@ -37,19 +37,26 @@ namespace coment
 		// Remove all the components from an entity
 		void removeComponents(EntityInfo& e);
 
+	protected:
+		// Get a bag for a component type
+		template <typename T>
+		Bag<T>* getComponentBag();
+
 	private:
 		// A map of component bags
-		//std::hash_map(
+		// TODO: fix massive memory leak caused by usage of void pointer, making us unable to deallocate the bag :(
+		std::hash_map<size_t, void*> componentBags;
 	};
 
 	// Add a component to an entity
 	template <typename T>
 	T* ComponentManager::addComponent(EntityInfo& e)
 	{
+		Bag<T>* components = getComponentBag<T>();
 		ComponentType componentType = _world->getManager<ComponentTypeManager>()->getComponentType<T>();
 
 		// Add the component to it
-		T::components.set(e.getId(), T());
+		components->set(e.getId(), T());
 
 		// Set the entity's components bitmask
 		e.addComponent(componentType);
@@ -62,11 +69,13 @@ namespace coment
 	template <typename T>
 	T* ComponentManager::getComponent(EntityInfo& e)
 	{
+		Bag<T>* components = getComponentBag<T>();
+
 		// If this entity doesn't have this component return null
 		if (!e._componentMask[_world->getManager<ComponentTypeManager>()->getComponentType<T>()])
 			return NULL;
 
-		return &T::components[e.getId()];
+		return &((*components)[e.getId()]);
 	}
 
 	// Remove a component from an entity
@@ -74,6 +83,25 @@ namespace coment
 	void ComponentManager::removeComponent(EntityInfo& e)
 	{
 		e._systemMask.clear(T::type);
+	}
+
+	// Get a bag for a component type
+	template <typename T>
+	Bag<T>* ComponentManager::getComponentBag()
+	{
+		Bag<T>* components = (Bag<T>*)componentBags[typeid(T).hash_code()];
+
+		// If this type doesn't have a bag yet
+		if (components == nullptr)
+		{
+			// Create one
+			components = new Bag<T>();
+
+			// Store it in hash map
+			componentBags[typeid(T).hash_code()] = components;
+		}
+
+		return components;
 	}
 }
 

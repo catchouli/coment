@@ -2,7 +2,7 @@
 #define __VELOCITY_H__
 
 struct Velocity
-	: public coment::Component<Velocity>
+	: public coment::Component
 {
 	Velocity()
 		: x(0), y(0)

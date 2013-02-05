@@ -2,7 +2,7 @@
 #define __RADIUS_H__
 
 struct Radius
-	: public coment::Component<Radius>
+	: public coment::Component
 {
 	Radius()
 		: radius(0)
