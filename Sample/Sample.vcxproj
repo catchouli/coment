@@ -50,6 +50,7 @@
       <Optimization>
       </Optimization>
       <AdditionalIncludeDirectories>include;../Coment/include;../Sample/include;../dependencies/sfml/include;../dependencies/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

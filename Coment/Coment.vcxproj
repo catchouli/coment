@@ -96,7 +96,6 @@
     <ClInclude Include="include\utils\Bag.h" />
     <ClInclude Include="include\utils\BitMask.h" />
     <ClInclude Include="include\utils\Bitset.h" />
-    <ClInclude Include="include\utils\ComponentUtils.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="managers\GroupManager.h" />
     <ClInclude Include="Utils\Bag.h" />
@@ -123,7 +122,6 @@
     <ClCompile Include="src\managers\SystemManager.cpp" />
     <ClCompile Include="src\systems\EntityProcessingSystem.cpp" />
     <ClCompile Include="src\systems\EntitySystem.cpp" />
-    <ClCompile Include="src\utils\ComponentUtils.cpp" />
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,9 @@
 #define SFML_STATIC
 
+#ifdef _DEBUG
+#include <vld.h>
+#endif
+
 #include <stdlib.h>
 
 // Coment includes

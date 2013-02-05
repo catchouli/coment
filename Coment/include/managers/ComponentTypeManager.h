@@ -3,21 +3,26 @@
 
 #include <hash_map>
 
-#include "../utils/ComponentUtils.h"
+#include "../Component.h"
 
 namespace coment
 {
+	// A map of std::type_info hash to ComponentType ID
 	typedef std::hash_map<size_t, ComponentType> ComponentTypeMap;
 	
 	class ComponentTypeManager
 		: public Manager
 	{
 	public:
+		ComponentTypeManager() : _nextId(0) {}
+
 		template <typename T>
 		ComponentType getComponentType();
 
 	private:
 		ComponentTypeMap _componentTypes;
+
+		ComponentType _nextId;
 	};
 
 	template <typename T>
@@ -29,7 +34,7 @@ namespace coment
 		if (it == _componentTypes.end())
 		{
 			// Assign it a ComponentType
-			ComponentType componentType = ComponentUtils::getNextType();
+			ComponentType componentType = _nextId++;
 
 			// Add it to hash map
 			_componentTypes[typeid(T).hash_code()] = componentType;
