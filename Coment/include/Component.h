@@ -15,18 +15,10 @@ namespace coment
 		static ComponentType getType();
 
 	protected:
-		// Constructors
 		Component();
 
 	private:
-		// TODO: does this need all of these?
 		friend class ComponentManager;
-		friend class EntitySystem;
-		friend class World;
-		friend class EntityManager;
-
-		// Vars
-		static ComponentType type; // The component type for this component
 
 		// A bag containing all of the components of this type
 		static Bag<T> components;
@@ -43,9 +35,6 @@ namespace coment
 	{
 		return type;
 	}
-
-	template <typename T>
-	ComponentType Component<T>::type(-1);
 
 	template <typename T>
 	Bag<T> Component<T>::components;

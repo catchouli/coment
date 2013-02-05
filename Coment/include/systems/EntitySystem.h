@@ -52,6 +52,9 @@ namespace coment
 
 		// Friends with the system manager so that it can get protected fields
 		friend class SystemManager;
+
+		// Register components with this system
+		virtual void registerComponents() = 0;
 		
 		// Add an entity
 		void addEntity(EntityInfo& e);
@@ -91,14 +94,9 @@ namespace coment
 	template <typename T>
 	void EntitySystem::registerComponent() 
 	{
-		// Generate a type id for this component if it doesn't already have one
-		if (T::type < 0) 
-		{
-			T::type = ComponentUtils::getNextType();
-		}
-
 		// Add this component
-		_bitmask.setBit(T::type);
+		ComponentTypeManager* componentTypeManager = _world->getManager<ComponentTypeManager>();
+		_bitmask.setBit(componentTypeManager->getComponentType<T>());
 	}
 }
 

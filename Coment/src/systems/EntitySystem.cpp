@@ -4,7 +4,7 @@ namespace coment
 {
 	// Constructor
 	EntitySystem::EntitySystem()
-		: _enabled(true)
+		: _enabled(true), _world(nullptr)
 	{
 
 	}

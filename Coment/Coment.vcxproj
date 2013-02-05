@@ -85,6 +85,7 @@
     <ClInclude Include="include\exceptions\CompMapUnregistered.h" />
     <ClInclude Include="include\exceptions\NotImplemented.h" />
     <ClInclude Include="include\managers\ComponentManager.h" />
+    <ClInclude Include="include\managers\ComponentTypeManager.h" />
     <ClInclude Include="include\managers\EntityManager.h" />
     <ClInclude Include="include\managers\GroupManager.h" />
     <ClInclude Include="include\managers\Manager.h" />

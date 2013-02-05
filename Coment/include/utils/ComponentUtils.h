@@ -11,8 +11,7 @@ namespace coment
 	{
 	private:
 		// Add some friends
-		friend class ComponentManager;
-		friend class EntitySystem;
+		friend class ComponentTypeManager;
 
 		// Get the next valid id for a component
 		static ComponentType getNextType();

@@ -10,6 +10,11 @@ public:
 	MovementSystem(float width, float height)
 		: _width(width), _height(height)
 	{
+
+	}
+
+	void registerComponents()
+	{
 		// Register required components
 		registerComponent<Position>();
 		registerComponent<Velocity>();

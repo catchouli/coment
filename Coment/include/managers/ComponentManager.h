@@ -36,24 +36,23 @@ namespace coment
 
 		// Remove all the components from an entity
 		void removeComponents(EntityInfo& e);
+
+	private:
+		// A map of component bags
+		//std::hash_map(
 	};
 
 	// Add a component to an entity
 	template <typename T>
 	T* ComponentManager::addComponent(EntityInfo& e)
 	{
-		// If the component is of a new type
-		if (T::type == -1)
-		{
-			// Assign the component type the next available 
-			T::type = ComponentUtils::getNextType();
-		}
+		ComponentType componentType = _world->getManager<ComponentTypeManager>()->getComponentType<T>();
 
 		// Add the component to it
 		T::components.set(e.getId(), T());
 
 		// Set the entity's components bitmask
-		e.addComponent(T::type);
+		e.addComponent(componentType);
 		
 		// Return the component we just added
 		return getComponent<T>(e);
@@ -63,12 +62,8 @@ namespace coment
 	template <typename T>
 	T* ComponentManager::getComponent(EntityInfo& e)
 	{
-		// If component type is unregistered, throw an exception
-		if (T::type == -1)
-			throw CompMapUnregistered();
-
 		// If this entity doesn't have this component return null
-		if (!e._componentMask[T::type])
+		if (!e._componentMask[_world->getManager<ComponentTypeManager>()->getComponentType<T>()])
 			return NULL;
 
 		return &T::components[e.getId()];

@@ -11,18 +11,16 @@ public:
 	RenderingSystem(sf::RenderTarget* target)
 		: _target(target)
 	{
-		// Register required components
-		registerComponent<Position>();
-		registerComponent<Radius>();
-		registerComponent<Colour>();
-
 		// Do other initialisation
 		_shape = sf::CircleShape(20.0f, 30);
 	}
 
-	~RenderingSystem()
+	void registerComponents()
 	{
-
+		// Register required components
+		registerComponent<Position>();
+		registerComponent<Radius>();
+		registerComponent<Colour>();
 	}
 
 	// Process entities

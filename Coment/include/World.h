@@ -4,11 +4,12 @@
 #include "Entity.h"
 #include "Component.h"
 
+#include "managers/GroupManager.h"
 #include "managers/EntityManager.h"
 #include "managers/SystemManager.h"
-#include "managers/ComponentManager.h"
-#include "managers/GroupManager.h"
 #include "managers/ManagerManager.h"
+#include "managers/ComponentManager.h"
+#include "managers/ComponentTypeManager.h"
 
 #include "exceptions/CompMapUnregistered.h"
 
@@ -82,11 +83,12 @@ namespace coment
 		
 	private:
 		// The manager instances
+		GroupManager _groupManager;
 		EntityManager _entityManager;
 		SystemManager _systemManager;
-		ComponentManager _componentManager;
-		GroupManager _groupManager;
 		ManagerManager _managerManager;
+		ComponentManager _componentManager;
+		ComponentTypeManager _componentTypeManager;
 
 		// Entities due to be removed
 		Bag<Entity> _removed;
