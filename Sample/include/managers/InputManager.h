@@ -9,24 +9,35 @@
 
 #include <systems/EntitySystem.h>
 
+class RenderingSystem;
+class MovementSystem;
+
 class InputManager
 	: public coment::Manager
 {
 public:
-	InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem);
+	InputManager(sf::RenderWindow* window);
 
 	void handleEvent(const sf::Event& e);
 
+	void onRegistered();
+
 private:
 	sf::RenderWindow* _window;
-	coment::EntitySystem* _renderSystem;
+	coment::EntitySystem* _renderingSystem;
 	coment::EntitySystem* _movementSystem;
 };
 
-InputManager::InputManager(sf::RenderWindow* window, coment::EntitySystem* renderSystem, coment::EntitySystem* movementSystem)
-	: _window(window), _renderSystem(renderSystem), _movementSystem(movementSystem)
+InputManager::InputManager(sf::RenderWindow* window)
+	: _window(window)
 {
 
+}
+
+void InputManager::onRegistered()
+{
+	_renderingSystem = (coment::EntitySystem*)_world->getSystem<RenderingSystem>();
+	_movementSystem = (coment::EntitySystem*)_world->getSystem<MovementSystem>();
 }
 
 void InputManager::handleEvent(const sf::Event& event)
@@ -44,7 +55,7 @@ void InputManager::handleEvent(const sf::Event& event)
 		// Disable rendering when player presses R
 		if (event.key.code == sf::Keyboard::R)
 		{
-			_renderSystem->setEnabled(!_renderSystem->getEnabled());
+			_renderingSystem->setEnabled(!_renderingSystem->getEnabled());
 		}
 		// Disable movement when player presses M
 		else if (event.key.code == sf::Keyboard::M)

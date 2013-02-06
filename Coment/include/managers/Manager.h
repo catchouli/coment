@@ -11,10 +11,13 @@ namespace coment
 		// Constructors
 		Manager();
 		
-		// Initialize this manager.
+		// Initialise this manager
 		virtual void initialise(World* world);
 
-		// Get whether or not we are already initialized.
+		// Indicates that this manager has been registered with the world
+		virtual void onRegistered();
+
+		// Get whether or not we are already initialised
 		bool getInitialised();
 
 	protected:

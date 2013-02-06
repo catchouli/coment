@@ -91,6 +91,7 @@
     <ClInclude Include="include\managers\Manager.h" />
     <ClInclude Include="include\managers\ManagerManager.h" />
     <ClInclude Include="include\managers\SystemManager.h" />
+    <ClInclude Include="include\scenes\Scene.h" />
     <ClInclude Include="include\systems\EntityProcessingSystem.h" />
     <ClInclude Include="include\systems\EntitySystem.h" />
     <ClInclude Include="include\utils\Bag.h" />

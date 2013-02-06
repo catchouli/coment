@@ -53,8 +53,8 @@ namespace coment
 		// Friends with the system manager so that it can get protected fields
 		friend class SystemManager;
 
-		// Register components with this system
-		virtual void registerComponents() = 0;
+		// Indicates that this system has been registered with the world
+		virtual void onRegistered();
 		
 		// Add an entity
 		void addEntity(EntityInfo& e);

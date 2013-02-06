@@ -4,30 +4,31 @@
 #include <vld.h>
 #endif
 
+#include <random>
 #include <stdlib.h>
 
 // Coment includes
 #include <World.h>
-#include <systems/EntityProcessingSystem.h>
 
-// Custom managers
+// Managers
 #include "managers/BallManager.h"
 #include "managers/InputManager.h"
 
-// Custom systems
+// Systems
 #include "systems/RenderingSystem.h"
 #include "systems/MovementSystem.h"
 
-// Custom components
+// Components
 #include "components/Position.h"
 #include "components/Velocity.h"
 #include "components/Radius.h"
 #include "components/Colour.h"
 
+// Scenes
+#include "scenes/BallScene.h"
+
 // Other includes
 #include <SFML/Graphics.hpp>
-
-#include <random>
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -54,7 +55,7 @@ int main(int argc, char** argv)
 
 	// Create and initialise managers
 	BallManager ballManager(WIDTH, HEIGHT);
-	InputManager inputManager(&window, &renderingSystem, &movementSystem);
+	InputManager inputManager(&window);
 
 	// Add managers to world
 	world.addManager(ballManager);

@@ -13,6 +13,13 @@ namespace coment
 		_world = world;
 
 		_initialised = true;
+
+		onRegistered();
+	}
+
+	void Manager::onRegistered()
+	{
+
 	}
 	
 	bool Manager::getInitialised()

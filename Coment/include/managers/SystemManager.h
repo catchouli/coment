@@ -9,6 +9,8 @@
 
 namespace coment
 {
+	typedef std::hash_map<size_t, EntitySystem*> SystemMap;
+
 	// Contains all the systems added to the world
 	class SystemManager
 		: public Manager
@@ -20,13 +22,20 @@ namespace coment
 		template <typename T>
 		T* addSystem(T& system);
 
+		// Get system of a particular type
+		template <typename T>
+		T* getSystem();
+
 		// Refresh an entity with the systems
 		void refresh(EntityInfo& e);
 
-		// Update all the systems.
+		// Update all the systems
 		void update();
 
 	private:
+		// An array of systems by ID
+		SystemMap _systems;
+
 		// The hash map that contains all the systems
 		Bag<EntitySystem*> _systemMap;
 	};
@@ -39,8 +48,16 @@ namespace coment
 		system.setWorld(_world);
 		system.registerComponents();
 		_systemMap.add(&system);
+		_systems[typeid(T).hash_code()] = (EntitySystem*)&system;
 
 		return &system;
+	}
+
+	// Get system of a particular type
+	template <typename T>
+	T* SystemManager::getSystem()
+	{
+		return (T*)_systems[typeid(T).hash_code()];
 	}
 }
 

@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "Component.h"
 
+#include "systems/EntityProcessingSystem.h"
+
 #include "managers/GroupManager.h"
 #include "managers/EntityManager.h"
 #include "managers/SystemManager.h"
@@ -43,6 +45,10 @@ namespace coment
 		// Register a system to the system manager
 		template <typename T>
 		T* addSystem(T& system);
+
+		// Retrieve a system from the system manager
+		template <typename T>
+		T* getSystem();
 
 		// Get a component from an entity
 		template <typename T>
@@ -126,6 +132,13 @@ namespace coment
 	T* World::addSystem(T& system)
 	{
 		return _systemManager.addSystem(system);
+	}
+
+	// Retrieve a system from the system manager
+	template <typename T>
+	T* World::getSystem()
+	{
+		return _systemManager.getSystem<T>();
 	}
 
 	// Get a component from an entity

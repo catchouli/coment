@@ -9,6 +9,12 @@ namespace coment
 
 	}
 
+	// Indicates that this system has been registered with the world
+	void EntitySystem::onRegistered()
+	{
+
+	}
+
 	// Called by the client to initiate processing
 	void EntitySystem::update()
 	{
