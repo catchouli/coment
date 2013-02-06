@@ -33,8 +33,6 @@ const int WIDTH = 800;
 const int HEIGHT = 600;
 const int INITIAL_BALLS = 10;
 
-#define printall for (int i = 0; i < test.getSize(); ++i) printf("%d ", test.get(i)); printf("\n")
-
 int main(int argc, char** argv) 
 {
 	srand((unsigned int)time(0));
