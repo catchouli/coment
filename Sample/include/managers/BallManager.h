@@ -74,7 +74,7 @@ void BallManager::createBalls(int number)
 		_world->refresh(e);
 
 		// Add entity to bag
-		_balls.push_back(e);
+		_balls.add(e);
 	}
 }
 
@@ -82,17 +82,16 @@ void BallManager::destroyBalls(int number)
 {
 	for (int i = 0; i < number; ++i)
 	{
-		if (_balls.size() > 0)
+		if (_balls.getSize() > 0)
 		{
-			_world->remove(_balls.back());
-			_balls.pop_back();
+			_world->remove(_balls.popBack());
 		}
 	}
 }
 
 int BallManager::getBallCount()
 {
-	return _balls.size();
+	return _balls.getSize();
 }
 
 #endif /* __BALLMANAGER_H__ */

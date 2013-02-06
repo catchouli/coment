@@ -31,7 +31,7 @@ namespace coment
 	{
 
 		// Remove entities queued for removal
-		for (unsigned int i = 0; i < _removed.size(); ++i)
+		for (unsigned int i = 0; i < _removed.getSize(); ++i)
 		{
 			removeEntity(_removed[i]);
 		}
@@ -40,7 +40,7 @@ namespace coment
 
 		// Refresh entities queued for refresh
 		// Make sure to do this after updating removed entities, as entities are refreshed after being removed
-		for (unsigned int i = 0; i < _refreshed.size(); ++i)
+		for (unsigned int i = 0; i < _refreshed.getSize(); ++i)
 		{
 			refreshEntity(_refreshed[i]);
 		}
@@ -65,12 +65,12 @@ namespace coment
 
 	void World::remove(Entity e)
 	{
-		_removed.push_back(e);
+		_removed.add(e);
 	}
 
 	void World::refresh(Entity e) 
 	{
-		_refreshed.push_back(e);
+		_refreshed.add(e);
 	}
 
 	void World::removeEntity(Entity e)

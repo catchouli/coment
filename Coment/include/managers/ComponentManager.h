@@ -11,14 +11,16 @@
 
 namespace coment
 {
+	typedef std::hash_map<size_t, void*> ComponentBagMap;
+
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
 		: public Manager
 	{
 	public:
-		// Constructor
 		ComponentManager();
-		
+		~ComponentManager();
+
 		// Init
 		void init();
 
@@ -44,8 +46,7 @@ namespace coment
 
 	private:
 		// A map of component bags
-		// TODO: fix massive memory leak caused by usage of void pointer, making us unable to deallocate the bag :(
-		std::hash_map<size_t, void*> componentBags;
+		ComponentBagMap _componentBags;
 	};
 
 	// Add a component to an entity
@@ -89,7 +90,7 @@ namespace coment
 	template <typename T>
 	Bag<T>* ComponentManager::getComponentBag()
 	{
-		Bag<T>* components = (Bag<T>*)componentBags[typeid(T).hash_code()];
+		Bag<T>* components = (Bag<T>*)_componentBags[typeid(T).hash_code()];
 
 		// If this type doesn't have a bag yet
 		if (components == nullptr)
@@ -98,7 +99,7 @@ namespace coment
 			components = new Bag<T>();
 
 			// Store it in hash map
-			componentBags[typeid(T).hash_code()] = components;
+			_componentBags[typeid(T).hash_code()] = components;
 		}
 
 		return components;

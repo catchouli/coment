@@ -71,7 +71,7 @@ namespace coment
 	// Add an entity
 	void EntitySystem::addEntity(EntityInfo& e)
 	{
-		_entities.push_back(e);
+		_entities.add(e);
 	}
 		
 	// Remove an entity

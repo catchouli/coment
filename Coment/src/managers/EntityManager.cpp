@@ -18,13 +18,12 @@ namespace coment
 		Entity nextEntity;
 
 		// If an old entity is available for reuse
-		if (_dead.size() != 0)
+		if (_dead.getSize() != 0)
 		{
 			// Get last dead entity and bring it back to life
-			nextEntity = _dead.back();
-			_dead.pop_back();
+			nextEntity = _dead.popBack();
 
-			_alive.push_back(nextEntity);
+			_alive.add(nextEntity);
 		}
 		else
 		{
@@ -38,7 +37,7 @@ namespace coment
 		}
 		
 		// Create new entity
-		_alive.push_back(nextEntity);
+		_alive.add(nextEntity);
 
 		// Update counters
 		_totalCreated++;
@@ -51,10 +50,12 @@ namespace coment
 	void EntityManager::removeEntity(EntityInfo& e)
 	{
 		// If entity is alive
-		if (_alive.remove(e))
+		int i = _alive.contains(e);
+		if (i >= 0)
 		{
 			// Murder entity
-			_dead.push_back(e);
+			_alive.remove(i);
+			_dead.add(e);
 			
 			// Reset the component and system bitmasks
 			e._componentMask.clear();

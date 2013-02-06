@@ -10,7 +10,7 @@ namespace coment
 	// Refresh an entity
 	void SystemManager::refresh(EntityInfo& e) 
 	{
-		for (unsigned int i = 0; i < _systemMap.size(); ++i)
+		for (unsigned int i = 0; i < _systemMap.getSize(); ++i)
 		{
 			// Check if this entity should be added.
 			if (e.compareBitmask(_systemMap[i]->getMask()))
@@ -37,7 +37,7 @@ namespace coment
 	// Update all the systems.
 	void SystemManager::update()
 	{
-		for (unsigned int i = 0; i < _systemMap.size(); ++i) 
+		for (unsigned int i = 0; i < _systemMap.getSize(); ++i) 
 		{
 			_systemMap[i]->update();
 		}

@@ -3,10 +3,22 @@
 
 namespace coment
 {
-	// Constructor
 	ComponentManager::ComponentManager()
 	{
 		init();
+	}
+
+	ComponentManager::~ComponentManager()
+	{
+		// Iterate through component bags and deallocate memory
+		for (ComponentBagMap::iterator it = _componentBags.begin(); it != _componentBags.end(); ++it)
+		{
+			// Don't modify the collection like this, it's not technically a Bag<Component>
+			Bag<Component>* componentBag = (Bag<Component>*)(*it).second;
+
+			// Free bag memory
+			delete componentBag;
+		}
 	}
 
 	// Initialization function

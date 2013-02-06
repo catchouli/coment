@@ -38,7 +38,7 @@ namespace coment
 		// Initialise the system
 		system.setWorld(_world);
 		system.registerComponents();
-		_systemMap.push_back(&system);
+		_systemMap.add(&system);
 
 		return &system;
 	}

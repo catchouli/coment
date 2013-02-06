@@ -79,7 +79,7 @@
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityInfo.h" />
-    <ClInclude Include="include\exceptions\BagIndexOutOfBounds.h" />
+    <ClInclude Include="include\exceptions\IndexOutOfBounds.h" />
     <ClInclude Include="include\exceptions\BitcountOutOfRange.h" />
     <ClInclude Include="include\exceptions\BitIndexOutOfBounds.h" />
     <ClInclude Include="include\exceptions\CompMapUnregistered.h" />

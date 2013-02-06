@@ -35,7 +35,7 @@ namespace coment
 
 		// Any implementing entity system must implement this method
 		// Contains the logic to process the entities of this system
-		virtual void processEntities(const Bag<Entity>& entities) = 0;
+		virtual void processEntities(Bag<Entity>& entities) = 0;
 
 		// Returns whether this system should currently process entities
 		virtual bool checkProcessing();

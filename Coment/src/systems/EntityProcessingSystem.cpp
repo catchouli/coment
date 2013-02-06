@@ -14,11 +14,11 @@ namespace coment
 	}
 
 	// Automatically call process for each entity
-	void EntityProcessingSystem::processEntities(const Bag<Entity>& entities)
+	void EntityProcessingSystem::processEntities(Bag<Entity>& entities)
 	{
-		for (unsigned int i = 0; i < entities.size(); ++i)
+		for (unsigned int i = 0; i < entities.getSize(); ++i)
 		{
-			process(entities[i]);
+			process(entities.get(i));
 		}
 	}
 }

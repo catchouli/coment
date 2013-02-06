@@ -22,7 +22,7 @@ namespace coment
 		virtual bool checkProcessing();
 
 		// Automatically call process for each entity
-		void processEntities(const Bag<Entity>& entities);
+		void processEntities(Bag<Entity>& entities);
 	};
 };
 
