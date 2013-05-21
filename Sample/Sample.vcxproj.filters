@@ -47,5 +47,8 @@
     <ClInclude Include="include\scenes\BallScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\systems\VelocityRandomiser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

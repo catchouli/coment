@@ -90,6 +90,7 @@
     <ClInclude Include="include\managers\BallManager.h" />
     <ClInclude Include="include\managers\InputManager.h" />
     <ClInclude Include="include\scenes\BallScene.h" />
+    <ClInclude Include="include\systems\VelocityRandomiser.h" />
     <ClInclude Include="include\systems\MovementSystem.h" />
     <ClInclude Include="include\systems\RenderingSystem.h" />
   </ItemGroup>

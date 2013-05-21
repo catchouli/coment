@@ -16,6 +16,7 @@
 
 // Systems
 #include "systems/RenderingSystem.h"
+#include "systems/VelocityRandomiser.h"
 #include "systems/MovementSystem.h"
 
 // Components
@@ -47,10 +48,12 @@ int main(int argc, char** argv)
 
 	// Create and initialise systems
 	RenderingSystem renderingSystem(&window);
+	VelocityRandomiser velocityRandomiser;
 	MovementSystem movementSystem((float)WIDTH, (float)HEIGHT);
 	
 	// Add systems to world
 	world.addSystem(renderingSystem);
+	world.addSystem(velocityRandomiser);
 	world.addSystem(movementSystem);
 
 	// Create and initialise managers
