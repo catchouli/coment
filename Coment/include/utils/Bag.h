@@ -13,7 +13,7 @@ namespace coment
 	{
 	public:
 		Bag();
-		~Bag();
+		virtual ~Bag();
 
 		void add(const T& value);
 
