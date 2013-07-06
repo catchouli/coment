@@ -1,6 +1,9 @@
 #ifndef __BAG_H__
 #define __BAG_H__
 
+#include <stdlib.h>
+#include <stdio.h>
+
 namespace coment
 {
 	// The size of the dynamic array is the the number of elements,
@@ -24,7 +27,7 @@ namespace coment
 		void clear();
 
 		size_t contains(const T& value);
-		
+
 		void reserve(size_t n);
 		void resize(size_t n);
 
@@ -33,12 +36,12 @@ namespace coment
 		void setCapacity(size_t n);
 
 		virtual void grow();
-		
+
 		inline size_t getSize() const;
 		inline size_t getCapacity() const;
 
 		void set(size_t i, const T& value);
-		
+
 		T& get(const size_t i);
 
 		T& operator[](const int i);
@@ -49,7 +52,7 @@ namespace coment
 		size_t _size;
 		size_t _capacity;
 	};
-	
+
 	template <typename T>
 	Bag<T>::Bag()
 		: _data(nullptr), _size(0), _capacity(0)
@@ -61,6 +64,7 @@ namespace coment
 	Bag<T>::~Bag()
 	{
 		free(_data);
+		printf("~Bag()\n");
 	}
 
 	// Add an element to the collection, increasing the capacity if necessary
@@ -70,7 +74,7 @@ namespace coment
 		resize(_size+1);
 		_data[_size-1] = value;
 	}
-	
+
 	// Remove the element at i
 	// by swapping the last element with it and resizing the elemnt down by 1
 	template <typename T>
@@ -79,7 +83,7 @@ namespace coment
 		_data[i] = _data[_size-1];
 		resize(_size-1);
 	}
-	
+
 	// Remove the first occurence of value
 	// by swapping the last element with it and resizing the elemnt down by 1
 	template <typename T>
@@ -96,7 +100,7 @@ namespace coment
 			}
 		}
 	}
-	
+
 	// Remove the first occurence of value
 	// by swapping the last element with it and resizing the elemnt down by 1
 	template <typename T>
@@ -121,13 +125,13 @@ namespace coment
 		resize(_size-1);
 		return _data[_size];
 	}
-	
+
 	template <typename T>
 	void Bag<T>::clear()
 	{
 		_size = 0;
 	}
-	
+
 	// Returns the index of the first occurence of value
 	// (or -1 if it's not in the array)
 	template <typename T>
@@ -174,13 +178,13 @@ namespace coment
 	{
 		_size = n;
 	}
-	
+
 	// Set the capacity of the array, reallocating the memory and discarding any elements data past element n
 	template <typename T>
 	void Bag<T>::setCapacity(size_t n)
 	{
 		_capacity = n;
-		
+
 		_data = (T*)realloc(_data, _capacity * sizeof(T));
 	}
 
@@ -208,7 +212,7 @@ namespace coment
 	{
 		return _capacity;
 	}
-	
+
 	// Set the element i to the value of value
 	template <typename T>
 	void Bag<T>::set(size_t i, const T& value)

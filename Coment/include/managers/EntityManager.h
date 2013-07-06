@@ -26,7 +26,7 @@ namespace coment
 
 	protected:
 		friend class World;
-		
+
 		// Remove an entity from the manager
 		void removeEntity(EntityInfo& e);
 
@@ -44,11 +44,11 @@ namespace coment
 		// Contains the entity IDs of dead or alive entities
 		Bag<Entity> _alive;
 		Bag<Entity> _dead;
-		
+
 		// How many entities are in the manager
 		int _count;
 		EntityId _nextEntityId; // The next valid entity id
-		
+
 		// The total amount of removed and added entities
 		int _totalCreated;
 		int _totalRemoved;

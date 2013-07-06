@@ -1,3 +1,4 @@
+#include "World.h"
 #include "EntityInfo.h"
 #include "managers/ComponentManager.h"
 
@@ -5,7 +6,7 @@ namespace coment
 {
 	ComponentManager::ComponentManager()
 	{
-		init();
+
 	}
 
 	ComponentManager::~ComponentManager()
@@ -21,10 +22,10 @@ namespace coment
 		}
 	}
 
-	// Initialization function
-	void ComponentManager::init()
+	// Initialise this manager once it's registered with the world
+	void ComponentManager::onRegistered()
 	{
-
+		_componentTypeManager = _world->getManager<ComponentTypeManager>();
 	}
 
 	// Remove all the components from an entity

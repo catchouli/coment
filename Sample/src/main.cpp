@@ -1,10 +1,7 @@
 #define SFML_STATIC
 
-#ifdef _DEBUG
-#include <vld.h>
-#endif
-
 #include <random>
+#include <sstream>
 #include <stdlib.h>
 
 // Coment includes
@@ -35,10 +32,10 @@ const int WIDTH = 800;
 const int HEIGHT = 600;
 const int INITIAL_BALLS = 10;
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
 	srand((unsigned int)time(0));
-	
+
 	// Create window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Coment SFML Test");
 	window.setVisible(true);
@@ -50,7 +47,7 @@ int main(int argc, char** argv)
 	RenderingSystem renderingSystem(&window);
 	VelocityRandomiser velocityRandomiser;
 	MovementSystem movementSystem((float)WIDTH, (float)HEIGHT);
-	
+
 	// Add systems to world
 	world.addSystem(renderingSystem);
 	world.addSystem(velocityRandomiser);
@@ -71,8 +68,10 @@ int main(int argc, char** argv)
 	sf::Clock clock;
 
 	// Update the window
-	while (window.isOpen()) 
+	while (window.isOpen())
 	{
+		std::stringstream ss;
+
 		// Handle events
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -94,9 +93,13 @@ int main(int argc, char** argv)
 		window.display();
 
 		// Update title
-		char buf[1024];
-		sprintf_s(buf, "%i Balls, %.0f FPS, Rendering %s (Press R), Movement %s (Press M), right/left arrow keys to add/remove balls", world.getManager<BallManager>()->getBallCount(), 1.0f / world.getDelta(), (renderingSystem.getEnabled() ? "Enabled" : "Disabled"), (movementSystem.getEnabled() ? "Enabled" : "Disabled"));
-		window.setTitle(buf);
+		ss << world.getManager<BallManager>()->getBallCount() << " Balls, ";
+		ss << 1.0f / world.getDelta() << " FPS, ";
+		ss << "Rendering " << (renderingSystem.getEnabled() ? "Enabled" : "Disabled") << " (Press R), ";
+		ss << "Movement " << (movementSystem.getEnabled() ? "Enabled" : "Disabled") << " (Press M), ";
+		ss << "right/left arrow keys to add/remove balls";
+
+		window.setTitle(ss.str().c_str());
 	}
 
 	return 0;

@@ -35,7 +35,7 @@ namespace coment
 			// Add it to the new group bag
 			result.first->second.add(e);
 		}
-		
+
 		// Set entity's group
 		_groupsByEntity.set(e.getId(), group);
 	}

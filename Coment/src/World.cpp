@@ -7,13 +7,13 @@ namespace coment
 	{
 		// Create manager manager
 		_managerManager.initialise(this);
-		
+
 		// Initialise default managers
 		_managerManager.addManager(_groupManager);
 		_managerManager.addManager(_systemManager);
 		_managerManager.addManager(_entityManager);
-		_managerManager.addManager(_componentManager);
 		_managerManager.addManager(_componentTypeManager);
+		_managerManager.addManager(_componentManager);
 	}
 
 	World::~World()
@@ -25,7 +25,7 @@ namespace coment
 	{
 		// Request an unused entity from the entity manager
 		return _entityManager.createEntity();
-	}	
+	}
 
 	void World::loopStart()
 	{
@@ -68,13 +68,13 @@ namespace coment
 		_removed.add(e);
 	}
 
-	void World::refresh(Entity e) 
+	void World::refresh(Entity e)
 	{
 		_refreshed.add(e);
 	}
 
 	void World::removeEntity(Entity e)
-	{		
+	{
 		// Get the entity info.
 		EntityInfo& info = _entityManager.getEntityInfo(e);
 

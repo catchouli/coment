@@ -1,8 +1,7 @@
 #ifndef __COMPONENTMANAGER_H__
 #define __COMPONENTMANAGER_H__
 
-#include <hash_map>
-#include <memory>
+#include <unordered_map>
 
 #include "Manager.h"
 #include "../Component.h"
@@ -11,7 +10,7 @@
 
 namespace coment
 {
-	typedef std::hash_map<size_t, void*> ComponentBagMap;
+	typedef std::unordered_map<size_t, void*> ComponentBagMap;
 
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
@@ -21,9 +20,6 @@ namespace coment
 		ComponentManager();
 		~ComponentManager();
 
-		// Init
-		void init();
-
 		// Add a component onto an entity
 		template <typename T>
 		T* addComponent(EntityInfo& e);
@@ -31,6 +27,9 @@ namespace coment
 		// Get a component from an entity
 		template <typename T>
 		T* getComponent(EntityInfo& e);
+
+		// Initialise this manager once it's registered with the world
+		virtual void onRegistered();
 
 		// Remove a component from an entity
 		template <typename T>
@@ -45,6 +44,9 @@ namespace coment
 		Bag<T>* getComponentBag();
 
 	private:
+		// Manager for component types
+		ComponentTypeManager* _componentTypeManager;
+
 		// A map of component bags
 		ComponentBagMap _componentBags;
 	};
@@ -54,14 +56,14 @@ namespace coment
 	T* ComponentManager::addComponent(EntityInfo& e)
 	{
 		Bag<T>* components = getComponentBag<T>();
-		ComponentType componentType = _world->getManager<ComponentTypeManager>()->getComponentType<T>();
+		ComponentType componentType = _componentTypeManager->getComponentType<T>();
 
 		// Add the component to it
 		components->set(e.getId(), T());
 
 		// Set the entity's components bitmask
 		e.addComponent(componentType);
-		
+
 		// Return the component we just added
 		return getComponent<T>(e);
 	}
@@ -73,7 +75,7 @@ namespace coment
 		Bag<T>* components = getComponentBag<T>();
 
 		// If this entity doesn't have this component return null
-		if (!e._componentMask[_world->getManager<ComponentTypeManager>()->getComponentType<T>()])
+		if (!e._componentMask[_componentTypeManager->getComponentType<T>()])
 			return NULL;
 
 		return &((*components)[e.getId()]);

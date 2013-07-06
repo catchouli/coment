@@ -1,10 +1,11 @@
 #include "systems/EntitySystem.h"
+#include "World.h"
 
 namespace coment
 {
 	// Constructor
 	EntitySystem::EntitySystem()
-		: _enabled(true), _world(nullptr)
+		: _world(nullptr), _enabled(true), _componentTypeManager(nullptr)
 	{
 
 	}
@@ -12,7 +13,7 @@ namespace coment
 	// Indicates that this system has been registered with the world
 	void EntitySystem::onRegistered()
 	{
-
+		_componentTypeManager = _world->getManager<ComponentTypeManager>();
 	}
 
 	// Called by the client to initiate processing
@@ -79,7 +80,7 @@ namespace coment
 	{
 		_entities.add(e);
 	}
-		
+
 	// Remove an entity
 	void EntitySystem::removeEntity(EntityInfo& e)
 	{

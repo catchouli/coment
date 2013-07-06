@@ -1,7 +1,8 @@
 #ifndef __SYSTEMMANAGER_H__
 #define __SYSTEMMANAGER_H__
 
-#include <hash_map>
+#include <typeinfo>
+#include <unordered_map>
 
 #include "managers/Manager.h"
 #include "../utils/Bag.h"
@@ -9,7 +10,7 @@
 
 namespace coment
 {
-	typedef std::hash_map<size_t, EntitySystem*> SystemMap;
+	typedef std::unordered_map<size_t, EntitySystem*> SystemMap;
 
 	// Contains all the systems added to the world
 	class SystemManager
@@ -46,6 +47,7 @@ namespace coment
 	{
 		// Initialise the system
 		system.setWorld(_world);
+		system.onRegistered();
 		system.registerComponents();
 		_systemMap.add(&system);
 		_systems[typeid(T).hash_code()] = (EntitySystem*)&system;

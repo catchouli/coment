@@ -10,7 +10,7 @@ namespace coment
 	public:
 		// Constructors
 		Manager();
-		
+
 		// Initialise this manager
 		virtual void initialise(World* world);
 

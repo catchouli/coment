@@ -35,7 +35,7 @@ namespace coment
 			// Set entity ID to return
 			nextEntity._id = newId;
 		}
-		
+
 		// Create new entity
 		_alive.add(nextEntity);
 
@@ -56,7 +56,7 @@ namespace coment
 			// Murder entity
 			_alive.remove(i);
 			_dead.add(e);
-			
+
 			// Reset the component and system bitmasks
 			e._componentMask.clear();
 			e._systemMask.clear();
@@ -69,7 +69,7 @@ namespace coment
 	}
 
 	// Get the entity info for an entity
-	EntityInfo& EntityManager::getEntityInfo(Entity e) 
+	EntityInfo& EntityManager::getEntityInfo(Entity e)
 	{
 		return _entities[e.getId()];
 	}

@@ -30,11 +30,11 @@ namespace coment
 		// Add a manager
 		template <typename T>
 		T* addManager(T& manager);
-		
+
 		// Get a manager
 		template <typename T>
 		T* getManager();
-		
+
 		// Create a new entity
 		Entity createEntity();
 
@@ -57,7 +57,7 @@ namespace coment
 		// Remove a component from an entity
 		template <typename T>
 		void removeComponent(Entity e);
-		
+
 		// Remove all components from an entity
 		void removeComponents(Entity e);
 
@@ -70,7 +70,7 @@ namespace coment
 
 		// Returns the delta
 		float getDelta();
-		
+
 		// Update all the systems.
 		void update();
 
@@ -86,7 +86,7 @@ namespace coment
 
 		// Refresh entity (called automatically on queued entities)
 		void refreshEntity(Entity e);
-		
+
 	private:
 		// The manager instances
 		GroupManager _groupManager;
@@ -119,7 +119,7 @@ namespace coment
 	{
 		return _managerManager.getManager<T>();
 	}
-	
+
 	// Add the component to the component manager
 	template <typename T>
 	T* World::addComponent(Entity e)

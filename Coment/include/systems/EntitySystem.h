@@ -5,6 +5,7 @@
 #include "../EntityInfo.h"
 #include "../utils/BitMask.h"
 #include "../utils/Bag.h"
+#include "managers/ComponentTypeManager.h"
 
 namespace coment
 {
@@ -55,10 +56,10 @@ namespace coment
 
 		// Indicates that this system has been registered with the world
 		virtual void onRegistered();
-		
+
 		// Add an entity
 		void addEntity(EntityInfo& e);
-		
+
 		// Remove an entity
 		void removeEntity(EntityInfo& e);
 
@@ -80,6 +81,9 @@ namespace coment
 		World* _world;
 
 	private:
+		// A pointer to the component type manager
+		ComponentTypeManager* _componentTypeManager;
+
 		// Whether to process this system
 		bool _enabled;
 
@@ -92,11 +96,10 @@ namespace coment
 
 	// Register a component with this system
 	template <typename T>
-	void EntitySystem::registerComponent() 
+	void EntitySystem::registerComponent()
 	{
 		// Add this component
-		ComponentTypeManager* componentTypeManager = _world->getManager<ComponentTypeManager>();
-		_bitmask.setBit(componentTypeManager->getComponentType<T>());
+		_bitmask.setBit(_componentTypeManager->getComponentType<T>());
 	}
 }
 
