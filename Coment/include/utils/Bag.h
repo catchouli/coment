@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#ifndef nullptr
+#define nullptr 0
+#endif
+
 namespace coment
 {
 	// The size of the dynamic array is the the number of elements,
@@ -64,7 +68,6 @@ namespace coment
 	Bag<T>::~Bag()
 	{
 		free(_data);
-		printf("~Bag()\n");
 	}
 
 	// Add an element to the collection, increasing the capacity if necessary
