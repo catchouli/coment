@@ -71,7 +71,7 @@ namespace coment
 		// Returns the delta
 		float getDelta();
 
-		// Update all the systems.
+		// Update all the systems
 		void update();
 
 		// Queue an entity for removal

@@ -31,7 +31,7 @@ namespace coment
 
 		Bitset<bitcount>& operator>>=(unsigned int dist);
 		Bitset<bitcount> operator>>(unsigned int dist) const;
-		
+
 		Bitset<bitcount>& operator&=(const Bitset<bitcount>& other);
 		const Bitset<bitcount> operator&(const Bitset<bitcount>& other) const;
 
@@ -39,13 +39,13 @@ namespace coment
 		const Bitset<bitcount> operator|(const Bitset<bitcount>& other) const;
 
 		const bool operator[](unsigned int rhs);
-		
+
 		void setBit(unsigned int index);
 		void clearBit(unsigned int index);
 		void toggleBit(unsigned int index);
 
 		bool isZero() const;
-		
+
 		void clear();
 
 		uint32_t* getData();
@@ -109,7 +109,7 @@ namespace coment
 
 		return *this;
 	}
-	
+
 	template <int bitcount>
 	const bool Bitset<bitcount>::operator==(const Bitset<bitcount>& other) const
 	{
@@ -121,13 +121,13 @@ namespace coment
 
 		return true;
 	}
-	
+
 	template <int bitcount>
 	const bool Bitset<bitcount>::operator!=(const Bitset<bitcount>& other) const
 	{
 		return !(*this == other);
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount>& Bitset<bitcount>::operator<<=(unsigned int dist)
 	{
@@ -150,7 +150,7 @@ namespace coment
 
 		return *this;
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount> Bitset<bitcount>::operator<<(unsigned int dist) const
 	{
@@ -160,7 +160,7 @@ namespace coment
 
 		return result;
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount>& Bitset<bitcount>::operator>>=(unsigned int dist)
 	{
@@ -180,7 +180,7 @@ namespace coment
 
 		return *this;
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount> Bitset<bitcount>::operator>>(unsigned int dist) const
 	{
@@ -190,7 +190,7 @@ namespace coment
 
 		return result;
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount>& Bitset<bitcount>::operator&=(const Bitset<bitcount>& other)
 	{
@@ -201,7 +201,7 @@ namespace coment
 
 		return *this;
 	}
-	
+
 	template <int bitcount>
 	const Bitset<bitcount> Bitset<bitcount>::operator&(const Bitset<bitcount>& other) const
 	{
@@ -211,10 +211,10 @@ namespace coment
 
 		return result;
 	}
-	
+
 	template <int bitcount>
 	Bitset<bitcount>& Bitset<bitcount>::operator|=(const Bitset<bitcount>& other)
-	{		
+	{
 		for (uint32_t i = 0; i < (bitcount/32); ++i)
 		{
 			_words[i] |= other._words[i];
@@ -222,17 +222,17 @@ namespace coment
 
 		return *this;
 	}
-	
+
 	template <int bitcount>
 	const Bitset<bitcount> Bitset<bitcount>::operator|(const Bitset<bitcount>& other) const
-	{		
+	{
 		Bitset<bitcount> result(*this);
 
 		result |= other;
 
 		return result;
 	}
-	
+
 	// Get bit at position
 	template <int bitcount>
 	const bool Bitset<bitcount>::operator[](unsigned int rhs)
@@ -346,14 +346,14 @@ namespace coment
 	}
 
 	template <int bitcount>
-	class BitsetHash 
+	class BitsetHash
 	{
 	public:
-		enum 
+		enum
 		{
 			bucket_size = 4,  // 0 < bucket_size
 			min_buckets = 8	  // min_buckets = 2 ^^ N, 0 < N
-		}; 
+		};
 		size_t operator() (const coment::Bitset<bitcount>& t) const;
 		bool operator() (const coment::Bitset<bitcount>& one, const coment::Bitset<bitcount>& two) const;
 	};
