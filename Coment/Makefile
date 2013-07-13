@@ -1,35 +1,62 @@
-BINARY=coment
+# Build/install library
 
-SRCDIR=src
-OBJDIR=obj
-BINDIR=bin
-INCDIR=include
+BINARY = coment
+MAJOR_VERSION = 1
+MINOR_VERSION = 0
 
-CFLAGS=-c -std=c++11 -Wall -g -O0
-INCLUDES=-I$(INCDIR)
+STATICNAME = $(BINARY).a
+LINKNAME = lib$(BINARY).so
+SONAME = $(LINKNAME).$(MAJOR_VERSION)
+REALNAME = $(LINKNAME).$(MAJOR_VERSION).$(MINOR_VERSION)
 
-SOURCES=$(shell find src -name *.cpp)
-OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
-OUTPUT_OBJ=$(OBJDIR)/$(BINARY).o
-OUTPUT=$(BINDIR)/$(BINARY).a
+INSTALL_DIR = /usr/lib
 
-CC=g++-4.7
+INCLUDES = -I$(INCDIR)
 
-all: $(SOURCES) $(OUTPUT_OBJ)
+SRCDIR = src
+OBJDIR = obj
+BINDIR = bin
+INCDIR = include
 
-$(OUTPUT_OBJ): $(OBJECTS)
+CXXFLAGS = -c -fPIC -std=c++11 -Wall -O2
+LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)
+
+SOURCES = $(shell find src -name *.cpp)
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.shared.o, $(SOURCES))
+
+all: shared static
+
+shared: bin/$(REALNAME)
+
+static: bin/$(STATICNAME)
+
+bin/$(REALNAME): $(OBJECTS)
 	@mkdir -p bin
-	$(AR) rcs $(OUTPUT) $(OBJECTS)
-	@cp -R bin/* ../bin/
+	@mkdir -p ../bin
+	$(CC) $(LDFLAGS) $(OBJECTS)
+	ln -sfn ./$(REALNAME) $(LINKNAME)
+	mv $(LINKNAME) bin
+	cp -R bin/* ../bin
 
-%.o:
+bin/$(STATICNAME): $(OBJECTS)
+	@mkdir -p bin
+	@mkdir -p ../bin
+	$(AR) rcs $@ $(OBJECTS)
+	cp bin/* ../bin
+
+%.o: $(SOURCES)
 	@mkdir -p obj
 	@mkdir -p $(dir $@)
-	$(CC) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CFLAGS) $< -o $@
+	$(CXX) $(patsubst $(OBJDIR)/%.shared.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
+
+install:
+	cp bin/$(REALNAME) $(INSTALL_DIR)
+	ldconfig -n $(INSTALL_DIR)
+	ln -sfn $(INSTALL_DIR)/$(REALNAME) $(INSTALL_DIR)/$(LINKNAME)
 
 clean:
 	rm -rf $(OBJDIR)
 	rm -rf $(BINDIR)
 
-.PHONY: all clean
+.PHONY: all shared static install clean
 

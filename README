@@ -1,5 +1,16 @@
 Coment - A C++ entity system based on the architecture of Artemis
 
+Compilation instructions:
+
+Windows: Open solution and compile. Dynamic linking is not yet supported.
+
+Linux: make targets: all shared sharedlib static staticlib install
+Shared linux compilation (library and sample): make shared && sudo make install
+Shared linux compilation (library only): make sharedlib && sudo make install
+Static linux compilation (library and sample): make static
+Static linux compilation (library only): make staticlib
+To run sample: ./bin/sample-static or ./bin/sample-shared
+
 A quick guide can be found at:
 http://www.acunliffe.com/2013/01/coment-a-c-componententity-system-based-on-artemis/#more-311
 
