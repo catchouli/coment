@@ -2,16 +2,19 @@
 #define __ENTITY_H__
 
 namespace coment
-{	
+{
 	typedef unsigned int EntityId;
 
 	class Entity
 	{
 	public:
 		EntityId getId();
-		
+
 		bool operator==(const Entity& other) const;
 		bool operator!=(const Entity& other) const;
+
+	protected:
+		friend class EntityManager;
 
 		Entity(EntityId id = -1);
 
