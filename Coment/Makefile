@@ -22,7 +22,7 @@ CXXFLAGS = -c -fPIC -std=c++11 -Wall -O2
 LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)
 
 SOURCES = $(shell find src -name *.cpp)
-OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.shared.o, $(SOURCES))
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 all: shared static
 
@@ -47,7 +47,7 @@ bin/$(STATICNAME): $(OBJECTS)
 %.o: $(SOURCES)
 	@mkdir -p obj
 	@mkdir -p $(dir $@)
-	$(CXX) $(patsubst $(OBJDIR)/%.shared.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
+	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
 
 install:
 	cp bin/$(REALNAME) $(INSTALL_DIR)
