@@ -10,9 +10,9 @@ https://github.com/Biracun/Coment/wiki
 Open solution and compile. Dynamic linking is not yet supported.
 
 <h5>Linux</h5>
-make targets: all shared sharedlib static staticlib install uninstall
-Shared linux compilation (library and sample): make shared && sudo make install
-To run sample: ./bin/sample-static or ./bin/sample-shared
+make targets: all shared sharedlib static staticlib install uninstall<br>
+Shared linux compilation (library and sample): make shared && sudo make install<br>
+To run sample: ./bin/sample-static or ./bin/sample-shared<br>
 
 Up to date copies of this software can be obtained from:
 https://github.com/Biracun/Coment
