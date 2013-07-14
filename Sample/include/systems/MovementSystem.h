@@ -24,6 +24,7 @@ namespace coment
 					// Register required components
 					registerComponent<Position>();
 					registerComponent<Velocity>();
+					registerComponent<Radius>();
 				}
 
 				virtual void process(coment::Entity e)

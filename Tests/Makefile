@@ -1,6 +1,6 @@
-# Build this sample
+# Build the unit tests
 
-EXECUTABLE=sample
+EXECUTABLE=tests
 
 SHARED_OUTPUT=$(EXECUTABLE)-shared
 STATIC_OUTPUT=$(EXECUTABLE)-static
@@ -11,7 +11,7 @@ BINDIR=bin
 INCDIR=include
 
 CFLAGS=-c -std=c++11 -Wall -O2
-LDFLAGS=-lsfml-system -lsfml-window -lsfml-graphics
+LDFLAGS=
 INCLUDES=-I$(INCDIR) -I../Coment/include
 
 SOURCES=$(shell find src -name *.cpp)
