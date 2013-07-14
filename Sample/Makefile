@@ -32,7 +32,7 @@ bin/$(SHARED_OUTPUT): $(OBJECTS)
 bin/$(STATIC_OUTPUT): $(OBJECTS)
 	@mkdir -p bin
 	@mkdir -p ../bin
-	$(CXX) $(LDFLAGS) -L../bin -lcoment $(OBJECTS) -o $@
+	$(CXX) $(LDFLAGS) $(OBJECTS) ../bin/coment.a -o $@
 	@cp -R bin/* ../bin/	
 
 %.o: $(SOURCES)
