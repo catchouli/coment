@@ -4,10 +4,10 @@
 #include <string>
 #include <map>
 
-#include <managers/Manager.h>
 #include <SFML/Graphics.hpp>
 
-#include <systems/EntitySystem.h>
+#include <coment/systems/EntitySystem.h>
+#include <coment/managers/Manager.h>
 
 namespace coment
 {

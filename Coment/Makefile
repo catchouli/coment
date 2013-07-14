@@ -17,7 +17,7 @@ INCLUDES = -I$(INCDIR)
 SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
-INCDIR = include
+INCDIR = include/coment
 
 CXXFLAGS = -c -fPIC -std=c++11 -Wall -O2
 LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)
@@ -54,7 +54,7 @@ install:
 	@test -s bin/$(REALNAME) || { echo "Error: Library not yet built. Try running "make shared" first."; exit 1; }
 
 	@mkdir -p /usr/include/coment
-	cp -R include/* /usr/include/coment
+	cp -R include/coment/* /usr/include/coment/
 	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
 	ldconfig -n $(INSTALL_DIR_LIB)
 	ln -sfn $(INSTALL_DIR_LIB)/$(REALNAME) $(INSTALL_DIR_LIB)/$(LINKNAME)

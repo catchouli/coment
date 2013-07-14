@@ -5,9 +5,8 @@
 #include <map>
 #include <random>
 
-#include <managers/Manager.h>
-
-#include <utils/Bag.h>
+#include <coment/managers/Manager.h>
+#include <coment/utils/Bag.h>
 
 #include "components/Position.h"
 #include "components/Velocity.h"
