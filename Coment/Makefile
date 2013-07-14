@@ -53,7 +53,8 @@ bin/$(STATICNAME): $(OBJECTS)
 install:
 	@test -s bin/$(REALNAME) || { echo "Error: Library not yet built. Try running "make shared" first."; exit 1; }
 
-	cp -R include /usr/include/coment
+	@mkdir -p /usr/include/coment
+	cp -R include/* /usr/include/coment
 	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
 	ldconfig -n $(INSTALL_DIR_LIB)
 	ln -sfn $(INSTALL_DIR)/$(REALNAME) $(INSTALL_DIR)/$(LINKNAME)
