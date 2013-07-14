@@ -57,7 +57,7 @@ install:
 	cp -R include/* /usr/include/coment
 	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
 	ldconfig -n $(INSTALL_DIR_LIB)
-	ln -sfn $(INSTALL_DIR)/$(REALNAME) $(INSTALL_DIR)/$(LINKNAME)
+	ln -sfn $(INSTALL_DIR_LIB)/$(REALNAME) $(INSTALL_DIR_LIB)/$(LINKNAME)
 
 uninstall:
 	rm -rf /usr/lib/libcoment.*
