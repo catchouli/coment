@@ -1,4 +1,4 @@
-Coment - A C++ entity system based on the architecture of Artemis
+<h2>Coment - A C++ entity system based on the architecture of Artemis</h2>
 
 Documentation and a usage guide can be found at the wiki
 https://github.com/Biracun/Coment/wiki
