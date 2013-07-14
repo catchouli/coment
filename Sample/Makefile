@@ -17,11 +17,11 @@ INCLUDES=-I$(INCDIR) -I../Coment/include
 SOURCES=$(shell find src -name *.cpp)
 OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-all: static shared
+all: shared static
 
-shared: $(SOURCES) bin/$(SHARED_OUTPUT)
+shared: bin/$(SHARED_OUTPUT)
 
-static: $(SOURCES) bin/$(STATIC_OUTPUT)
+static: bin/$(STATIC_OUTPUT)
 
 bin/$(SHARED_OUTPUT): $(OBJECTS)
 	@mkdir -p bin
@@ -35,7 +35,7 @@ bin/$(STATIC_OUTPUT): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) ../bin/coment.a -o $@
 	@cp -R bin/* ../bin/	
 
-%.o: $(SOURCES)
+obj/%.o: $(SOURCES)
 	@mkdir -p obj
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CFLAGS) -o $@
 

@@ -3,19 +3,28 @@
 
 #include <SFML/Graphics.hpp>
 
-struct Colour : public coment::Component, sf::Color
+namespace coment
 {
-	Colour()
-		: sf::Color(255, 255, 255, 255)
+	namespace samples
 	{
+		namespace balls
+		{
+			struct Colour : public coment::Component, sf::Color
+			{
+				Colour()
+					: sf::Color(255, 255, 255, 255)
+				{
 
+				}
+
+				Colour(int r, int g, int b)
+					: sf::Color(r, g, b, 255)
+				{
+
+				}
+			};
+		}
 	}
-
-	Colour(int r, int g, int b)
-		: sf::Color(r, g, b, 255)
-	{
-
-	}
-};
+}
 
 #endif /* __COLOUR_H__ */

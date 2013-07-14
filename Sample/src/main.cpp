@@ -22,11 +22,10 @@
 #include "components/Radius.h"
 #include "components/Colour.h"
 
-// Scenes
-#include "scenes/BallScene.h"
-
 // Other includes
 #include <SFML/Graphics.hpp>
+
+using namespace coment::samples::balls;
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
