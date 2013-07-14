@@ -9,7 +9,8 @@ LINKNAME = lib$(BINARY).so
 SONAME = $(LINKNAME).$(MAJOR_VERSION)
 REALNAME = $(LINKNAME).$(MAJOR_VERSION).$(MINOR_VERSION)
 
-INSTALL_DIR = /usr/lib
+INSTALL_DIR_LIB = /usr/lib
+INSTALL_DIR_INC = /usr/include/coment
 
 INCLUDES = -I$(INCDIR)
 
@@ -50,9 +51,16 @@ bin/$(STATICNAME): $(OBJECTS)
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
 
 install:
-	cp bin/$(REALNAME) $(INSTALL_DIR)
-	ldconfig -n $(INSTALL_DIR)
+	@test -s bin/$(REALNAME) || { echo "Error: Library not yet built. Try running "make shared" first."; exit 1; }
+
+	cp -R include /usr/include/coment
+	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
+	ldconfig -n $(INSTALL_DIR_LIB)
 	ln -sfn $(INSTALL_DIR)/$(REALNAME) $(INSTALL_DIR)/$(LINKNAME)
+
+uninstall:
+	rm -rf /usr/lib/libcoment.*
+	rm -rf /usr/include/coment
 
 clean:
 	rm -rf $(OBJDIR)

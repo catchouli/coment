@@ -23,6 +23,9 @@ staticlib:
 install:
 	$(MAKE) -C Coment install
 
+uninstall:
+	$(MAKE) -C Coment uninstall
+
 clean:
 	@rm -rf bin
 	$(MAKE) clean -C Coment

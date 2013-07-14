@@ -7,7 +7,7 @@ Compilation instructions:
 
 Windows: Open solution and compile. Dynamic linking is not yet supported.
 
-Linux: make targets: all shared sharedlib static staticlib install
+Linux: make targets: all shared sharedlib static staticlib install uninstall
 Shared linux compilation (library and sample): make shared && sudo make install
 Shared linux compilation (library only): make sharedlib && sudo make install
 Static linux compilation (library and sample): make static
