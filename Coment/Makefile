@@ -29,9 +29,6 @@ OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 all: shared static
 
-test:
-	echo $(DESTDIR)$(PREFIX)
-
 shared: bin/$(REALNAME)
 
 static: bin/$(STATICNAME)
