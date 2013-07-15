@@ -2,7 +2,7 @@
 #define __GROUPMANAGER_H__
 
 #include <string>
-#include <unordered_map>
+#include <tr1/unordered_map>
 
 #include "Manager.h"
 
@@ -12,7 +12,7 @@
 
 namespace coment
 {
-	typedef std::unordered_map<std::string, Bag<Entity> > EntityGroupMap;
+	typedef std::tr1::unordered_map<std::string, Bag<Entity> > EntityGroupMap;
 
 	class GroupManager
 		: public Manager

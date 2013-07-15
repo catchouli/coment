@@ -10,7 +10,7 @@ OBJDIR=obj
 BINDIR=bin
 INCDIR=include
 
-CFLAGS=-c -std=c++11 -Wall -O2
+CFLAGS=-c -Wall -O2
 LDFLAGS=-lsfml-system -lsfml-window -lsfml-graphics
 INCLUDES=-I$(INCDIR) -I../Coment/include
 

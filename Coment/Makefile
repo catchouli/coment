@@ -19,7 +19,7 @@ OBJDIR = obj
 BINDIR = bin
 INCDIR = include/coment
 
-CXXFLAGS = -c -fPIC -std=c++11 -Wall -O2
+CXXFLAGS = -c -fPIC -Wall -O2
 LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)
 
 SOURCES = $(shell find src -name *.cpp)
@@ -45,7 +45,7 @@ bin/$(STATICNAME): $(OBJECTS)
 	$(AR) rcs $@ $(OBJECTS)
 	cp bin/* ../bin
 
-%.o: $(SOURCES)
+obj/%.o: $(SOURCES)
 	@mkdir -p obj
 	@mkdir -p $(dir $@)
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@

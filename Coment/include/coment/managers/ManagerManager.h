@@ -2,10 +2,11 @@
 #define GAME_MANAGERMANAGER
 
 #include <typeinfo>
-#include <unordered_map>
+#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../utils/Bag.h"
+#include "../utils/HashGenerator.h"
 
 namespace coment
 {
@@ -24,14 +25,14 @@ namespace coment
 
 	private:
 		// A hash map of managers by type
-		std::unordered_map<size_t, Manager*> _managers;
+		std::tr1::unordered_map<size_t, Manager*> _managers;
 	};
 
 	// Template functions
 	template <typename T>
 	T* ManagerManager::getManager()
 	{
-		return (T*)_managers[typeid(T).hash_code()];
+		return (T*)_managers[HashGenerator::hash<T>()];
 	}
 
 	template <typename T>
@@ -41,7 +42,7 @@ namespace coment
 		((Manager*)&manager)->initialise(_world);
 
 		// Store a pointer to this manager
-		_managers[typeid(T).hash_code()] = &manager;
+		_managers[HashGenerator::hash<T>()] = &manager;
 
 		// Return a pointer
 		return &manager;

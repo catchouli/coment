@@ -2,15 +2,16 @@
 #define __COMPONENTTYPEMANAGER_H__
 
 #include <typeinfo>
-#include <unordered_map>
+#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../Component.h"
+#include "../utils/HashGenerator.h"
 
 namespace coment
 {
 	// A map of std::type_info hash to ComponentType ID
-	typedef std::unordered_map<size_t, ComponentType> ComponentTypeMap;
+	typedef std::tr1::unordered_map<size_t, ComponentType> ComponentTypeMap;
 
 	class ComponentTypeManager
 		: public Manager
@@ -30,7 +31,7 @@ namespace coment
 	template <typename T>
 	ComponentType ComponentTypeManager::getComponentType()
 	{
-		size_t hash_code = typeid(T).hash_code();
+		size_t hash_code = HashGenerator::hash<T>();
 		ComponentTypeMap::iterator it = _componentTypes.find(hash_code);
 
 		// If hash map does not contain this type
@@ -40,7 +41,7 @@ namespace coment
 			ComponentType componentType = _nextId++;
 
 			// Add it to hash map
-			_componentTypes[typeid(T).hash_code()] = componentType;
+			_componentTypes[hash_code] = componentType;
 
 			// Return it
 			return componentType;
