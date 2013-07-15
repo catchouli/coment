@@ -9,7 +9,7 @@ LINKNAME = lib$(BINARY).so
 SONAME = $(LINKNAME).$(MAJOR_VERSION)
 REALNAME = $(LINKNAME).$(MAJOR_VERSION).$(MINOR_VERSION)
 
-DESTDIR ?= /usr
+PREFIX ?= /usr
 
 INSTALL_DIR_LIB = $(DESTDIR)$(PREFIX)/lib
 INSTALL_DIR_INC = $(DESTDIR)$(PREFIX)/include
@@ -28,6 +28,9 @@ SOURCES = $(shell find src -name *.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 all: shared static
+
+test:
+	echo $(PREFIX)
 
 shared: bin/$(REALNAME)
 
