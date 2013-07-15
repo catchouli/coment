@@ -8,7 +8,7 @@ namespace coment
 		int c;
 		unsigned int hash = 5381;
 
-		while (c = *value++)
+		while ((c = *value++))
 			hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 		return hash;
