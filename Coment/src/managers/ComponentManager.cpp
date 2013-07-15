@@ -1,6 +1,6 @@
-#include "World.h"
-#include "EntityInfo.h"
-#include "managers/ComponentManager.h"
+#include "coment/World.h"
+#include "coment/EntityInfo.h"
+#include "coment/managers/ComponentManager.h"
 
 namespace coment
 {

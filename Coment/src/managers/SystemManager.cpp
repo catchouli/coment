@@ -1,4 +1,4 @@
-#include "managers/SystemManager.h"
+#include "coment/managers/SystemManager.h"
 
 namespace coment
 {
@@ -8,7 +8,7 @@ namespace coment
 	}
 
 	// Refresh an entity
-	void SystemManager::refresh(EntityInfo& e) 
+	void SystemManager::refresh(EntityInfo& e)
 	{
 		for (unsigned int i = 0; i < _systemMap.getSize(); ++i)
 		{
@@ -34,10 +34,10 @@ namespace coment
 		}
 	}
 
-	// Update all the systems.
+	// Update all systems
 	void SystemManager::update()
 	{
-		for (unsigned int i = 0; i < _systemMap.getSize(); ++i) 
+		for (unsigned int i = 0; i < _systemMap.getSize(); ++i)
 		{
 			_systemMap[i]->update();
 		}

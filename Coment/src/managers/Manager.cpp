@@ -1,4 +1,4 @@
-#include "managers/Manager.h"
+#include "coment/managers/Manager.h"
 
 namespace coment
 {
@@ -21,7 +21,7 @@ namespace coment
 	{
 
 	}
-	
+
 	bool Manager::getInitialised()
 	{
 		return _initialised;

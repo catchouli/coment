@@ -1,4 +1,4 @@
-#include "EntityInfo.h"
+#include "coment/EntityInfo.h"
 
 namespace coment
 {

@@ -10,14 +10,14 @@ SONAME = $(LINKNAME).$(MAJOR_VERSION)
 REALNAME = $(LINKNAME).$(MAJOR_VERSION).$(MINOR_VERSION)
 
 INSTALL_DIR_LIB = /usr/lib
-INSTALL_DIR_INC = /usr/include/coment
+INSTALL_DIR_INC = /usr/include
 
 INCLUDES = -I$(INCDIR)
 
 SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
-INCDIR = include/coment
+INCDIR = include
 
 CXXFLAGS = -c -fPIC -Wall -O2
 LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)

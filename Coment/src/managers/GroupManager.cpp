@@ -1,4 +1,4 @@
-#include "managers/GroupManager.h"
+#include "coment/managers/GroupManager.h"
 
 namespace coment
 {

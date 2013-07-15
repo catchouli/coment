@@ -1,4 +1,4 @@
-#include "managers/EntityManager.h"
+#include "coment/managers/EntityManager.h"
 
 namespace coment
 {

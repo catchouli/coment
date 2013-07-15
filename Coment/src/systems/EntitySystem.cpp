@@ -1,5 +1,5 @@
-#include "systems/EntitySystem.h"
-#include "World.h"
+#include "coment/World.h"
+#include "coment/systems/EntitySystem.h"
 
 namespace coment
 {

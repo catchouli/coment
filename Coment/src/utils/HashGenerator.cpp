@@ -1,4 +1,4 @@
-#include "utils/HashGenerator.h"
+#include "coment/utils/HashGenerator.h"
 
 namespace coment
 {
