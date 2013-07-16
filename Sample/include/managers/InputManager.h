@@ -6,8 +6,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <coment/systems/EntitySystem.h>
 #include <coment/managers/Manager.h>
+#include <coment/systems/EntitySystem.h>
 
 namespace coment
 {
@@ -15,8 +15,9 @@ namespace coment
         {
                 namespace balls
                 {
-			class RenderingSystem;
 			class MovementSystem;
+			class RenderingSystem;
+			class VelocityRandomisationSystem;
 
 			class InputManager
 				: public coment::Manager
@@ -30,8 +31,9 @@ namespace coment
 
 			private:
 				sf::RenderWindow* _window;
-				coment::EntitySystem* _renderingSystem;
 				coment::EntitySystem* _movementSystem;
+				coment::EntitySystem* _renderingSystem;
+				coment::EntitySystem* _velocityRandomisationSystem;
 			};
 
 			InputManager::InputManager(sf::RenderWindow* window)
@@ -40,10 +42,12 @@ namespace coment
 
 			}
 
+			// Called when this manager is registered with the world
 			void InputManager::onRegistered()
 			{
 				_renderingSystem = (coment::EntitySystem*)_world->getSystem<RenderingSystem>();
 				_movementSystem = (coment::EntitySystem*)_world->getSystem<MovementSystem>();
+				_velocityRandomisationSystem = (coment::EntitySystem*)_world->getSystem<VelocityRandomisationSystem>();
 			}
 
 			void InputManager::handleEvent(const sf::Event& event)
@@ -58,15 +62,16 @@ namespace coment
 				// Handle keyboard input
 				if (event.type == sf::Event::KeyReleased)
 				{
-					// Disable rendering when player presses R
+					// Toggle rendering when player presses R
 					if (event.key.code == sf::Keyboard::R)
 					{
 						_renderingSystem->setEnabled(!_renderingSystem->getEnabled());
 					}
-					// Disable movement when player presses M
+					// Toggle movement when player presses M
 					else if (event.key.code == sf::Keyboard::M)
 					{
 						_movementSystem->setEnabled(!_movementSystem->getEnabled());
+						_velocityRandomisationSystem->setEnabled(!_velocityRandomisationSystem->getEnabled());
 					}
 					// Add 100 balls when user presses right arrow
 					else if (event.key.code == sf::Keyboard::Right)

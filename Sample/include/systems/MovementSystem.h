@@ -38,7 +38,7 @@ namespace coment
 					position->y += velocity->y * _world->getDelta();
 
 					// If we hit a wall, bounce
-					if ((position->x - radius->radius < 0 && velocity->x < 0) || (position->x + radius->radius > _width && velocity->x > 0)) 
+					if ((position->x - radius->radius < 0 && velocity->x < 0) || (position->x + radius->radius > _width && velocity->x > 0))
 						velocity->x = -velocity->x;
 					if ((position->y - radius->radius < 0 && velocity->y < 0) || (position->y + radius->radius > _height && velocity->y > 0))
 						velocity->y = -velocity->y;
