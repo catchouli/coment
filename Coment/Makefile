@@ -1,8 +1,8 @@
 # Build/install library
 
 BINARY = coment
-MAJOR_VERSION = 1
-MINOR_VERSION = 0
+MAJOR_VERSION = 0
+MINOR_VERSION = 1
 
 STATICNAME = $(BINARY).a
 LINKNAME = lib$(BINARY).so
