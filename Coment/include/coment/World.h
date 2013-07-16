@@ -150,7 +150,10 @@ namespace coment
 
 	// Remove a component from an entity
 	template <typename T>
-	void removeComponent(Entity e);
+	void World::removeComponent(Entity e)
+	{
+		_componentManager.removeComponent<T>(_entityManager.getEntityInfo(e));
+	}
 }
 
 #endif /* __WORLD_H__ */

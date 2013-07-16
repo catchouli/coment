@@ -96,4 +96,9 @@ namespace coment
 		// Refresh the entity
 		_systemManager.refresh(info);
 	}
+
+	void World::removeComponents(Entity e)
+	{
+		_componentManager.removeComponents(_entityManager.getEntityInfo(e));
+	}
 }

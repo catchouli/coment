@@ -61,7 +61,6 @@ namespace coment
 			e._componentMask.clear();
 			e._systemMask.clear();
 
-
 			// Update counters
 			_count--;
 			_totalRemoved++;
