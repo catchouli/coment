@@ -3,7 +3,7 @@
 namespace coment
 {
 	EntityManager::EntityManager()
-		: _count(0), _nextEntityId(0), _totalCreated(0), _totalRemoved(0)
+		: _count(0), _nextEntityId(0), _nextUniqueEntityId(0), _totalCreated(0), _totalRemoved(0)
 	{
 
 	}
@@ -20,10 +20,8 @@ namespace coment
 		// If an old entity is available for reuse
 		if (_dead.getSize() != 0)
 		{
-			// Get last dead entity and bring it back to life
+			// Get last dead entity to reuse
 			nextEntity = _dead.popBack();
-
-			_alive.add(nextEntity);
 		}
 		else
 		{
@@ -35,6 +33,12 @@ namespace coment
 			// Set entity ID to return
 			nextEntity._id = newId;
 		}
+
+		// Make entity alive
+		_entities[nextEntity._id]._alive = true;
+
+		// Set unique ID
+		nextEntity._uniqueId = _nextUniqueEntityId++;
 
 		// Create new entity
 		_alive.add(nextEntity);
@@ -54,6 +58,7 @@ namespace coment
 		if (i >= 0)
 		{
 			// Murder entity
+			e._alive = false;
 			_alive.remove(i);
 			_dead.add(e);
 

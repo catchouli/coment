@@ -8,7 +8,13 @@ namespace coment
 	class Entity
 	{
 	public:
+		Entity();
+
+		bool isInitialised();
+
 		EntityId getId();
+
+		EntityId getUniqueId();
 
 		bool operator==(const Entity& other) const;
 		bool operator!=(const Entity& other) const;
@@ -16,9 +22,10 @@ namespace coment
 	protected:
 		friend class EntityManager;
 
-		Entity(EntityId id = -1);
+		Entity(EntityId id);
 
 		EntityId _id;
+		EntityId _uniqueId;
 	};
 }
 

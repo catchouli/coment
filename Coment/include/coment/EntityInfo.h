@@ -45,6 +45,9 @@ namespace coment
 		// System bitmask
 		BitMask _systemMask;
 
+		// Whether or not this entity is alive
+		bool _alive;
+
 	private:
 		// Whether or not this entity is valid
 		bool _valid;

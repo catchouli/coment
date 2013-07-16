@@ -29,6 +29,10 @@ namespace coment
 		template <typename T>
 		T* getComponent(EntityInfo& e);
 
+		// Check if entity has component
+		template <typename T>
+		bool hasComponent(EntityInfo& e);
+
 		// Initialise this manager once it's registered with the world
 		virtual void onRegistered();
 
@@ -70,16 +74,24 @@ namespace coment
 	}
 
 	// Get a component from an entity
+	// (returns null if entity doesn't have component of type T)
 	template <typename T>
 	T* ComponentManager::getComponent(EntityInfo& e)
 	{
 		Bag<T>* components = getComponentBag<T>();
 
 		// If this entity doesn't have this component return null
-		if (!e._componentMask[_componentTypeManager->getComponentType<T>()])
+		if (!hasComponent<T>(e))
 			return NULL;
 
 		return &((*components)[e.getId()]);
+	}
+
+	// Get whether an entity has a component of type T
+	template <typename T>
+	bool ComponentManager::hasComponent(EntityInfo& e)
+	{
+		return e._componentMask[_componentTypeManager->getComponentType<T>()];
 	}
 
 	// Remove a component from an entity

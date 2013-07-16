@@ -39,6 +39,10 @@ int main(int argc, char** argv)
 	{
 		std::cout << ", " << failed << " tests failed" << std::endl;
 	}
+	else
+	{
+		std::cout << std::endl;
+	}
 
 	// Clean up memory
 	for (std::vector<Test*>::iterator it = tests.begin(); it != tests.end(); ++it)

@@ -19,18 +19,20 @@ namespace coment
 
 		void ComponentTests::run()
 		{
-			// Coment world
 			coment::World world;
+			coment::Entity e;
 
 			// Systems
 			MovementSystem movementSystem;
+			world.addSystem(movementSystem);
 
-			begintest("Test tests system (success)");
-			endtest(true);
+			//  Create entity
+			world.createEntity();
 
-			begintest("Test tests system (failure)")
-			endtest(false);
-
+			// Add component to entity
+			begintest("Adding position component to entity");
+			world.addComponent<Position>(e);
+			endtest(world.getManager<ComponentManager>()->hasComponent<Position>(world.getManager<EntityManager>()->getEntityInfo(e)));
 			return;
 		}
 	}

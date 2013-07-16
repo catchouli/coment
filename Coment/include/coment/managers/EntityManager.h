@@ -24,14 +24,14 @@ namespace coment
 		// Create an entity (will recycle dead entities ids)
 		Entity createEntity();
 
+		// Get a reference to the entity info for an entity
+		EntityInfo& getEntityInfo(Entity e);
+
 	protected:
 		friend class World;
 
 		// Remove an entity from the manager
 		void removeEntity(EntityInfo& e);
-
-		// Get a reference to the entity info for an entity
-		EntityInfo& getEntityInfo(Entity e);
 
 		// Add a component to an entity
 		template <typename T>
@@ -47,7 +47,10 @@ namespace coment
 
 		// How many entities are in the manager
 		int _count;
-		EntityId _nextEntityId; // The next valid entity id
+
+		// The next valid entity IDs
+		EntityId _nextEntityId;
+		EntityId _nextUniqueEntityId;
 
 		// The total amount of removed and added entities
 		int _totalCreated;

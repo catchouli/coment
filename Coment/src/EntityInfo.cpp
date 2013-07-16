@@ -2,16 +2,16 @@
 
 namespace coment
 {
-	// Constructor
 	EntityInfo::EntityInfo()
-		: _valid(false)
+		: _alive(false), _valid(false)
 	{
+
 	}
 
-	// Protected Constructor
 	EntityInfo::EntityInfo(EntityId id)
-		: Entity(id), _valid(true)
+		: Entity(id), _alive(false), _valid(true)
 	{
+
 	}
 
 	// Compare the bitmask

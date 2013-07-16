@@ -10,7 +10,7 @@ OBJDIR=obj
 BINDIR=bin
 INCDIR=include
 
-CFLAGS=-c -Wall -O2
+CXXFLAGS=-c -Wall -O0 -g
 LDFLAGS=-lsfml-system -lsfml-window -lsfml-graphics
 INCLUDES=-I$(INCDIR) -I../Coment/include
 
@@ -38,7 +38,7 @@ bin/$(STATIC_OUTPUT): $(OBJECTS)
 obj/%.o: $(SOURCES)
 	@mkdir -p obj
 	@mkdir -p $(dir $@)
-	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CFLAGS) -o $@
+	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
 
 clean:
 	rm -rf $(OBJDIR)
