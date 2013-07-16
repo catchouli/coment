@@ -38,6 +38,14 @@ namespace coment
 				int _windowWidth;
 				int _windowHeight;
 
+				static const int MIN_RADIUS = 10;
+				static const int MAX_RADIUS = 50;
+
+				static const int MIN_INITIAL_VELOCITY_X = 50;
+				static const int MAX_INITIAL_VELOCITY_X = 150;
+				static const int MIN_INITIAL_VELOCITY_Y = 50;
+				static const int MAX_INITIAL_VELOCITY_Y = 150;
+
 				coment::Bag<coment::Entity> _balls;
 			};
 
@@ -61,12 +69,12 @@ namespace coment
 
 					// With a random velocity between (10, 10) and (100, 100)
 					Velocity* vel = _world->addComponent<Velocity>(e);
-					vel->x = (float)(rand() % 90 + 10);
-					vel->y = (float)(rand() % 90 + 10);
+					vel->x = (float)(rand() % (MAX_INITIAL_VELOCITY_X - MIN_INITIAL_VELOCITY_X) + MIN_INITIAL_VELOCITY_X);
+					vel->y = (float)(rand() % (MAX_INITIAL_VELOCITY_Y - MIN_INITIAL_VELOCITY_Y) + MIN_INITIAL_VELOCITY_Y);
 
 					// A random radius between 10 and 50
 					Radius* radius = _world->addComponent<Radius>(e);
-					radius->radius = (float)(rand() % 40 + 10);
+					radius->radius = (float)(rand() % (MAX_RADIUS - MIN_RADIUS) + MIN_RADIUS);
 
 					// And a random colour
 					Colour* colour = _world->addComponent<Colour>(e);

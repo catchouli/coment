@@ -17,7 +17,7 @@ namespace coment
                 {
 			class MovementSystem;
 			class RenderingSystem;
-			class VelocityRandomisationSystem;
+			class GravitySystem;
 
 			class InputManager
 				: public coment::Manager
@@ -33,7 +33,7 @@ namespace coment
 				sf::RenderWindow* _window;
 				coment::EntitySystem* _movementSystem;
 				coment::EntitySystem* _renderingSystem;
-				coment::EntitySystem* _velocityRandomisationSystem;
+				coment::EntitySystem* _gravitySystem;
 			};
 
 			InputManager::InputManager(sf::RenderWindow* window)
@@ -47,7 +47,7 @@ namespace coment
 			{
 				_renderingSystem = (coment::EntitySystem*)_world->getSystem<RenderingSystem>();
 				_movementSystem = (coment::EntitySystem*)_world->getSystem<MovementSystem>();
-				_velocityRandomisationSystem = (coment::EntitySystem*)_world->getSystem<VelocityRandomisationSystem>();
+				_gravitySystem = (coment::EntitySystem*)_world->getSystem<GravitySystem>();
 			}
 
 			void InputManager::handleEvent(const sf::Event& event)
@@ -71,7 +71,7 @@ namespace coment
 					else if (event.key.code == sf::Keyboard::M)
 					{
 						_movementSystem->setEnabled(!_movementSystem->getEnabled());
-						_velocityRandomisationSystem->setEnabled(!_velocityRandomisationSystem->getEnabled());
+						_gravitySystem->setEnabled(!_gravitySystem->getEnabled());
 					}
 					// Add 100 balls when user presses right arrow
 					else if (event.key.code == sf::Keyboard::Right)
