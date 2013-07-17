@@ -6,7 +6,7 @@
 
 #include "systems/EntityProcessingSystem.h"
 
-#include "managers/GroupManager.h"
+#include "managers/TagManager.h"
 #include "managers/EntityManager.h"
 #include "managers/SystemManager.h"
 #include "managers/ManagerManager.h"
@@ -61,6 +61,12 @@ namespace coment
 		// Remove all components from an entity
 		void removeComponents(Entity e);
 
+		// Set tag for entity
+		void setTag(Entity e, std::string);
+
+		// Get tag from entity
+		std::string getTag(Entity e);
+
 		// Must be called at the start of each loop to update refreshed
 		// and deleted entities
 		void loopStart();
@@ -89,7 +95,7 @@ namespace coment
 
 	private:
 		// The manager instances
-		GroupManager _groupManager;
+		TagManager _tagManager;
 		EntityManager _entityManager;
 		SystemManager _systemManager;
 		ManagerManager _managerManager;

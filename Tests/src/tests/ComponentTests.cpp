@@ -5,8 +5,6 @@
 #include "components/Position.h"
 #include "components/Velocity.h"
 
-#include "systems/MovementSystem.h"
-
 namespace coment
 {
 	namespace tests
@@ -19,23 +17,11 @@ namespace coment
 
 		void ComponentTests::run()
 		{
-			const int INITIAL_X = 50;
-			const int INITIAL_Y = 50;
-
-			const int INITIAL_VX = 50;
-			const int INITIAL_VY = 50;
-
-			const int WORLD_DELTA = 1;
-
 			coment::World world;
 			coment::Entity e;
 
 			Position* pos;
 			Velocity* vel;
-
-			// Systems
-			MovementSystem movementSystem;
-			world.addSystem(movementSystem);
 
 			//  Create entity
 			e = world.createEntity();
@@ -70,12 +56,6 @@ namespace coment
 				world.removeComponents(e);
 			endtest(world.getComponent<Velocity>(e) == NULL &&
 				world.getComponent<Position>(e) == NULL);
-
-			// Initialise components
-			pos->x = INITIAL_X;
-			pos->y = INITIAL_Y;
-			vel->x = INITIAL_VX;
-			vel->y = INITIAL_VY;
 
 			return;
 		}

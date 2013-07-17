@@ -13,7 +13,7 @@ namespace coment
 	// Indicates that this system has been registered with the world
 	void EntitySystem::onRegistered()
 	{
-		_componentTypeManager = _world->getManager<ComponentTypeManager>();
+
 	}
 
 	// Called by the client to initiate processing
@@ -97,5 +97,10 @@ namespace coment
 	BitMask EntitySystem::getMask()
 	{
 		return _bitmask;
+	}
+
+	ComponentTypeManager* EntitySystem::getComponentTypeManager()
+	{
+		return _world->getManager<ComponentTypeManager>();
 	}
 }

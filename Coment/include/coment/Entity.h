@@ -10,11 +10,11 @@ namespace coment
 	public:
 		Entity();
 
-		bool isInitialised();
+		bool isInitialised() const;
 
-		EntityId getId();
+		EntityId getId() const;
 
-		EntityId getUniqueId();
+		EntityId getUniqueId() const;
 
 		bool operator==(const Entity& other) const;
 		bool operator!=(const Entity& other) const;

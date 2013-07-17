@@ -24,7 +24,7 @@ namespace coment
 		return _id != other._id;
 	}
 
-	bool Entity::isInitialised()
+	bool Entity::isInitialised() const
 	{
 		if (_id == (unsigned int)-1)
 			return false;
@@ -32,12 +32,12 @@ namespace coment
 		return true;
 	}
 
-	EntityId Entity::getId()
+	EntityId Entity::getId() const
 	{
 		return _id;
 	}
 
-	EntityId Entity::getUniqueId()
+	EntityId Entity::getUniqueId() const
 	{
 		return _uniqueId;
 	}

@@ -6,6 +6,9 @@
 #include "tests/Test.h"
 #include "tests/EntityTests.h"
 #include "tests/ComponentTests.h"
+#include "tests/SystemTests.h"
+#include "tests/GroupTests.h"
+#include "tests/TagTests.h"
 
 using namespace coment::tests;
 
@@ -20,6 +23,9 @@ int main(int argc, char** argv)
 	// Create tests
 	tests.push_back(new EntityTests());
 	tests.push_back(new ComponentTests());
+	tests.push_back(new SystemTests());
+	tests.push_back(new GroupTests());
+	tests.push_back(new TagTests());
 
 	// Run all tests
 	std::cout << "Running all tests" << std::endl;

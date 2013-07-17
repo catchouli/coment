@@ -81,7 +81,9 @@ namespace coment
 		World* _world;
 
 	private:
-		// A pointer to the component type manager
+		ComponentTypeManager* getComponentTypeManager();
+
+		// A pointer to the world's component type manager
 		ComponentTypeManager* _componentTypeManager;
 
 		// Whether to process this system
@@ -98,6 +100,16 @@ namespace coment
 	template <typename T>
 	void EntitySystem::registerComponent()
 	{
+		if (_world == NULL)
+		{
+			fprintf(stderr, "Error: attempting to register component before being added to the world.");
+			exit(1);
+		}
+		else if (_componentTypeManager == NULL)
+		{
+			_componentTypeManager = getComponentTypeManager();
+		}
+
 		// Add this component
 		_bitmask.setBit(_componentTypeManager->getComponentType<T>());
 	}

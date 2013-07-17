@@ -9,7 +9,7 @@ namespace coment
 		_managerManager.initialise(this);
 
 		// Initialise default managers
-		_managerManager.addManager(_groupManager);
+		_managerManager.addManager(_tagManager);
 		_managerManager.addManager(_systemManager);
 		_managerManager.addManager(_entityManager);
 		_managerManager.addManager(_componentTypeManager);
@@ -84,9 +84,20 @@ namespace coment
 		// Refresh systems concerned with this entities
 		refresh(e);
 
-		// Remove entity from any groups it's in
-		_groupManager.remove(e);
+		// Reset entity's tag
+		setTag(e, std::string());
 	}
+
+	void World::setTag(Entity e, std::string tag)
+	{
+		_tagManager.setTag(_entityManager.getEntityInfo(e), tag);
+	}
+
+	std::string World::getTag(Entity e)
+	{
+		return _tagManager.getTag(_entityManager.getEntityInfo(e));
+	}
+
 
 	void World::refreshEntity(Entity e)
 	{

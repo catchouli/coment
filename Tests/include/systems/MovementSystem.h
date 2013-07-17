@@ -12,6 +12,7 @@ namespace coment
 		{
 		public:
 			MovementSystem()
+				: _registered(false)
 			{
 
 			}
@@ -23,6 +24,11 @@ namespace coment
 				registerComponent<Velocity>();
 			}
 
+			void onRegistered()
+			{
+				_registered = true;
+			}
+
 			virtual void process(coment::Entity e)
 			{
 				Position* position = _world->getComponent<Position>(e);
@@ -32,6 +38,14 @@ namespace coment
 				position->x += velocity->x * (int)_world->getDelta();
 				position->y += velocity->y * (int)_world->getDelta();
 			}
+
+			bool isRegistered()
+			{
+				return _registered;
+			}
+
+		private:
+			bool _registered;
 		};
 	}
 }
