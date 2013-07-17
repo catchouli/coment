@@ -31,18 +31,18 @@ namespace coment
 	{
 
 		// Remove entities queued for removal
-		for (unsigned int i = 0; i < _removed.getSize(); ++i)
+		for (std::vector<Entity>::iterator it = _removed.begin(); it != _removed.end(); ++it)
 		{
-			removeEntity(_removed[i]);
+			removeEntity(*it);
 		}
 
 		_removed.clear();
 
 		// Refresh entities queued for refresh
 		// Make sure to do this after updating removed entities, as entities are refreshed after being removed
-		for (unsigned int i = 0; i < _refreshed.getSize(); ++i)
+		for (std::vector<Entity>::iterator it = _refreshed.begin(); it != _refreshed.end(); ++it)
 		{
-			refreshEntity(_refreshed[i]);
+			refreshEntity(*it);
 		}
 
 		_refreshed.clear();
@@ -65,12 +65,12 @@ namespace coment
 
 	void World::remove(Entity e)
 	{
-		_removed.add(e);
+		_removed.push_back(e);
 	}
 
 	void World::refresh(Entity e)
 	{
-		_refreshed.add(e);
+		_refreshed.push_back(e);
 	}
 
 	void World::removeEntity(Entity e)
@@ -85,7 +85,7 @@ namespace coment
 		refresh(e);
 
 		// Reset entity's tag
-		//setTag(e, std::string(""));
+		setTag(e, "");
 	}
 
 	void World::setTag(Entity e, std::string tag)

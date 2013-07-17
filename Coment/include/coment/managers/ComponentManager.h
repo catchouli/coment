@@ -1,17 +1,17 @@
 #ifndef __COMPONENTMANAGER_H__
 #define __COMPONENTMANAGER_H__
 
+#include <string>
 #include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../Component.h"
 #include "../utils/Bag.h"
 #include "../exceptions/CompMapUnregistered.h"
-#include "../utils/HashGenerator.h"
 
 namespace coment
 {
-	typedef std::tr1::unordered_map<size_t, void*> ComponentBagMap;
+	typedef std::tr1::unordered_map<std::string, void*> ComponentBagMap;
 
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
@@ -101,15 +101,13 @@ namespace coment
 		ComponentType componentType = _componentTypeManager->getComponentType<T>();
 
 		e.removeComponent(componentType);
-//		e._systemMask.clearBit(_componentTypeManager->getComponentType<T>());
 	}
 
 	// Get a bag for a component type
 	template <typename T>
 	Bag<T>* ComponentManager::getComponentBag()
 	{
-		size_t hash_code = HashGenerator::hash<T>();
-		Bag<T>* components = (Bag<T>*)_componentBags[hash_code];
+		Bag<T>* components = (Bag<T>*)_componentBags[typeid(T).name()];
 
 		// If this type doesn't have a bag yet
 		if (components == nullptr)
@@ -118,7 +116,7 @@ namespace coment
 			components = new Bag<T>();
 
 			// Store it in hash map
-			_componentBags[hash_code] = components;
+			_componentBags[typeid(T).name()] = components;
 		}
 
 		return components;

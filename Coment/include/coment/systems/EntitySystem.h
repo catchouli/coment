@@ -1,10 +1,13 @@
 #ifndef __ENTITYSYSTEM_H__
 #define __ENTITYSYSTEM_H__
 
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../Entity.h"
 #include "../EntityInfo.h"
 #include "../utils/BitMask.h"
-#include "../utils/Bag.h"
 #include "../managers/ComponentTypeManager.h"
 
 namespace coment
@@ -36,7 +39,7 @@ namespace coment
 
 		// Any implementing entity system must implement this method
 		// Contains the logic to process the entities of this system
-		virtual void processEntities(Bag<Entity>& entities) = 0;
+		virtual void processEntities(std::vector<Entity>& entities) = 0;
 
 		// Returns whether this system should currently process entities
 		virtual bool checkProcessing();
@@ -93,7 +96,7 @@ namespace coment
 		BitMask _bitmask;
 
 		// A bag of entities that match this systems bitmask
-		Bag<Entity> _entities;
+		std::vector<Entity> _entities;
 	};
 
 	// Register a component with this system

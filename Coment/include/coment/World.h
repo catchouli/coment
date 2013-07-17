@@ -1,6 +1,8 @@
 #ifndef __WORLD_H__
 #define __WORLD_H__
 
+#include <vector>
+
 #include "Entity.h"
 #include "Component.h"
 
@@ -103,10 +105,10 @@ namespace coment
 		ComponentTypeManager _componentTypeManager;
 
 		// Entities due to be removed
-		Bag<Entity> _removed;
+		std::vector<Entity> _removed;
 
 		// Entities due to be refreshed
-		Bag<Entity> _refreshed;
+		std::vector<Entity> _refreshed;
 
 		// The difference in time since the last frame
 		float _delta;

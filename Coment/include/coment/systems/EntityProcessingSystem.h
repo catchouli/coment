@@ -1,10 +1,9 @@
 #ifndef __ENTITYPROCESSINGSYSTEM_H__
 #define __ENTITYPROCESSINGSYSTEM_H__
 
+#include <vector>
+
 #include "../Entity.h"
-
-#include "../utils/Bag.h"
-
 #include "../systems/EntitySystem.h"
 
 namespace coment
@@ -22,7 +21,7 @@ namespace coment
 		virtual bool checkProcessing();
 
 		// Automatically call process for each entity
-		void processEntities(Bag<Entity>& entities);
+		void processEntities(std::vector<Entity>& entities);
 	};
 };
 

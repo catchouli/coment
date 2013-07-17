@@ -1,5 +1,8 @@
-#include "coment/World.h"
 #include "coment/systems/EntitySystem.h"
+
+#include "coment/World.h"
+
+#include <algorithm>
 
 namespace coment
 {
@@ -78,13 +81,27 @@ namespace coment
 	// Add an entity
 	void EntitySystem::addEntity(EntityInfo& e)
 	{
-		_entities.add(e);
+		// If not already in collection
+		if (std::find(_entities.begin(), _entities.end(), (Entity)e) == _entities.end())
+			_entities.push_back(e);
 	}
 
 	// Remove an entity
 	void EntitySystem::removeEntity(EntityInfo& e)
 	{
-		_entities.remove(e);
+		for (unsigned int i = 0; i < _entities.size(); ++i)
+		{
+			if (_entities[i] == (Entity)e)
+			{
+				// Swap last element
+				_entities[i] = _entities[_entities.size()-1];
+
+				// Pop last element off
+				_entities.pop_back();
+
+				return;
+			}
+		}
 	}
 
 	// Set the world

@@ -1,17 +1,17 @@
 #ifndef __SYSTEMMANAGER_H__
 #define __SYSTEMMANAGER_H__
 
+#include <string>
 #include <typeinfo>
 #include <tr1/unordered_map>
 
 #include "../managers/Manager.h"
 #include "../systems/EntitySystem.h"
 #include "../utils/Bag.h"
-#include "../utils/HashGenerator.h"
 
 namespace coment
 {
-	typedef std::tr1::unordered_map<size_t, EntitySystem*> SystemMap;
+	typedef std::tr1::unordered_map<std::string, EntitySystem*> SystemMap;
 
 	// Contains all the systems added to the world
 	class SystemManager
@@ -51,7 +51,7 @@ namespace coment
 		system.onRegistered();
 		system.registerComponents();
 		_systemMap.add(&system);
-		_systems[HashGenerator::hash<T>()] = (EntitySystem*)&system;
+		_systems[typeid(T).name()] = (EntitySystem*)&system;
 
 		return &system;
 	}
@@ -60,7 +60,7 @@ namespace coment
 	template <typename T>
 	T* SystemManager::getSystem()
 	{
-		return (T*)_systems[HashGenerator::hash<T>()];
+		return (T*)_systems[typeid(T).name()];
 	}
 }
 

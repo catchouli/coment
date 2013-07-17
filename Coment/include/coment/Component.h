@@ -1,8 +1,6 @@
 #ifndef __COMPONENT_H__
 #define __COMPONENT_H__
 
-#include "utils/Bag.h"
-
 namespace coment
 {
 	// A integral type that is used to define the "type" of the component at run time
@@ -12,7 +10,6 @@ namespace coment
 	struct Component
 	{
 	public:
-	protected:
 		Component() {};
 
 	private:

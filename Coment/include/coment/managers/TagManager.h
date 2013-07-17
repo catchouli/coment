@@ -2,10 +2,10 @@
 #define __TAGMANAGER_H__
 
 #include <string>
+#include <vector>
 
 #include "Manager.h"
 #include "../Entity.h"
-#include "../utils/Bag.h"
 
 namespace coment
 {
@@ -23,9 +23,9 @@ namespace coment
 		std::string getTag(const EntityInfo& e);
 
 	private:
-		Bag<std::string> _tagsByEntity;
+		std::vector<std::string> _tagsByEntity;
 
-		const Bag<Entity> _emptyBag;
+		const std::vector<Entity> _emptyVector;
 	};
 }
 
