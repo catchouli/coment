@@ -6,7 +6,7 @@
 namespace coment
 {
 	// A integral type that is used to define the "type" of the component at run time
-	typedef int ComponentType;
+	typedef unsigned int ComponentType;
 
 	// A struct that defines a component that can be attached to an entity
 	struct Component

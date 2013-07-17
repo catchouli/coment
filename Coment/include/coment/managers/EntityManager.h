@@ -1,7 +1,6 @@
 #ifndef __ENTITYMANAGER_H__
 #define __ENTITYMANAGER_H__
 
-#include "../Component.h"
 #include "../EntityInfo.h"
 
 #include "../utils/Bag.h"
@@ -33,10 +32,6 @@ namespace coment
 		// Remove an entity from the manager
 		void removeEntity(EntityInfo& e);
 
-		// Add a component to an entity
-		template <typename T>
-		void addComponent(Entity e, T c);
-
 	private:
 		// Contains all entities
 		Bag<EntityInfo> _entities;
@@ -56,13 +51,6 @@ namespace coment
 		int _totalCreated;
 		int _totalRemoved;
 	};
-
-	// Add a component to an entity
-	template <typename T>
-	void EntityManager::addComponent(Entity e, T c)
-	{
-		_entities.get(e.getId()).addComponent(T::type);
-	}
 }
 
 #endif /* __ENTITYMANAGER_H__ */

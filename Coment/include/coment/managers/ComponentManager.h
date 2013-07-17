@@ -98,7 +98,10 @@ namespace coment
 	template <typename T>
 	void ComponentManager::removeComponent(EntityInfo& e)
 	{
-		e._systemMask.clear(T::type);
+		ComponentType componentType = _componentTypeManager->getComponentType<T>();
+
+		e.removeComponent(componentType);
+//		e._systemMask.clearBit(_componentTypeManager->getComponentType<T>());
 	}
 
 	// Get a bag for a component type

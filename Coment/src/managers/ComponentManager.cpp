@@ -31,6 +31,6 @@ namespace coment
 	// Remove all the components from an entity
 	void ComponentManager::removeComponents(EntityInfo& e)
 	{
-		e._systemMask.clear();
+		e.removeComponents();
 	}
 }

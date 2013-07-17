@@ -1,5 +1,7 @@
 #include "coment/managers/EntityManager.h"
 
+#include "coment/exceptions/UninitialisedEntity.h"
+
 namespace coment
 {
 	EntityManager::EntityManager()
@@ -75,6 +77,14 @@ namespace coment
 	// Get the entity info for an entity
 	EntityInfo& EntityManager::getEntityInfo(Entity e)
 	{
+		// If this entity is not properly initialised
+		// (e.g. created by the default constructor and not the world)
+		if (e.getId() == (unsigned int)-1)
+		{
+			// Throw an exception
+			throw UninitialisedEntity();
+		}
+
 		return _entities[e.getId()];
 	}
 }

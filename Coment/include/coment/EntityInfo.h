@@ -28,6 +28,9 @@ namespace coment
 		// Remove a component to this entity
 		void removeComponent(ComponentType type);
 
+		// Remove all components to this entity
+		void removeComponents();
+
 	protected:
 		// We are friends with the entity manager so that it can call
 		// this protected constructor

@@ -32,9 +32,15 @@ namespace coment
 		_componentMask.setBit(type);
 	}
 
-	// Add a component
+	// Remove a component
 	void EntityInfo::removeComponent(ComponentType type)
 	{
 		_componentMask.clearBit(type);
+	}
+
+	// Remove all components
+	void EntityInfo::removeComponents()
+	{
+		_componentMask.clear();
 	}
 }

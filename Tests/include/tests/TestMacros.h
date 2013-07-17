@@ -11,7 +11,7 @@
 {										\
 	std::stringstream ss;							\
 	ss << x;								\
-	std::cout << " " << std::left << std::setw(70) << ss.str();		\
+	std::cout << "  " << std::left << std::setw(70) << ss.str();		\
 }
 
 #define endtest(x)								\
