@@ -85,7 +85,7 @@ namespace coment
 		refresh(e);
 
 		// Reset entity's tag
-		setTag(e, std::string());
+		//setTag(e, std::string(""));
 	}
 
 	void World::setTag(Entity e, std::string tag)
