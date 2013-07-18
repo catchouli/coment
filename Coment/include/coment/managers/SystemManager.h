@@ -2,12 +2,12 @@
 #define __SYSTEMMANAGER_H__
 
 #include <string>
+#include <vector>
 #include <typeinfo>
 #include <tr1/unordered_map>
 
 #include "../managers/Manager.h"
 #include "../systems/EntitySystem.h"
-#include "../utils/Bag.h"
 
 namespace coment
 {
@@ -35,11 +35,11 @@ namespace coment
 		void update();
 
 	private:
-		// An array of systems by ID
-		SystemMap _systems;
+		// An map of system names to systems
+		SystemMap _systemMap;
 
-		// The hash map that contains all the systems
-		Bag<EntitySystem*> _systemMap;
+		// The array that contains all the systems
+		std::vector<EntitySystem*> _systems;
 	};
 
 	// Register a system
@@ -50,8 +50,8 @@ namespace coment
 		system.setWorld(_world);
 		system.onRegistered();
 		system.registerComponents();
-		_systemMap.add(&system);
-		_systems[typeid(T).name()] = (EntitySystem*)&system;
+		_systems.push_back(&system);
+		_systemMap[typeid(T).name()] = (EntitySystem*)&system;
 
 		return &system;
 	}
@@ -60,7 +60,7 @@ namespace coment
 	template <typename T>
 	T* SystemManager::getSystem()
 	{
-		return (T*)_systems[typeid(T).name()];
+		return (T*)_systemMap[typeid(T).name()];
 	}
 }
 
