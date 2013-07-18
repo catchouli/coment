@@ -1,5 +1,8 @@
 #include "coment/managers/EntityManager.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "coment/exceptions/UninitialisedEntity.h"
 
 namespace coment
@@ -20,17 +23,19 @@ namespace coment
 		Entity nextEntity;
 
 		// If an old entity is available for reuse
-		if (_dead.getSize() != 0)
+		if (_dead.size() != 0)
 		{
 			// Get last dead entity to reuse
-			nextEntity = _dead.popBack();
+			nextEntity = _dead.back();
+			_dead.pop_back();
 		}
 		else
 		{
 			EntityId newId = _nextEntityId++;
 
 			// Add entity to master list of entities if this is a completely new entity
-			_entities.set(newId, EntityInfo(newId));
+			_entities.resize(newId+1);
+			_entities[newId] = EntityInfo(newId);
 
 			// Set entity ID to return
 			nextEntity._id = newId;
@@ -43,7 +48,7 @@ namespace coment
 		nextEntity._uniqueId = _nextUniqueEntityId++;
 
 		// Create new entity
-		_alive.add(nextEntity);
+		_alive.push_back(nextEntity);
 
 		// Update counters
 		_totalCreated++;
@@ -56,13 +61,25 @@ namespace coment
 	void EntityManager::removeEntity(EntityInfo& e)
 	{
 		// If entity is alive
-		int i = _alive.contains(e);
-		if (i >= 0)
+		if (e._alive)
 		{
 			// Murder entity
 			e._alive = false;
-			_alive.remove(i);
-			_dead.add(e);
+
+
+			// Remove entity from _alive by swapping with the last element and popping off
+			for (unsigned int i = 0; i < _alive.size(); ++i)
+			{
+				if (_alive[i] == (Entity)e)
+				{
+					_alive[i] = _alive[_alive.size()-1];
+					_alive.pop_back();
+
+					break;
+				}
+			}
+
+			_dead.push_back(e);
 
 			// Reset the component and system bitmasks
 			e._componentMask.clear();
@@ -83,6 +100,11 @@ namespace coment
 		{
 			// Throw an exception
 			throw UninitialisedEntity();
+		}
+		else if (e.getId() >= _entities.size())
+		{
+			fprintf(stderr, "Invalid entity ID passed to system\n");
+			exit(-1);
 		}
 
 		return _entities[e.getId()];

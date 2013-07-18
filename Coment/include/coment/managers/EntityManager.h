@@ -1,11 +1,10 @@
 #ifndef __ENTITYMANAGER_H__
 #define __ENTITYMANAGER_H__
 
-#include "../EntityInfo.h"
-
-#include "../utils/Bag.h"
+#include <vector>
 
 #include "Manager.h"
+#include "../EntityInfo.h"
 
 namespace coment
 {
@@ -34,11 +33,11 @@ namespace coment
 
 	private:
 		// Contains all entities
-		Bag<EntityInfo> _entities;
+		std::vector<EntityInfo> _entities;
 
 		// Contains the entity IDs of dead or alive entities
-		Bag<Entity> _alive;
-		Bag<Entity> _dead;
+		std::vector<Entity> _alive;
+		std::vector<Entity> _dead;
 
 		// How many entities are in the manager
 		int _count;
