@@ -1,5 +1,7 @@
 #include "coment/World.h"
 
+#include "coment/utils/Functions.h"
+
 namespace coment
 {
 	World::World()
@@ -27,12 +29,17 @@ namespace coment
 		return _entityManager.createEntity();
 	}
 
+	bool World::isAlive(Entity e)
+	{
+		return _entityManager.isAlive(e);
+	}
+
 	void World::loopStart()
 	{
-
 		// Remove entities queued for removal
 		for (std::vector<Entity>::iterator it = _removed.begin(); it != _removed.end(); ++it)
 		{
+			// Remove entity from world
 			removeEntity(*it);
 		}
 
@@ -83,9 +90,6 @@ namespace coment
 
 		// Refresh systems concerned with this entities
 		refresh(e);
-
-		// Reset entity's tag
-		setTag(e, "");
 	}
 
 	void World::setTag(Entity e, std::string tag)
@@ -98,11 +102,15 @@ namespace coment
 		return _tagManager.getTag(_entityManager.getEntityInfo(e));
 	}
 
+	const std::vector<Entity>& World::getEntitiesByTag(std::string tag)
+	{
+		return _tagManager.getEntities(tag);
+	}
 
 	void World::refreshEntity(Entity e)
 	{
-		// Get the entity info
-		EntityInfo& info = _entityManager.getEntityInfo(e);
+		// Get entity info
+		EntityInfo& info = _entityManager._entityInfos[e.getId()];
 
 		// Refresh the entity
 		_systemManager.refresh(info);

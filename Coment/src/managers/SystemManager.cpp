@@ -1,5 +1,7 @@
 #include "coment/managers/SystemManager.h"
 
+#include "coment/utils/Functions.h"
+
 namespace coment
 {
 	SystemManager::SystemManager()

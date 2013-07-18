@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "coment/World.h"
+#include "coment/exceptions/DeadEntity.h"
 #include "coment/exceptions/UninitialisedEntity.h"
 
 namespace coment
@@ -34,18 +36,22 @@ namespace coment
 			EntityId newId = _nextEntityId++;
 
 			// Add entity to master list of entities if this is a completely new entity
-			_entities.resize(newId+1);
-			_entities[newId] = EntityInfo(newId);
+			_entityInfos.resize(newId+1);
+			_entityInfos[newId] = EntityInfo(newId);
+
+			// Set tag to ""
+			_world->getManager<TagManager>()->setTag(_entityInfos[newId], "");
 
 			// Set entity ID to return
 			nextEntity._id = newId;
 		}
 
 		// Make entity alive
-		_entities[nextEntity._id]._alive = true;
+		_entityInfos[nextEntity._id]._alive = true;
 
 		// Set unique ID
 		nextEntity._uniqueId = _nextUniqueEntityId++;
+		_entityInfos[nextEntity._id]._uniqueId = nextEntity._uniqueId;
 
 		// Create new entity
 		_alive.push_back(nextEntity);
@@ -58,6 +64,22 @@ namespace coment
 		return nextEntity;
 	}
 
+	bool EntityManager::isAlive(Entity e)
+	{
+		if (e._id < (unsigned int)_count)
+		{
+			const EntityInfo& entityInfo = _entityInfos[e._id];
+
+			// Check if this entity isn't dead, and if it hasn't been reused for another entity
+			if (entityInfo._alive && e._uniqueId == entityInfo._uniqueId)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	void EntityManager::removeEntity(EntityInfo& e)
 	{
 		// If entity is alive
@@ -65,7 +87,6 @@ namespace coment
 		{
 			// Murder entity
 			e._alive = false;
-
 
 			// Remove entity from _alive by swapping with the last element and popping off
 			for (unsigned int i = 0; i < _alive.size(); ++i)
@@ -79,11 +100,15 @@ namespace coment
 				}
 			}
 
+			// Add to dead entities
 			_dead.push_back(e);
 
 			// Reset the component and system bitmasks
 			e._componentMask.clear();
 			e._systemMask.clear();
+
+			// Remove from TagManager
+			_world->getManager<TagManager>()->removeEntity(e);
 
 			// Update counters
 			_count--;
@@ -101,12 +126,12 @@ namespace coment
 			// Throw an exception
 			throw UninitialisedEntity();
 		}
-		else if (e.getId() >= _entities.size())
+		else if (!isAlive(e))
 		{
-			fprintf(stderr, "Invalid entity ID passed to system\n");
-			exit(-1);
+			// Throw an exception
+			throw DeadEntity();
 		}
 
-		return _entities[e.getId()];
+		return _entityInfos[e.getId()];
 	}
 }

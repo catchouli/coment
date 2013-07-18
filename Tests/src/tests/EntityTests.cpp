@@ -17,16 +17,17 @@ namespace coment
 			coment::World world;
 			coment::Entity e;
 
-			begintest("Checking system recognises uninitialised entity")
+			begintest("Checking system recognises uninitialised entity");
 			endtest(!e.isInitialised());
 
 			begintest("Creating entity");
 				e = world.createEntity();
-			endtest(e.isInitialised());
+			endtest(e.isInitialised() && world.isAlive(e));
 
-			//begintest("Adding position Entity to entity");
-			//world.addEntity<Position>(e);
-			//endtest(world.getManager<EntityManager>()->hasEntity<Position>(world.getManager<EntityManager>()->getEntityInfo(e)));
+			begintest("Removing entity and checking if it's alive");
+				world.remove(e);
+				world.loopStart();
+			endtest(!world.isAlive(e));
 
 			return;
 		}

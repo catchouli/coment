@@ -40,6 +40,9 @@ namespace coment
 		// Create a new entity
 		Entity createEntity();
 
+		// Check if entity is alive
+		bool isAlive(Entity e);
+
 		// Add a default constructed component to an entity
 		template <typename T>
 		T* addComponent(Entity e);
@@ -68,6 +71,9 @@ namespace coment
 
 		// Get tag from entity
 		std::string getTag(Entity e);
+
+		// Get entities by tag
+		const std::vector<Entity>& getEntitiesByTag(std::string tag);
 
 		// Must be called at the start of each loop to update refreshed
 		// and deleted entities

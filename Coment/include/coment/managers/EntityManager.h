@@ -22,6 +22,9 @@ namespace coment
 		// Create an entity (will recycle dead entities ids)
 		Entity createEntity();
 
+		// Check if entity is alive
+		bool isAlive(Entity e);
+
 		// Get a reference to the entity info for an entity
 		EntityInfo& getEntityInfo(Entity e);
 
@@ -33,7 +36,7 @@ namespace coment
 
 	private:
 		// Contains all entities
-		std::vector<EntityInfo> _entities;
+		std::vector<EntityInfo> _entityInfos;
 
 		// Contains the entity IDs of dead or alive entities
 		std::vector<Entity> _alive;
