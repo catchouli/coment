@@ -2,16 +2,16 @@
 #define __COMPONENTMANAGER_H__
 
 #include <string>
-#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../Component.h"
 #include "../utils/Bag.h"
+#include "../utils/Map.h"
 #include "../exceptions/CompMapUnregistered.h"
 
 namespace coment
 {
-	typedef std::tr1::unordered_map<std::string, void*> ComponentBagMap;
+	typedef COMENT_MAP<std::string, void*> ComponentBagMap;
 
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager

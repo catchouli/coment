@@ -3,14 +3,14 @@
 
 #include <string>
 #include <typeinfo>
-#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../utils/Bag.h"
+#include "../utils/Map.h"
 
 namespace coment
 {
-//	typedef std::tr1::unordered_map<std::string, Manager*> ManagerMap;
+	typedef COMENT_MAP<std::string, Manager*> ManagerMap;
 
 	class ManagerManager : public Manager
 	{
@@ -27,7 +27,7 @@ namespace coment
 
 	private:
 		// A hash map of managers by type
-		std::tr1::unordered_map<std::string, Manager*> _managers;
+		ManagerMap _managers;
 	};
 
 	// Template functions

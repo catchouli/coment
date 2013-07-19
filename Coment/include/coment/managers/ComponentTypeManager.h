@@ -3,15 +3,15 @@
 
 #include <string>
 #include <typeinfo>
-#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../Component.h"
+#include "../utils/Map.h"
 
 namespace coment
 {
-	// A map of std::type_info hash to ComponentType ID
-	typedef std::tr1::unordered_map<std::string, ComponentType> ComponentTypeMap;
+	// A map of std::type_info::name() to ComponentType ID
+	typedef COMENT_MAP<std::string, ComponentType> ComponentTypeMap;
 
 	class ComponentTypeManager
 		: public Manager

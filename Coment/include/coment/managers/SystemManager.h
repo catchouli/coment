@@ -4,14 +4,14 @@
 #include <string>
 #include <vector>
 #include <typeinfo>
-#include <tr1/unordered_map>
 
 #include "../managers/Manager.h"
 #include "../systems/EntitySystem.h"
+#include "../utils/Map.h"
 
 namespace coment
 {
-	typedef std::tr1::unordered_map<std::string, EntitySystem*> SystemMap;
+	typedef COMENT_MAP<std::string, EntitySystem*> SystemMap;
 
 	// Contains all the systems added to the world
 	class SystemManager

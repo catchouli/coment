@@ -3,13 +3,15 @@
 
 #include <string>
 #include <vector>
-#include <tr1/unordered_map>
 
 #include "Manager.h"
 #include "../Entity.h"
+#include "../utils/Map.h"
 
 namespace coment
 {
+	typedef COMENT_MAP<std::string, std::vector<Entity> > EntityArrayMap;
+
 	class EntityInfo;
 
 	class TagManager
@@ -29,7 +31,7 @@ namespace coment
 
 	private:
 		std::vector<std::string> _tagsByEntity;
-		std::tr1::unordered_map<std::string, std::vector<Entity> > _entitiesByTag;
+		EntityArrayMap _entitiesByTag;
 
 		const std::vector<Entity> _emptyVector;
 	};
