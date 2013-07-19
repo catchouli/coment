@@ -10,6 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\EntityInfo.cpp" />
+    <ClCompile Include="src\managers\ComponentManager.cpp" />
+    <ClCompile Include="src\managers\EntityManager.cpp" />
+    <ClCompile Include="src\managers\Manager.cpp" />
+    <ClCompile Include="src\managers\ManagerManager.cpp" />
+    <ClCompile Include="src\managers\SystemManager.cpp" />
+    <ClCompile Include="src\managers\TagManager.cpp" />
+    <ClCompile Include="src\systems\EntityProcessingSystem.cpp" />
+    <ClCompile Include="src\systems\EntitySystem.cpp" />
+    <ClCompile Include="src\World.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EACED591-60FE-4017-9136-C6BE8C7B4E3D}</ProjectGuid>
     <RootNamespace>Coment</RootNamespace>
@@ -75,56 +88,6 @@
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Component.h" />
-    <ClInclude Include="include\Entity.h" />
-    <ClInclude Include="include\EntityInfo.h" />
-    <ClInclude Include="include\exceptions\IndexOutOfBounds.h" />
-    <ClInclude Include="include\exceptions\BitcountOutOfRange.h" />
-    <ClInclude Include="include\exceptions\BitIndexOutOfBounds.h" />
-    <ClInclude Include="include\exceptions\CompMapUnregistered.h" />
-    <ClInclude Include="include\exceptions\NotImplemented.h" />
-    <ClInclude Include="include\managers\ComponentManager.h" />
-    <ClInclude Include="include\managers\ComponentTypeManager.h" />
-    <ClInclude Include="include\managers\EntityManager.h" />
-    <ClInclude Include="include\managers\GroupManager.h" />
-    <ClInclude Include="include\managers\Manager.h" />
-    <ClInclude Include="include\managers\ManagerManager.h" />
-    <ClInclude Include="include\managers\SystemManager.h" />
-    <ClInclude Include="include\scenes\Scene.h" />
-    <ClInclude Include="include\systems\EntityProcessingSystem.h" />
-    <ClInclude Include="include\systems\EntitySystem.h" />
-    <ClInclude Include="include\utils\Bag.h" />
-    <ClInclude Include="include\utils\BitMask.h" />
-    <ClInclude Include="include\utils\Bitset.h" />
-    <ClInclude Include="include\World.h" />
-    <ClInclude Include="managers\GroupManager.h" />
-    <ClInclude Include="Utils\Bag.h" />
-    <ClInclude Include="exceptions\BagIndexOutOfBounds.h" />
-    <ClInclude Include="exceptions\BitcountOutOfRange.h" />
-    <ClInclude Include="exceptions\BitIndexOutOfBounds.h" />
-    <ClInclude Include="Utils\Bitset.h" />
-    <ClInclude Include="exceptions\CompMapUnregistered.h" />
-    <ClInclude Include="managers\ComponentManager.h" />
-    <ClInclude Include="managers\EntityManager.h" />
-    <ClInclude Include="systems\EntitySystem.h" />
-    <ClInclude Include="managers\Manager.h" />
-    <ClInclude Include="exceptions\NotImplemented.h" />
-    <ClInclude Include="managers\SystemManager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\EntityInfo.cpp" />
-    <ClCompile Include="src\managers\ComponentManager.cpp" />
-    <ClCompile Include="src\managers\EntityManager.cpp" />
-    <ClCompile Include="src\managers\GroupManager.cpp" />
-    <ClCompile Include="src\managers\Manager.cpp" />
-    <ClCompile Include="src\managers\ManagerManager.cpp" />
-    <ClCompile Include="src\managers\SystemManager.cpp" />
-    <ClCompile Include="src\systems\EntityProcessingSystem.cpp" />
-    <ClCompile Include="src\systems\EntitySystem.cpp" />
-    <ClCompile Include="src\World.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -23,11 +23,11 @@ namespace coment
 				{
 					Velocity* velocity = _world->getComponent<Velocity>(e);
 
-					velocity->y += GRAVITY_ACCELERATION * _world->getDelta();
+					velocity->y += _world->getDelta() * GRAVITY_ACCELERATION;
 				}
 
 			private:
-				static const float GRAVITY_ACCELERATION = 50.0f;
+				static const int GRAVITY_ACCELERATION = 50;
 			};
 		}
 	}
