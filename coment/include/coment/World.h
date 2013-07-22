@@ -9,9 +9,11 @@
 #include "systems/EntityProcessingSystem.h"
 
 #include "managers/TagManager.h"
+#include "managers/GroupManager.h"
 #include "managers/EntityManager.h"
 #include "managers/SystemManager.h"
 #include "managers/ManagerManager.h"
+#include "managers/VariableManager.h"
 #include "managers/ComponentManager.h"
 #include "managers/ComponentTypeManager.h"
 
@@ -29,31 +31,23 @@ namespace coment
 		// Destructor
 		~World();
 
-		// Add a manager
-		template <typename T>
-		T* addManager(T& manager);
-
-		// Get a manager
-		template <typename T>
-		T* getManager();
-
+		/* Entity functions */
 		// Create a new entity
 		Entity createEntity();
 
 		// Check if entity is alive
 		bool isAlive(Entity e);
 
+		// Queue an entity for removal
+		void remove(Entity e);
+
+		// Refresh an entity
+		void refresh(Entity e);
+
+		/* Component functions */
 		// Add a default constructed component to an entity
 		template <typename T>
 		T* addComponent(Entity e);
-
-		// Register a system to the system manager
-		template <typename T>
-		T* addSystem(T& system);
-
-		// Retrieve a system from the system manager
-		template <typename T>
-		T* getSystem();
 
 		// Get a component from an entity
 		template <typename T>
@@ -66,6 +60,25 @@ namespace coment
 		// Remove all components from an entity
 		void removeComponents(Entity e);
 
+		/* System functions */
+		// Register a system to the system manager
+		template <typename T>
+		T* addSystem(T& system);
+
+		// Retrieve a system from the system manager
+		template <typename T>
+		T* getSystem();
+
+		/* Manager functions */
+		// Add a manager
+		template <typename T>
+		T* addManager(T& manager);
+
+		// Get a manager
+		template <typename T>
+		T* getManager();
+
+		/* Tag functions */
 		// Set tag for entity
 		void setTag(Entity e, std::string);
 
@@ -75,8 +88,8 @@ namespace coment
 		// Get entities by tag
 		const std::vector<Entity>& getEntitiesByTag(std::string tag);
 
-		// Must be called at the start of each loop to update refreshed
-		// and deleted entities
+		/* World functions */
+		// Must be called at the start of each loop to update refreshed/deleted entities
 		void loopStart();
 
 		// Sets the delta for this frame
@@ -88,13 +101,8 @@ namespace coment
 		// Update all the systems
 		void update();
 
-		// Queue an entity for removal
-		void remove(Entity e);
-
-		// Refresh an entity
-		void refresh(Entity e);
-
 	protected:
+		/* Internal entity functions (called on loopStart) */
 		// Remove entity (called automatically on queued entities)
 		void removeEntity(Entity e);
 
@@ -104,9 +112,11 @@ namespace coment
 	private:
 		// The manager instances
 		TagManager _tagManager;
+		GroupManager _groupManager;
 		EntityManager _entityManager;
 		SystemManager _systemManager;
 		ManagerManager _managerManager;
+		VariableManager _variableManager;
 		ComponentManager _componentManager;
 		ComponentTypeManager _componentTypeManager;
 
