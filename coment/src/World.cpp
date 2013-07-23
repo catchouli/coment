@@ -11,11 +11,11 @@ namespace coment
 		_managerManager.initialise(this);
 
 		// Initialise default managers
-		_managerManager.addManager(_tagManager);
-		_managerManager.addManager(_systemManager);
-		_managerManager.addManager(_entityManager);
-		_managerManager.addManager(_componentTypeManager);
-		_managerManager.addManager(_componentManager);
+		_managerManager.registerManager(_tagManager);
+		_managerManager.registerManager(_systemManager);
+		_managerManager.registerManager(_entityManager);
+		_managerManager.registerManager(_componentTypeManager);
+		_managerManager.registerManager(_componentManager);
 	}
 
 	World::~World()

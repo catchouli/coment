@@ -42,7 +42,7 @@ namespace coment
 			// Register system and check if onRegistered is called
 			begintest("Registering system and checking if onRegistered is called");
 				success = !movementSystem.isRegistered();
-				world.addSystem(movementSystem);
+				world.registerSystem(movementSystem);
 				success = success && movementSystem.isRegistered();
 			endtest(success);
 

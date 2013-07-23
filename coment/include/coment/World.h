@@ -63,7 +63,7 @@ namespace coment
 		/* System functions */
 		// Register a system to the system manager
 		template <typename T>
-		T* addSystem(T& system);
+		T* registerSystem(T& system);
 
 		// Retrieve a system from the system manager
 		template <typename T>
@@ -72,7 +72,7 @@ namespace coment
 		/* Manager functions */
 		// Add a manager
 		template <typename T>
-		T* addManager(T& manager);
+		T* registerManager(T& manager);
 
 		// Get a manager
 		template <typename T>
@@ -132,9 +132,9 @@ namespace coment
 
 	// Add a manager
 	template <typename T>
-	T* World::addManager(T& manager)
+	T* World::registerManager(T& manager)
 	{
-		return _managerManager.addManager(manager);
+		return _managerManager.registerManager(manager);
 	}
 
 	// Get a manager
@@ -153,9 +153,9 @@ namespace coment
 
 	// Register a system with the system manager
 	template <typename T>
-	T* World::addSystem(T& system)
+	T* World::registerSystem(T& system)
 	{
-		return _systemManager.addSystem(system);
+		return _systemManager.registerSystem(system);
 	}
 
 	// Retrieve a system from the system manager

@@ -23,7 +23,7 @@ namespace coment
 
 		// Add a manager
 		template <typename T>
-		T* addManager(T& manager);
+		T* registerManager(T& manager);
 
 	private:
 		// A hash map of managers by type
@@ -38,7 +38,7 @@ namespace coment
 	}
 
 	template <typename T>
-	T* ManagerManager::addManager(T& manager)
+	T* ManagerManager::registerManager(T& manager)
 	{
 		// Initialise manager
 		((Manager*)&manager)->initialise(_world);

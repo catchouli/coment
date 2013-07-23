@@ -22,7 +22,7 @@ namespace coment
 
 		// Register a system with this manager
 		template <typename T>
-		T* addSystem(T& system);
+		T* registerSystem(T& system);
 
 		// Get system of a particular type
 		template <typename T>
@@ -44,7 +44,7 @@ namespace coment
 
 	// Register a system
 	template <typename T>
-	T* SystemManager::addSystem(T& system)
+	T* SystemManager::registerSystem(T& system)
 	{
 		// Initialise the system
 		system.setWorld(_world);

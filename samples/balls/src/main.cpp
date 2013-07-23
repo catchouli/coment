@@ -47,17 +47,17 @@ int main(int argc, char** argv)
 	MovementSystem movementSystem((float)WIDTH, (float)HEIGHT);
 
 	// Add systems to world
-	world.addSystem(renderingSystem);
-	world.addSystem(gravitySystem);
-	world.addSystem(movementSystem);
+	world.registerSystem(renderingSystem);
+	world.registerSystem(gravitySystem);
+	world.registerSystem(movementSystem);
 
 	// Create and initialise managers
 	BallManager ballManager(WIDTH, HEIGHT);
 	InputManager inputManager(&window);
 
 	// Add managers to world
-	world.addManager(ballManager);
-	world.addManager(inputManager);
+	world.registerManager(ballManager);
+	world.registerManager(inputManager);
 
 	// Create some balls
 	ballManager.createBalls(INITIAL_BALLS);
