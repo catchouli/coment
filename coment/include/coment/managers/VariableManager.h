@@ -12,8 +12,7 @@ namespace coment
 	class World;
 
 	#define VariableMap typename std::tr1::unordered_map<std::string, T>
-	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > TypeToVariableMapMap;
-	typedef std::tr1::unordered_map<World*, TypeToVariableMapMap > WorldToTypeMapMap;
+	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > VariableTypeMap;
 
 	class VariableManager
 		: public Manager
@@ -28,7 +27,7 @@ namespace coment
 		const T& getValue(const std::string name);
 
 	private:
-		WorldToTypeMapMap _WorldToTypeMapMap;
+		VariableTypeMap _variableTypeMap;
 
 		// Get a variable map for a specific type
 		template <typename T>
@@ -60,41 +59,19 @@ namespace coment
 	template <typename T>
 	VariableMap& VariableManager::getValueMap()
 	{
-		WorldToTypeMapMap::iterator worldIter;
-		TypeToVariableMapMap::iterator typeIter;
-
-		// Find map of types to variable maps
-		worldIter = _WorldToTypeMapMap.find(_world);
-
-		if (worldIter == _WorldToTypeMapMap.end())
-		{
-			_WorldToTypeMapMap[_world] = TypeToVariableMapMap();
-
-			worldIter = _WorldToTypeMapMap.find(_world);
-		}
+		VariableTypeMap::iterator typeIter;
 
 		// Find map of name to variable
-		typeIter = worldIter->second.find(typeid(T).name());
+		typeIter = _variableTypeMap.find(typeid(T).name());
 
-		if (typeIter == worldIter->second.end())
+		if (typeIter == _variableTypeMap.end())
 		{
-			worldIter->second[typeid(T).name()] = std::tr1::shared_ptr<void>(new VariableMap());
+			_variableTypeMap[typeid(T).name()] = std::tr1::shared_ptr<void>(new VariableMap());
 
-			typeIter = worldIter->second.find(typeid(T).name());
+			typeIter = _variableTypeMap.find(typeid(T).name());
 		}
 
 		return *(VariableMap*)(typeIter->second.get());
-
-		/*VariableMapMap::iterator mapIter = variableMaps.find(_world);
-
-		if (mapIter != variableMaps.end())
-		{
-			variableMaps[_world] = std::tr1::shared_ptr<void>(new VariableMap());
-
-			mapIter = variableMaps.find(_world);
-		}
-
-		return *(VariableMap*)(mapIter->second.get());*/
 	}
 }
 
