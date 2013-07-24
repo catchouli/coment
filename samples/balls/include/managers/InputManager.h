@@ -1,13 +1,10 @@
 #ifndef __INPUTMANAGER_H__
 #define __INPUTMANAGER_H__
 
-#include <string>
-#include <map>
-
 #include <SFML/Graphics.hpp>
 
-#include <coment/managers/Manager.h>
 #include <coment/systems/EntitySystem.h>
+#include <coment/managers/Manager.h>
 
 namespace coment
 {
@@ -15,8 +12,9 @@ namespace coment
         {
                 namespace balls
                 {
-			class MovementSystem;
 			class RenderingSystem;
+			class CollisionSystem;
+			class MovementSystem;
 			class GravitySystem;
 
 			class InputManager
@@ -31,8 +29,9 @@ namespace coment
 
 			private:
 				sf::RenderWindow* _window;
-				coment::EntitySystem* _movementSystem;
 				coment::EntitySystem* _renderingSystem;
+				coment::EntitySystem* _collisionSystem;
+				coment::EntitySystem* _movementSystem;
 				coment::EntitySystem* _gravitySystem;
 			};
 
@@ -46,6 +45,7 @@ namespace coment
 			void InputManager::onRegistered()
 			{
 				_renderingSystem = (coment::EntitySystem*)_world->getSystem<RenderingSystem>();
+				_collisionSystem = (coment::EntitySystem*)_world->getSystem<CollisionSystem>();
 				_movementSystem = (coment::EntitySystem*)_world->getSystem<MovementSystem>();
 				_gravitySystem = (coment::EntitySystem*)_world->getSystem<GravitySystem>();
 			}
@@ -70,6 +70,7 @@ namespace coment
 					// Toggle movement when player presses M
 					else if (event.key.code == sf::Keyboard::M)
 					{
+						_collisionSystem->setEnabled(!_collisionSystem->getEnabled());
 						_movementSystem->setEnabled(!_movementSystem->getEnabled());
 						_gravitySystem->setEnabled(!_gravitySystem->getEnabled());
 					}

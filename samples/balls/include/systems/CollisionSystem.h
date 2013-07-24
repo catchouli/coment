@@ -40,9 +40,13 @@ namespace coment
 
 					// If we hit a wall, bounce and apply a dampening coefficient
 					if ((position->x - radius->radius < 0 && velocity->x < 0) || (position->x + radius->radius > _width && velocity->x > 0))
+					{
 						velocity->x = -velocity->x * DAMPENING_HORIZONTAL;
+					}
 					if ((position->y - radius->radius < 0 && velocity->y < 0) || (position->y + radius->radius > _height && velocity->y > 0))
+					{
 						velocity->y = -velocity->y * DAMPENING_VERTICAL;
+					}
 				}
 
 			private:
