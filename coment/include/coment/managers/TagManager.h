@@ -10,7 +10,7 @@
 
 namespace coment
 {
-	typedef COMENT_MAP<std::string, std::vector<Entity> > EntityArrayMap;
+	typedef std::tr1::unordered_map<std::string, std::vector<Entity> > EntityArrayMap;
 
 	class EntityInfo;
 

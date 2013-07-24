@@ -9,7 +9,7 @@
 
 namespace coment
 {
-	typedef COMENT_MAP<std::string, Manager*> ManagerMap;
+	typedef std::tr1::unordered_map<std::string, Manager*> ManagerMap;
 
 	class ManagerManager : public Manager
 	{

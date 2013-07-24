@@ -12,7 +12,7 @@
 
 namespace coment
 {
-	typedef COMENT_MAP<std::string, std::tr1::shared_ptr<void> > ComponentBagMap;
+	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > ComponentBagMap;
 
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager

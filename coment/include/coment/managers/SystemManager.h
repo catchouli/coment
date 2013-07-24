@@ -11,7 +11,7 @@
 
 namespace coment
 {
-	typedef COMENT_MAP<std::string, EntitySystem*> SystemMap;
+	typedef std::tr1::unordered_map<std::string, EntitySystem*> SystemMap;
 
 	// Contains all the systems added to the world
 	class SystemManager

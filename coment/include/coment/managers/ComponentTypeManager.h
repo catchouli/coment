@@ -11,7 +11,7 @@
 namespace coment
 {
 	// A map of std::type_info::name() to ComponentType ID
-	typedef COMENT_MAP<std::string, ComponentType> ComponentTypeMap;
+	typedef std::tr1::unordered_map<std::string, ComponentType> ComponentTypeMap;
 
 	class ComponentTypeManager
 		: public Manager

@@ -8,8 +8,8 @@ namespace coment
 {
 	class World;
 
-	#define VariableMap typename COMENT_MAP<std::string, T>
-	#define VariableMapMap typename COMENT_MAP<World*, VariableMap >
+	#define VariableMap typename std::tr1::unordered_map<std::string, T>
+	#define VariableMapMap typename std::tr1::unordered_map<World*, VariableMap >
 
 	class VariableManager
 		: public Manager
