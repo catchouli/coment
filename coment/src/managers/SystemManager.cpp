@@ -14,20 +14,22 @@ namespace coment
 	{
 		for (unsigned int i = 0; i < _systems.size(); ++i)
 		{
-			// Check if this entity should be added.
-			if (e.compareBitmask(_systems[i]->getMask()))
+			// If this entity's components match the system's components
+			if (e.compareComponentBitmask(_systems[i]->getComponentMask()))
 			{
-				// Check if the entity is already in that system.
+				// If the entity isn't in the system
 				if (!e.compareSystemBitmask(BitMask(1) << i))
 				{
+					// Add entity to system
 					_systems[i]->addEntity(e);
 					e._systemMask.setBit(i);
 				}
 			}
+			// If this entity's components don't match the system's components
 			else
 			{
-				// Check if the entity is already in that system.
-				if (!e.compareSystemBitmask(BitMask(1) << i))
+				// If the entity is in the system
+				if (e.compareSystemBitmask(BitMask(1) << i))
 				{
 					_systems[i]->removeEntity(e);
 					e._systemMask.clearBit(i);

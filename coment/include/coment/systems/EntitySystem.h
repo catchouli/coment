@@ -75,7 +75,7 @@ namespace coment
 
 		// Get the bitmask created from the combination of components
 		// registered with this system
-		BitMask getMask();
+		BitMask getComponentMask();
 
 		// Called when an entity is refreshed
 		bool refresh(const EntityInfo& e);

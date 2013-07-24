@@ -1,6 +1,7 @@
 #define SFML_STATIC
 
 #include <sstream>
+#include <stdio.h>
 #include <stdlib.h>
 
 // Coment includes

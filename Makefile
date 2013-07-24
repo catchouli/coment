@@ -1,26 +1,29 @@
 # Linux Makefile
 
+OPTFLAG = -O2
+OPTIONS = OPTFLAG=$(OPTFLAG) DBGFLAG=$(DBGFLAG)
+
 all: shared static
 
 shared:
 	@mkdir -p bin
-	$(MAKE) -C coment shared
-	$(MAKE) -C samples shared
-	$(MAKE) -C tests shared
+	$(MAKE) -C coment shared $(OPTIONS)
+	$(MAKE) -C samples shared $(OPTIONS)
+	$(MAKE) -C tests shared $(OPTIONS)
 
 sharedlib:
 	@mkdir -p bin
-	$(MAKE) -C coment shared
+	$(MAKE) -C coment shared $(OPTIONS)
 
 static:
 	@mkdir -p bin
-	$(MAKE) -C coment static
-	$(MAKE) -C samples static
-	$(MAKE) -C tests static
+	$(MAKE) -C coment static $(OPTIONS)
+	$(MAKE) -C samples static $(OPTIONS)
+	$(MAKE) -C tests static $(OPTIONS)
 
 staticlib:
 	@mkdir -p bin
-	$(MAKE) -C coment static
+	$(MAKE) -C coment static $(OPTIONS)
 
 install:
 	$(MAKE) -C coment install

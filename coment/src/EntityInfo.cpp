@@ -3,19 +3,19 @@
 namespace coment
 {
 	EntityInfo::EntityInfo()
-		: _alive(false), _valid(false)
+		: _alive(false), _waitingForRefresh(false), _waitingForRemoval(false), _valid(false)
 	{
 
 	}
 
 	EntityInfo::EntityInfo(EntityId id)
-		: Entity(id), _alive(false), _valid(true)
+		: Entity(id), _alive(false), _waitingForRefresh(false), _waitingForRemoval(false), _valid(true)
 	{
 
 	}
 
 	// Compare the bitmask
-	bool EntityInfo::compareBitmask(const BitMask& mask) const
+	bool EntityInfo::compareComponentBitmask(const BitMask& mask) const
 	{
 		return (mask & _componentMask) == mask;
 	}

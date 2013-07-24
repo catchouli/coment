@@ -53,6 +53,7 @@ namespace coment
 			// Remove all components from entity
 			begintest("Remove all components from entity");
 				world.addComponent<Velocity>(e);
+				world.loopStart();
 				world.removeComponents(e);
 			endtest(world.getComponent<Velocity>(e) == NULL &&
 				world.getComponent<Position>(e) == NULL);

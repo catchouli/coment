@@ -5,13 +5,13 @@ all: shared static
 shared:
 	@mkdir -p bin
 	@mkdir -p ../bin
-	$(MAKE) -C balls shared
+	$(MAKE) -C balls shared OPTFLAG=$(OPTFLAG) DBGFLAG=$(DBGFLAG)
 	@cp -R bin/* ../bin/
 
 static:
 	@mkdir -p bin
 	@mkdir -p ../bin
-	$(MAKE) -C balls static
+	$(MAKE) -C balls static OPTFLAG=$(OPTFLAG) DBGFLAG=$(DBGFLAG)
 	@cp -R bin/* ../bin/
 
 clean:

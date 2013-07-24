@@ -100,7 +100,7 @@ namespace coment
 	}
 
 	// Get the bitmask
-	BitMask EntitySystem::getMask()
+	BitMask EntitySystem::getComponentMask()
 	{
 		return _bitmask;
 	}

@@ -105,7 +105,6 @@ namespace coment
 
 			// Reset the component and system bitmasks
 			e._componentMask.clear();
-			e._systemMask.clear();
 
 			// Remove from TagManager
 			_world->getManager<TagManager>()->removeEntity(e);

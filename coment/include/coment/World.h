@@ -154,7 +154,14 @@ namespace coment
 	template <typename T>
 	T* World::addComponent(Entity e)
 	{
-		return _componentManager.addComponent<T>(_entityManager.getEntityInfo(e));
+		// Add component
+		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e));
+
+		// Queue entity for refresh
+		refresh(e);
+
+		// Return component
+		return component;
 	}
 
 	// Register a system with the system manager
@@ -182,7 +189,13 @@ namespace coment
 	template <typename T>
 	void World::removeComponent(Entity e)
 	{
+		// Remove component
 		_componentManager.removeComponent<T>(_entityManager.getEntityInfo(e));
+
+		// Refresh entity immediately (refreshEntity instead of refresh)
+		// Otherwise, somebody might try and update a system before loopStart,
+		// Causing a null pointer exception
+		refreshEntity(e);
 	}
 
 	/* Inline variable functions */

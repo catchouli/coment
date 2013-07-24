@@ -10,7 +10,7 @@ OBJDIR=obj
 BINDIR=bin
 INCDIR=include
 
-CXXFLAGS=-c -Wall -O2
+CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
 LDFLAGS=
 INCLUDES=-I$(INCDIR) -I../coment/include
 

@@ -75,24 +75,41 @@ namespace coment
 
 	void World::remove(Entity e)
 	{
-		_removed.push_back(e);
+		EntityInfo& entityInfo = _entityManager.getEntityInfo(e);
+
+		// Add an entity to the removal list and set a boolean flag so that it doesn't get added twice
+		if (!entityInfo._waitingForRemoval)
+		{
+			entityInfo._waitingForRemoval = true;
+			_removed.push_back(e);
+		}
 	}
 
 	void World::refresh(Entity e)
 	{
-		_refreshed.push_back(e);
+		EntityInfo& entityInfo = _entityManager.getEntityInfo(e);
+
+		// Add an entity to the refreshed list and set a boolean flag so that it doesn't get added twice
+		if (!entityInfo._waitingForRefresh)
+		{
+			entityInfo._waitingForRefresh = true;
+			_refreshed.push_back(e);
+		}
 	}
 
 	void World::removeEntity(Entity e)
 	{
-		// Get the entity info.
+		// Get the entity info
 		EntityInfo& info = _entityManager.getEntityInfo(e);
 
-		// Remove the entity.
+		// Unset removal flag
+		info._waitingForRemoval = false;
+
+		// Remove the entity
 		_entityManager.removeEntity(info);
 
-		// Refresh systems concerned with this entities
-		refresh(e);
+		// Refresh the entity immediately (must be refreshEntity instead of refresh)
+		refreshEntity(e);
 	}
 
 	void World::setTag(Entity e, std::string tag)
@@ -115,12 +132,21 @@ namespace coment
 		// Get entity info
 		EntityInfo& info = _entityManager._entityInfos[e.getId()];
 
+		// Unset refresh flag
+		info._waitingForRefresh = false;
+
 		// Refresh the entity
 		_systemManager.refresh(info);
 	}
 
 	void World::removeComponents(Entity e)
 	{
+		// Remove component
 		_componentManager.removeComponents(_entityManager.getEntityInfo(e));
+
+		// Refresh entity immediately (refreshEntity instead of refresh)
+		// Otherwise, somebody might try and update a system before loopStart,
+		// Causing a null pointer exception
+		refreshEntity(e);
 	}
 }

@@ -83,9 +83,6 @@ namespace coment
 					colour->b = rand() % 255;
 					colour->a = 255;
 
-					// Refresh systems with entity
-					_world->refresh(e);
-
 					// Add entity to bag
 					_balls.push_back(e);
 				}

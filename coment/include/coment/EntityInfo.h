@@ -17,7 +17,7 @@ namespace coment
 		EntityInfo();
 
 		// Compare the bitmask
-		bool compareBitmask(const BitMask& mask) const;
+		bool compareComponentBitmask(const BitMask& mask) const;
 
 		// Compare the system bitmask
 		bool compareSystemBitmask(const BitMask& mask) const;
@@ -34,6 +34,7 @@ namespace coment
 	protected:
 		// We are friends with the entity manager so that it can call
 		// this protected constructor
+		friend class World;
 		friend class EntityManager;
 		friend class SystemManager;
 		friend class ComponentManager;
@@ -50,6 +51,12 @@ namespace coment
 
 		// Whether or not this entity is alive
 		bool _alive;
+
+		// Whether or not this entity is waiting to be refreshed
+		bool _waitingForRefresh;
+
+		// Whether or not this entity is waiting to be removed
+		bool _waitingForRemoval;
 
 	private:
 		// Whether or not this entity is valid

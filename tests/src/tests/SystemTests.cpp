@@ -39,6 +39,9 @@ namespace coment
 			// Systems
 			MovementSystem movementSystem;
 
+			// Set world delta
+			world.setDelta(WORLD_DELTA);
+
 			// Register system and check if onRegistered is called
 			begintest("Registering system and checking if onRegistered is called");
 				success = !movementSystem.isRegistered();
@@ -58,23 +61,29 @@ namespace coment
 			vel->x = INITIAL_VX;
 			vel->y = INITIAL_VY;
 
-			// Run one update and check that the position and velocity are correct
+			// Run tests
 			begintest("Run one update (using World::update) and check entity is updated");
-			world.setDelta(WORLD_DELTA);
-			world.loopStart();
-			world.update();
-			updates++;
+				world.loopStart();
+				world.update();
+				updates++;
 			endtest(((int)(pos->x) == INITIAL_X + INITIAL_VX * WORLD_DELTA * updates) &&
-				((int)(pos->y) == INITIAL_Y + INITIAL_VY * WORLD_DELTA * updates));
+				((int)(pos->y) == INITIAL_X + INITIAL_VY * WORLD_DELTA * updates));
 
-			// Run one update and check that the position and velocity are correct
-			begintest("Run one update (using system::update) and check entity is updated");
-			world.setDelta(WORLD_DELTA);
-			world.loopStart();
-			movementSystem.update();
-			updates++;
-			endtest(((int)(pos->x) == INITIAL_X + INITIAL_VX * WORLD_DELTA * updates) &&
-				((int)(pos->y) == INITIAL_Y + INITIAL_VY * WORLD_DELTA * updates));
+			begintest("Add component back and check that entity gets updated");
+				updates = 0;
+				pos = world.addComponent<Position>(e);
+				world.loopStart();
+				movementSystem.update();
+				updates++;
+			endtest(((int)(pos->x) == 0 + INITIAL_VX * WORLD_DELTA * updates) &&
+				((int)(pos->y) == 0 + INITIAL_VY * WORLD_DELTA * updates));
+
+			begintest("Remove all components and check that entity doesn't get updated");
+				world.removeComponents(e);
+				world.loopStart();
+				movementSystem.update();
+			endtest(((int)(pos->x) == 0 + INITIAL_VX * WORLD_DELTA * updates) &&
+				((int)(pos->y) == 0 + INITIAL_VY * WORLD_DELTA * updates));
 
 			return;
 		}
