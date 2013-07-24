@@ -5,7 +5,6 @@
 namespace coment
 {
 	World::World()
-		: _delta(0)
 	{
 		// Create manager manager
 		_managerManager.initialise(this);
@@ -17,6 +16,9 @@ namespace coment
 		_managerManager.registerManager(_variableManager);
 		_managerManager.registerManager(_componentTypeManager);
 		_managerManager.registerManager(_componentManager);
+
+		// Initialise delta time
+		setDelta(0.0f);
 	}
 
 	World::~World()
@@ -58,12 +60,12 @@ namespace coment
 
 	void World::setDelta(float delta)
 	{
-		_delta = delta;
+		setValue<float>("delta", delta);
 	}
 
 	float World::getDelta()
 	{
-		return _delta;
+		return getValue<float>("delta");
 	}
 
 	void World::update()

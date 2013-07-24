@@ -15,6 +15,14 @@ namespace coment
 
 			void run();
 		};
+
+		struct TestStruct
+		{
+			TestStruct() : value(45000) {}
+			TestStruct(int val) : value(val) {}
+
+			int value;
+		};
 	}
 }
 

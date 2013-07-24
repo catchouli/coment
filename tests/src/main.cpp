@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	tests.push_back(new SystemTests());
 	tests.push_back(new TagTests());
 	tests.push_back(new GroupTests());
-//	tests.push_back(new VariableTests());
+	tests.push_back(new VariableTests());
 
 	// Run all tests
 	std::cout << "Running all tests" << std::endl;

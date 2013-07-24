@@ -88,6 +88,15 @@ namespace coment
 		// Get entities by tag
 		const std::vector<Entity>& getEntitiesByTag(std::string tag);
 
+		/* Variable functions */
+		// Set a value
+		template <typename T>
+		void setValue(const std::string name, const T& value);
+
+		// Get a value
+		template <typename T>
+		const T& getValue(const std::string name);
+
 		/* World functions */
 		// Must be called at the start of each loop to update refreshed/deleted entities
 		void loopStart();
@@ -125,9 +134,6 @@ namespace coment
 
 		// Entities due to be refreshed
 		std::vector<Entity> _refreshed;
-
-		// The difference in time since the last frame
-		float _delta;
 	};
 
 	// Add a manager
@@ -177,6 +183,19 @@ namespace coment
 	void World::removeComponent(Entity e)
 	{
 		_componentManager.removeComponent<T>(_entityManager.getEntityInfo(e));
+	}
+
+	/* Inline variable functions */
+	template <typename T>
+	void World::setValue(const std::string name, const T& value)
+	{
+		_variableManager.setValue<T>(name, value);
+	}
+
+	template <typename T>
+	const T& World::getValue(const std::string name)
+	{
+		return _variableManager.getValue<T>(name);
 	}
 }
 
