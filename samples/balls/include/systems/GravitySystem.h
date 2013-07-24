@@ -19,13 +19,12 @@ namespace coment
 
 				void process(coment::Entity e)
 				{
+					const float GRAVITY_ACCELERATION = 250;
+
 					Velocity* velocity = _world->getComponent<Velocity>(e);
 
 					velocity->y += _world->getDelta() * GRAVITY_ACCELERATION;
 				}
-
-			private:
-				static const int GRAVITY_ACCELERATION = 50;
 			};
 		}
 	}

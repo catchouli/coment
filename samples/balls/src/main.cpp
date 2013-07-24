@@ -13,6 +13,7 @@
 
 // Systems
 #include "systems/RenderingSystem.h"
+#include "systems/CollisionSystem.h"
 #include "systems/MovementSystem.h"
 #include "systems/GravitySystem.h"
 
@@ -44,13 +45,15 @@ int main(int argc, char** argv)
 
 	// Create and initialise systems
 	RenderingSystem renderingSystem(&window);
+	CollisionSystem collisionSystem((float)WIDTH, (float)HEIGHT);
+	MovementSystem movementSystem;
 	GravitySystem gravitySystem;
-	MovementSystem movementSystem((float)WIDTH, (float)HEIGHT);
 
 	// Add systems to world
 	world.registerSystem(renderingSystem);
-	world.registerSystem(gravitySystem);
+	world.registerSystem(collisionSystem);
 	world.registerSystem(movementSystem);
+	world.registerSystem(gravitySystem);
 
 	// Create and initialise managers
 	BallManager ballManager(WIDTH, HEIGHT);

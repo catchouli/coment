@@ -11,7 +11,8 @@ namespace coment
         {
                 namespace balls
                 {
-			class RenderingSystem : public coment::EntityProcessingSystem
+			class RenderingSystem
+				: public coment::EntityProcessingSystem
 			{
 			public:
 				RenderingSystem(sf::RenderTarget* target)
