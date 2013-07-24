@@ -4,7 +4,7 @@
 #ifdef _MSC_VER
 	#include <memory>
 #else
-	#include <tr/memory>
+	#include <tr1/memory>
 #endif
 
 #endif /* __COMENT_SHAREDPTR_H__ */
