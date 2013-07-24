@@ -3,11 +3,11 @@
 
 #include <string>
 #include <vector>
-#include <tr1/memory>
 
 #include "Manager.h"
 #include "../Component.h"
 #include "../utils/Map.h"
+#include "../utils/SharedPtr.h"
 #include "../exceptions/CompMapUnregistered.h"
 
 namespace coment
