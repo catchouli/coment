@@ -7,7 +7,7 @@ namespace coment
 	namespace tests
 	{
 		VariableTests::VariableTests()
-			: Test("Group")
+			: Test("Variable")
 		{
 
 		}
@@ -16,8 +16,8 @@ namespace coment
 		{
 			coment::World world;
 
-			//world.setValue<float>("delta", 0.1f);
-			//world.getValue<float>("delta");
+			world.getManager<VariableManager>()->setVariable<float>("delta", 0.1f);
+			std::cout << world.getManager<VariableManager>()->getVariable<float>("delta") << std::endl;
 
 			return;
 		}

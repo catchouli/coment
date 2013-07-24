@@ -1,12 +1,12 @@
 #ifndef __BALLMANAGER_H__
 #define __BALLMANAGER_H__
 
-#include <string>
 #include <map>
+#include <string>
+#include <vector>
 #include <stdlib.h>
 
 #include <coment/managers/Manager.h>
-#include <coment/utils/Bag.h>
 
 #include "components/Position.h"
 #include "components/Velocity.h"
@@ -46,7 +46,7 @@ namespace coment
 				static const int MIN_INITIAL_VELOCITY_Y = 50;
 				static const int MAX_INITIAL_VELOCITY_Y = 150;
 
-				coment::Bag<coment::Entity> _balls;
+				std::vector<coment::Entity> _balls;
 			};
 
 			BallManager::BallManager(int width, int height)
@@ -87,7 +87,7 @@ namespace coment
 					_world->refresh(e);
 
 					// Add entity to bag
-					_balls.add(e);
+					_balls.push_back(e);
 				}
 			}
 
@@ -95,16 +95,17 @@ namespace coment
 			{
 				for (int i = 0; i < number; ++i)
 				{
-					if (_balls.getSize() > 0)
+					if (_balls.size() > 0)
 					{
-						_world->remove(_balls.popBack());
+						_world->remove(_balls.back());
+						_balls.pop_back();
 					}
 				}
 			}
 
 			int BallManager::getBallCount()
 			{
-				return _balls.getSize();
+				return _balls.size();
 			}
 		}
 	}

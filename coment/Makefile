@@ -21,7 +21,7 @@ OBJDIR = obj
 BINDIR = bin
 INCDIR = include
 
-CXXFLAGS = -c -fPIC -Wall -O0 -g
+CXXFLAGS = -c -fPIC -Wall -O2
 LDFLAGS = -shared -Wl,-soname,$(SONAME) -o bin/$(REALNAME)
 
 SOURCES = $(shell find src -name *.cpp)

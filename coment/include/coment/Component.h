@@ -10,7 +10,8 @@ namespace coment
 	struct Component
 	{
 	public:
-		Component() {};
+		Component() {}
+		virtual ~Component() {}
 
 	private:
 		friend class ComponentManager;

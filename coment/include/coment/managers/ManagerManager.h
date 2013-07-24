@@ -5,7 +5,6 @@
 #include <typeinfo>
 
 #include "Manager.h"
-#include "../utils/Bag.h"
 #include "../utils/Map.h"
 
 namespace coment

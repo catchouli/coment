@@ -9,7 +9,7 @@ namespace coment
 {
 	// Constructor
 	EntitySystem::EntitySystem()
-		: _world(nullptr), _componentTypeManager(nullptr), _enabled(true)
+		: _world(NULL), _componentTypeManager(NULL), _enabled(true)
 	{
 
 	}

@@ -2,16 +2,17 @@
 #define __COMPONENTMANAGER_H__
 
 #include <string>
+#include <vector>
+#include <tr1/memory>
 
 #include "Manager.h"
 #include "../Component.h"
-#include "../utils/Bag.h"
 #include "../utils/Map.h"
 #include "../exceptions/CompMapUnregistered.h"
 
 namespace coment
 {
-	typedef COMENT_MAP<std::string, void*> ComponentBagMap;
+	typedef COMENT_MAP<std::string, std::tr1::shared_ptr<void> > ComponentBagMap;
 
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
@@ -19,7 +20,6 @@ namespace coment
 	{
 	public:
 		ComponentManager();
-		~ComponentManager();
 
 		// Add a component onto an entity
 		template <typename T>
@@ -46,9 +46,13 @@ namespace coment
 	protected:
 		// Get a bag for a component type
 		template <typename T>
-		Bag<T>* getComponentBag();
+		std::vector<T>* getComponentBag();
 
 	private:
+		// Private copy constructor/assignment operator (no copying)
+		ComponentManager(const ComponentManager&);
+		const ComponentManager& operator=(const ComponentManager&);
+
 		// Manager for component types
 		ComponentTypeManager* _componentTypeManager;
 
@@ -60,11 +64,12 @@ namespace coment
 	template <typename T>
 	T* ComponentManager::addComponent(EntityInfo& e)
 	{
-		Bag<T>* components = getComponentBag<T>();
+		std::vector<T>* components = getComponentBag<T>();
 		ComponentType componentType = _componentTypeManager->getComponentType<T>();
 
 		// Add the component to it
-		components->set(e.getId(), T());
+		components->resize(e.getId()+1);
+		(*components)[e.getId()] = T();
 
 		// Set the entity's components bitmask
 		e.addComponent(componentType);
@@ -78,7 +83,7 @@ namespace coment
 	template <typename T>
 	T* ComponentManager::getComponent(EntityInfo& e)
 	{
-		Bag<T>* components = getComponentBag<T>();
+		std::vector<T>* components = getComponentBag<T>();
 
 		// If this entity doesn't have this component return null
 		if (!hasComponent<T>(e))
@@ -105,18 +110,18 @@ namespace coment
 
 	// Get a bag for a component type
 	template <typename T>
-	Bag<T>* ComponentManager::getComponentBag()
+	std::vector<T>* ComponentManager::getComponentBag()
 	{
-		Bag<T>* components = (Bag<T>*)_componentBags[typeid(T).name()];
+		std::vector<T>* components = (std::vector<T>*)_componentBags[typeid(T).name()].get();
 
 		// If this type doesn't have a bag yet
-		if (components == nullptr)
+		if (components == NULL)
 		{
 			// Create one
-			components = new Bag<T>();
+			components = new std::vector<T>();
 
 			// Store it in hash map
-			_componentBags[typeid(T).name()] = components;
+			_componentBags[typeid(T).name()] = std::tr1::shared_ptr<void>(components);
 		}
 
 		return components;

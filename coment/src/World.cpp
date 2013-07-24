@@ -14,6 +14,7 @@ namespace coment
 		_managerManager.registerManager(_tagManager);
 		_managerManager.registerManager(_systemManager);
 		_managerManager.registerManager(_entityManager);
+		_managerManager.registerManager(_variableManager);
 		_managerManager.registerManager(_componentTypeManager);
 		_managerManager.registerManager(_componentManager);
 	}

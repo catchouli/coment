@@ -1,8 +1,6 @@
 #ifndef __GRAVITYSYSTEM_H__
 #define __GRAVITYSYSTEM_H__
 
-#include <coment/utils/Bag.h>
-
 namespace coment
 {
         namespace samples
