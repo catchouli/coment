@@ -1,5 +1,5 @@
-#ifndef __VARIABLETESTS_H__
-#define __VARIABLETESTS_H__
+#ifndef COMENT_TESTS_VARIABLETESTS_H
+#define COMENT_TESTS_VARIABLETESTS_H
 
 #include "Test.h"
 
@@ -26,4 +26,4 @@ namespace coment
 	}
 }
 
-#endif /* __VARIABLETESTS_H__ */
+#endif /* COMENT_TESTS_VARIABLETESTS_H */

@@ -1,5 +1,5 @@
-#ifndef __GRAVITYSYSTEM_H__
-#define __GRAVITYSYSTEM_H__
+#ifndef COMENT_BALLS_GRAVITYSYSTEM_H
+#define COMENT_BALLS_GRAVITYSYSTEM_H
 
 namespace coment
 {
@@ -30,4 +30,4 @@ namespace coment
 	}
 }
 
-#endif /* __GRAVITYSYSTEM_H__ */
+#endif /* COMENT_BALLS_GRAVITYSYSTEM_H */

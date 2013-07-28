@@ -1,5 +1,5 @@
-#ifndef __INPUTMANAGER_H__
-#define __INPUTMANAGER_H__
+#ifndef COMENT_BALLS_INPUTMANAGER_H
+#define COMENT_BALLS_INPUTMANAGER_H
 
 #include <SFML/Graphics.hpp>
 
@@ -90,4 +90,4 @@ namespace coment
 	}
 }
 
-#endif /* __INPUTMANAGER_H__ */
+#endif /* COMENT_BALLS_INPUTMANAGER_H */

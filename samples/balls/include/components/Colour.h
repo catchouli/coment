@@ -1,5 +1,5 @@
-#ifndef __COLOUR_H__
-#define __COLOUR_H__
+#ifndef COMENT_BALLS_COLOUR_H
+#define COMENT_BALLS_COLOUR_H
 
 #include <SFML/Graphics.hpp>
 
@@ -27,4 +27,4 @@ namespace coment
 	}
 }
 
-#endif /* __COLOUR_H__ */
+#endif /* COMENT_BALLS_COLOUR_H */

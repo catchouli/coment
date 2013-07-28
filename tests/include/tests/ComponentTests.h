@@ -1,5 +1,5 @@
-#ifndef __COMPONENTTESTS_H__
-#define __COMPONENTTESTS_H__
+#ifndef COMENT_TESTS_COMPONENTTESTS_H
+#define COMENT_TESTS_COMPONENTTESTS_H
 
 #include "Test.h"
 
@@ -18,4 +18,4 @@ namespace coment
 	}
 }
 
-#endif /* __COMPONENTTESTS_H__ */
+#endif /* COMENT_TESTS_COMPONENTTESTS_H */

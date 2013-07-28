@@ -1,5 +1,5 @@
-#ifndef __GROUPTESTS_H__
-#define __GROUPTESTS_H__
+#ifndef COMENT_TESTS_GROUPTESTS_H
+#define COMENT_TESTS_GROUPTESTS_H
 
 #include "Test.h"
 
@@ -18,4 +18,4 @@ namespace coment
 	}
 }
 
-#endif /* __GROUPTESTS_H__ */
+#endif /* COMENT_TESTS_GROUPTESTS_H */

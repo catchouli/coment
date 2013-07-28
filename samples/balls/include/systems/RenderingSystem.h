@@ -1,5 +1,5 @@
-#ifndef __RENDERINGSYSTEM_H__
-#define __RENDERINGSYSTEM_H__
+#ifndef COMENT_BALLS_RENDERINGSYSTEM_H
+#define COMENT_BALLS_RENDERINGSYSTEM_H
 
 #include "components/Position.h"
 #include "components/Radius.h"
@@ -54,4 +54,4 @@ namespace coment
 	}
 }
 
-#endif /* __RENDERINGSYSTEM_H__ */
+#endif /* COMENT_BALLS_RENDERINGSYSTEM_H */

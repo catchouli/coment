@@ -1,5 +1,5 @@
-#ifndef __VELOCITY_H__
-#define __VELOCITY_H__
+#ifndef COMENT_BALLS_VELOCITY_H
+#define COMENT_BALLS_VELOCITY_H
 
 namespace coment
 {
@@ -28,4 +28,4 @@ namespace coment
 	}
 }
 
-#endif /* __VELOCITY_H__ */
+#endif /* COMENT_BALLS_VELOCITY_H */

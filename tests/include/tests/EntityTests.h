@@ -1,5 +1,5 @@
-#ifndef __ENTITYTESTS_H__
-#define __ENTITYTESTS_H__
+#ifndef COMENT_TESTS_ENTITYTESTS_H
+#define COMENT_TESTS_ENTITYTESTS_H
 
 #include "Test.h"
 
@@ -18,4 +18,4 @@ namespace coment
 	}
 }
 
-#endif /* __ENTITYTESTS_H__ */
+#endif /* COMENT_TESTS_ENTITYTESTS_H */

@@ -1,5 +1,5 @@
-#ifndef __MOVEMENTSYSTEM_H__
-#define __MOVEMENTSYSTEM_H__
+#ifndef COMENT_BALLS_MOVEMENTSYSTEM_H
+#define COMENT_BALLS_MOVEMENTSYSTEM_H
 
 #include "components/Position.h"
 #include "components/Velocity.h"
@@ -35,4 +35,4 @@ namespace coment
 	}
 }
 
-#endif /* __MOVEMENTSYSTEM_H__ */
+#endif /* COMENT_BALLS_MOVEMENTSYSTEM_H */

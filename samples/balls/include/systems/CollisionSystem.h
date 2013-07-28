@@ -1,5 +1,5 @@
-#ifndef __COLLISIONSYSTEM_H__
-#define __COLLISIONSYSTEM_H__
+#ifndef COMENT_BALLS_COLLISIONSYSTEM_H
+#define COMENT_BALLS_COLLISIONSYSTEM_H
 
 #include "components/Position.h"
 #include "components/Velocity.h"
@@ -56,4 +56,4 @@ namespace coment
 	}
 }
 
-#endif /* __COLLISIONSYSTEM_H__ */
+#endif /* COMENT_BALLS_COLLISIONSYSTEM_H */

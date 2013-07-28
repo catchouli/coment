@@ -1,5 +1,5 @@
-#ifndef __TESTMACROS_H__
-#define __TESTMACROS_H__
+#ifndef COMENT_TESTS_TESTMACROS_H
+#define COMENT_TESTS_TESTMACROS_H
 
 #include <iostream>
 #include <sstream>
@@ -22,4 +22,4 @@
 		failure()							\
 }
 
-#endif /* __TESTMACROS_H__ */
+#endif /* COMENT_TESTS_TESTMACROS_H */

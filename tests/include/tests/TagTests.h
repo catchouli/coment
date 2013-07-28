@@ -1,5 +1,5 @@
-#ifndef __TAGTESTS_H__
-#define __TAGTESTS_H__
+#ifndef COMENT_TESTS_TAGTESTS_H
+#define COMENT_TESTS_TAGTESTS_H
 
 #include "Test.h"
 
@@ -18,4 +18,4 @@ namespace coment
 	}
 }
 
-#endif /* __TAGTESTS_H__ */
+#endif /* COMENT_TESTS_TAGTESTS_H */

@@ -1,5 +1,5 @@
-#ifndef __RADIUS_H__
-#define __RADIUS_H__
+#ifndef COMENT_BALLS_RADIUS_H
+#define COMENT_BALLS_RADIUS_H
 
 namespace coment
 {
@@ -28,4 +28,4 @@ namespace coment
 	}
 }
 
-#endif /* __RADIUS_H__ */
+#endif /* COMENT_BALLS_RADIUS_H */

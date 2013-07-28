@@ -1,5 +1,5 @@
-#ifndef __VELOCITY_H__
-#define __VELOCITY_H__
+#ifndef COMENT_TESTS_VELOCITY_H
+#define COMENT_TESTS_VELOCITY_H
 
 namespace coment
 {
@@ -19,4 +19,4 @@ namespace coment
 	}
 }
 
-#endif /* __VELOCITY_H__ */
+#endif /* COMENT_TESTS_VELOCITY_H */

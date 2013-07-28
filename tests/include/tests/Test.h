@@ -1,5 +1,5 @@
-#ifndef __TEST_H__
-#define __TEST_H__
+#ifndef COMENT_TESTS_TEST_H
+#define COMENT_TESTS_TEST_H
 
 #include <string>
 #include <iostream>
@@ -36,4 +36,4 @@ namespace coment
 	}
 }
 
-#endif /* __TEST_H__ */
+#endif /* COMENT_TESTS_TEST_H */

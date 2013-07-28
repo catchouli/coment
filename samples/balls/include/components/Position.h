@@ -1,5 +1,5 @@
-#ifndef __POSITION_H__
-#define __POSITION_H__
+#ifndef COMENT_BALLS_POSITION_H
+#define COMENT_BALLS_POSITION_H
 
 namespace coment
 {
@@ -28,4 +28,4 @@ namespace coment
 	}
 }
 
-#endif /* __POSITION_H__ */
+#endif /* COMENT_BALLS_POSITION_H */

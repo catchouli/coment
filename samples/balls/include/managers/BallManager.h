@@ -1,5 +1,5 @@
-#ifndef __BALLMANAGER_H__
-#define __BALLMANAGER_H__
+#ifndef COMENT_BALLS_BALLMANAGER_H
+#define COMENT_BALLS_BALLMANAGER_H
 
 #include <map>
 #include <string>
@@ -108,4 +108,4 @@ namespace coment
 	}
 }
 
-#endif /* __BALLMANAGER_H__ */
+#endif /* COMENT_BALLS_BALLMANAGER_H */
