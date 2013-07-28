@@ -1,5 +1,5 @@
-#ifndef __WORLD_H__
-#define __WORLD_H__
+#ifndef COMENT_WORLD_H
+#define COMENT_WORLD_H
 
 #include <vector>
 
@@ -225,4 +225,4 @@ namespace coment
 	}
 }
 
-#endif /* __WORLD_H__ */
+#endif /* COMENT_WORLD_H */

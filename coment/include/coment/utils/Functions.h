@@ -1,5 +1,5 @@
-#ifndef __FUNCTIONS_H__
-#define __FUNCTIONS_H__
+#ifndef COMENT_FUNCTIONS_H
+#define COMENT_FUNCTIONS_H
 
 namespace coment
 {
@@ -41,5 +41,5 @@ namespace coment
 	}
 }
 
-#endif /* __FUNCTIONS_H__ */
+#endif /* COMENT_FUNCTIONS_H */
 

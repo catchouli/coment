@@ -1,5 +1,5 @@
-#ifndef __INDEXOUTOFBOUNDS_H__
-#define __INDEXOUTOFBOUNDS_H__
+#ifndef COMENT_INDEXOUTOFBOUNDS_H
+#define COMENT_INDEXOUTOFBOUNDS_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* _INDEXOUTOFBOUNDS_H__ */
+#endif /* COMENT_INDEXOUTOFBOUNDS_H */

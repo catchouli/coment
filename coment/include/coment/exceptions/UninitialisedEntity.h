@@ -1,5 +1,5 @@
-#ifndef __UNINITIALISEDENTITY_H__
-#define __UNINITIALISEDENTITY_H__
+#ifndef COMENT_UNINITIALISEDENTITY_H
+#define COMENT_UNINITIALISEDENTITY_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __UNINITIALISEDENTITY_H__ */
+#endif /* COMENT_UNINITIALISEDENTITY_H */

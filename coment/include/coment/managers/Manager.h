@@ -1,5 +1,5 @@
-#ifndef __MANAGER_H__
-#define __MANAGER_H__
+#ifndef COMENT_MANAGER_H
+#define COMENT_MANAGER_H
 
 namespace coment
 {
@@ -33,4 +33,4 @@ namespace coment
 	};
 }
 
-#endif /* __MANAGER_H__ */
+#endif /* COMENT_MANAGER_H */

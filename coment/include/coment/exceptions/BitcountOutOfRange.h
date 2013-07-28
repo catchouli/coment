@@ -1,5 +1,5 @@
-#ifndef __BITCOUNTOUTOFRANGE_H__
-#define __BITCOUNTOUTOFRANGE_H__
+#ifndef COMENT_BITCOUNTOUTOFRANGE_H
+#define COMENT_BITCOUNTOUTOFRANGE_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __BITCOUNTOUTOFRANGE_H__ */
+#endif /* COMENT_BITCOUNTOUTOFRANGE_H */

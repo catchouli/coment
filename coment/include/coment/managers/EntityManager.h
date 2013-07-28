@@ -1,5 +1,5 @@
-#ifndef __ENTITYMANAGER_H__
-#define __ENTITYMANAGER_H__
+#ifndef COMENT_ENTITYMANAGER_H
+#define COMENT_ENTITYMANAGER_H
 
 #include <vector>
 
@@ -55,4 +55,4 @@ namespace coment
 	};
 }
 
-#endif /* __ENTITYMANAGER_H__ */
+#endif /* COMENT_ENTITYMANAGER_H */

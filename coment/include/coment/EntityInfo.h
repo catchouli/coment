@@ -1,5 +1,5 @@
-#ifndef __ENTITYINFO_H__
-#define __ENTITYINFO_H__
+#ifndef COMENT_ENTITYINFO_H
+#define COMENT_ENTITYINFO_H
 
 #include "Entity.h"
 #include "Component.h"
@@ -64,4 +64,4 @@ namespace coment
 	};
 }
 
-#endif /* __ENTITYINFO_H__ */
+#endif /* COMENT_ENTITYINFO_H */

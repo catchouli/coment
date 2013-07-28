@@ -1,5 +1,5 @@
-#ifndef __ENTITYPROCESSINGSYSTEM_H__
-#define __ENTITYPROCESSINGSYSTEM_H__
+#ifndef COMENT_ENTITYPROCESSINGSYSTEM_H
+#define COMENT_ENTITYPROCESSINGSYSTEM_H
 
 #include <vector>
 
@@ -25,4 +25,4 @@ namespace coment
 	};
 };
 
-#endif /* __ENTITYPROCESSINGSYSTEM_H__ */
+#endif /* COMENT_ENTITYPROCESSINGSYSTEM_H */

@@ -1,5 +1,5 @@
-#ifndef __BITSET_H__
-#define __BITSET_H__
+#ifndef COMENT_BITSET_H
+#define COMENT_BITSET_H
 
 #include <string.h>
 #include <stdint.h>
@@ -376,4 +376,4 @@ namespace coment
 	}
 };
 
-#endif /* __BITSET_H__ */
+#endif /* COMENT_BITSET_H */

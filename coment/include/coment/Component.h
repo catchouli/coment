@@ -1,5 +1,5 @@
-#ifndef __COMPONENT_H__
-#define __COMPONENT_H__
+#ifndef COMENT_COMPONENT_H
+#define COMENT_COMPONENT_H
 
 namespace coment
 {
@@ -18,4 +18,4 @@ namespace coment
 	};
 }
 
-#endif /* __COMPONENT_H__ */
+#endif /* COMENT_COMPONENT_H */

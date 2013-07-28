@@ -1,5 +1,5 @@
-#ifndef __SCENE_H__
-#define __SCENE_H__
+#ifndef COMENT_SCENE_H_
+#define COMENT_SCENE_H_
 
 namespace coment
 {
@@ -10,4 +10,4 @@ namespace coment
 	};
 }
 
-#endif /* __SCENE_H__ */
+#endif /* COMENT_SCENE_H_ */

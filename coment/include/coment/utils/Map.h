@@ -1,5 +1,5 @@
-#ifndef __COMENT_MAP_H__
-#define __COMENT_MAP_H__
+#ifndef COMENT_MAP_H
+#define COMENT_MAP_H
 
 #ifdef _MSC_VER
 	#include <unordered_map>
@@ -7,5 +7,5 @@
 	#include <tr1/unordered_map>
 #endif
 
-#endif /* __COMENT_MAP_H__ */
+#endif /* COMENT_MAP_H */
 

@@ -1,5 +1,5 @@
-#ifndef __ENTITYSYSTEM_H__
-#define __ENTITYSYSTEM_H__
+#ifndef COMENT_ENTITYSYSTEM_H
+#define COMENT_ENTITYSYSTEM_H
 
 #include <vector>
 #include <stdio.h>
@@ -118,4 +118,4 @@ namespace coment
 	}
 }
 
-#endif /* __ENTITYSYSTEM_H__ */
+#endif /* COMENT_ENTITYSYSTEM_H */

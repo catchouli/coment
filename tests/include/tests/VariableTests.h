@@ -16,10 +16,10 @@ namespace coment
 			void run();
 		};
 
-		struct TestStruct
+		struct VariableTestStruct
 		{
-			TestStruct() : value(45000) {}
-			TestStruct(int val) : value(val) {}
+			VariableTestStruct() : value(45000) {}
+			VariableTestStruct(int val) : value(val) {}
 
 			int value;
 		};

@@ -20,11 +20,11 @@ namespace coment
 			coment::World world;
 
 			begintest("New variable is default initialised");
-			endtest(world.getValue<TestStruct>("test").value == TestStruct().value);
+			endtest(world.getValue<VariableTestStruct>("test").value == VariableTestStruct().value);
 
 			begintest("Custom value can be set");
-				world.setValue<TestStruct>("test", TestStruct(TEST_INT));
-			endtest(world.getValue<TestStruct>("test").value == TEST_INT);
+				world.setValue<VariableTestStruct>("test", VariableTestStruct(TEST_INT));
+			endtest(world.getValue<VariableTestStruct>("test").value == TEST_INT);
 
 			begintest("Setting world delta affects VariableManager");
 				world.setDelta(TEST_FLOAT);

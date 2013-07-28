@@ -1,5 +1,5 @@
-#ifndef __NOTIMPLEMENTED_H__
-#define __NOTIMPLEMENTED_H__
+#ifndef COMENT_NOTIMPLEMENTED_H
+#define COMENT_NOTIMPLEMENTED_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __NOTIMPLEMENTED_H__ */
+#endif /* COMENT_NOTIMPLEMENTED_H */

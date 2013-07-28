@@ -1,5 +1,5 @@
-#ifndef __ENTITY_H__
-#define __ENTITY_H__
+#ifndef COMENT_ENTITY_H
+#define COMENT_ENTITY_H
 
 namespace coment
 {
@@ -29,4 +29,4 @@ namespace coment
 	};
 }
 
-#endif /* __ENTITY_H__ */
+#endif /* COMENT_ENTITY_H */

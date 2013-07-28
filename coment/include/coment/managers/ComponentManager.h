@@ -1,5 +1,5 @@
-#ifndef __COMPONENTMANAGER_H__
-#define __COMPONENTMANAGER_H__
+#ifndef COMENT_COMPONENTMANAGER_H
+#define COMENT_COMPONENTMANAGER_H
 
 #include <string>
 #include <vector>

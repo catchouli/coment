@@ -1,5 +1,5 @@
-#ifndef __BITINDEXOUTOFBOUNDS_H__
-#define __BITINDEXOUTOFBOUNDS_H__
+#ifndef COMENT_BITINDEXOUTOFBOUNDS_H
+#define COMENT_BITINDEXOUTOFBOUNDS_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __BITINDEXOUTOFBOUNDS_H__ */
+#endif /* COMENT_BITINDEXOUTOFBOUNDS_H */

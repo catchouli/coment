@@ -1,5 +1,5 @@
-#ifndef __VARIABLEMANAGER_H__
-#define __VARIABLEMANAGER_H__
+#ifndef COMENT_VARIABLEMANAGER_H
+#define COMENT_VARIABLEMANAGER_H
 
 #include <string>
 
@@ -75,4 +75,4 @@ namespace coment
 	}
 }
 
-#endif /* __VARIABLEMANAGER_H__ */
+#endif /* COMENT_VARIABLEMANAGER_H */

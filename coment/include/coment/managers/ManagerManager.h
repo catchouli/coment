@@ -1,5 +1,5 @@
-#ifndef GAME_MANAGERMANAGER
-#define GAME_MANAGERMANAGER
+#ifndef COMENT_MANAGERMANAGER_H
+#define COMENT_MANAGERMANAGER_H
 
 #include <string>
 #include <typeinfo>
@@ -50,4 +50,4 @@ namespace coment
 	}
 }
 
-#endif
+#endif /* COMENT_MANAGERMANAGER_H */

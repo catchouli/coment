@@ -1,5 +1,5 @@
-#ifndef __TAGMANAGER_H__
-#define __TAGMANAGER_H__
+#ifndef COMENT_TAGMANAGER_H
+#define COMENT_TAGMANAGER_H
 
 #include <string>
 #include <vector>
@@ -37,4 +37,4 @@ namespace coment
 	};
 }
 
-#endif /* __TAGMANAGER_H__ */
+#endif /* COMENT_TAGMANAGER_H */

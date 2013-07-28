@@ -1,5 +1,5 @@
-#ifndef __COMPMAPUNREGISTERED_H__
-#define __COMPMAPUNREGISTERED_H__
+#ifndef COMENT_COMPMAPUNREGISTERED_H
+#define COMENT_COMPMAPUNREGISTERED_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __COMPMAPUNREGISTERED_H__ */
+#endif /* COMENT_COMPMAPUNREGISTERED_H */

@@ -1,5 +1,5 @@
-#ifndef __BITMASK_H__
-#define __BITMASK_H__
+#ifndef COMENT_BITMASK_H
+#define COMENT_BITMASK_H
 
 // How many bits to have in the bitsets used for the component mask?
 #define COMENT_NUM_BITS 32
@@ -11,4 +11,4 @@ namespace coment
 	typedef coment::Bitset<COMENT_NUM_BITS> BitMask;
 }
 
-#endif /* __BITMASK_H__ */
+#endif /* COMENT_BITMASK_H */

@@ -1,5 +1,5 @@
-#ifndef __COMPONENTTYPEMANAGER_H__
-#define __COMPONENTTYPEMANAGER_H__
+#ifndef COMENT_COMPONENTTYPEMANAGER_H
+#define COMENT_COMPONENTTYPEMANAGER_H
 
 #include <string>
 #include <typeinfo>
@@ -53,4 +53,4 @@ namespace coment
 	}
 }
 
-#endif /* __COMPONENTTYPEMANAGER_H__ */
+#endif /* COMENT_COMPONENTTYPEMANAGER_H */

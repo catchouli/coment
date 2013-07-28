@@ -1,5 +1,5 @@
-#ifndef __DEADENTITY_H__
-#define __DEADENTITY_H__
+#ifndef COMENT_DEADENTITY_H
+#define COMENT_DEADENTITY_H
 
 #include <exception>
 
@@ -15,4 +15,4 @@ namespace coment
 	};
 }
 
-#endif /* __DEADENTITY_H__ */
+#endif /* COMENT_DEADENTITY_H */

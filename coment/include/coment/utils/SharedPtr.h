@@ -1,5 +1,5 @@
-#ifndef __COMENT_SHAREDPTR_H__
-#define __COMENT_SHAREDPTR_H__
+#ifndef COMENT_SHAREDPTR_H
+#define COMENT_SHAREDPTR_H
 
 #ifdef _MSC_VER
 	#include <memory>
@@ -7,5 +7,5 @@
 	#include <tr1/memory>
 #endif
 
-#endif /* __COMENT_SHAREDPTR_H__ */
+#endif /* COMENT_SHAREDPTR_H */
 

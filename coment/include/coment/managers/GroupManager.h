@@ -1,5 +1,5 @@
-#ifndef __GROUPMANAGER_H__
-#define __GROUPMANAGER_H__
+#ifndef COMENT_GROPUMANAGER_H
+#define COMENT_GROPUMANAGER_H
 
 #include "Manager.h"
 
@@ -12,4 +12,4 @@ namespace coment
 	};
 }
 
-#endif /* __GROUPMANAGER_H__ */
+#endif /* COMENT_GROPUMANAGER_H */

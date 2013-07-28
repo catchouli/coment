@@ -1,5 +1,5 @@
-#ifndef __SYSTEMMANAGER_H__
-#define __SYSTEMMANAGER_H__
+#ifndef COMENT_SYSTEMMANAGER_H
+#define COMENT_SYSTEMMANAGER_H
 
 #include <string>
 #include <vector>
@@ -64,4 +64,4 @@ namespace coment
 	}
 }
 
-#endif /* __SYSTEMMANAGER_H__ */
+#endif /* COMENT_SYSTEMMANAGER_H */
