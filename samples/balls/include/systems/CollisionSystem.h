@@ -29,7 +29,7 @@ namespace coment
 					registerComponent<Radius>();
 				}
 
-				virtual void process(coment::Entity e)
+				virtual void process(const coment::Entity& e)
 				{
 					const float DAMPENING_VERTICAL = 0.95f;
 					const float DAMPENING_HORIZONTAL = 0.95f;

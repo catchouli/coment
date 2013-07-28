@@ -64,7 +64,7 @@ namespace coment
 		return nextEntity;
 	}
 
-	bool EntityManager::isAlive(Entity e)
+	bool EntityManager::isAlive(const Entity& e)
 	{
 		if (e._id < (unsigned int)_count)
 		{
@@ -116,7 +116,7 @@ namespace coment
 	}
 
 	// Get the entity info for an entity
-	EntityInfo& EntityManager::getEntityInfo(Entity e)
+	EntityInfo& EntityManager::getEntityInfo(const Entity& e)
 	{
 		// If this entity is not properly initialised
 		// (e.g. created by the default constructor and not the world)

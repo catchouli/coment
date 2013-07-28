@@ -32,7 +32,7 @@ namespace coment
 		return _entityManager.createEntity();
 	}
 
-	bool World::isAlive(Entity e)
+	bool World::isAlive(const Entity& e)
 	{
 		return _entityManager.isAlive(e);
 	}
@@ -73,7 +73,7 @@ namespace coment
 		_systemManager.update();
 	}
 
-	void World::remove(Entity e)
+	void World::remove(const Entity& e)
 	{
 		EntityInfo& entityInfo = _entityManager.getEntityInfo(e);
 
@@ -85,7 +85,7 @@ namespace coment
 		}
 	}
 
-	void World::refresh(Entity e)
+	void World::refresh(const Entity& e)
 	{
 		EntityInfo& entityInfo = _entityManager.getEntityInfo(e);
 
@@ -97,7 +97,7 @@ namespace coment
 		}
 	}
 
-	void World::removeEntity(Entity e)
+	void World::removeEntity(const Entity& e)
 	{
 		// Get the entity info
 		EntityInfo& info = _entityManager.getEntityInfo(e);
@@ -112,12 +112,12 @@ namespace coment
 		refreshEntity(e);
 	}
 
-	void World::setTag(Entity e, std::string tag)
+	void World::setTag(const Entity& e, std::string tag)
 	{
 		_tagManager.setTag(_entityManager.getEntityInfo(e), tag);
 	}
 
-	std::string World::getTag(Entity e)
+	std::string World::getTag(const Entity& e)
 	{
 		return _tagManager.getTag(_entityManager.getEntityInfo(e));
 	}
@@ -127,7 +127,7 @@ namespace coment
 		return _tagManager.getEntities(tag);
 	}
 
-	void World::refreshEntity(Entity e)
+	void World::refreshEntity(const Entity& e)
 	{
 		// Get entity info
 		EntityInfo& info = _entityManager._entityInfos[e.getId()];
@@ -139,7 +139,7 @@ namespace coment
 		_systemManager.refresh(info);
 	}
 
-	void World::removeComponents(Entity e)
+	void World::removeComponents(const Entity& e)
 	{
 		// Remove component
 		_componentManager.removeComponents(_entityManager.getEntityInfo(e));

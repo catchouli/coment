@@ -68,13 +68,13 @@ namespace coment
 	}
 
 	// Called when an entity is added to this system
-	void EntitySystem::added(Entity e)
+	void EntitySystem::added(const Entity& e)
 	{
 
 	}
 
 	// Called when an entity is removed from this system
-	void EntitySystem::removed(Entity e)
+	void EntitySystem::removed(const Entity& e)
 	{
 
 	}

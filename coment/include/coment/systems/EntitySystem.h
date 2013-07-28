@@ -45,10 +45,10 @@ namespace coment
 		virtual bool checkProcessing();
 
 		// Called when an entity is added to this system
-		virtual void added(Entity e);
+		virtual void added(const Entity& e);
 
 		// Called when an entity is removed from this system
-		virtual void removed(Entity e);
+		virtual void removed(const Entity& e);
 
 	protected:
 		// Constructor

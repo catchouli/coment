@@ -21,7 +21,7 @@ namespace coment
 					registerComponent<Velocity>();
 				}
 
-				virtual void process(coment::Entity e)
+				virtual void process(const coment::Entity& e)
 				{
 					Position* position = _world->getComponent<Position>(e);
 					Velocity* velocity = _world->getComponent<Velocity>(e);

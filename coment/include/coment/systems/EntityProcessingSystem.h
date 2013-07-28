@@ -15,7 +15,7 @@ namespace coment
 		EntityProcessingSystem();
 
 		// Process a single entity, override to specify behaviour
-		virtual void process(Entity e) = 0;
+		virtual void process(const Entity& e) = 0;
 
 		// Whether to currently process this entity
 		virtual bool checkProcessing();

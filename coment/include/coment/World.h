@@ -36,29 +36,29 @@ namespace coment
 		Entity createEntity();
 
 		// Check if entity is alive
-		bool isAlive(Entity e);
+		bool isAlive(const Entity& e);
 
 		// Queue an entity for removal
-		void remove(Entity e);
+		void remove(const Entity& e);
 
 		// Refresh an entity
-		void refresh(Entity e);
+		void refresh(const Entity& e);
 
 		/* Component functions */
 		// Add a default constructed component to an entity
 		template <typename T>
-		T* addComponent(Entity e);
+		T* addComponent(const Entity& e);
 
 		// Get a component from an entity
 		template <typename T>
-		T* getComponent(Entity e);
+		T* getComponent(const Entity& e);
 
 		// Remove a component from an entity
 		template <typename T>
-		void removeComponent(Entity e);
+		void removeComponent(const Entity& e);
 
 		// Remove all components from an entity
-		void removeComponents(Entity e);
+		void removeComponents(const Entity& e);
 
 		/* System functions */
 		// Register a system to the system manager
@@ -80,13 +80,26 @@ namespace coment
 
 		/* Tag functions */
 		// Set tag for entity
-		void setTag(Entity e, std::string);
+		void setTag(const Entity& e, std::string);
 
-		// Get tag from entity
-		std::string getTag(Entity e);
+		// Get tag by entity
+		std::string getTag(const Entity& e);
 
 		// Get entities by tag
 		const std::vector<Entity>& getEntitiesByTag(std::string tag);
+
+		/* Group functions */
+		// Add group to entity
+		void addGroup(const Entity& e, std::string group);
+
+		// Remove group from entity
+		void removeGroup(const Entity& e, std::string group);
+
+		// Get groups by entity
+		const std::vector<std::string>& getGroupsByEntity(const Entity& e);
+
+		// Get entities by group
+		const std::vector<Entity>& getEntitiesByGroup(std::string group);
 
 		/* Variable functions */
 		// Set a value
@@ -113,10 +126,10 @@ namespace coment
 	protected:
 		/* Internal entity functions (called on loopStart) */
 		// Remove entity (called automatically on queued entities)
-		void removeEntity(Entity e);
+		void removeEntity(const Entity& e);
 
 		// Refresh entity (called automatically on queued entities)
-		void refreshEntity(Entity e);
+		void refreshEntity(const Entity& e);
 
 	private:
 		// The manager instances
@@ -152,7 +165,7 @@ namespace coment
 
 	// Add the component to the component manager
 	template <typename T>
-	T* World::addComponent(Entity e)
+	T* World::addComponent(const Entity& e)
 	{
 		// Add component
 		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e));
@@ -180,14 +193,14 @@ namespace coment
 
 	// Get a component from an entity
 	template <typename T>
-	T* World::getComponent(Entity e)
+	T* World::getComponent(const Entity& e)
 	{
 		return _componentManager.getComponent<T>(_entityManager.getEntityInfo(e));
 	}
 
 	// Remove a component from an entity
 	template <typename T>
-	void World::removeComponent(Entity e)
+	void World::removeComponent(const Entity& e)
 	{
 		// Remove component
 		_componentManager.removeComponent<T>(_entityManager.getEntityInfo(e));

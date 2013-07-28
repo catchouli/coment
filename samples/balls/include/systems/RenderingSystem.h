@@ -31,7 +31,7 @@ namespace coment
 				}
 
 				// Process entities
-				virtual void process(coment::Entity e)
+				virtual void process(const coment::Entity& e)
 				{
 					// Get properties of circle
 					Position* position = _world->getComponent<Position>(e);

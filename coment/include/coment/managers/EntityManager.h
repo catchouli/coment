@@ -23,10 +23,10 @@ namespace coment
 		Entity createEntity();
 
 		// Check if entity is alive
-		bool isAlive(Entity e);
+		bool isAlive(const Entity& e);
 
 		// Get a reference to the entity info for an entity
-		EntityInfo& getEntityInfo(Entity e);
+		EntityInfo& getEntityInfo(const Entity& e);
 
 	protected:
 		friend class World;

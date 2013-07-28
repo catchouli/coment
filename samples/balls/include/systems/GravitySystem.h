@@ -17,7 +17,7 @@ namespace coment
 					registerComponent<Velocity>();
 				}
 
-				void process(coment::Entity e)
+				void process(const coment::Entity& e)
 				{
 					const float GRAVITY_ACCELERATION = 250;
 
