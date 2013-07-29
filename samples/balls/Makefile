@@ -31,7 +31,7 @@ $(BINDIR)/$(SHARED_OUTPUT): $(OBJECTS)
 	$(CXX) $(LDFLAGS) -L../../bin -lcoment $(OBJECTS) -o $@
 
 	@# Copy to ../bin if existent
-	test -d ../bin && cp -R $(BINDIR)/* ../bin/
+	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
 $(BINDIR)/$(STATIC_OUTPUT): $(OBJECTS)
 	@# Create executable directory
@@ -41,7 +41,7 @@ $(BINDIR)/$(STATIC_OUTPUT): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) ../../bin/coment.a -o $@
 
 	@# Copy to ../bin if existent
-	@test -d ../bin && cp -R $(BINDIR)/* ../bin/
+	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
 obj/%.o: $(SOURCES)
 	@# Create directory of object

@@ -45,7 +45,7 @@ $(BINDIR)/$(REALNAME): $(OBJECTS)
 	mv $(LINKNAME) bin
 
 	@# Copy binaries to ../bin if existent
-	@test -d ../bin && cp -R bin/* ../bin/
+	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
 bin/$(STATICNAME): $(OBJECTS)
 	@# Make binary directory
@@ -55,7 +55,7 @@ bin/$(STATICNAME): $(OBJECTS)
 	$(AR) rcs $@ $(OBJECTS)
 
 	@# Copy binaries to ../bin if existent
-	@test -d ../bin && cp bin/* ../bin/
+	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
 obj/%.o: $(SOURCES)
 	@# Make directory of object

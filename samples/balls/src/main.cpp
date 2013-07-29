@@ -193,19 +193,24 @@ int main(int argc, char** argv)
 		frames++;
 		if (thisUpdate - lastFPSUpdate >= 1000)
 		{
-			const int titleBufferLen = 256;
-			char titleBuffer[titleBufferLen];
-
 			// Update FPS counters
 			fps = frames;
 			frames = 0;
 			lastFPSUpdate = thisUpdate;
+		}
 
-			// Output window title
+		// Update window title
+		{
+			const int titleBufferLen = 256;
+			char titleBuffer[titleBufferLen];
+
+			// Format window title
 			const char* renderingEnabled = (renderingSystem.getEnabled() ? "Enabled" : "Disabled");
 			const char* movementEnabled = (movementSystem.getEnabled() ? "Enabled" : "Disabled");
 			snprintf(titleBuffer, titleBufferLen, TITLE_FORMAT, ballManager.getBallCount(), fps, renderingEnabled, movementEnabled);
-			printf("%s\n", titleBuffer);
+
+			// Set window title
+			SDL_SetWindowTitle(window, titleBuffer);
 		}
 	}
 
