@@ -2,7 +2,8 @@
 
 EXECUTABLE=samples/balls/balls
 
-SAMPLES_COMMON=../common/bin/samples/common/common.a
+SAMPLES_COMMON=../common
+SAMPLES_COMMON_BIN=$(SAMPLES_COMMON)/bin/samples/common/common.a
 
 SHARED_OUTPUT=$(EXECUTABLE)-shared
 STATIC_OUTPUT=$(EXECUTABLE)-static
@@ -17,7 +18,7 @@ LDFLAGS=-lSDL2
 INCLUDES=-I$(INCDIR) -I../common/include -I../../coment/include
 
 SOURCES=$(shell find src -name "*.cpp")
-OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES)) $(SAMPLES_COMMON)
+OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES)) $(SAMPLES_COMMON_BIN)
 
 all: shared static
 
@@ -51,6 +52,9 @@ obj/%.o: $(SOURCES)
 
 	@# Compile
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
+
+$(SAMPLES_COMMON_BIN):
+	make -C $(SAMPLES_COMMON)
 
 clean:
 	rm -rf $(OBJDIR)
