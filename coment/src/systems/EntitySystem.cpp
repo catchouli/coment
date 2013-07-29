@@ -15,7 +15,7 @@ namespace coment
 	}
 
 	// Indicates that this system has been registered with the world
-	void EntitySystem::onRegistered()
+	void EntitySystem::registered()
 	{
 
 	}

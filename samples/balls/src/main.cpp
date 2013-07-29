@@ -153,7 +153,53 @@ int main(int argc, char** argv)
 		// Handle all events
 		while (SDL_PollEvent(&event))
 		{
-			inputManager.handleEvent(event);
+			// End when the user closes the window or presses esc
+			if (event.type == SDL_QUIT ||
+				(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
+			{
+				world.setValue<bool>("running", false);
+			}
+
+			// Handle keyboard input
+			if (event.type == SDL_KEYDOWN)
+			{
+				// Toggle rendering when player presses R
+				if (event.key.keysym.sym == SDLK_r)
+				{
+					// Disable rendering
+					renderingSystem.setEnabled(!renderingSystem.getEnabled());
+					world.setValue("rendering_enabled", renderingSystem.getEnabled());
+
+					// Clear screen to white
+					pixelBuffer.clear(0xFFFFFFFF);
+
+					// Update render texture
+					SDL_UpdateTexture(renderTexture, &screenRect, pixelBuffer.getBuffer(), world.getValue<int>("window_width") * 4);
+
+					// Render texture to screen
+					SDL_RenderCopy(renderer, renderTexture, &screenRect, &screenRect);
+
+					// Flip screen buffer
+					SDL_RenderPresent(renderer);
+				}
+				// Toggle movement when player presses M
+				else if (event.key.keysym.sym == SDLK_m)
+				{
+					collisionSystem.setEnabled(!collisionSystem.getEnabled());
+					movementSystem.setEnabled(!movementSystem.getEnabled());
+					gravitySystem.setEnabled(!gravitySystem.getEnabled());
+				}
+				// Add 10 balls when user presses right arrow
+				else if (event.key.keysym.sym == SDLK_RIGHT)
+				{
+					world.getManager<BallManager>()->createBalls(10);
+				}
+				// Remove 10 balls when user presses left arrow
+				else if (event.key.keysym.sym == SDLK_LEFT)
+				{
+					world.getManager<BallManager>()->destroyBalls(10);
+				}
+			}
 		}
 
 		// Update game

@@ -42,7 +42,7 @@ namespace coment
 			// Set world delta
 			world.setDelta(WORLD_DELTA);
 
-			// Register system and check if onRegistered is called
+			// Register system and check if registered is called
 			begintest("Registering system and checking if onRegistered is called");
 				success = !movementSystem.isRegistered();
 				world.registerSystem(movementSystem);

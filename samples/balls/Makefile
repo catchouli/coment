@@ -1,6 +1,6 @@
 # Build this sample
 
-EXECUTABLE=samples/balls/balls
+EXECUTABLE=balls
 
 SAMPLES_COMMON=../common
 SAMPLES_COMMON_BIN=$(SAMPLES_COMMON)/bin/samples/common/common.a
@@ -11,6 +11,7 @@ STATIC_OUTPUT=$(EXECUTABLE)-static
 SRCDIR=src
 OBJDIR=obj
 BINDIR=bin
+BINPREFIX=samples/balls
 INCDIR=include
 
 CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
@@ -22,13 +23,13 @@ OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES)) $(SAMPLES_COMMON_
 
 all: shared static
 
-shared: $(BINDIR)/$(SHARED_OUTPUT)
+shared: $(BINDIR)/$(BINPREFIX)/$(SHARED_OUTPUT)
 
-static: $(BINDIR)/$(STATIC_OUTPUT)
+static: $(BINDIR)/$(BINPREFIX)/$(STATIC_OUTPUT)
 
-$(BINDIR)/$(SHARED_OUTPUT): $(OBJECTS)
+$(BINDIR)/$(BINPREFIX)/$(SHARED_OUTPUT): $(OBJECTS)
 	@# Create executable directory
-	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+	@mkdir -p $(dir $@)
 
 	@# Build executable
 	$(CXX) $(LDFLAGS) -L../../bin -lcoment $(OBJECTS) -o $@
@@ -36,9 +37,9 @@ $(BINDIR)/$(SHARED_OUTPUT): $(OBJECTS)
 	@# Copy to ../bin if existent
 	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
-$(BINDIR)/$(STATIC_OUTPUT): $(OBJECTS)
+$(BINDIR)/$(BINPREFIX)/$(STATIC_OUTPUT): $(OBJECTS)
 	@# Create executable directory
-	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+	@mkdir -p $(dir $@)
 
 	@# Build executable
 	$(CXX) $(LDFLAGS) $(OBJECTS) ../../bin/coment.a -o $@

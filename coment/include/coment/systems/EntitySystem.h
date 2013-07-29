@@ -58,7 +58,7 @@ namespace coment
 		friend class SystemManager;
 
 		// Indicates that this system has been registered with the world
-		virtual void onRegistered();
+		virtual void registered();
 
 		// Add an entity
 		void addEntity(EntityInfo& e);

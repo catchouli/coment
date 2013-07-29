@@ -24,7 +24,7 @@ namespace coment
 				registerComponent<Velocity>();
 			}
 
-			void onRegistered()
+			void registered()
 			{
 				_registered = true;
 			}
