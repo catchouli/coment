@@ -80,7 +80,7 @@ namespace coment
 
 		/* Tag functions */
 		// Set tag for entity
-		void setTag(const Entity& e, std::string);
+		void setTag(const Entity& e, std::string tag);
 
 		// Get tag by entity
 		std::string getTag(const Entity& e);
@@ -96,7 +96,7 @@ namespace coment
 		void removeGroup(const Entity& e, std::string group);
 
 		// Get groups by entity
-		const std::vector<std::string>& getGroupsByEntity(const Entity& e);
+		const std::vector<std::string>& getGroups(const Entity& e);
 
 		// Get entities by group
 		const std::vector<Entity>& getEntitiesByGroup(std::string group);
@@ -104,11 +104,11 @@ namespace coment
 		/* Variable functions */
 		// Set a value
 		template <typename T>
-		void setValue(const std::string name, const T& value);
+		void setValue(std::string name, const T& value);
 
 		// Get a value
 		template <typename T>
-		const T& getValue(const std::string name);
+		const T& getValue(std::string name);
 
 		/* World functions */
 		// Must be called at the start of each loop to update refreshed/deleted entities
@@ -213,13 +213,13 @@ namespace coment
 
 	/* Inline variable functions */
 	template <typename T>
-	void World::setValue(const std::string name, const T& value)
+	void World::setValue(std::string name, const T& value)
 	{
 		_variableManager.setValue<T>(name, value);
 	}
 
 	template <typename T>
-	const T& World::getValue(const std::string name)
+	const T& World::getValue(std::string name)
 	{
 		return _variableManager.getValue<T>(name);
 	}

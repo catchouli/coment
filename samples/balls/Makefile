@@ -2,6 +2,8 @@
 
 EXECUTABLE=samples/balls/balls
 
+SAMPLES_COMMON=../common/bin/samples/common/common.a
+
 SHARED_OUTPUT=$(EXECUTABLE)-shared
 STATIC_OUTPUT=$(EXECUTABLE)-static
 
@@ -12,10 +14,10 @@ INCDIR=include
 
 CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
 LDFLAGS=-lSDL2
-INCLUDES=-I$(INCDIR) -I../../coment/include
+INCLUDES=-I$(INCDIR) -I../common/include -I../../coment/include
 
 SOURCES=$(shell find src -name "*.cpp")
-OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
+OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES)) $(SAMPLES_COMMON)
 
 all: shared static
 

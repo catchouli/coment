@@ -16,7 +16,7 @@ namespace coment
                 void removeGroup(const Entity& e, std::string group);
 
                 // Get groups by entity
-                const std::vector<std::string>& getGroupsByEntity(const Entity& e);
+                const std::vector<std::string>& getGroups(const Entity& e);
 
                 // Get entities by group
                 const std::vector<Entity>& getEntitiesByGroup(std::string group);

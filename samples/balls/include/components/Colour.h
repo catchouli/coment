@@ -7,9 +7,10 @@ namespace coment
 	{
 		namespace balls
 		{
-			struct Colour
+			class Colour
 				: public coment::Component
 			{
+			public:
 				Colour()
 					: colour(0)
 				{
