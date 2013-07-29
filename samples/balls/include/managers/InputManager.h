@@ -64,6 +64,7 @@ namespace coment
 					if (event.key.keysym.sym == SDLK_r)
 					{
 						_renderingSystem->setEnabled(!_renderingSystem->getEnabled());
+						_world->setValue("rendering_enabled", _renderingSystem->getEnabled());
 					}
 					// Toggle movement when player presses M
 					else if (event.key.keysym.sym == SDLK_m)

@@ -40,13 +40,15 @@ int width = 800;
 int height = 600;
 
 // Constants
+const char* TITLE_FORMAT = "Balls: %d, FPS: %d, Rendering: %s (press R), Movement: %s (press M), right/left arrows to add/remove balls";
+
 const int INITIAL_WIDTH = 800;
 const int INITIAL_HEIGHT = 600;
 const int DEPTH = 32;
 
 const int CLEAR_COLOUR = 0xFFFFFFFF;
 
-const int INITIAL_BALLS = 1000;
+const int INITIAL_BALLS = 10;
 const float GAME_SPEED = 0.002f;
 
 int main(int argc, char** argv)
@@ -139,6 +141,7 @@ int main(int argc, char** argv)
 
 	// Start main loop
 	world.setValue<bool>("running", true);
+	world.setValue<bool>("rendering_enabled", true);
 	while (world.getValue<bool>("running"))
 	{
 		const SDL_Rect screenRect = {0, 0, width, height};
@@ -162,23 +165,26 @@ int main(int argc, char** argv)
 		movementSystem.update();
 		gravitySystem.update();
 
-		// Clear window
-		SDL_RenderClear(renderer);
+		if (world.getValue<bool>("rendering_enabled"))
+		{
+			// Clear window
+			SDL_RenderClear(renderer);
 
-		// Clear buffer
-		pixelBuffer.clear(CLEAR_COLOUR);
+			// Clear buffer
+			pixelBuffer.clear(CLEAR_COLOUR);
 
-		// Run rendering system
-		renderingSystem.update();
+			// Run rendering system
+			renderingSystem.update();
 
-		// Blit buffer to screen renderer
-		SDL_UpdateTexture(renderTexture, &screenRect, pixelBuffer.getBuffer(), world.getValue<int>("window_width") * 4);
+			// Blit buffer to screen renderer
+			SDL_UpdateTexture(renderTexture, &screenRect, pixelBuffer.getBuffer(), world.getValue<int>("window_width") * 4);
 
-		// Render texture to screen
-		SDL_RenderCopy(renderer, renderTexture, &screenRect, &screenRect);
+			// Render texture to screen
+			SDL_RenderCopy(renderer, renderTexture, &screenRect, &screenRect);
 
-		// Flip screen buffer
-		SDL_RenderPresent(renderer);
+			// Flip screen buffer
+			SDL_RenderPresent(renderer);
+		}
 
 		// Update last time
 		lastUpdate = thisUpdate;
@@ -187,7 +193,8 @@ int main(int argc, char** argv)
 		frames++;
 		if (thisUpdate - lastFPSUpdate >= 1000)
 		{
-			char titleBuffer[256];
+			const int titleBufferLen = 256;
+			char titleBuffer[titleBufferLen];
 
 			// Update FPS counters
 			fps = frames;
@@ -195,7 +202,10 @@ int main(int argc, char** argv)
 			lastFPSUpdate = thisUpdate;
 
 			// Output window title
-			printf("FPS: %d\n", fps);
+			const char* renderingEnabled = (renderingSystem.getEnabled() ? "Enabled" : "Disabled");
+			const char* movementEnabled = (movementSystem.getEnabled() ? "Enabled" : "Disabled");
+			snprintf(titleBuffer, titleBufferLen, TITLE_FORMAT, ballManager.getBallCount(), fps, renderingEnabled, movementEnabled);
+			printf("%s\n", titleBuffer);
 		}
 	}
 

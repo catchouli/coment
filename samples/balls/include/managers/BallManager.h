@@ -32,7 +32,7 @@ namespace coment
 				void createBalls(int number);
 				void destroyBalls(int number);
 
-				int getBallCount();
+				int getBallCount() const;
 
 			private:
 				int _windowWidth;
@@ -97,7 +97,7 @@ namespace coment
 				}
 			}
 
-			int BallManager::getBallCount()
+			int BallManager::getBallCount() const
 			{
 				return _balls.size();
 			}
