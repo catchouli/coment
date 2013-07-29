@@ -1,6 +1,8 @@
 #ifndef COMENT_BALLS_GRAVITYSYSTEM_H
 #define COMENT_BALLS_GRAVITYSYSTEM_H
 
+#include <stdio.h>
+
 namespace coment
 {
         namespace samples

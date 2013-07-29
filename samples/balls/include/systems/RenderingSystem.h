@@ -5,6 +5,8 @@
 #include "components/Radius.h"
 #include "components/Colour.h"
 
+#include "graphics/PixelBuffer.h"
+
 namespace coment
 {
         namespace samples
@@ -15,11 +17,10 @@ namespace coment
 				: public coment::EntityProcessingSystem
 			{
 			public:
-				RenderingSystem(sf::RenderTarget* target)
+				RenderingSystem(PixelBuffer* target)
 					: _target(target)
 				{
-					// Do other initialisation
-					_shape = sf::CircleShape(20.0f, 30);
+
 				}
 
 				void registerComponents()
@@ -39,16 +40,11 @@ namespace coment
 					Colour* colour = _world->getComponent<Colour>(e);
 
 					// Draw circle with properties
-					_shape.setPosition(position->x, position->y);
-					_shape.setFillColor(*colour);
-					_shape.setRadius(radius->radius);
-					_shape.setOrigin(radius->radius, radius->radius);
-					_target->draw(_shape);
+					_target->drawCircle(colour->colour, radius->radius, position->x, position->y);
 				}
 
 			private:
-				sf::RenderTarget* _target;
-				sf::CircleShape _shape;
+				PixelBuffer* _target;
 			};
 		}
 	}

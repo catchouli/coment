@@ -1,6 +1,6 @@
 # Build the unit tests
 
-EXECUTABLE=tests
+EXECUTABLE=tests/tests
 
 SHARED_OUTPUT=$(EXECUTABLE)-shared
 STATIC_OUTPUT=$(EXECUTABLE)-static
@@ -14,30 +14,40 @@ CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
 LDFLAGS=
 INCLUDES=-I$(INCDIR) -I../coment/include
 
-SOURCES=$(shell find src -name *.cpp)
+SOURCES=$(shell find src -name "*.cpp")
 OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 all: shared static
 
-shared: bin/$(SHARED_OUTPUT)
+shared: $(BINDIR)/$(SHARED_OUTPUT)
 
-static: bin/$(STATIC_OUTPUT)
+static: $(BINDIR)/$(STATIC_OUTPUT)
 
-bin/$(SHARED_OUTPUT): $(OBJECTS)
-	@mkdir -p bin
-	@mkdir -p ../bin
+$(BINDIR)/$(SHARED_OUTPUT): $(OBJECTS)
+	@# Make binary directory
+	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+
+	@# Build tests against shared library
 	$(CXX) $(LDFLAGS) -L../bin -lcoment $(OBJECTS) -o $@
-	@cp -R bin/* ../bin/
 
-bin/$(STATIC_OUTPUT): $(OBJECTS)
-	@mkdir -p bin
-	@mkdir -p ../bin
+	@# Copy binaries to ../bin/ if existent
+	@test -d ../bin && cp -R $(BINDIR)/* ../bin/	
+
+$(BINDIR)/$(STATIC_OUTPUT): $(OBJECTS)
+	@# Make binary directory
+	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+
+	@# Build tests against static library
 	$(CXX) $(LDFLAGS) $(OBJECTS) ../bin/coment.a -o $@
-	@cp -R bin/* ../bin/	
+
+	@# Copy binaries to ../bin/ if existent
+	@test -d ../bin && cp -R $(BINDIR)/* ../bin/	
 
 obj/%.o: $(SOURCES)
-	@mkdir -p obj
+	@# Create obj directory
 	@mkdir -p $(dir $@)
+
+	@# Build object
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
 
 clean:

@@ -1,6 +1,6 @@
 # Build this sample
 
-EXECUTABLE=sample
+EXECUTABLE=samples/balls/balls
 
 SHARED_OUTPUT=$(EXECUTABLE)-shared
 STATIC_OUTPUT=$(EXECUTABLE)-static
@@ -11,33 +11,43 @@ BINDIR=bin
 INCDIR=include
 
 CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
-LDFLAGS=-lsfml-system -lsfml-window -lsfml-graphics
+LDFLAGS=-lSDL2
 INCLUDES=-I$(INCDIR) -I../../coment/include
 
-SOURCES=$(shell find src -name *.cpp)
+SOURCES=$(shell find src -name "*.cpp")
 OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 all: shared static
 
-shared: bin/$(SHARED_OUTPUT)
+shared: $(BINDIR)/$(SHARED_OUTPUT)
 
-static: bin/$(STATIC_OUTPUT)
+static: $(BINDIR)/$(STATIC_OUTPUT)
 
-bin/$(SHARED_OUTPUT): $(OBJECTS)
-	@mkdir -p bin
-	@mkdir -p ../bin
+$(BINDIR)/$(SHARED_OUTPUT): $(OBJECTS)
+	@# Create executable directory
+	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+
+	@# Build executable
 	$(CXX) $(LDFLAGS) -L../../bin -lcoment $(OBJECTS) -o $@
-	@cp -R bin/* ../bin/
 
-bin/$(STATIC_OUTPUT): $(OBJECTS)
-	@mkdir -p bin
-	@mkdir -p ../bin
+	@# Copy to ../bin if existent
+	test -d ../bin && cp -R $(BINDIR)/* ../bin/
+
+$(BINDIR)/$(STATIC_OUTPUT): $(OBJECTS)
+	@# Create executable directory
+	@mkdir -p $(BINDIR)/$(dir $(EXECUTABLE))
+
+	@# Build executable
 	$(CXX) $(LDFLAGS) $(OBJECTS) ../../bin/coment.a -o $@
-	@cp -R bin/* ../bin/	
+
+	@# Copy to ../bin if existent
+	@test -d ../bin && cp -R $(BINDIR)/* ../bin/
 
 obj/%.o: $(SOURCES)
-	@mkdir -p obj
+	@# Create directory of object
 	@mkdir -p $(dir $@)
+
+	@# Compile
 	$(CXX) $(patsubst $(OBJDIR)/%.o, $(SRCDIR)/%.cpp, $@) $(INCLUDES) $(CXXFLAGS) -o $@
 
 clean:

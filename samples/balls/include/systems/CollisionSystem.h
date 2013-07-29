@@ -5,6 +5,8 @@
 #include "components/Velocity.h"
 #include "components/Radius.h"
 
+#define COMENT_ABS(x) (x >= 0 ? x : -x)
+
 namespace coment
 {
         namespace samples
@@ -15,8 +17,7 @@ namespace coment
 				: public coment::EntityProcessingSystem
 			{
 			public:
-				CollisionSystem(float width, float height)
-					: _width(width), _height(height)
+				CollisionSystem()
 				{
 
 				}
@@ -27,6 +28,12 @@ namespace coment
 					registerComponent<Position>();
 					registerComponent<Velocity>();
 					registerComponent<Radius>();
+				}
+
+				virtual void begin()
+				{
+					_width = _world->getValue<int>("window_width");
+					_height = _world->getValue<int>("window_height");
 				}
 
 				virtual void process(const coment::Entity& e)
@@ -50,7 +57,7 @@ namespace coment
 				}
 
 			private:
-				float _width, _height;
+				int _width, _height;
 			};
 		}
 	}

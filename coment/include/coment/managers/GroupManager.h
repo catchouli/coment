@@ -8,7 +8,18 @@ namespace coment
 	class GroupManager
 		: public Manager
 	{
+	public:
+                // Add group to entity
+                void addGroup(const Entity& e, std::string group);
 
+                // Remove group from entity
+                void removeGroup(const Entity& e, std::string group);
+
+                // Get groups by entity
+                const std::vector<std::string>& getGroupsByEntity(const Entity& e);
+
+                // Get entities by group
+                const std::vector<Entity>& getEntitiesByGroup(std::string group);
 	};
 }
 
