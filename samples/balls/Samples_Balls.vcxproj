@@ -49,14 +49,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>
       </Optimization>
-      <AdditionalIncludeDirectories>include;../../coment/include;../../dependencies/sfml/include;../dependencies/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;../common/include;../../coment/include;../../deps/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Coment.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../dependencies/sfml/lib/vc++;../../Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Coment.lib;Samples_Common.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../deps/lib/vc++;../../Debug</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\deps\bin\vc++\SDL2.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -64,35 +68,27 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>include;../../coment/include;../../dependencies/sfml/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;../common/include;../../coment/include;../../deps/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Coment.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../dependencies/sfml/lib/vc++;../../Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Coment.lib;Samples_Common.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../deps/lib/vc++;../../Release</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)\deps\bin\vc++\SDL2.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coment\Coment.vcxproj">
       <Project>{eaced591-60fe-4017-9136-c6be8c7b4e3d}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\components\Colour.h" />
-    <ClInclude Include="include\components\Position.h" />
-    <ClInclude Include="include\components\Radius.h" />
-    <ClInclude Include="include\components\Velocity.h" />
-    <ClInclude Include="include\managers\BallManager.h" />
-    <ClInclude Include="include\managers\InputManager.h" />
-    <ClInclude Include="include\scenes\BallScene.h" />
-    <ClInclude Include="include\systems\VelocityRandomiser.h" />
-    <ClInclude Include="include\systems\MovementSystem.h" />
-    <ClInclude Include="include\systems\RenderingSystem.h" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

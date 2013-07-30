@@ -1,5 +1,5 @@
-#ifndef COMENT_BALLS_PIXELBUFFER
-#define COMENT_BALLS_PIXELBUFFER
+#ifndef COMENT_COMMON_PIXELBUFFER
+#define COMENT_COMMON_PIXELBUFFER
 
 namespace coment
 {
@@ -56,5 +56,5 @@ namespace coment
 	}
 }
 
-#endif /* COMENT_BALLS_PIXELBUFFER */
+#endif /* COMENT_COMMON_PIXELBUFFER */
 

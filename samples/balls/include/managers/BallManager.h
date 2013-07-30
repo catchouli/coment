@@ -13,8 +13,6 @@
 #include "components/Radius.h"
 #include "components/Colour.h"
 
-#include <SFML/Graphics.hpp>
-
 namespace coment
 {
         namespace samples
