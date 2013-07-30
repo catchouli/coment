@@ -10,7 +10,7 @@ namespace coment
 			class PixelBuffer
 			{
 			public:
-				PixelBuffer(unsigned int width, unsigned int height);
+				PixelBuffer(unsigned int width = 0, unsigned int height = 0);
 				~PixelBuffer();
 
 				// Get pointer to buffer

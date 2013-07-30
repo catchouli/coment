@@ -14,18 +14,19 @@ namespace coment
 
 			PixelBuffer::~PixelBuffer()
 			{
-				delete _buffer;
+				delete[] _buffer;
 			}
 
 			void PixelBuffer::resize(unsigned int width, unsigned int height)
 			{
+				_width = width;
+				_height = height;
+
 				unsigned int* temp = _buffer;
 				unsigned int* newBuffer = new unsigned int[width * height];
 
-				// TODO: this should probably copy the buffer but it's not immediately necessary
-
 				_buffer = newBuffer;
-				delete temp;
+				delete[] temp;
 			}
 
 			void PixelBuffer::clear(int colour)
