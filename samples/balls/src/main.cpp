@@ -29,12 +29,6 @@
 
 using namespace coment::samples::balls;
 
-// Forward declarations
-void drawCircle(unsigned int* buffer, int bufferWidth, int bufferHeight, int colour, int radius, int x, int y);
-void draw4lines(unsigned int* buffer, int bufferWidth, int bufferHeight, int colour, int cx, int cy, int x, int y);
-void draw2lines(unsigned int* buffer, int bufferWidth, int bufferHeight, int colour, int cx, int cy, int x, int y);
-void drawhline(unsigned int* buffer, int bufferWidth, int bufferHeight, int colour, int x1, int x2, int y);
-
 // Window size
 int width = 800;
 int height = 600;
