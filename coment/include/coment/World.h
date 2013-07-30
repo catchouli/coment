@@ -49,6 +49,10 @@ namespace coment
 		template <typename T>
 		T* addComponent(const Entity& e);
 
+		// Add a copy constructed component to an entity
+		template <typename T>
+		T* addComponent(const Entity& e, const T& value);
+
 		// Get a component from an entity
 		template <typename T>
 		T* getComponent(const Entity& e);
@@ -163,12 +167,26 @@ namespace coment
 		return _managerManager.getManager<T>();
 	}
 
-	// Add the component to the component manager
+	// Add a component to the component manager
 	template <typename T>
 	T* World::addComponent(const Entity& e)
 	{
 		// Add component
 		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e));
+
+		// Queue entity for refresh
+		refresh(e);
+
+		// Return component
+		return component;
+	}
+
+	// Add a component to the component manager
+	template <typename T>
+	T* World::addComponent(const Entity& e, const T& value)
+	{
+		// Add component
+		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e), value);
 
 		// Queue entity for refresh
 		refresh(e);

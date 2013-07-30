@@ -48,7 +48,9 @@ const int DEPTH = 32;
 const int CLEAR_COLOUR = 0xFFFFFFFF;
 
 const int INITIAL_BALLS = 10;
-const float GAME_SPEED = 0.002f;
+
+// 0.001f to convert milliseconds to seconds
+const float GAME_SPEED = 0.001f;
 
 int main(int argc, char** argv)
 {

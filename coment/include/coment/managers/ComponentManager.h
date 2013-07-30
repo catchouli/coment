@@ -25,6 +25,10 @@ namespace coment
 		template <typename T>
 		T* addComponent(EntityInfo& e);
 
+		// Add a component onto an entity
+		template <typename T>
+		T* addComponent(EntityInfo& e, const T& value);
+
 		// Get a component from an entity
 		template <typename T>
 		T* getComponent(EntityInfo& e);
@@ -76,6 +80,34 @@ namespace coment
 
 		// Return the component we just added
 		return getComponent<T>(e);
+	}
+
+
+	// Add a component to an entity
+	template <typename T>
+	T* ComponentManager::addComponent(EntityInfo& e, const T& value)
+	{
+		T* component;
+
+		// Get component bag
+		std::vector<T>* components = getComponentBag<T>();
+		ComponentType componentType = _componentTypeManager->getComponentType<T>();
+
+		// Add the component to it
+		components->resize(e.getId()+1);
+		(*components)[e.getId()] = T();
+
+		// Set the entity's components bitmask
+		e.addComponent(componentType);
+
+		// Get new component
+		component = getComponent<T>(e);
+
+		// Set value
+		*component = value;
+
+		// Return the component we just added
+		return component;
 	}
 
 	// Get a component from an entity

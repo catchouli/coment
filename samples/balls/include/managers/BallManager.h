@@ -41,10 +41,10 @@ namespace coment
 				static const int MIN_RADIUS = 10;
 				static const int MAX_RADIUS = 50;
 
-				static const int MIN_INITIAL_VELOCITY_X = 50;
-				static const int MAX_INITIAL_VELOCITY_X = 150;
-				static const int MIN_INITIAL_VELOCITY_Y = 50;
-				static const int MAX_INITIAL_VELOCITY_Y = 150;
+				static const int MIN_INITIAL_VELOCITY_X = 100;
+				static const int MAX_INITIAL_VELOCITY_X = 300;
+				static const int MIN_INITIAL_VELOCITY_Y = 100;
+				static const int MAX_INITIAL_VELOCITY_Y = 300;
 
 				std::vector<coment::Entity> _balls;
 			};

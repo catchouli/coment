@@ -21,7 +21,7 @@ namespace coment
 
 				void process(const coment::Entity& e)
 				{
-					const float GRAVITY_ACCELERATION = 250;
+					const float GRAVITY_ACCELERATION = 500;
 
 					Velocity* velocity = _world->getComponent<Velocity>(e);
 
