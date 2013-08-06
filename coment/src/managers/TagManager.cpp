@@ -22,8 +22,8 @@ namespace coment
 		// Get old tag
 		std::string oldTag = _tagsByEntity[e.getId()];
 
-		std::vector<Entity>& oldTagEntities = _entitiesByTag[oldTag];
-		std::vector<Entity>& newTagEntities = _entitiesByTag[tag];
+		std::vector<Entity>& oldTagEntities = _entityArraysByTag[oldTag];
+		std::vector<Entity>& newTagEntities = _entityArraysByTag[tag];
 
 		// Set entity's tag
 		_tagsByEntity[e.getId()] = tag;
@@ -45,13 +45,13 @@ namespace coment
 
 	const std::vector<Entity>& TagManager::getEntities(std::string tag)
 	{
-		return _entitiesByTag[tag];
+		return _entityArraysByTag[tag];
 	}
 
 	void TagManager::removeEntity(const EntityInfo& e)
 	{
 		std::string tag = _tagsByEntity[e.getId()];
-		std::vector<Entity>& entities = _entitiesByTag[tag];
+		std::vector<Entity>& entities = _entityArraysByTag[tag];
 
 		removeFirst(entities, (Entity)e);
 

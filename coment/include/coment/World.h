@@ -25,11 +25,8 @@ namespace coment
 	class World
 	{
 	public:
-		// Constructor
+		// Constructor - initialises managers and registers them
 		World();
-
-		// Destructor
-		~World();
 
 		/* Entity functions */
 		// Create a new entity
@@ -93,14 +90,17 @@ namespace coment
 		const std::vector<Entity>& getEntitiesByTag(std::string tag);
 
 		/* Group functions */
-		// Add group to entity
+		// Add entity to group
 		void addGroup(const Entity& e, std::string group);
 
-		// Remove group from entity
+		// Remove entity from group
 		void removeGroup(const Entity& e, std::string group);
 
-		// Get groups by entity
-		const std::vector<std::string>& getGroups(const Entity& e);
+		// Remove entity from groups
+		void removeGroups(const Entity& e);
+
+		// Check if entity is in group
+		bool isInGroup(const Entity& e, std::string group);
 
 		// Get entities by group
 		const std::vector<Entity>& getEntitiesByGroup(std::string group);
@@ -136,7 +136,7 @@ namespace coment
 		void refreshEntity(const Entity& e);
 
 	private:
-		// The manager instances
+		// Internally used managers
 		TagManager _tagManager;
 		GroupManager _groupManager;
 		EntityManager _entityManager;
@@ -230,12 +230,14 @@ namespace coment
 	}
 
 	/* Inline variable functions */
+	// Set a value
 	template <typename T>
 	void World::setValue(std::string name, const T& value)
 	{
 		_variableManager.setValue<T>(name, value);
 	}
 
+	// Get a value
 	template <typename T>
 	const T& World::getValue(std::string name)
 	{

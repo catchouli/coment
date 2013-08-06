@@ -5,12 +5,9 @@ namespace coment
 {
 	namespace samples
 	{
-		namespace balls
-		{
-			SDL_Window* createWindow(const char* title, int width, int height);
-			SDL_Renderer* createRenderer(SDL_Window* window);
-			SDL_Texture* createTexture(SDL_Renderer* renderer, int width, int height);
-		}
+		SDL_Window* createWindow(const char* title, int width, int height);
+		SDL_Renderer* createRenderer(SDL_Window* window);
+		SDL_Texture* createTexture(SDL_Renderer* renderer, int width, int height);
 	}
 }
 

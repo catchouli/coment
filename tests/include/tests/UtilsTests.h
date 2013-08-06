@@ -7,11 +7,11 @@ namespace coment
 {
 	namespace tests
 	{
-		class VariableTests
+		class UtilsTests
 			: public Test
 		{
 		public:
-			VariableTests();
+			UtilsTests();
 
 			void run();
 		};

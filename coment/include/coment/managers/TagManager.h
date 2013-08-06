@@ -31,7 +31,7 @@ namespace coment
 
 	private:
 		std::vector<std::string> _tagsByEntity;
-		EntityArrayMap _entitiesByTag;
+		EntityArrayMap _entityArraysByTag;
 
 		const std::vector<Entity> _emptyVector;
 	};

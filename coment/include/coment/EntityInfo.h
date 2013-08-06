@@ -38,6 +38,7 @@ namespace coment
 		friend class EntityManager;
 		friend class SystemManager;
 		friend class ComponentManager;
+		friend class GroupManager;
 
 		// A protected construtor that creates an EntityInfo for a particular
 		// entity id
@@ -46,8 +47,11 @@ namespace coment
 		// Which components that are attached to this entity
 		BitMask _componentMask;
 
-		// System bitmask
+		// Which systems this entity belongs to
 		BitMask _systemMask;
+
+		// Which groups this entity belongs to
+		BitMask _groupMask;
 
 		// Whether or not this entity is alive
 		bool _alive;

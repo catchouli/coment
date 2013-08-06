@@ -22,9 +22,9 @@ namespace coment
 		Bitset<bitcount>& operator=(const Bitset<bitcount>& other);
 		Bitset<bitcount>& operator=(const int rhs);
 
-		const bool operator==(const Bitset<bitcount>& other) const;
+		bool operator==(const Bitset<bitcount>& other) const;
 
-		const bool operator!=(const Bitset<bitcount>& other) const;
+		bool operator!=(const Bitset<bitcount>& other) const;
 
 		Bitset<bitcount>& operator<<=(unsigned int dist);
 		Bitset<bitcount> operator<<(unsigned int dist) const;
@@ -38,7 +38,7 @@ namespace coment
 		Bitset<bitcount>& operator|=(const Bitset<bitcount>& other);
 		const Bitset<bitcount> operator|(const Bitset<bitcount>& other) const;
 
-		const bool operator[](unsigned int rhs);
+		bool operator[](unsigned int rhs) const;
 
 		void setBit(unsigned int index);
 		void clearBit(unsigned int index);
@@ -111,7 +111,7 @@ namespace coment
 	}
 
 	template <int bitcount>
-	const bool Bitset<bitcount>::operator==(const Bitset<bitcount>& other) const
+	bool Bitset<bitcount>::operator==(const Bitset<bitcount>& other) const
 	{
 		for (uint32_t i = 0; i < (bitcount/32); ++i)
 		{
@@ -123,7 +123,7 @@ namespace coment
 	}
 
 	template <int bitcount>
-	const bool Bitset<bitcount>::operator!=(const Bitset<bitcount>& other) const
+	bool Bitset<bitcount>::operator!=(const Bitset<bitcount>& other) const
 	{
 		return !(*this == other);
 	}
@@ -235,7 +235,7 @@ namespace coment
 
 	// Get bit at position
 	template <int bitcount>
-	const bool Bitset<bitcount>::operator[](unsigned int rhs)
+	bool Bitset<bitcount>::operator[](unsigned int rhs) const
 	{
 		// Get word for this bit
 		unsigned int word = rhs / 32;

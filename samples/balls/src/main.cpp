@@ -28,6 +28,7 @@
 // SDL
 #include <SDL2/SDL.h>
 
+using namespace coment::samples;
 using namespace coment::samples::balls;
 
 // Thanks, Obama
