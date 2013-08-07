@@ -19,8 +19,6 @@ namespace coment
 		: public Manager
 	{
 	public:
-		ComponentManager();
-
 		// Add a component onto an entity
 		template <typename T>
 		T* addComponent(EntityInfo& e);
@@ -37,9 +35,6 @@ namespace coment
 		template <typename T>
 		bool hasComponent(EntityInfo& e);
 
-		// Initialise this manager once it's registered with the world
-		virtual void onRegistered();
-
 		// Remove a component from an entity
 		template <typename T>
 		void removeComponent(EntityInfo& e);
@@ -47,18 +42,17 @@ namespace coment
 		// Remove all the components from an entity
 		void removeComponents(EntityInfo& e);
 
+		// Register component type manager when registered with world
+		virtual void onRegistered();
+
 	protected:
 		// Get a bag for a component type
 		template <typename T>
 		std::vector<T>* getComponentBag();
 
 	private:
-		// Private copy constructor/assignment operator (no copying)
-		ComponentManager(const ComponentManager&);
-		const ComponentManager& operator=(const ComponentManager&);
-
-		// Manager for component types
-		ComponentTypeManager* _componentTypeManager;
+		// Component type manager
+		ComponentTypeManager _componentTypeManager;
 
 		// A map of component bags
 		ComponentBagMap _componentBags;
@@ -69,7 +63,7 @@ namespace coment
 	T* ComponentManager::addComponent(EntityInfo& e)
 	{
 		std::vector<T>* components = getComponentBag<T>();
-		ComponentType componentType = _componentTypeManager->getComponentType<T>();
+		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
 		components->resize(e.getId()+1);
@@ -91,7 +85,7 @@ namespace coment
 
 		// Get component bag
 		std::vector<T>* components = getComponentBag<T>();
-		ComponentType componentType = _componentTypeManager->getComponentType<T>();
+		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
 		components->resize(e.getId()+1);
@@ -128,14 +122,14 @@ namespace coment
 	template <typename T>
 	bool ComponentManager::hasComponent(EntityInfo& e)
 	{
-		return e._componentMask[_componentTypeManager->getComponentType<T>()];
+		return e._componentMask[_componentTypeManager.getComponentType<T>()];
 	}
 
 	// Remove a component from an entity
 	template <typename T>
 	void ComponentManager::removeComponent(EntityInfo& e)
 	{
-		ComponentType componentType = _componentTypeManager->getComponentType<T>();
+		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		e.removeComponent(componentType);
 	}

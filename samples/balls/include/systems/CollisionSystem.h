@@ -30,7 +30,7 @@ namespace coment
 					registerComponent<Radius>();
 				}
 
-				virtual void begin()
+				virtual void onBegin()
 				{
 					_width = _world->getValue<int>("window_width");
 					_height = _world->getValue<int>("window_height");

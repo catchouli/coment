@@ -3,18 +3,9 @@
 namespace coment
 {
 	Manager::Manager()
-		: _initialised(false)
+		: _world(0), _initialised(false)
 	{
 
-	}
-
-	void Manager::initialise(World* world)
-	{
-		_world = world;
-
-		_initialised = true;
-
-		onRegistered();
 	}
 
 	void Manager::onRegistered()

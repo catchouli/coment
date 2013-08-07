@@ -8,20 +8,16 @@ namespace coment
 	class Manager
 	{
 	public:
-		// Constructors
 		Manager();
 
-		// Initialise this manager
-		virtual void initialise(World* world);
-
-		// Indicates that this manager has been registered with the world
+		// Called when this manager has been registered with the world
 		virtual void onRegistered();
 
 		// Get whether or not we are already initialised
 		bool getInitialised();
 
 	protected:
-		// Friends
+		friend class World;
 		friend class ManagerManager;
 
 		// The parent world.

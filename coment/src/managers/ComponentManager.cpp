@@ -4,15 +4,9 @@
 
 namespace coment
 {
-	ComponentManager::ComponentManager()
-	{
-
-	}
-
-	// Initialise this manager once it's registered with the world
 	void ComponentManager::onRegistered()
 	{
-		_componentTypeManager = _world->getManager<ComponentTypeManager>();
+		_world->registerManager(_componentTypeManager);
 	}
 
 	// Remove all the components from an entity

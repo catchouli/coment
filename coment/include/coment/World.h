@@ -15,7 +15,6 @@
 #include "managers/ManagerManager.h"
 #include "managers/VariableManager.h"
 #include "managers/ComponentManager.h"
-#include "managers/ComponentTypeManager.h"
 
 #include "exceptions/CompMapUnregistered.h"
 
@@ -144,7 +143,6 @@ namespace coment
 		ManagerManager _managerManager;
 		VariableManager _variableManager;
 		ComponentManager _componentManager;
-		ComponentTypeManager _componentTypeManager;
 
 		// Entities due to be removed
 		std::vector<Entity> _removed;

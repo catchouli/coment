@@ -11,7 +11,8 @@ namespace coment
 {
 	typedef std::tr1::unordered_map<std::string, Manager*> ManagerMap;
 
-	class ManagerManager : public Manager
+	class ManagerManager
+		: public Manager
 	{
 	public:
 		ManagerManager();
@@ -40,10 +41,14 @@ namespace coment
 	T* ManagerManager::registerManager(T& manager)
 	{
 		// Initialise manager
-		((Manager*)&manager)->initialise(_world);
+		manager._world = _world;
+		manager._initialised = true;
 
 		// Store a pointer to this manager
 		_managers[typeid(T).name()] = &manager;
+
+		// Notify the manager that it's registered
+		manager.onRegistered();
 
 		// Return a pointer
 		return &manager;

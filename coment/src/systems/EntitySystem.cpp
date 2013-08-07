@@ -9,13 +9,7 @@ namespace coment
 {
 	// Constructor
 	EntitySystem::EntitySystem()
-		: _world(NULL), _componentTypeManager(NULL), _enabled(true)
-	{
-
-	}
-
-	// Indicates that this system has been registered with the world
-	void EntitySystem::registered()
+		: _world(NULL), _componentTypeManager(NULL), _enabled(true), _firstUpdate(true)
 	{
 
 	}
@@ -25,9 +19,12 @@ namespace coment
 	{
 		if (checkProcessing())
 		{
-			begin();
+			if (_firstUpdate)
+				onFirstUpdate();
+
+			onBegin();
 			processEntities(_entities);
-			end();
+			onEnd();
 		}
 	}
 
@@ -43,40 +40,10 @@ namespace coment
 		return _enabled;
 	}
 
-	// Called during initialisation of this system
-	void EntitySystem::initialise()
-	{
-
-	}
-
-	// Called before the processing of entities begins
-	void EntitySystem::begin()
-	{
-
-	}
-
-	// Called after the end of processing
-	void EntitySystem::end()
-	{
-
-	}
-
 	// Returns whether this system should currently process entities
 	bool EntitySystem::checkProcessing()
 	{
 		return _enabled;
-	}
-
-	// Called when an entity is added to this system
-	void EntitySystem::added(const Entity& e)
-	{
-
-	}
-
-	// Called when an entity is removed from this system
-	void EntitySystem::removed(const Entity& e)
-	{
-
 	}
 
 	// Add an entity
@@ -105,8 +72,46 @@ namespace coment
 		return _bitmask;
 	}
 
+	// Get component type manager
 	ComponentTypeManager* EntitySystem::getComponentTypeManager()
 	{
 		return _world->getManager<ComponentTypeManager>();
+	}
+
+	/* Events */
+	// Indicates that this system has been registered with the world
+	void EntitySystem::onRegistered()
+	{
+
+	}
+
+	// Called before the first update of this system
+	void EntitySystem::onFirstUpdate()
+	{
+
+	}
+
+	// Called before the processing of entities begins
+	void EntitySystem::onBegin()
+	{
+
+	}
+
+	// Called after the end of processing
+	void EntitySystem::onEnd()
+	{
+
+	}
+
+	// Called when an entity is added to this system
+	void EntitySystem::onAdded(const Entity& e)
+	{
+
+	}
+
+	// Called when an entity is removed from this system
+	void EntitySystem::onRemoved(const Entity& e)
+	{
+
 	}
 }

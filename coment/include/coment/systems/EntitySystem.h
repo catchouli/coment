@@ -28,15 +28,6 @@ namespace coment
 		// Get whether this system is enabled
 		bool getEnabled();
 
-		// Called during initialisation of this system
-		virtual void initialise();
-
-		// Called before the processing of entities begins
-		virtual void begin();
-
-		// Called after the end of processing
-		virtual void end();
-
 		// Any implementing entity system must implement this method
 		// Contains the logic to process the entities of this system
 		virtual void processEntities(std::vector<Entity>& entities) = 0;
@@ -44,22 +35,33 @@ namespace coment
 		// Returns whether this system should currently process entities
 		virtual bool checkProcessing();
 
-		// Called when an entity is added to this system
-		virtual void added(const Entity& e);
-
-		// Called when an entity is removed from this system
-		virtual void removed(const Entity& e);
-
 	protected:
 		// Constructor
 		EntitySystem();
 
-		// Friends with the system manager so that it can get protected fields
+		// Friends with the system manager so that it can initialise this system
 		friend class SystemManager;
 
+		/* Events */
 		// Indicates that this system has been registered with the world
-		virtual void registered();
+		virtual void onRegistered();
 
+		// Called before the first update of this system
+		virtual void onFirstUpdate();
+
+		// Called before the processing of entities begins
+		virtual void onBegin();
+
+		// Called after the end of processing
+		virtual void onEnd();
+
+		// Called when an entity is added to this system
+		virtual void onAdded(const Entity& e);
+
+		// Called when an entity is removed from this system
+		virtual void onRemoved(const Entity& e);
+
+		/* Management */
 		// Add an entity
 		void addEntity(EntityInfo& e);
 
@@ -91,6 +93,9 @@ namespace coment
 
 		// Whether to process this system
 		bool _enabled;
+
+		// Whether or not this is the first update
+		bool _firstUpdate;
 
 		// The bitmask to use for the entity system
 		BitMask _bitmask;

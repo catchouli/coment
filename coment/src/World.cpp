@@ -8,14 +8,14 @@ namespace coment
 	World::World()
 	{
 		// Create manager manager
-		_managerManager.initialise(this);
+		_managerManager._world = this;
+		_managerManager._initialised = true;
 
 		// Initialise default managers
 		_managerManager.registerManager(_tagManager);
 		_managerManager.registerManager(_systemManager);
 		_managerManager.registerManager(_entityManager);
 		_managerManager.registerManager(_variableManager);
-		_managerManager.registerManager(_componentTypeManager);
 		_managerManager.registerManager(_componentManager);
 
 		// Initialise delta time

@@ -48,10 +48,10 @@ namespace coment
 	{
 		// Initialise the system
 		system.setWorld(_world);
-		system.registered();
 		system.registerComponents();
 		_systems.push_back(&system);
 		_systemMap[typeid(T).name()] = (EntitySystem*)&system;
+		system.onRegistered();
 
 		return &system;
 	}
