@@ -37,7 +37,8 @@ namespace coment
 
 			// Add entity to master list of entities if this is a completely new entity
 			_entityInfos.resize(newId+1);
-			_entityInfos[newId] = EntityInfo(newId);
+			_entityInfos[newId] = EntityInfo();
+			_entityInfos[newId]._id = newId;
 
 			// Set tag to ""
 			_world->getManager<TagManager>()->setTag(_entityInfos[newId], "");

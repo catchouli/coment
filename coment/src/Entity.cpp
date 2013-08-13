@@ -14,6 +14,20 @@ namespace coment
 
 	}
 
+	Entity::Entity(const EntityInfo& other)
+	{
+		_id = other.getId();
+		_uniqueId = other.getUniqueId();
+	}
+
+	Entity& Entity::operator=(const EntityInfo& other)
+	{
+		_id = other.getId();
+		_uniqueId = other.getUniqueId();
+
+		return *this;
+	}
+
 	bool Entity::operator==(const Entity& other) const
 	{
 		return _id == other._id;

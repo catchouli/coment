@@ -1,16 +1,14 @@
 #ifndef COMENT_ENTITYINFO_H
 #define COMENT_ENTITYINFO_H
 
-#include "Entity.h"
 #include "Component.h"
-#include "utils/Bitset.h"
+#include "EntityId.h"
 #include "utils/BitMask.h"
 
 namespace coment
 {
 	// The internal representation of an entity
 	class EntityInfo
-		: public Entity
 	{
 	public:
 		// Constructor
@@ -31,18 +29,20 @@ namespace coment
 		// Remove all components to this entity
 		void removeComponents();
 
+		// Get IDs of entity
+		EntityId getId() const;
+		EntityId getUniqueId() const;
+
 	protected:
-		// We are friends with the entity manager so that it can call
-		// this protected constructor
+		// World is friend so it can instantiate this class
+		// (the default constructor creates an "uninitialised" version)
 		friend class World;
+
+		// Managers are friends so they can access and modify the entity's masks
 		friend class EntityManager;
 		friend class SystemManager;
 		friend class ComponentManager;
 		friend class GroupManager;
-
-		// A protected construtor that creates an EntityInfo for a particular
-		// entity id
-		EntityInfo(EntityId id);
 
 		// Which components that are attached to this entity
 		BitMask _componentMask;
@@ -65,6 +65,12 @@ namespace coment
 	private:
 		// Whether or not this entity is valid
 		bool _valid;
+
+		// The entity ID
+		EntityId _id;
+
+		// The unique entity ID
+		EntityId _uniqueId;
 	};
 }
 

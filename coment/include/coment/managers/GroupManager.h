@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Manager.h"
+#include "../Entity.h"
 #include "../EntityInfo.h"
 #include "../utils/Map.h"
 

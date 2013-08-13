@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Manager.h"
+#include "../Entity.h"
 #include "../EntityInfo.h"
 
 namespace coment

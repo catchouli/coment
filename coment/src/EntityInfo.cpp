@@ -8,12 +8,6 @@ namespace coment
 
 	}
 
-	EntityInfo::EntityInfo(EntityId id)
-		: Entity(id), _alive(false), _waitingForRefresh(false), _waitingForRemoval(false), _valid(true)
-	{
-
-	}
-
 	// Compare the bitmask
 	bool EntityInfo::compareComponentBitmask(const BitMask& mask) const
 	{
@@ -42,5 +36,15 @@ namespace coment
 	void EntityInfo::removeComponents()
 	{
 		_componentMask.clear();
+	}
+
+	EntityId EntityInfo::getId() const
+	{
+		return _id;
+	}
+
+	EntityId EntityInfo::getUniqueId() const
+	{
+		return _uniqueId;
 	}
 }
