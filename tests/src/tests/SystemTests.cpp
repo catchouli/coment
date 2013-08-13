@@ -53,7 +53,6 @@ namespace coment
 			e = world.createEntity();
 			pos = world.addComponent<Position>(e);
 			vel = world.addComponent<Velocity>(e);
-			world.refresh(e);
 
 			// Initialise components
 			pos->x = INITIAL_X;

@@ -8,6 +8,7 @@
 #include "../Component.h"
 #include "../utils/Map.h"
 #include "../utils/SharedPtr.h"
+#include "../managers/ComponentTypeManager.h"
 #include "../exceptions/CompMapUnregistered.h"
 
 namespace coment

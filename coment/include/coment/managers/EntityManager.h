@@ -20,6 +20,9 @@ namespace coment
 		EntityManager();
 		~EntityManager();
 
+		// Called at the start of each loop and handles entity removal
+		void loopStart();
+
 		// Create an entity (will recycle dead entities ids)
 		Entity createEntity();
 
@@ -27,13 +30,21 @@ namespace coment
 		bool isAlive(const Entity& e);
 
 		// Get a reference to the entity info for an entity
-		EntityInfo& getEntityInfo(const Entity& e);
+		// (e must be a valid and living entity)
+		EntityInfo& getValidEntityInfo(const Entity& e);
+
+		// Remove an entity
+		void remove(EntityInfo& e);
 
 	protected:
 		friend class World;
 
-		// Remove an entity from the manager
+		// Remove an entity immediately
 		void removeEntity(EntityInfo& e);
+
+		// Get a reference to the entity info for an entity
+		// (e must be a valid or previously valid entity)
+		EntityInfo& getEntityInfo(const Entity& e);
 
 	private:
 		// Contains all entities
@@ -42,6 +53,12 @@ namespace coment
 		// Contains the entity IDs of dead or alive entities
 		std::vector<Entity> _alive;
 		std::vector<Entity> _dead;
+
+		// Entities due to be removed
+		std::vector<Entity> _removed;
+
+		// Entities due to be refreshed
+		std::vector<Entity> _refreshed;
 
 		// How many entities are in the manager
 		int _count;

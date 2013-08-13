@@ -5,6 +5,7 @@
 #include <vector>
 #include <typeinfo>
 
+#include "../Entity.h"
 #include "../managers/Manager.h"
 #include "../systems/EntitySystem.h"
 #include "../utils/Map.h"
@@ -20,6 +21,9 @@ namespace coment
 	public:
 		SystemManager();
 
+		// Called at the start of each loop, handles entity refreshing
+		void loopStart();
+
 		// Register a system with this manager
 		template <typename T>
 		T* registerSystem(T& system);
@@ -28,15 +32,25 @@ namespace coment
 		template <typename T>
 		T* getSystem();
 
-		// Refresh an entity with the systems
+		// Queue an entity to be refreshed
 		void refresh(EntityInfo& e);
 
 		// Update all the systems
 		void update();
 
+	protected:
+		friend class World;
+		friend class EntityManager;
+
+		// Immediately refresh an entity
+		void refreshEntity(EntityInfo& e);
+
 	private:
 		// An map of system names to systems
 		SystemMap _systemMap;
+
+		// Entities waiting to be refreshed
+		std::vector<Entity> _refreshed;
 
 		// The array that contains all the systems
 		std::vector<EntitySystem*> _systems;

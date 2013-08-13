@@ -126,14 +126,6 @@ namespace coment
 		// Update all the systems
 		void update();
 
-	protected:
-		/* Internal entity functions (called on loopStart) */
-		// Remove entity (called automatically on queued entities)
-		void removeEntity(const Entity& e);
-
-		// Refresh entity (called automatically on queued entities)
-		void refreshEntity(const Entity& e);
-
 	private:
 		// Internally used managers
 		TagManager _tagManager;
@@ -145,10 +137,10 @@ namespace coment
 		ComponentManager _componentManager;
 
 		// Entities due to be removed
-		std::vector<Entity> _removed;
+		//std::vector<Entity> _removed;
 
 		// Entities due to be refreshed
-		std::vector<Entity> _refreshed;
+		//std::vector<Entity> _refreshed;
 	};
 
 	// Add a manager
@@ -170,7 +162,7 @@ namespace coment
 	T* World::addComponent(const Entity& e)
 	{
 		// Add component
-		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e));
+		T* component = _componentManager.addComponent<T>(_entityManager.getValidEntityInfo(e));
 
 		// Queue entity for refresh
 		refresh(e);
@@ -184,7 +176,7 @@ namespace coment
 	T* World::addComponent(const Entity& e, const T& value)
 	{
 		// Add component
-		T* component = _componentManager.addComponent<T>(_entityManager.getEntityInfo(e), value);
+		T* component = _componentManager.addComponent<T>(_entityManager.getValidEntityInfo(e), value);
 
 		// Queue entity for refresh
 		refresh(e);
@@ -211,20 +203,23 @@ namespace coment
 	template <typename T>
 	T* World::getComponent(const Entity& e)
 	{
-		return _componentManager.getComponent<T>(_entityManager.getEntityInfo(e));
+		return _componentManager.getComponent<T>(_entityManager.getValidEntityInfo(e));
 	}
 
 	// Remove a component from an entity
 	template <typename T>
 	void World::removeComponent(const Entity& e)
 	{
+		// Get entity info
+		EntityInfo& entityInfo = _entityManager.getValidEntityInfo(e);
+
 		// Remove component
-		_componentManager.removeComponent<T>(_entityManager.getEntityInfo(e));
+		_componentManager.removeComponent<T>(entityInfo);
 
 		// Refresh entity immediately (refreshEntity instead of refresh)
 		// Otherwise, somebody might try and update a system before loopStart,
 		// Causing a null pointer exception
-		refreshEntity(e);
+		_systemManager.refreshEntity(entityInfo);
 	}
 
 	/* Inline variable functions */

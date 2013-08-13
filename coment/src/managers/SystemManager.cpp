@@ -1,5 +1,6 @@
 #include "coment/managers/SystemManager.h"
 
+#include "coment/World.h"
 #include "coment/utils/Functions.h"
 
 namespace coment
@@ -9,9 +10,37 @@ namespace coment
 
 	}
 
-	// Refresh an entity
+	void SystemManager::loopStart()
+	{
+		// Refresh entities queued for refresh
+		// Make sure to do this after updating removed entities, as entities are refreshed after$
+		for (std::vector<Entity>::iterator it = _refreshed.begin(); it != _refreshed.end(); ++it)
+		{
+			Entity& e = *it;
+			EntityInfo& entityInfo = _world->getManager<EntityManager>()->getValidEntityInfo(e);
+
+			refreshEntity(entityInfo);
+		}
+ 	       _refreshed.clear();
+	}
+
+	// Queue an entity to be refreshed
 	void SystemManager::refresh(EntityInfo& e)
 	{
+		if (!e._waitingForRefresh)
+		{
+			e._waitingForRefresh = true;
+			_refreshed.push_back((Entity)e);
+		}
+	}
+
+	// Refresh an entity immediately
+	void SystemManager::refreshEntity(EntityInfo& e)
+	{
+		// Clear waiting for refresh flag
+		e._waitingForRefresh = false;
+
+		// Update systems
 		for (unsigned int i = 0; i < _systems.size(); ++i)
 		{
 			// If this entity's components match the system's components

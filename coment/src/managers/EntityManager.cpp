@@ -20,6 +20,19 @@ namespace coment
 
 	}
 
+	void EntityManager::loopStart()
+	{
+		// Remove entities queued for removal
+		for (std::vector<Entity>::iterator it = _removed.begin(); it != _removed.end(); ++it)
+		{
+			Entity& e = *it;
+			EntityInfo& entityInfo = getValidEntityInfo(e);
+
+			removeEntity(entityInfo);
+		}
+		_removed.clear();
+	}
+
 	Entity EntityManager::createEntity()
 	{
 		Entity nextEntity;
@@ -81,11 +94,24 @@ namespace coment
 		return false;
 	}
 
+	void EntityManager::remove(EntityInfo& e)
+	{
+		if (!e._waitingForRemoval)
+		{
+			e._waitingForRemoval = true;
+			_removed.push_back(e);
+		}
+	}
+
+	// Remove entity immediately
 	void EntityManager::removeEntity(EntityInfo& e)
 	{
 		// If entity is alive
 		if (e._alive)
 		{
+			// Unset removal flag
+			e._waitingForRemoval = false;
+
 			// Murder entity
 			e._alive = false;
 
@@ -113,7 +139,30 @@ namespace coment
 			// Update counters
 			_count--;
 			_totalRemoved++;
+
+			// Refresh immediately
+			_world->getManager<SystemManager>()->refreshEntity(e);
 		}
+	}
+
+	// Get the entity info for an entity
+	// e must be a valid and living entity
+	EntityInfo& EntityManager::getValidEntityInfo(const Entity& e)
+	{
+		// If this entity is not properly initialised
+		// (e.g. created by the default constructor and not the world)
+		if (e.getId() == (unsigned int)-1)
+		{
+			// Throw an exception
+			throw UninitialisedEntity();
+		}
+		else if (!isAlive(e))
+		{
+			// Throw an exception
+			throw DeadEntity();
+		}
+
+		return getEntityInfo(e);
 	}
 
 	// Get the entity info for an entity
