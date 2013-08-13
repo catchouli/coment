@@ -51,6 +51,7 @@ namespace coment
 	{
 		// If not already in collection
 		if (std::find(_entities.begin(), _entities.end(), (Entity)e) == _entities.end())
+			onAdded(e);
 			_entities.push_back(e);
 	}
 
@@ -58,6 +59,7 @@ namespace coment
 	void EntitySystem::removeEntity(EntityInfo& e)
 	{
 		removeFirst(_entities, (Entity)e);
+		onRemoved(e);
 	}
 
 	// Set the world
