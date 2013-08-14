@@ -52,9 +52,6 @@ namespace coment
 					// Add entity to system
 					_systems[i]->addEntity(e);
 					e._systemMask.setBit(i);
-
-					// Notify system
-					_systems[i]->onAdded(e);
 				}
 			}
 			// If this entity's components don't match the system's components
@@ -66,9 +63,6 @@ namespace coment
 					// Remove entity from system
 					_systems[i]->removeEntity(e);
 					e._systemMask.clearBit(i);
-
-					// Notify system
-					_systems[i]->onRemoved(e);
 				}
 			}
 		}

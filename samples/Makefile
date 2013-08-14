@@ -19,7 +19,7 @@ static:
 clean:
 	rm -rf $(BINDIR)
 	$(MAKE) -C balls clean
-	$(MAKE) -C breakout clean
+	@#$(MAKE) -C breakout clean
 	$(MAKE) -C common clean
 
 .PHONY: all shared static clean
