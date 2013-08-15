@@ -12,7 +12,9 @@ namespace coment
 		{
 		public:
 			MovementSystem()
-				: _registered(false)
+				: _onRegisteredCalled(false), _onFirstUpdateCalled(false),
+				  _onBeginCalled(false), _onEndCalled(false),
+				  _onAddedCalled(false), _onRemovedCalled(false)
 			{
 
 			}
@@ -22,11 +24,6 @@ namespace coment
 				// Register required components
 				registerComponent<Position>();
 				registerComponent<Velocity>();
-			}
-
-			void onRegistered()
-			{
-				_registered = true;
 			}
 
 			virtual void process(const coment::Entity& e)
@@ -39,13 +36,83 @@ namespace coment
 				position->y += velocity->y * (int)_world->getDelta();
 			}
 
-			bool isRegistered()
+			void onRegistered()
 			{
-				return _registered;
+				_onRegisteredCalled = true;
+			}
+
+			void onFirstUpdate()
+			{
+				_onFirstUpdateCalled = true;
+			}
+
+			void onBegin()
+			{
+				_onBeginCalled = true;
+			}
+
+			void onEnd()
+			{
+				_onEndCalled = true;
+			}
+
+			void onAdded(const Entity& e)
+			{
+				_onAddedCalled = true;
+			}
+
+			void onRemoved(const Entity& e)
+			{
+				_onRemovedCalled = true;
+			}
+
+			bool onRegisteredCalled()
+			{
+				return _onRegisteredCalled;
+			}
+
+			bool onFirstUpdateCalled()
+			{
+				return _onFirstUpdateCalled;
+			}
+
+			bool onBeginCalled()
+			{
+				return _onBeginCalled;
+			}
+
+			bool onEndCalled()
+			{
+				return _onEndCalled;
+			}
+
+			bool onAddedCalled()
+			{
+				return _onAddedCalled;
+			}
+
+			bool onRemovedCalled()
+			{
+				return _onRemovedCalled;
+			}
+
+			bool noEventsCalled()
+			{
+				return  !_onRegisteredCalled &&
+					!_onFirstUpdateCalled &&
+					!_onBeginCalled &&
+					!_onEndCalled &&
+					!_onAddedCalled &&
+					!_onRemovedCalled;
 			}
 
 		private:
-			bool _registered;
+			bool _onRegisteredCalled;
+			bool _onFirstUpdateCalled;
+			bool _onBeginCalled;
+			bool _onEndCalled;
+			bool _onAddedCalled;
+			bool _onRemovedCalled;
 		};
 	}
 }

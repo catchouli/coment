@@ -65,7 +65,7 @@ namespace coment
 		system.registerComponents();
 		_systems.push_back(&system);
 		_systemMap[typeid(T).name()] = (EntitySystem*)&system;
-		system.onRegistered();
+		((EntitySystem*)&system)->onRegistered();
 
 		return &system;
 	}

@@ -22,7 +22,27 @@ namespace coment
 
 		// Automatically call process for each entity
 		void processEntities(std::vector<Entity>& entities);
-	};
+
+	protected:
+		/* Events */
+		// Indicates that this system has been registered with the world
+/*		virtual void onRegistered();
+
+		// Called before the first update of this system
+		virtual void onFirstUpdate();
+
+		// Called before the processing of entities begins
+		virtual void onBegin();
+
+		// Called after the end of processing
+		virtual void onEnd();
+
+		// Called when an entity is added to this system
+		virtual void onAdded(const Entity& e);
+
+		// Called when an entity is removed from this system
+		virtual void onRemoved(const Entity& e);
+*/	};
 };
 
 #endif /* COMENT_ENTITYPROCESSINGSYSTEM_H */

@@ -27,7 +27,6 @@ namespace coment
 
 			const int WORLD_DELTA = 15;
 
-			bool success = false;
 			int updates = 0;
 
 			coment::World world;
@@ -42,12 +41,14 @@ namespace coment
 			// Set world delta
 			world.setDelta(WORLD_DELTA);
 
+			// Check boolean event flags are set correctly
+			begintest("Checking boolean flags are set to false");
+			endtest(movementSystem.noEventsCalled());
+
 			// Register system and check if registered is called
 			begintest("Registering system and checking if onRegistered is called");
-				success = !movementSystem.isRegistered();
 				world.registerSystem(movementSystem);
-				success = success && movementSystem.isRegistered();
-			endtest(success);
+			endtest(movementSystem.onRegisteredCalled());
 
 			//  Create entity
 			e = world.createEntity();
@@ -66,7 +67,9 @@ namespace coment
 				world.update();
 				updates++;
 			endtest(((int)(pos->x) == INITIAL_X + INITIAL_VX * WORLD_DELTA * updates) &&
-				((int)(pos->y) == INITIAL_X + INITIAL_VY * WORLD_DELTA * updates));
+				((int)(pos->y) == INITIAL_X + INITIAL_VY * WORLD_DELTA * updates) &&
+				movementSystem.onFirstUpdateCalled() &&
+				movementSystem.onAddedCalled());
 
 			begintest("Add component back and check that entity gets updated");
 				updates = 0;
@@ -82,7 +85,8 @@ namespace coment
 				world.loopStart();
 				movementSystem.update();
 			endtest(((int)(pos->x) == 0 + INITIAL_VX * WORLD_DELTA * updates) &&
-				((int)(pos->y) == 0 + INITIAL_VY * WORLD_DELTA * updates));
+				((int)(pos->y) == 0 + INITIAL_VY * WORLD_DELTA * updates) &&
+				movementSystem.onRemovedCalled());
 
 			return;
 		}
