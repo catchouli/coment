@@ -22,6 +22,13 @@ namespace coment
 		template <typename T>
 		void setValue(const std::string name, const T& value);
 
+// #ifdef HAS_MOVE_SEMANTICS
+		// Set a variable, using move semantics
+		// The second argument is *invalidated* after calling this!
+		template <typename T>
+		void setValueMove(const std::string name, const T&& from);
+// #endif // HAS_MOVE_SEMANTICS
+
 		// Get a value
 		template <typename T>
 		const T& getValue(const std::string name);
@@ -40,6 +47,17 @@ namespace coment
 		VariableMap& variableMap = getValueMap<T>();
 		variableMap[name] = value;
 	}
+
+// #ifdef HAS_MOVE_SEMANTICS
+
+	template <typename T>
+	void VariableManager::setValueMove(const std::string name, const T&& from)
+	{
+		VariableMap& variableMap = getValueMap<T>();
+		variableMap[name] = std::move(from);
+	}
+
+// #endif // HAS_MOVE_SEMANTICS
 
 	template <typename T>
 	const T& VariableManager::getValue(const std::string name)
