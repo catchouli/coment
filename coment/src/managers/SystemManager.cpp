@@ -44,7 +44,7 @@ namespace coment
 		for (unsigned int i = 0; i < _systems.size(); ++i)
 		{
 			// If this entity's components match the system's components
-			if (e.compareComponentBitmask(_systems[i]->getComponentMask()))
+			if (e.compareComponentBitmask(_systems[i]->getComponentMask(), _systems[i]->getFilter()))
 			{
 				// If the entity isn't in the system
 				if (!e.compareSystemBitmask(BitMask(1) << i))

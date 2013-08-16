@@ -9,7 +9,7 @@ namespace coment
 {
 	// Constructor
 	EntitySystem::EntitySystem()
-		: _world(NULL), _componentTypeManager(NULL), _enabled(true), _firstUpdate(true)
+		: _world(NULL), _componentTypeManager(NULL), _enabled(true), _firstUpdate(true), _filter(FILTERTYPE_AND)
 	{
 
 	}
@@ -74,6 +74,15 @@ namespace coment
 	BitMask EntitySystem::getComponentMask()
 	{
 		return _bitmask;
+	}
+
+	void EntitySystem::setFilter(const FilterType filter)
+	{
+		_filter = filter;
+	}
+	FilterType EntitySystem::getFilter()
+	{
+		return _filter;
 	}
 
 	// Get component type manager

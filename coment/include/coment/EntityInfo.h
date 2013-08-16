@@ -15,7 +15,7 @@ namespace coment
 		EntityInfo();
 
 		// Compare the bitmask
-		bool compareComponentBitmask(const BitMask& mask) const;
+		bool compareComponentBitmask(const BitMask& mask, const FilterType filter = FILTERTYPE_AND) const;
 
 		// Compare the system bitmask
 		bool compareSystemBitmask(const BitMask& mask) const;

@@ -75,9 +75,15 @@ namespace coment
 		template <typename T>
 		void registerComponent();
 
+		// Set the filter used for components
+		void setFilter(const FilterType filter);
+
 		// Get the bitmask created from the combination of components
 		// registered with this system
 		BitMask getComponentMask();
+		
+		// Get the filter type to match entities against the component mask
+		FilterType getFilter();
 
 		// Called when an entity is refreshed
 		bool refresh(const EntityInfo& e);
@@ -99,6 +105,9 @@ namespace coment
 
 		// The bitmask to use for the entity system
 		BitMask _bitmask;
+
+		// The filter to use for the entity system
+		FilterType _filter;
 
 		// A bag of entities that match this systems bitmask
 		std::vector<Entity> _entities;

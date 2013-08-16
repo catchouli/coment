@@ -7,6 +7,7 @@
 #include "../exceptions/NotImplemented.h"
 #include "../exceptions/BitcountOutOfRange.h"
 #include "../exceptions/BitIndexOutOfBounds.h"
+#include "FilterType.h"
 
 namespace coment
 {
@@ -45,6 +46,7 @@ namespace coment
 		void toggleBit(unsigned int index);
 
 		bool isZero() const;
+		bool match(const Bitset<bitcount>& other, const FilterType filter) const;
 
 		void clear();
 
@@ -321,6 +323,20 @@ namespace coment
 		}
 
 		return true;
+	}
+	
+	template <int bitcount>
+	bool Bitset<bitcount>::match(const Bitset<bitcount>& other, const FilterType filter) const
+	{
+		switch (filter)
+		{
+		case FILTERTYPE_AND: // all bits in this must be in other
+			return (((*this) & other) == (*this)); break;
+		case FILTERTYPE_OR: // at least one bit in this must be in other
+			return ((*this) & other).isZero(); break;
+		default:
+			throw NotImplemented();
+		}
 	}
 
 	template <int bitcount>

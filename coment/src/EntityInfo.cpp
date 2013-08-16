@@ -9,9 +9,9 @@ namespace coment
 	}
 
 	// Compare the bitmask
-	bool EntityInfo::compareComponentBitmask(const BitMask& mask) const
+	bool EntityInfo::compareComponentBitmask(const BitMask& mask, const FilterType filter) const
 	{
-		return (mask & _componentMask) == mask;
+		return _systemMask.match(mask, filter);
 	}
 
 	// Compare the system bitmask.
