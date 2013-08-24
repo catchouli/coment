@@ -12,7 +12,11 @@
 
 namespace coment
 {
+#ifdef COMENT_CONFIG_HAS_CPP11
+	typedef std::unordered_map<std::string, EntitySystem*> SystemMap;
+#else
 	typedef std::tr1::unordered_map<std::string, EntitySystem*> SystemMap;
+#endif
 
 	// Contains all the systems added to the world
 	class SystemManager
