@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Manager.h"
 #include "../Component.h"
@@ -74,7 +75,8 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-		components->resize(e.getId()+1);
+        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		components->resize(size);
 		(*components)[e.getId()] = T();
 
 		// Set the entity's components bitmask
@@ -96,7 +98,8 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-		components->resize(e.getId()+1);
+        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		components->resize(size);
 		(*components)[e.getId()] = T();
 
 		// Set the entity's components bitmask
