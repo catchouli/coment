@@ -11,7 +11,11 @@
 
 namespace coment
 {
+#ifdef COMENT_CONFIG_HAS_CPP11
+	typedef std::unordered_map<std::string, int> GroupIDMask;
+#else
 	typedef std::tr1::unordered_map<std::string, int> GroupIDMask;
+#endif
 
 	class GroupManager
 		: public Manager

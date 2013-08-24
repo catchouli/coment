@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Manager.h"
 #include "../Component.h"
@@ -13,8 +14,15 @@
 
 namespace coment
 {
+#ifdef COMENT_CONFIG_HAS_CPP11
+	typedef std::unordered_map<std::string, std::shared_ptr<void> > ComponentBagMap;
+    typedef std::shared_ptr<void> shared_ptr;
+#else
 	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > ComponentBagMap;
+    typedef std::tr1::shared_ptr<void> shared_ptr;
 
+#endif
+    
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
 		: public Manager
@@ -67,7 +75,8 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-		components->resize(e.getId()+1);
+        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		components->resize(size);
 		(*components)[e.getId()] = T();
 
 		// Set the entity's components bitmask
@@ -89,7 +98,8 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-		components->resize(e.getId()+1);
+        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		components->resize(size);
 		(*components)[e.getId()] = T();
 
 		// Set the entity's components bitmask
@@ -148,7 +158,7 @@ namespace coment
 			components = new std::vector<T>();
 
 			// Store it in hash map
-			_componentBags[typeid(T).name()] = std::tr1::shared_ptr<void>(components);
+			_componentBags[typeid(T).name()] = shared_ptr(components);
 		}
 
 		return components;
