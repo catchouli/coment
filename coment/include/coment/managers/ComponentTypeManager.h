@@ -11,7 +11,11 @@
 namespace coment
 {
 	// A map of std::type_info::name() to ComponentType ID
+#ifdef COMENT_CONFIG_HAS_CPP11
+	typedef std::unordered_map<std::string, ComponentType> ComponentTypeMap;
+#else
 	typedef std::tr1::unordered_map<std::string, ComponentType> ComponentTypeMap;
+#endif
 
 	class ComponentTypeManager
 		: public Manager

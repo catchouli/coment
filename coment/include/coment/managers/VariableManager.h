@@ -10,9 +10,18 @@
 namespace coment
 {
 	class World;
+    
+#ifdef COMENT_CONFIG_HAS_CPP11
+    #define VariableMap typename std::unordered_map<std::string, T>
+	typedef std::unordered_map<std::string, std::shared_ptr<void> > VariableTypeMap;
+    typedef std::shared_ptr<void> shared_ptr;
 
-	#define VariableMap typename std::tr1::unordered_map<std::string, T>
+#else
+    #define VariableMap typename std::tr1::unordered_map<std::string, T>
 	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > VariableTypeMap;
+    typedef std::tr1::shared_ptr<void> shared_ptr;
+
+#endif
 
 	class VariableManager
 		: public Manager
@@ -66,7 +75,7 @@ namespace coment
 
 		if (typeIter == _variableTypeMap.end())
 		{
-			_variableTypeMap[typeid(T).name()] = std::tr1::shared_ptr<void>(new VariableMap());
+			_variableTypeMap[typeid(T).name()] = shared_ptr(new VariableMap());
 
 			typeIter = _variableTypeMap.find(typeid(T).name());
 		}

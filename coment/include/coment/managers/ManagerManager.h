@@ -9,7 +9,11 @@
 
 namespace coment
 {
+#ifdef COMENT_CONFIG_HAS_CPP11
+	typedef std::unordered_map<std::string, Manager*> ManagerMap;
+#else
 	typedef std::tr1::unordered_map<std::string, Manager*> ManagerMap;
+#endif
 
 	class ManagerManager
 		: public Manager
