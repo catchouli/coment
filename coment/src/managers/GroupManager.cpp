@@ -112,7 +112,8 @@ namespace coment
 			groupID = _nextGroupID++;
 
 			// Extend groups vector
-			_entitiesByGroup.resize(groupID+1);
+			const unsigned int size = std::max(groupID+1, (int)_entitiesByGroup.size());
+			_entitiesByGroup.resize(size);
 
 			// Set value in map
 			_groupIDs[group] = groupID;

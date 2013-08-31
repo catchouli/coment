@@ -17,7 +17,9 @@ namespace coment
 
 	void TagManager::setTag(const EntityInfo& e, std::string tag)
 	{
-		_tagsByEntity.resize(e.getId()+1);
+		// Grow array to at leasw e.getId() + 1
+		const unsigned int size = std::max(e.getId()+1, _tagsByEntity.size());
+		_tagsByEntity.resize(size);
 
 		// Get old tag
 		std::string oldTag = _tagsByEntity[e.getId()];
