@@ -16,13 +16,13 @@ namespace coment
 {
 #ifdef COMENT_CONFIG_HAS_CPP11
 	typedef std::unordered_map<std::string, std::shared_ptr<void> > ComponentBagMap;
-    typedef std::shared_ptr<void> shared_ptr;
+	typedef std::shared_ptr<void> shared_ptr;
 #else
 	typedef std::tr1::unordered_map<std::string, std::tr1::shared_ptr<void> > ComponentBagMap;
-    typedef std::tr1::shared_ptr<void> shared_ptr;
+	typedef std::tr1::shared_ptr<void> shared_ptr;
 
 #endif
-    
+
 	// The component manager keeps track of which components are attached to which entities
 	class ComponentManager
 		: public Manager
@@ -75,7 +75,7 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
 		components->resize(size);
 		(*components)[e.getId()] = T();
 
@@ -98,7 +98,7 @@ namespace coment
 		ComponentType componentType = _componentTypeManager.getComponentType<T>();
 
 		// Add the component to it
-        const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
+		const unsigned int size = std::max<unsigned int>(e.getId()+1, components->size());
 		components->resize(size);
 		(*components)[e.getId()] = T();
 
