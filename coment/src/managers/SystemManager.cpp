@@ -21,7 +21,7 @@ namespace coment
 
 			refreshEntity(entityInfo);
 		}
- 	       _refreshed.clear();
+			 _refreshed.clear();
 	}
 
 	// Queue an entity to be refreshed
@@ -43,14 +43,17 @@ namespace coment
 		// Update systems
 		for (unsigned int i = 0; i < _systems.size(); ++i)
 		{
+			EntitySystem* system = _systems[i];
+			
 			// If this entity's components match the system's components
-			if (e.compareComponentBitmask(_systems[i]->getComponentMask()))
+			if (e.compareComponentBitmasks(system->getComponentInclusionMask(),
+													 system->getComponentExclusionMask()))
 			{
 				// If the entity isn't in the system
 				if (!e.compareSystemBitmask(BitMask(1) << i))
 				{
 					// Add entity to system
-					_systems[i]->addEntity(e);
+					system->addEntity(e);
 					e._systemMask.setBit(i);
 				}
 			}
@@ -61,7 +64,7 @@ namespace coment
 				if (e.compareSystemBitmask(BitMask(1) << i))
 				{
 					// Remove entity from system
-					_systems[i]->removeEntity(e);
+					system->removeEntity(e);
 					e._systemMask.clearBit(i);
 				}
 			}

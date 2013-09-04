@@ -7,11 +7,25 @@ namespace coment
 	{
 
 	}
+	
+	// Compare the component's bitmasks.
+	bool EntityInfo::compareComponentBitmasks(const BitMask& inclusionMask,
+															const BitMask& exclusionMask) const
+	{
+		return compareComponentInclusionBitmask(inclusionMask)
+			&& compareComponentExclusionBitmask(exclusionMask);
+	}
 
-	// Compare the bitmask
-	bool EntityInfo::compareComponentBitmask(const BitMask& mask) const
+	// Compare the component's mandatory inclusion bitmask.
+	bool EntityInfo::compareComponentInclusionBitmask(const BitMask& mask) const
 	{
 		return (mask & _componentMask) == mask;
+	}
+
+	// Compare the component's exclusion bitmask.
+	bool EntityInfo::compareComponentExclusionBitmask(const BitMask& mask) const
+	{
+		return (mask & _componentMask) == 0;
 	}
 
 	// Compare the system bitmask.

@@ -9,6 +9,7 @@
 #include "../EntityInfo.h"
 #include "../utils/BitMask.h"
 #include "../managers/ComponentTypeManager.h"
+#include "../exceptions/SystemBitUse.h"
 
 namespace coment
 {
@@ -75,9 +76,17 @@ namespace coment
 		template <typename T>
 		void registerComponent();
 
+		// Exclude a component from this system
+		template <typename T>
+		void excludeComponent();
+
 		// Get the bitmask created from the combination of components
 		// registered with this system
-		BitMask getComponentMask();
+		BitMask getComponentInclusionMask();
+		  
+		// Get the bitmask created from the combination of components
+		// excluded from this system
+		BitMask getComponentExclusionMask();
 
 		// Called when an entity is refreshed
 		bool refresh(const EntityInfo& e);
@@ -86,6 +95,7 @@ namespace coment
 		World* _world;
 
 	private:
+		void ensureComponentTypeManager();
 		ComponentTypeManager* getComponentTypeManager();
 
 		// A pointer to the world's component type manager
@@ -97,16 +107,17 @@ namespace coment
 		// Whether or not this is the first update
 		bool _firstUpdate;
 
-		// The bitmask to use for the entity system
-		BitMask _bitmask;
+		// The bitmask that an entity must match all components of
+		BitMask _inclusionMask;
+		// The bitmask that an entity must match no components of
+		BitMask _exclusionMask;
 
 		// A bag of entities that match this systems bitmask
 		std::vector<Entity> _entities;
 	};
 
-	// Register a component with this system
-	template <typename T>
-	void EntitySystem::registerComponent()
+	// Ensure the _componentTypeManager has been set
+	inline void EntitySystem::ensureComponentTypeManager()
 	{
 		if (_world == NULL)
 		{
@@ -117,9 +128,38 @@ namespace coment
 		{
 			_componentTypeManager = getComponentTypeManager();
 		}
+	}
+
+	// Register a component with this system
+	template <typename T>
+	void EntitySystem::registerComponent()
+	{
+		ensureComponentTypeManager();
+
+		const unsigned int bitIndex = _componentTypeManager->getComponentType<T>();
+
+		if (_exclusionMask[bitIndex]) {
+			throw SystemBitUse();
+		}
 
 		// Add this component
-		_bitmask.setBit(_componentTypeManager->getComponentType<T>());
+		_inclusionMask.setBit(bitIndex);
+	}
+	 
+	// Exclude a component from this system
+	template <typename T>
+	void EntitySystem::excludeComponent()
+	{
+		ensureComponentTypeManager();
+
+		const unsigned int bitIndex = _componentTypeManager->getComponentType<T>();
+
+		if (_inclusionMask[bitIndex]) {
+			throw SystemBitUse();
+		}
+
+		// exclude this component
+		_exclusionMask.setBit(bitIndex);
 	}
 }
 
