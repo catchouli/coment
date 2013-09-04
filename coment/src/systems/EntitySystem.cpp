@@ -70,10 +70,16 @@ namespace coment
 		_world = world;
 	}
 
-	// Get the bitmask
-	BitMask EntitySystem::getComponentMask()
+	// Get the inclusion bitmask
+	BitMask EntitySystem::getComponentInclusionMask()
 	{
-		return _bitmask;
+		return _inclusionMask;
+	}
+	
+	// Get the exclusion bitmask
+	BitMask EntitySystem::getComponentExclusionMask()
+	{
+		return _exclusionMask;
 	}
 
 	// Get component type manager

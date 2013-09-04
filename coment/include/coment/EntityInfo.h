@@ -13,9 +13,14 @@ namespace coment
 	public:
 		// Constructor
 		EntityInfo();
-
-		// Compare the bitmask
-		bool compareComponentBitmask(const BitMask& mask) const;
+        
+		// Compare the component's bitmasks.
+		bool compareComponentBitmasks(const BitMask& inclusionMask,
+		                                         const BitMask& exclusionMask) const;
+		// Compare the component's mandatory inclusion bitmask.
+		bool compareComponentInclusionBitmask(const BitMask& mask) const;
+		// Compare the component's exclusion bitmask.
+		bool compareComponentExclusionBitmask(const BitMask& mask) const;
 
 		// Compare the system bitmask
 		bool compareSystemBitmask(const BitMask& mask) const;
