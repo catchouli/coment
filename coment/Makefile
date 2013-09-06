@@ -78,7 +78,8 @@ install:
 	#@ Copy libraries to install directory
 	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
 	ldconfig -n $(INSTALL_DIR_LIB)
-	ln -sfn $(INSTALL_DIR_LIB)/$(REALNAME) $(INSTALL_DIR_LIB)/$(LINKNAME)
+	cd $(INSTALL_DIR_LIB)
+	ln -sfn $(REALNAME) $(LINKNAME)
 
 uninstall:
 	rm -rf $(INSTALL_DIR_LIB)/libcoment.*
