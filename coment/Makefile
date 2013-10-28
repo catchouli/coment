@@ -77,7 +77,7 @@ install:
 
 	#@ Copy libraries to install directory
 	cp bin/$(REALNAME) $(INSTALL_DIR_LIB)
-	cp bin/$(LINKNAME) $(INSTALL_DIR_LIB)
+	cp -d bin/$(LINKNAME) $(INSTALL_DIR_LIB)
 	ldconfig -n $(INSTALL_DIR_LIB)
 
 uninstall:
