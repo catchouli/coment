@@ -47,7 +47,7 @@ $(BINDIR)/$(REALNAME): $(OBJECTS)
 	@# Copy binaries to ../bin if existent
 	@(test -d ../bin && (cp -R $(BINDIR)/* ../bin/)) || true
 
-bin/$(STATICNAME): $(OBJECTS)
+$(BINDIR)/$(STATICNAME): $(OBJECTS)
 	@# Make binary directory
 	@mkdir -p $(BINDIR)
 
