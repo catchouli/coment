@@ -1,6 +1,8 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <iostream>
 
 // Coment includes
 #include <coment/World.h>
@@ -23,10 +25,11 @@
 
 // Common
 #include "graphics/Initialisation.h"
-#include "graphics/PixelBuffer.h"
+#include "graphics/Drawing.h"
 
 // SDL
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
 
 using namespace coment::samples;
 using namespace coment::samples::balls;
@@ -54,6 +57,8 @@ const int INITIAL_BALLS = 10;
 // 0.001f to convert milliseconds to seconds
 const float GAME_SPEED = 0.001f;
 
+void initGL(int width, int height);
+
 int main(int argc, char** argv)
 {
 	// Timing
@@ -66,14 +71,10 @@ int main(int argc, char** argv)
 	int fps = 0;
 	int lastFPSUpdate;
 
-	// Pixel buffer
-	PixelBuffer pixelBuffer(width, height);
-
 	// SDL structures
 	SDL_Event event;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	SDL_Texture* renderTexture;
 
 	// Seed random number generator
 	srand((unsigned int)time(0));
@@ -91,8 +92,8 @@ int main(int argc, char** argv)
 	// Create renderer
 	renderer = createRenderer(window);
 
-	// Create render texture
-	renderTexture = createTexture(renderer, width, height);
+	// Initialise opengl
+	initGL(width, height);
 
 	// Create entity world
 	coment::World world;
@@ -102,7 +103,7 @@ int main(int argc, char** argv)
 	world.setValue<int>("window_height", INITIAL_HEIGHT);
 
 	// Create and initialise systems
-	RenderingSystem renderingSystem(&pixelBuffer);
+	RenderingSystem renderingSystem;
 	CollisionSystem collisionSystem;
 	MovementSystem movementSystem;
 	GravitySystem gravitySystem;
@@ -127,10 +128,9 @@ int main(int argc, char** argv)
 	// Start main loop
 	world.setValue<bool>("running", true);
 	world.setValue<bool>("rendering_enabled", true);
+
 	while (world.getValue<bool>("running"))
 	{
-		const SDL_Rect screenRect = {0, 0, width, height};
-
 		// Update timer
 		thisUpdate = SDL_GetTicks();
 		dt = thisUpdate - lastUpdate;
@@ -155,14 +155,8 @@ int main(int argc, char** argv)
 					renderingSystem.setEnabled(!renderingSystem.getEnabled());
 					world.setValue("rendering_enabled", renderingSystem.getEnabled());
 
-					// Clear screen to white
-					pixelBuffer.clear(0xFFFFFFFF);
-
-					// Update render texture
-					SDL_UpdateTexture(renderTexture, &screenRect, pixelBuffer.getBuffer(), world.getValue<int>("window_width") * 4);
-
-					// Render texture to screen
-					SDL_RenderCopy(renderer, renderTexture, &screenRect, &screenRect);
+					// Clear screen
+					glClear(GL_COLOR_BUFFER_BIT);
 
 					// Flip screen buffer
 					SDL_RenderPresent(renderer);
@@ -198,20 +192,11 @@ int main(int argc, char** argv)
 
 		if (world.getValue<bool>("rendering_enabled"))
 		{
-			// Clear window
-			SDL_RenderClear(renderer);
-
-			// Clear buffer
-			pixelBuffer.clear(CLEAR_COLOUR);
+			// Clear screen
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			// Run rendering system
 			renderingSystem.update();
-
-			// Blit buffer to screen renderer
-			SDL_UpdateTexture(renderTexture, &screenRect, pixelBuffer.getBuffer(), world.getValue<int>("window_width") * 4);
-
-			// Render texture to screen
-			SDL_RenderCopy(renderer, renderTexture, &screenRect, &screenRect);
 
 			// Flip screen buffer
 			SDL_RenderPresent(renderer);
@@ -251,4 +236,22 @@ int main(int argc, char** argv)
 	SDL_Quit();
 
 	return 0;
+}
+
+void initGL(int width, int height)
+{
+	// Set clear colour
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+	// Set up viewport
+	glViewport(0, 0, width, height);
+
+	// Set up orthographic projection
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0f, width, height, 0.0f, 0.0f, 1.0f);
+
+	// Initialise modelview matrix
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }

@@ -15,7 +15,7 @@ BINPREFIX=samples/balls
 INCDIR=include
 
 CXXFLAGS=-c -Wall $(OPTFLAGS) $(DBGFLAG)
-LDFLAGS=-lSDL2
+LDFLAGS=-lGL -lSDL2
 INCLUDES=-I$(INCDIR) -I../common/include -I../../coment/include
 
 SOURCES=$(shell find src -name "*.cpp")

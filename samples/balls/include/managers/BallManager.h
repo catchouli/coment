@@ -76,7 +76,9 @@ namespace coment
 
 					// And a random colour
 					Colour* colour = _world->addComponent<Colour>(e);
-					*colour = Colour::createFromRGBA(rand() % 255, rand() % 255, rand() % 255, 255);
+					colour->r = (float)rand() / (float)RAND_MAX;;
+					colour->g = (float)rand() / (float)RAND_MAX;;
+					colour->b = (float)rand() / (float)RAND_MAX;;
 
 					// Add entity to bag
 					_balls.push_back(e);

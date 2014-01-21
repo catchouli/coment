@@ -1,11 +1,13 @@
 #ifndef COMENT_BALLS_RENDERINGSYSTEM_H
 #define COMENT_BALLS_RENDERINGSYSTEM_H
 
+#include <iostream>
+
 #include "components/Position.h"
 #include "components/Radius.h"
 #include "components/Colour.h"
 
-#include "graphics/PixelBuffer.h"
+#include "graphics/Drawing.h"
 
 namespace coment
 {
@@ -17,8 +19,7 @@ namespace coment
 				: public coment::EntityProcessingSystem
 			{
 			public:
-				RenderingSystem(PixelBuffer* target)
-					: _target(target)
+				RenderingSystem()
 				{
 
 				}
@@ -40,11 +41,8 @@ namespace coment
 					Colour* colour = _world->getComponent<Colour>(e);
 
 					// Draw circle with properties
-					_target->drawCircle(colour->colour, radius->radius, position->x, position->y);
+					Drawing::fillCircle(position->x, position->y, radius->radius, colour->r, colour->g, colour->b);
 				}
-
-			private:
-				PixelBuffer* _target;
 			};
 		}
 	}

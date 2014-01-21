@@ -11,6 +11,7 @@
 #include "tests/GroupTests.h"
 #include "tests/VariableTests.h"
 #include "tests/UtilsTests.h"
+#include "tests/ComponentMatcherTests.h"
 
 using namespace coment::tests;
 
@@ -30,6 +31,7 @@ int main(int argc, char** argv)
 	tests.push_back(new GroupTests());
 	tests.push_back(new VariableTests());
 	tests.push_back(new UtilsTests());
+	tests.push_back(new ComponentMatcherTests());
 
 	// Run all tests
 	std::cout << "Running all tests" << std::endl;
