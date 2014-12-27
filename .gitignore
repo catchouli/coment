@@ -1,0 +1,4 @@
+/projects/bin
+/projects/obj
+*.opensdf
+*.sdf
