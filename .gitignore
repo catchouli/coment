@@ -1,4 +1,4 @@
-/projects/bin
-/projects/obj
 *.opensdf
 *.sdf
+/projectfiles/Windows/bin
+/projectfiles/Windows/obj

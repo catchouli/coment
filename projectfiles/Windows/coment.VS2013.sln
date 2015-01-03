@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Samples", "04. Samples", "{343F031E-9722-470F-A61D-E5832819E0D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Library", "01. Library", "{70BEAE0A-3554-47FE-9E22-E5D8A3D54267}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Tests", "03. Tests", "{313AB257-9FD6-4A79-B834-E725C67936CD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coment", "..\..\coment\coment.vcxproj", "{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "balls", "..\..\samples\balls\balls.vcxproj", "{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Tools", "02. Tools", "{224DBC95-E3D5-4058-A0F3-1E1F14B6FBDB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reflecgen", "..\..\tools\reflecgen\reflecgen.vcxproj", "{DD05846E-7958-4CC5-807C-9E5281DA54CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}.Debug|Win32.Build.0 = Debug|Win32
+		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}.Release|Win32.ActiveCfg = Release|Win32
+		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}.Release|Win32.Build.0 = Release|Win32
+		{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8}.Debug|Win32.Build.0 = Debug|Win32
+		{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8}.Release|Win32.ActiveCfg = Release|Win32
+		{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8}.Release|Win32.Build.0 = Release|Win32
+		{DD05846E-7958-4CC5-807C-9E5281DA54CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD05846E-7958-4CC5-807C-9E5281DA54CF}.Debug|Win32.Build.0 = Debug|Win32
+		{DD05846E-7958-4CC5-807C-9E5281DA54CF}.Release|Win32.ActiveCfg = Release|Win32
+		{DD05846E-7958-4CC5-807C-9E5281DA54CF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF} = {70BEAE0A-3554-47FE-9E22-E5D8A3D54267}
+		{BA404BA6-217E-4C52-BE2E-A2278A8D6AF8} = {343F031E-9722-470F-A61D-E5832819E0D2}
+		{DD05846E-7958-4CC5-807C-9E5281DA54CF} = {224DBC95-E3D5-4058-A0F3-1E1F14B6FBDB}
+	EndGlobalSection
+EndGlobal
