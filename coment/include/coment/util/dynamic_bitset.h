@@ -8,7 +8,7 @@
 #define BOOST_DYNAMIC_BITSET_PRIVATE public
 #include <boost/dynamic_bitset.hpp>
 
-#include "combined_hash.h"
+#include "coment/util/combined_hash.h"
 
 namespace coment
 {

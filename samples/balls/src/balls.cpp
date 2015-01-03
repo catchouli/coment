@@ -6,12 +6,12 @@
 #include <vector>
 #include <sstream>
 
-#include <util/dynamic_bitset.h>
-
-#include <managers/EntityManager.h>
-#include <managers/ComponentManager.h>
-#include <util/TypeEnumerator.h>
-#include <util/EntityMap.h>
+#include <coment/World.h>
+#include <coment/managers/EntityManager.h>
+#include <coment/managers/ComponentManager.h>
+#include <coment/util/TypeEnumerator.h>
+#include <coment/util/EntityMap.h>
+#include <coment/util/dynamic_bitset.h>
 
 namespace boost
 {
@@ -29,35 +29,28 @@ using namespace coment;
 
 int main(int argc, char** argv)
 {
-    EntityManager em;
-    ComponentManager cm;
+    World world;
 
-    // Temporary create entity function while callbacks aren't implemented
-    auto createEntity = [&em, &cm]()
-    {
-        Entity e = em.createEntity();
+    // Add managers to world
+    EntityManager* em = world.getManager<EntityManager>();
+    ComponentManager* cm = world.getManager<ComponentManager>();
+    world.addManager<EntityManager>();
 
-        em.onEntityAdded(e);
-        cm.onEntityAdded(e);
+    Entity e1 = em->createEntity();
+    Entity e2 = em->createEntity();
 
-        return e;
-    };
+    cm->addComponent<int>(e1, 5);
+    cm->addComponent<char>(e1, 5);
+    cm->addComponent<short>(e1, 5);
 
-    Entity e1 = createEntity();
-    Entity e2 = createEntity();
+    auto m1 = cm->getEntityMap<int, char, short>();
 
-    cm.addComponent<int>(e1, 5);
-    cm.addComponent<char>(e1, 5);
-    cm.addComponent<short>(e1, 5);
+    cm->addComponent<float>(e2, 5.0f);
+    cm->removeComponent<int>(e1);
 
-    auto m1 = cm.getEntityMap<int, char, short>();
-
-    cm.addComponent<float>(e2, 5.0f);
-    cm.removeComponent<int>(e1);
-
-    cm.addComponent<int>(e2, 5);
-    cm.addComponent<char>(e2, 5);
-    cm.addComponent<short>(e2, 5);
+    cm->addComponent<int>(e2, 5);
+    cm->addComponent<char>(e2, 5);
+    cm->addComponent<short>(e2, 5);
 
     system("pause");
 }

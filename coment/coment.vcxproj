@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;COMENT_COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -65,7 +65,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;COMENT_COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -75,8 +75,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\DLL.h" />
-    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\coment\DLL.h" />
+    <ClInclude Include="include\coment\Entity.h" />
+    <ClInclude Include="include\coment\managers\ComponentManager.h" />
+    <ClInclude Include="include\coment\managers\EntityManager.h" />
+    <ClInclude Include="include\coment\managers\Manager.h" />
+    <ClInclude Include="include\coment\util\combined_hash.h" />
+    <ClInclude Include="include\coment\util\dynamic_bitset.h" />
+    <ClInclude Include="include\coment\util\EntityMap.h" />
+    <ClInclude Include="include\coment\util\TypeEnumerator.h" />
+    <ClInclude Include="include\coment\World.h" />
     <ClInclude Include="include\managers\ComponentManager.h" />
     <ClInclude Include="include\managers\EntityManager.h" />
     <ClInclude Include="include\managers\Manager.h" />
@@ -86,11 +94,15 @@
     <ClInclude Include="include\util\TypeEnumerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\managers\ComponentManager.cpp" />
     <ClCompile Include="src\managers\EntityManager.cpp" />
     <ClCompile Include="src\util\EntityMap.cpp" />
     <ClCompile Include="src\util\TypeEnumerator.cpp" />
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="include\coment\util\EntityMap.inl" />
+    <None Include="include\coment\util\TypeEnumerator.inl" />
     <None Include="include\util\EntityMap.inl" />
     <None Include="include\util\TypeEnumerator.inl" />
   </ItemGroup>

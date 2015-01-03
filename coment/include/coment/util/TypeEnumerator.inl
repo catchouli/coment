@@ -1,7 +1,14 @@
-#include "TypeEnumerator.h"
+#include "coment/util/TypeEnumerator.h"
 
 namespace coment
 {
+
+    /** Initialise mNextTypeId */
+    inline TypeEnumerator::TypeEnumerator()
+        : mNextTypeId(0)
+    {
+
+    }
 
     /** Get whether the type is known */
     template <typename T>
@@ -34,7 +41,7 @@ namespace coment
     }
 
     /** Get current maximum ID */
-    unsigned int TypeEnumerator::getCurrentMax()
+    inline unsigned int TypeEnumerator::getCurrentMax()
     {
         return mNextTypeId - 1;
     }

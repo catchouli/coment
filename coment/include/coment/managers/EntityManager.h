@@ -1,10 +1,10 @@
 #pragma once
 
-#include "DLL.h"
-
 #include <vector>
-#include "Manager.h"
-#include "../Entity.h"
+
+#include "coment/DLL.h"
+#include "coment/Entity.h"
+#include "coment/managers/Manager.h"
 
 namespace coment
 {
@@ -24,7 +24,7 @@ namespace coment
         COMENT_API EntityManager();
 
         /** Creates or recycles an entity */
-        COMENT_API Entity createEntity();
+        Entity COMENT_API createEntity();
 
     private:
 

@@ -1,4 +1,4 @@
-#include "managers/EntityManager.h"
+#include "coment/managers/EntityManager.h"
 
 namespace coment
 {
@@ -40,8 +40,11 @@ namespace coment
             mEntityInfo[entity.mId].uniqueId = entity.mUniqueId;
         }
 
-        // TODO: other required operations on the new entity
-        // (i.e. initialising it with other managers)
+        // Callback: onEntityAdded
+        for (Manager* manager : *mManagers)
+        {
+            manager->onEntityAdded(entity);
+        }
 
         return entity;
     }

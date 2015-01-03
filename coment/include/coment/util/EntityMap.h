@@ -1,8 +1,8 @@
 #pragma once
 
-#include "TypeEnumerator.h"
-#include "dynamic_bitset.h"
-#include "../Entity.h"
+#include "coment/Entity.h"
+#include "coment/util/dynamic_bitset.h"
+#include "coment/util/TypeEnumerator.h"
 
 #include <vector>
 #include <memory>
