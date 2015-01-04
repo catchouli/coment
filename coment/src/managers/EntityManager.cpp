@@ -4,7 +4,6 @@
 
 namespace coment
 {
-
     /** Default constructor. Initialises members */
     COMENT_API EntityManager::EntityManager()
         : mNextAvailableUniqueId(0)
@@ -117,5 +116,4 @@ namespace coment
         // Clear waiting list
         mEntitiesAwaitingDeath.clear();
     }
-
 }

@@ -101,6 +101,9 @@
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="include\coment\Entity.inl" />
+    <None Include="include\coment\managers\ComponentManager.inl" />
+    <None Include="include\coment\managers\EntityManager.inl" />
     <None Include="include\coment\util\EntityMap.inl" />
     <None Include="include\coment\util\TypeEnumerator.inl" />
     <None Include="include\util\EntityMap.inl" />

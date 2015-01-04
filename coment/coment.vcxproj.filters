@@ -97,5 +97,14 @@
     <None Include="include\coment\util\TypeEnumerator.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="include\coment\managers\EntityManager.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\managers\ComponentManager.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\Entity.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

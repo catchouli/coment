@@ -2,7 +2,6 @@
 
 namespace coment
 {
-
     /** Update entity maps (mEntitiesByComponentBitmask) with a modified component bitmask */
     void ComponentManager::updateEntityMaps(Entity e,
         const dynamic_bitset<>& oldBitmask, const dynamic_bitset<>& newBitmask)

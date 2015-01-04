@@ -36,4 +36,4 @@ namespace coment
     };
 }
 
-#include "TypeEnumerator.inl"
+#include "coment/util/TypeEnumerator.inl"
