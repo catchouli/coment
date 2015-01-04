@@ -88,6 +88,11 @@ namespace coment
     template <typename T>
     T* World::getManager() const
     {
+        auto it = mManagers.find(typeid(T));
+
+        if (it == mManagers.end())
+            return nullptr;
+
         return static_cast<T*>(mManagers.at(typeid(T)).get());
     }
 
