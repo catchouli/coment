@@ -78,9 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\tests\EntityTests.cpp" />
+    <ClCompile Include="src\tests\entity_tests\entity_creation.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\tests\VectorTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

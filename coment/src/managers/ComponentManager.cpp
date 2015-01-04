@@ -43,7 +43,17 @@ namespace coment
     /** Update storage when an entity is added */
     void COMENT_API ComponentManager::onEntityAdded(const Entity& e)
     {
-        // TODO: move this into a source file (not done for now so we don't have to export it..)
+        //// Add entity to array
+        //if (mEntityInfo.size() <= (unsigned int)e.getId())
+        //    mEntityInfo.resize(e.getId() + 1);
+
+        //// Insert or update entity
+        //mEntityInfo[e.getId()].alive = true;
+        //mEntityInfo[e.getId()].uniqueId = e.getUniqueId();
+
+        //// Update length of bitmasks
+        //for ()
+
         // Add entity to array
         if (mEntityArray.size() <= (unsigned int)e.getId())
             mEntityArray.resize(e.getId() + 1);
@@ -66,5 +76,11 @@ namespace coment
                 mComponentBitmasks[i].resize(mTypeEnumerator.getCurrentMax() + 1);
             }
         }
+    }
+
+    /** Called when an entity is removed from the manager */
+    void COMENT_API ComponentManager::onEntityRemoved(const Entity& e)
+    {
+
     }
 }

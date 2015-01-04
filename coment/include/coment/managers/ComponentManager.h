@@ -11,6 +11,25 @@
 
 namespace coment
 {
+    /** Meta information about an entity in relation to its components */
+    struct EntityComponentInfo
+    {
+        /** Default values */
+        EntityComponentInfo() :
+            alive(false),
+            uniqueId(-1)
+        {}
+
+        /** Whether an entity has been added to this manager */
+        bool alive;
+
+        /** The unique ID of this entity */
+        EntityId uniqueId;
+
+        /** The component bitmask of this entity */
+        dynamic_bitset<> componentBitmask;
+    };
+
     /** The manager responsible for creation and storage of components */
     class ComponentManager
         : public Manager
@@ -33,6 +52,9 @@ namespace coment
 
         /** Called when an entity is added to the manager */
         void COMENT_API onEntityAdded(const Entity& e) override;
+
+        /** Called when an entity is removed from the manager */
+        void COMENT_API onEntityRemoved(const Entity& e) override;
 
     private:
 
@@ -61,6 +83,9 @@ namespace coment
 
         /** Arrays of component types tracked by this manager */
         std::vector<std::shared_ptr<void>> mComponentArrays;
+
+        /** Component info for all entities */
+        //std::vector<EntityComponentInfo> mEntityInfo;
 
         /** Component bitmasks for all entities */
         std::vector<dynamic_bitset<>> mComponentBitmasks;

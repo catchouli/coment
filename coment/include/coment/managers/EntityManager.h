@@ -11,8 +11,12 @@ namespace coment
     /** Meta information about an entity */
     struct EntityInfo
     {
-        /** Set default unique ID to -1 */
-        EntityInfo() : uniqueId(-1), living(false), awaitingDeath(false) {}
+        /** Default values */
+        EntityInfo() :
+            uniqueId(-1),
+            living(false),
+            awaitingDeath(false)
+        {}
 
         /** The unique ID of the entity */
         int uniqueId;
