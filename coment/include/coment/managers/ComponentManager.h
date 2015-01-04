@@ -38,7 +38,11 @@ namespace coment
 
         /** Add a component to an entity */
         template <typename T, typename... Args>
-        void addComponent(Entity e, Args... args);
+        T* addComponent(Entity e, Args... args);
+
+        /** Get a component from an entity */
+        template <typename T>
+        T* getComponent(Entity e);
 
         /** Remove a component from an entity */
         template <typename T>
@@ -78,6 +82,9 @@ namespace coment
         template <typename T1, typename T2, typename... ComponentTypes>
         dynamic_bitset<> getComponentTypes();
 
+        /** Check if an entity is valid */
+        bool isEntityAlive(Entity e) const;
+
         /** A type enumerator for mapping types to ascending integer IDs */
         TypeEnumerator mTypeEnumerator;
 
@@ -85,13 +92,7 @@ namespace coment
         std::vector<std::shared_ptr<void>> mComponentArrays;
 
         /** Component info for all entities */
-        //std::vector<EntityComponentInfo> mEntityInfo;
-
-        /** Component bitmasks for all entities */
-        std::vector<dynamic_bitset<>> mComponentBitmasks;
-
-        /** Entity array for all entities, dead or alive */
-        std::vector<Entity> mEntityArray;
+        std::vector<EntityComponentInfo> mEntityInfo;
 
         /** Map of component bitmasks to entity arrays */
         std::unordered_map<dynamic_bitset<>, std::shared_ptr<std::vector<Entity>>> mEntitiesByComponentBitmask;
@@ -100,8 +101,15 @@ namespace coment
 
     /** Add a component to an entity */
     template <typename T, typename... Args>
-    void ComponentManager::addComponent(Entity e, Args... args)
+    T* ComponentManager::addComponent(Entity e, Args... args)
     {
+        // Check if entity is valid and alive
+        if (!isEntityAlive(e))
+        {
+            // TODO: add proper exception types
+            throw 42;
+        }
+
         // Get type ID for type
         unsigned int typeId = getComponentTypeId<T>();
 
@@ -113,26 +121,58 @@ namespace coment
 
         // Update component mask for entity
         // Get component bitmask
-        dynamic_bitset<>& componentBitmask = mComponentBitmasks[e.getId()];
+        dynamic_bitset<>& componentBitmask = mEntityInfo[e.getId()].componentBitmask;
 
         // Update component bitmask
         dynamic_bitset<> oldBitmask = componentBitmask;
+
+        if (componentBitmask.size() <= typeId)
+            componentBitmask.resize(typeId + 1);
+
         componentBitmask.set(typeId, true);
 
         // Update mEntitiesByComponentBitmask arrays
         updateEntityMaps(e, oldBitmask, componentBitmask);
+
+        // Return a pointer to the new component
+        return &componentArray[e.getId()];
+    }
+
+    /** Get a component from an entity */
+    template <typename T>
+    T* ComponentManager::getComponent(Entity e)
+    {
+        // Check if entity is valid and alive
+        if (!isEntityAlive(e))
+        {
+            // TODO: add proper exception types
+            throw 42;
+        }
+
+        // Get component array for type
+        std::vector<T>& componentArray = *getComponentArray<T>();
+
+        // Get component
+        return &componentArray[e.getId()];
     }
 
     /** Remove a component from an entity */
     template <typename T>
     void ComponentManager::removeComponent(Entity e)
     {
+        // Check if entity is valid and alive
+        if (!isEntityAlive(e))
+        {
+            // TODO: add proper exception types
+            throw 42;
+        }
+
         // Get type id for type
         unsigned int typeId = getComponentTypeId<T>();
 
         // Update component mask for entity
         // Get component bitmask
-        dynamic_bitset<>& componentBitmask = mComponentBitmasks[e.getId()];
+        dynamic_bitset<>& componentBitmask = mEntityInfo[e.getId()].componentBitmask;
 
         // Update component bitmask
         dynamic_bitset<> oldBitmask = componentBitmask;
@@ -162,14 +202,17 @@ namespace coment
             mEntitiesByComponentBitmask[componentTypes] = entityArray;
 
             // Populate it for the first time
-            for (int i = 0; i < (int)mComponentBitmasks.size(); ++i)
+            for (unsigned int i = 0; i < mEntityInfo.size(); ++i)
             {
-                dynamic_bitset<>& bitmask = mComponentBitmasks[i];
-
-                // Check if this bitmask has all required components
-                if (componentTypes.is_subset_of(bitmask))
+                if (mEntityInfo[i].alive)
                 {
-                    entityArray->push_back(mEntityArray[i]);
+                    dynamic_bitset<>& bitmask = mEntityInfo[i].componentBitmask;
+
+                    // Check if this bitmask has all required components
+                    if (componentTypes.is_subset_of(bitmask))
+                    {
+                        entityArray->push_back(Entity(i, mEntityInfo[i].uniqueId));
+                    }
                 }
             }
         }
@@ -185,34 +228,8 @@ namespace coment
     template <typename T>
     unsigned int ComponentManager::getComponentTypeId()
     {
-        bool newType = !mTypeEnumerator.isTypeKnown<T>();
-
         // Get type id
         unsigned int id = mTypeEnumerator.getTypeId<T>();
-
-        // Resize arrays if this is a new type
-        if (newType)
-        {
-            for (auto& bitmask : mComponentBitmasks)
-            {
-                // known type count = mTypeEnumerator.getCurrentMax() + 1
-                bitmask.resize(mTypeEnumerator.getCurrentMax() + 1);
-            }
-
-            // Update map with new length bitmasks
-            std::unordered_map<dynamic_bitset<>, std::shared_ptr<std::vector<Entity>>> newEntityMap;
-
-            for (auto& pair : mEntitiesByComponentBitmask)
-            {
-                // known type count = mTypeEnumerator.getCurrentMax() + 1
-                dynamic_bitset<> newBitmask = pair.first;
-                newBitmask.resize(mTypeEnumerator.getCurrentMax() + 1);
-                newEntityMap[newBitmask] = pair.second;
-            }
-
-            // Replace old map
-            mEntitiesByComponentBitmask = newEntityMap;
-        }
 
         return id;
     }
@@ -243,8 +260,8 @@ namespace coment
         std::vector<T>* arr = static_cast<std::vector<T>*>(mComponentArrays[id].get());
 
         // Resize to number of entities if smaller
-        if (arr->size() < mComponentBitmasks.size())
-            arr->resize(mComponentBitmasks.size());
+        if (arr->size() < mEntityInfo.size())
+            arr->resize(mEntityInfo.size());
 
         return arr;
     }
@@ -292,5 +309,21 @@ namespace coment
         combine(componentTypes, getComponentTypes<T2, ComponentTypes...>());
 
         return componentTypes;
+    }
+
+    /** Check if an entity is valid */
+    inline bool ComponentManager::isEntityAlive(Entity e) const
+    {
+        // Check the entity is initialised
+        if (!e.isInitialised())
+            return false;
+
+        // Check the entity hasn't been recycled
+        if (e.getUniqueId() != mEntityInfo[e.getId()].uniqueId)
+            return false;
+
+        // This entity definitely refers to mEntityInfo[e.mId],
+        // so check that the entity is alive
+        return mEntityInfo[e.getId()].alive;
     }
 }

@@ -16,6 +16,9 @@ namespace coment
         /** Construct an entity with invalid (default) IDs */
         Entity();
 
+        /** Construct an entity of given IDs */
+        Entity(int id, int uniqueId);
+
         /** Get the ID of this entity */
         EntityId getId() const;
 
@@ -31,9 +34,6 @@ namespace coment
     private:
 
         friend class EntityManager;
-
-        /** Construct an entity of given IDs */
-        Entity(int id, int uniqueId);
 
         /** The ID of this entity. Only one living entity will have this ID
              at any one time. */

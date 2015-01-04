@@ -94,13 +94,13 @@ namespace coment
     /* Specilisations for default managers */
 
     template <>
-    EntityManager* World::getManager() const
+    inline EntityManager* World::getManager() const
     {
         return mEntityManager;
     }
 
     template <>
-    ComponentManager* World::getManager() const
+    inline ComponentManager* World::getManager() const
     {
         return mComponentManager;
     }

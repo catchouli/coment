@@ -22,7 +22,7 @@ namespace coment
         /** Create a new entity map from a given bitset and container */
         EntityMap(dynamic_bitset<> componentTypes, std::shared_ptr<std::vector<Entity>> entities);
 
-    private:
+    //private:
 
         /** The component types that these entities include */
         dynamic_bitset<> mComponentTypes;

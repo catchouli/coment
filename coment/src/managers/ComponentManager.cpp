@@ -43,44 +43,23 @@ namespace coment
     /** Update storage when an entity is added */
     void COMENT_API ComponentManager::onEntityAdded(const Entity& e)
     {
-        //// Add entity to array
-        //if (mEntityInfo.size() <= (unsigned int)e.getId())
-        //    mEntityInfo.resize(e.getId() + 1);
-
-        //// Insert or update entity
-        //mEntityInfo[e.getId()].alive = true;
-        //mEntityInfo[e.getId()].uniqueId = e.getUniqueId();
-
-        //// Update length of bitmasks
-        //for ()
-
         // Add entity to array
-        if (mEntityArray.size() <= (unsigned int)e.getId())
-            mEntityArray.resize(e.getId() + 1);
+        if (mEntityInfo.size() <= (unsigned int)e.getId())
+            mEntityInfo.resize(e.getId() + 1);
 
         // Insert or update entity
-        mEntityArray[e.getId()] = e;
-
-        // Reserve bitmasks for entity
-        unsigned int bitmaskCount = mComponentBitmasks.size();
-
-        if (bitmaskCount <= (unsigned int)e.getId())
-        {
-            // Create bitmasks for new entities
-            mComponentBitmasks.resize(e.getId() + 1);
-
-            // Make the new ones the right size
-            for (unsigned int i = bitmaskCount; i < mComponentBitmasks.size(); ++i)
-            {
-                // The current number of registered types = mTypeEnumerator.getCurrentMax() + 1
-                mComponentBitmasks[i].resize(mTypeEnumerator.getCurrentMax() + 1);
-            }
-        }
+        mEntityInfo[e.getId()].alive = true;
+        mEntityInfo[e.getId()].uniqueId = e.getUniqueId();
+        mEntityInfo[e.getId()].componentBitmask = dynamic_bitset<>();
     }
 
     /** Called when an entity is removed from the manager */
     void COMENT_API ComponentManager::onEntityRemoved(const Entity& e)
     {
+        // Remove entity from all maps
+        updateEntityMaps(e, mEntityInfo[e.getId()].componentBitmask, dynamic_bitset<>());
 
+        // Reset entity
+        mEntityInfo[e.getId()] = EntityComponentInfo();
     }
 }

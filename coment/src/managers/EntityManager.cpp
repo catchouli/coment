@@ -24,7 +24,6 @@ namespace coment
 
             // Initialise new entity info
             EntityInfo entityInfo = mEntityInfo.back();
-            entityInfo.uniqueId = mNextAvailableUniqueId++;
 
             // Create new Entity
             entity = Entity(nextId, entityInfo.uniqueId);
@@ -34,11 +33,11 @@ namespace coment
             // Recycle dead entity
             entity = mDeadEntities.back();
             mDeadEntities.pop_back();
-
-            // Create new unique ID
-            entity.mUniqueId = mNextAvailableUniqueId++;
-            mEntityInfo[entity.mId].uniqueId = entity.mUniqueId;
         }
+
+        // Create new unique ID
+        entity.mUniqueId = mNextAvailableUniqueId++;
+        mEntityInfo[entity.mId].uniqueId = entity.mUniqueId;
 
         // Update entity info
         mEntityInfo[entity.mId].living = true;
@@ -61,10 +60,8 @@ namespace coment
     void COMENT_API EntityManager::destroyEntity(Entity& e)
     {
         // Check this entity is valid
-        if (!e.isInitialised())
+        if (!isLiving(e))
             throw 42;
-
-        // Check this entity is alive
 
         // Check this entity isn't already waiting for death
         auto waitingIter = std::find(mEntitiesAwaitingDeath.begin(),

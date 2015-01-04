@@ -7,7 +7,7 @@ using namespace coment;
 
 SCENARIO("entities are created", "[entity]")
 {
-    GIVEN("A new entity world")
+    GIVEN("a new entity world")
     {
         // Create world and get entity manager
         World world;

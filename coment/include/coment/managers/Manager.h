@@ -30,6 +30,8 @@ namespace coment
 
         friend class World;
 
+        // TODO: this should be a const container to non-const objects,
+        // but no such container exists in c++ (as far as I know)
         /** All managers known by this manager's world */
         std::vector<Manager*>* mManagers;
     };

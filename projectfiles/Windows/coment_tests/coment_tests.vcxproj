@@ -78,8 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\tests\entity_tests\entity_creation.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\tests\component_tests\component_addition.cpp" />
+    <ClCompile Include="src\tests\entity_tests\entity_creation.cpp" />
+    <ClCompile Include="src\tests\util_tests\bitset_comparison.cpp" />
+    <ClCompile Include="src\tests\util_tests\bitset_subset.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
