@@ -22,6 +22,12 @@ namespace coment
         /** Get the current unique ID of this entity */
         EntityId getUniqueId() const;
 
+        /** Check if this entity has been initialised by checking its IDs */
+        bool isInitialised() const;
+
+        /** Check if two entities are the same by checking their IDs */
+        bool operator==(const Entity& other);
+
     private:
 
         friend class EntityManager;
@@ -62,6 +68,18 @@ namespace coment
     inline EntityId Entity::getUniqueId() const
     {
         return mUniqueId;
+    }
+
+    /** Check if this entity has been initialised by checking its IDs */
+    inline bool Entity::isInitialised() const
+    {
+        return (mId != -1 && mUniqueId != -1);
+    }
+
+    /** Check if two entities are the same by checking their IDs */
+    inline bool Entity::operator==(const Entity& other)
+    {
+        return mId == other.mId && mUniqueId == other.mUniqueId;
     }
 
 }

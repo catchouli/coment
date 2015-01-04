@@ -12,4 +12,22 @@ namespace coment
         mEntityManager = addManager<EntityManager>();
         mComponentManager = addManager<ComponentManager>();
     }
+
+    /** Update all systems and managers */
+    void COMENT_API World::update()
+    {
+        // Manager Callback: preUpdate
+        // Notify managers that an update is about to occur
+        for (auto& mgr : mManagerPointerVec)
+        {
+            mgr->preUpdate();
+        }
+
+        // Manager Callback: postUpdate
+        // Notify managers that an update has just occurred
+        for (auto& mgr : mManagerPointerVec)
+        {
+            mgr->postUpdate();
+        }
+    }
 }

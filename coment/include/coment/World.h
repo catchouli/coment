@@ -5,7 +5,6 @@
 #include <typeindex>
 #include <memory>
 #include <type_traits>
-#include <cassert>
 
 #include "coment/DLL.h"
 #include "coment/managers/Manager.h"
@@ -21,6 +20,9 @@ namespace coment
 
         /** Create default managers and initialise the world */
         COMENT_API World();
+
+        /** Update all systems and managers */
+        void COMENT_API update();
 
         /** Add a manager to the world, initialised with Args... */
         template <typename T, typename... Args>
@@ -50,6 +52,7 @@ namespace coment
 
     };
 
+    /** Add a manager to the world, initialised with Args... */
     template <typename T, typename... Args>
     T* World::addManager(Args... args)
     {
@@ -63,18 +66,9 @@ namespace coment
         auto mapIt = mManagers.find(typeid(T));
         if (mapIt != mManagers.end())
         {
-            // Remove from map
-            std::shared_ptr<Manager> oldmgr = mapIt->second;
-            mManagers.erase(mapIt);
-            
-            // Remove from vector
-            auto begin = mManagerPointerVec.begin();
-            auto end = mManagerPointerVec.end();
-            auto vecIt = std::find(begin, end, oldmgr.get());
-
-            // The vector should definitely contain this manager if it was in the map
-            assert(vecIt != mManagerPointerVec.end());
-            mManagerPointerVec.erase(vecIt);
+            // Disallow re-adding the same type of manager, because it would invalidate the old pointers..
+            // TODO: make a real exception type for this
+            throw 12;
         }
 
         // Store manager in map
@@ -90,11 +84,14 @@ namespace coment
         return mgr.get();
     }
 
+    /** Get a manager from the world */
     template <typename T>
     T* World::getManager() const
     {
         return static_cast<T*>(mManagers.at(typeid(T)).get());
     }
+
+    /* Specilisations for default managers */
 
     template <>
     EntityManager* World::getManager() const

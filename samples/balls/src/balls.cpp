@@ -34,7 +34,6 @@ int main(int argc, char** argv)
     // Add managers to world
     EntityManager* em = world.getManager<EntityManager>();
     ComponentManager* cm = world.getManager<ComponentManager>();
-    world.addManager<EntityManager>();
 
     Entity e1 = em->createEntity();
     Entity e2 = em->createEntity();

@@ -40,13 +40,83 @@ namespace coment
             mEntityInfo[entity.mId].uniqueId = entity.mUniqueId;
         }
 
-        // Callback: onEntityAdded
+        // Update entity info
+        mEntityInfo[entity.mId].living = true;
+
+        // Make entity living
+        mLivingEntities.push_back(entity);
+
+        // Manager Callback: onEntityAdded
         for (Manager* manager : *mManagers)
         {
             manager->onEntityAdded(entity);
         }
 
         return entity;
+    }
+
+    /** Destroys an entity and recycles its ID. This is delayed until the next
+        update cycle, in order to prevent modification of associated containers
+        while the world is updating */
+    void COMENT_API EntityManager::destroyEntity(Entity& e)
+    {
+        // Check this entity is valid
+        if (!e.isInitialised())
+            throw 42;
+
+        // Check this entity is alive
+
+        // Check this entity isn't already waiting for death
+        auto waitingIter = std::find(mEntitiesAwaitingDeath.begin(),
+            mEntitiesAwaitingDeath.end(), e);
+
+        // TODO: make real exception types
+        if (waitingIter != mEntitiesAwaitingDeath.end())
+            throw 43;
+
+        // Register entity for delayed death
+        mEntitiesAwaitingDeath.push_back(e);
+
+        // Invalidate the user's entity object
+        e = Entity();
+    }
+
+    /** Handles dead entities once an update has ended */
+    void COMENT_API EntityManager::postUpdate()
+    {
+        for (auto& ent : mEntitiesAwaitingDeath)
+        {
+            // Find entity in alive list
+            auto it = std::find(mLivingEntities.begin(), mLivingEntities.end(), ent);
+
+            if (it != mLivingEntities.end())
+            {
+                mLivingEntities.erase(it);
+            }
+            else
+            {
+                fprintf(stderr, "CRITICAL: entity waiting for death but not alive\n");
+                continue;
+            }
+
+            // Add entity to dead list and invalidate unique ID
+            ent.mUniqueId = -1;
+            mEntityInfo[ent.mId].uniqueId = -1;
+            mDeadEntities.push_back(ent);
+
+            // Update entity info
+            mEntityInfo[ent.mId].living = false;
+
+            // Manager Callback: onEntityRemoved
+            // Notify managers that the entity should be removed
+            for (Manager* manager : *mManagers)
+            {
+                manager->onEntityRemoved(ent);
+            }
+        }
+
+        // Clear waiting list
+        mEntitiesAwaitingDeath.clear();
     }
 
 }
