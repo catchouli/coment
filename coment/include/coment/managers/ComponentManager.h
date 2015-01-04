@@ -37,6 +37,8 @@ namespace coment
     {
     public:
 
+        /* Template API */
+
         /** Add a component to an entity */
         template <typename T, typename... Args>
         T* addComponent(Entity e, Args... args);
@@ -52,6 +54,12 @@ namespace coment
         /** Get an entity -> component map for a specific set of components */
         template <typename... ComponentTypes>
         EntityMap<ComponentTypes...> getEntityMap();
+
+        /* Non-typesafe API - requires component types to be registered with
+           REGISTER_COMPONENT*/
+
+        /** Add a component to an entity by component type name */
+        COMENT_API void* addComponent(Entity e, const char* typeName);
 
         /* Callbacks */
 

@@ -1,7 +1,22 @@
 #include "coment/managers/ComponentManager.h"
 
+#include "coment/reflection/TypeRegistry.h"
+
 namespace coment
 {
+
+    /* Non-typesafe API - requires component types to be registered with
+    REGISTER_COMPONENT*/
+
+    /** Add a component to an entity by component type name */
+    COMENT_API void* ComponentManager::addComponent(Entity e, const char* typeName)
+    {
+        // Get relevant array
+        //void* arr = (void*)mCompon[TypeInfoRegistry::typeInfoRegistry[typeName].type_info].get();
+
+        return nullptr;
+    }
+
     /** Update entity maps (mEntitiesByComponentBitmask) with a modified component bitmask */
     void ComponentManager::updateEntityMaps(Entity e,
         const dynamic_bitset<>& oldBitmask, const dynamic_bitset<>& newBitmask)

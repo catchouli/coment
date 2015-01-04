@@ -75,11 +75,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\coment\Component.h" />
     <ClInclude Include="include\coment\DLL.h" />
     <ClInclude Include="include\coment\Entity.h" />
     <ClInclude Include="include\coment\managers\ComponentManager.h" />
     <ClInclude Include="include\coment\managers\EntityManager.h" />
     <ClInclude Include="include\coment\managers\Manager.h" />
+    <ClInclude Include="include\coment\reflection\Macros.h" />
+    <ClInclude Include="include\coment\reflection\MemberOffset.h" />
     <ClInclude Include="include\coment\systems\EntitySystem.h" />
     <ClInclude Include="include\coment\systems\System.h" />
     <ClInclude Include="include\coment\util\combined_hash.h" />
@@ -90,12 +93,14 @@
     <ClInclude Include="include\managers\ComponentManager.h" />
     <ClInclude Include="include\managers\EntityManager.h" />
     <ClInclude Include="include\managers\Manager.h" />
+    <ClInclude Include="include\coment\reflection\TypeRegistry.h" />
     <ClInclude Include="include\util\dynamic_bitset.h" />
     <ClInclude Include="include\util\EntityMap.h" />
     <ClInclude Include="include\util\combined_hash.h" />
     <ClInclude Include="include\util\TypeEnumerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\reflection\TypeRegistry.cpp" />
     <ClCompile Include="src\managers\ComponentManager.cpp" />
     <ClCompile Include="src\managers\EntityManager.cpp" />
     <ClCompile Include="src\World.cpp" />

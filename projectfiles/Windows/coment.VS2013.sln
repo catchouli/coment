@@ -20,10 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Tools", "02. Tools", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reflecgen", "..\..\tools\reflecgen\reflecgen.vcxproj", "{DD05846E-7958-4CC5-807C-9E5281DA54CF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coment_tests", "coment_tests\coment_tests.vcxproj", "{C4D9E708-81A2-4FF8-AE3A-EC316571BEC8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{31B9B518-0B1A-44FB-9FC0-B46EB6182FCF} = {31B9B518-0B1A-44FB-9FC0-B46EB6182FCF}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coment_tests", "..\..\coment_tests\coment_tests.vcxproj", "{C4D9E708-81A2-4FF8-AE3A-EC316571BEC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

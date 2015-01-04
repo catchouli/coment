@@ -14,6 +14,11 @@ namespace coment
         /** Initialise mNextTypeId */
         TypeEnumerator();
 
+        /** Get current maximum ID */
+        unsigned int getCurrentMax();
+
+        /* Typesafe interface */
+
         /** Get whether the type is known */
         template <typename T>
         bool isTypeKnown() const;
@@ -22,8 +27,13 @@ namespace coment
         template <typename T>
         unsigned int getTypeId();
 
-        /** Get current maximum ID */
-        unsigned int getCurrentMax();
+        /* Non typesafe interface */
+
+        /** Get whether the type is known by type_info */
+        bool isTypeKnown(const std::type_info& type_info) const;
+
+        /* Non typesafe interface by type_info */
+        unsigned int getTypeId(const std::type_info& type_info);
 
     private:
 
