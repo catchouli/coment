@@ -1,28 +1,22 @@
 #pragma once
 
 #include <coment/Entity.h>
-#include <coment/managers/Manager.h>
+#include <coment/systems/System.h>
 
-class DefaultManager
-    : public coment::Manager
-{
-
-};
-
-class CallbackTestManager
-    : public coment::Manager
+class CallbackTestSystem
+    : public coment::System
 {
 public:
 
     /* Callbacks */
 
-    /** Called when an entity is added to the manager */
+    /** Called when an entity is added to the system */
     void onEntityAdded(const coment::Entity& e) override
     {
         onEntityAddedCalls++;
     }
 
-    /** Called when an entity is removed from the manager */
+    /** Called when an entity is removed from the system */
     void onEntityRemoved(const coment::Entity& e) override
     {
         onEntityRemovedCalls++;
@@ -32,6 +26,12 @@ public:
     void preUpdate() override
     {
         preUpdateCalls++;
+    }
+
+    /** Called while the world is updated */
+    void onUpdate() override
+    {
+        onUpdateCalls++;
     }
 
     /** Called after the world is updated */
@@ -44,6 +44,7 @@ public:
     int onEntityAddedCalls = 0;
     int onEntityRemovedCalls = 0;
     int preUpdateCalls = 0;
+    int onUpdateCalls = 0;
     int postUpdateCalls = 0;
 
 };

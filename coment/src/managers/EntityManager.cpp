@@ -1,5 +1,7 @@
 #include "coment/managers/EntityManager.h"
 
+#include "coment/systems/System.h"
+
 #include <stdexcept>
 
 namespace coment
@@ -50,6 +52,12 @@ namespace coment
         for (Manager* manager : *mManagers)
         {
             manager->onEntityAdded(entity);
+        }
+
+        // System Callback: onEntityAdded
+        for (System* system : *mSystems)
+        {
+            system->onEntityAdded(entity);
         }
 
         return entity;
@@ -110,6 +118,12 @@ namespace coment
             for (Manager* manager : *mManagers)
             {
                 manager->onEntityRemoved(ent);
+            }
+
+            // System Callback: onEntityRemoved
+            for (System* system : *mSystems)
+            {
+                system->onEntityRemoved(ent);
             }
         }
 

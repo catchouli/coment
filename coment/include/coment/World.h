@@ -8,6 +8,8 @@
 
 #include "coment/DLL.h"
 #include "coment/managers/Manager.h"
+#include "coment/systems/System.h"
+#include "coment/util/TypeMap.h"
 
 namespace coment
 {
@@ -32,68 +34,98 @@ namespace coment
         template <typename T>
         T* getManager() const;
 
+        /** Remove a manager from the world */
+        template <typename T>
+        void removeManager() const;
+
+        /** Add a system to the world, initialised with Args... */
+        template <typename T, typename... Args>
+        T* addSystem(Args... args);
+
+        /** Get a system from the world */
+        template <typename T>
+        T* getSystem() const;
+
+        /** Remove a system from the world */
+        template <typename T>
+        void removeSystem() const;
+
     private:
 
-        /** Add a manager to the world, initialised with Args... */
-        template <typename... Args>
-        EntityManager* addManager(Args... args);
-
         /* Managers */
+
+        /** Updates a cached manager pointer if necessary */
+        template <typename T>
+        void updateManagerPointer(T* ptr);
 
         /** Default manager pointers for fast access */
         EntityManager* mEntityManager;
         ComponentManager* mComponentManager;
 
-        /** All managers by type */
-        std::unordered_map<std::type_index, std::shared_ptr<Manager>> mManagers;
+        /** A map of managers */
+        TypeMap<Manager> mManagerMap;
 
-        /** All managers */
-        std::vector<Manager*> mManagerPointerVec;
+        /** A map of systems */
+        TypeMap<System> mSystemMap;
 
     };
 
-    /** Add a manager to the world, initialised with Args... */
+    /* Manager/System management */
+
+    /** Add a manager to the world, initialised with args... */
     template <typename T, typename... Args>
     T* World::addManager(Args... args)
     {
-        static_assert(std::is_base_of<Manager, T>::value,
-            "Template parameter T to addManager() must be a derived class of Manager");
-
         // Create manager
-        std::shared_ptr<T> mgr = std::make_shared<T>(args...);
+        T* ptr = mManagerMap.add<T>(args...);
 
-        // If this type already has a manager registered, remove it
-        auto mapIt = mManagers.find(typeid(T));
-        if (mapIt != mManagers.end())
-        {
-            // Disallow re-adding the same type of manager, because it would invalidate the old pointers..
-            // TODO: make a real exception type for this
-            throw 12;
-        }
+        // Give vector pointer to systems/managers for callbacks
+        ptr->mManagers = mManagerMap.getVector();
+        ptr->mSystems = mSystemMap.getVector();
 
-        // Store manager in map
-        mManagers[typeid(T)] = mgr;
+        // Update manager pointer if it's cached
+        updateManagerPointer(ptr);
 
-        // Store manager in vector
-        mManagerPointerVec.push_back(mgr.get());
-
-        // Give manager a pointer to the other managers for callbacks
-        mgr->mManagers = &mManagerPointerVec;
-
-        // Return manager pointer
-        return mgr.get();
+        // Return pointer
+        return ptr;
     }
 
     /** Get a manager from the world */
     template <typename T>
     T* World::getManager() const
     {
-        auto it = mManagers.find(typeid(T));
+        return mManagerMap.get<T>();
+    }
 
-        if (it == mManagers.end())
-            return nullptr;
+    /** Remove a manager from the world */
+    template <typename T>
+    void World::removeManager() const
+    {
+        mManagerMap.remove<T>();
+    }
 
-        return static_cast<T*>(mManagers.at(typeid(T)).get());
+    /** Add a system to the world, initialised with Args... */
+    template <typename T, typename... Args>
+    T* World::addSystem(Args... args)
+    {
+        // Create system
+        T* ptr = mSystemMap.add<T>(args...);
+
+        return ptr;
+    }
+
+    /** Get a system from the world */
+    template <typename T>
+    T* World::getSystem() const
+    {
+        return mSystemMap.get<T>();
+    }
+
+    /** Remove a system from the world */
+    template <typename T>
+    void World::removeSystem() const
+    {
+        mSystemMap.remove<T>();
     }
 
     /* Specilisations for default managers */
@@ -108,5 +140,26 @@ namespace coment
     inline ComponentManager* World::getManager() const
     {
         return mComponentManager;
+    }
+
+    /** Updates a cached manager pointer if necessary
+        default implementation - does nothing*/
+    template <typename T>
+    void World::updateManagerPointer(T* ptr)
+    {
+    }
+
+    /* Specialisations */
+
+    template <>
+    inline void World::updateManagerPointer(EntityManager* ptr)
+    {
+        mEntityManager = ptr;
+    }
+
+    template <>
+    inline void World::updateManagerPointer(ComponentManager* ptr)
+    {
+        mComponentManager = ptr;
     }
 }

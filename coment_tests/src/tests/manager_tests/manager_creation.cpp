@@ -21,6 +21,18 @@ SCENARIO("managers are added to and obtained from the world", "[manager]")
             REQUIRE(em != NULL);
             REQUIRE(cm != NULL);
         }
+
+        WHEN("a default manager is added to the world")
+        {
+            EntityManager* newEm = world.addManager<EntityManager>();
+            ComponentManager* newCm = world.addManager<ComponentManager>();
+
+            THEN("it should have a new pointer and the world should return a the new pointer")
+            {
+                REQUIRE(newEm == world.getManager<EntityManager>());
+                REQUIRE(newCm == world.getManager<ComponentManager>());
+            }
+        }
     }
 
     GIVEN("a fresh world")

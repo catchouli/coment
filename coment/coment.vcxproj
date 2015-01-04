@@ -89,6 +89,7 @@
     <ClInclude Include="include\coment\util\dynamic_bitset.h" />
     <ClInclude Include="include\coment\util\EntityMap.h" />
     <ClInclude Include="include\coment\util\TypeEnumerator.h" />
+    <ClInclude Include="include\coment\util\TypeMap.h" />
     <ClInclude Include="include\coment\World.h" />
     <ClInclude Include="include\managers\ComponentManager.h" />
     <ClInclude Include="include\managers\EntityManager.h" />

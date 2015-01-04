@@ -18,16 +18,37 @@ namespace coment
     {
         // Manager Callback: preUpdate
         // Notify managers that an update is about to occur
-        for (auto& mgr : mManagerPointerVec)
+        for (auto& mgr : *mManagerMap.getVector())
         {
             mgr->preUpdate();
         }
 
+        // System Callback: preUpdate
+        // Notify systems that an update is about to occur
+        for (auto& system : *mSystemMap.getVector())
+        {
+            system->preUpdate();
+        }
+
+        // System Callback: onUpdate
+        // Notify systems that an update is occurring
+        for (auto& system : *mSystemMap.getVector())
+        {
+            system->onUpdate();
+        }
+
         // Manager Callback: postUpdate
         // Notify managers that an update has just occurred
-        for (auto& mgr : mManagerPointerVec)
+        for (auto& mgr : *mManagerMap.getVector())
         {
             mgr->postUpdate();
+        }
+
+        // System Callback: postUpdate
+        // Notify systems that an update has just occurred
+        for (auto& system : *mSystemMap.getVector())
+        {
+            system->postUpdate();
         }
     }
 }

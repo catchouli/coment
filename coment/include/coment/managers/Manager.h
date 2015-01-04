@@ -5,7 +5,7 @@
 namespace coment
 {
     class Entity;
-    class EntitySystem;
+    class System;
 
     class Manager
     {
@@ -35,7 +35,7 @@ namespace coment
         const std::vector<Manager*>* mManagers;
 
         /** All systems known by this manager's world */
-        const std::vector<EntitySystem*>* mSystems;
+        const std::vector<System*>* mSystems;
 
     };
 }

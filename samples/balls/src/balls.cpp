@@ -1,45 +1,23 @@
 #include <iostream>
-#include <typeindex>
-#include <unordered_map>
-#include <set>
-#include <functional>
-#include <vector>
-#include <cstdio>
+#include <memory>
+#include <cstdint>
 
-#include <coment/reflection/MemberOffset.h>
-#include <coment/reflection/TypeRegistry.h>
-
-using namespace coment;
-
-struct Position
+template <typename T1>
+class A
 {
-    void test()
-    {
-        printf("test\n");
-    }
-
-    float x, y;
+    template <typename T2>
+    void b(T2 t2);
 };
-REGISTER_COMPONENT(Position);
 
-template <typename T>
-void testType()
+template <typename T1>
+template <typename T2>
+void A<typename T1>::b(T2 t2)
 {
-    printf("%s\n", typeid(T).name());
+
 }
 
 int main(int argc, char** argv)
 {
-    const ComentTypeInfo positionTypeInfo = getTypeInfo("Position");
-
-    float Position::* x = &Position::x;
-    float Position::* y = &Position::y;
-
-    size_t test1 = dataMemberOffset(x);
-    size_t test2 = dataMemberOffset(y);
-
-    testType<int>();
-    testType<Position>();
 
     system("pause");
 }

@@ -51,7 +51,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include/reflection;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)\%(RelativeDir)\%(Filename)</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -66,7 +67,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include/reflection;$(SolutionDir)../../dep/include;$(SolutionDir)dep\include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)\%(RelativeDir)\%(Filename)</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -78,6 +80,50 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\balls.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\reflect\argument.h" />
+    <ClInclude Include="include\reflect\cast.h" />
+    <ClInclude Include="include\reflect\clean_type.h" />
+    <ClInclude Include="include\reflect\dsl\all.h" />
+    <ClInclude Include="include\reflect\dsl\basics.h" />
+    <ClInclude Include="include\reflect\dsl\field.h" />
+    <ClInclude Include="include\reflect\dsl\function.h" />
+    <ClInclude Include="include\reflect\dsl\operators.h" />
+    <ClInclude Include="include\reflect\dsl\plumbing.h" />
+    <ClInclude Include="include\reflect\dsl\scope.h" />
+    <ClInclude Include="include\reflect\dsl\template.h" />
+    <ClInclude Include="include\reflect\dsl\type.h" />
+    <ClInclude Include="include\reflect\function.h" />
+    <ClInclude Include="include\reflect\function_type.h" />
+    <ClInclude Include="include\reflect\overloads.h" />
+    <ClInclude Include="include\reflect\reflect.h" />
+    <ClInclude Include="include\reflect\ref_type.h" />
+    <ClInclude Include="include\reflect\registry.h" />
+    <ClInclude Include="include\reflect\scope.h" />
+    <ClInclude Include="include\reflect\type.h" />
+    <ClInclude Include="include\reflect\types\pointer.h" />
+    <ClInclude Include="include\reflect\types\primitives.h" />
+    <ClInclude Include="include\reflect\types\reflect\type.h" />
+    <ClInclude Include="include\reflect\types\reflect\value.h" />
+    <ClInclude Include="include\reflect\types\std\map.h" />
+    <ClInclude Include="include\reflect\types\std\smart_ptr.h" />
+    <ClInclude Include="include\reflect\types\std\string.h" />
+    <ClInclude Include="include\reflect\types\std\vector.h" />
+    <ClInclude Include="include\reflect\type_vector.h" />
+    <ClInclude Include="include\reflect\utils.h" />
+    <ClInclude Include="include\reflect\utils\config\config.h" />
+    <ClInclude Include="include\reflect\utils\config\includes.h" />
+    <ClInclude Include="include\reflect\utils\config\json.h" />
+    <ClInclude Include="include\reflect\utils\config\node.h" />
+    <ClInclude Include="include\reflect\utils\config\path.h" />
+    <ClInclude Include="include\reflect\utils\json\context.h" />
+    <ClInclude Include="include\reflect\utils\json\parser.h" />
+    <ClInclude Include="include\reflect\utils\json\printer.h" />
+    <ClInclude Include="include\reflect\utils\json\token.h" />
+    <ClInclude Include="include\reflect\value.h" />
+    <ClInclude Include="include\reflect\value_function.h" />
+    <ClInclude Include="include\str_macro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
