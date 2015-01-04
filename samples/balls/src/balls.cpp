@@ -29,6 +29,15 @@ using namespace coment;
 
 int main(int argc, char** argv)
 {
+    int stuff[4] = { 5, 6, 7, 8 };
+
+    std::vector<int*> pstuff = { &stuff[0], &stuff[1], &stuff[2], &stuff[3] };
+
+    const std::vector<int*>* pthings = &pstuff;
+
+    int* i = pthings->at(0);
+    *i = 100;
+
     World world;
 
     // Add managers to world

@@ -66,14 +66,14 @@
     <ClInclude Include="include\coment\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\coment\systems\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coment\systems\EntitySystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\util\TypeEnumerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\util\EntityMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\managers\EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -104,6 +104,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="include\coment\Entity.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\systems\EntitySystem.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

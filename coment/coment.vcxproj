@@ -80,6 +80,8 @@
     <ClInclude Include="include\coment\managers\ComponentManager.h" />
     <ClInclude Include="include\coment\managers\EntityManager.h" />
     <ClInclude Include="include\coment\managers\Manager.h" />
+    <ClInclude Include="include\coment\systems\EntitySystem.h" />
+    <ClInclude Include="include\coment\systems\System.h" />
     <ClInclude Include="include\coment\util\combined_hash.h" />
     <ClInclude Include="include\coment\util\dynamic_bitset.h" />
     <ClInclude Include="include\coment\util\EntityMap.h" />
@@ -96,14 +98,13 @@
   <ItemGroup>
     <ClCompile Include="src\managers\ComponentManager.cpp" />
     <ClCompile Include="src\managers\EntityManager.cpp" />
-    <ClCompile Include="src\util\EntityMap.cpp" />
-    <ClCompile Include="src\util\TypeEnumerator.cpp" />
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\coment\Entity.inl" />
     <None Include="include\coment\managers\ComponentManager.inl" />
     <None Include="include\coment\managers\EntityManager.inl" />
+    <None Include="include\coment\systems\EntitySystem.inl" />
     <None Include="include\coment\util\EntityMap.inl" />
     <None Include="include\coment\util\TypeEnumerator.inl" />
     <None Include="include\util\EntityMap.inl" />
