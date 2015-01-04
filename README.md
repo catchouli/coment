@@ -9,7 +9,7 @@ This branch is still in development, and will eventually replace the master bran
 
 <h4>The new architecture<h4>
 
-As much magic and interdependency has been removed. In particular:
+As much magic and interdependency has been removed as is possible. In particular:
 
 - The world is now just a collection of systems and managers, as well as proxy APIs for the default managers
 - Managers and Systems are now just managed classes that respond to callbacks, and callbacks should be preferred for sharing data over interdependency between managers and systems in all cases
