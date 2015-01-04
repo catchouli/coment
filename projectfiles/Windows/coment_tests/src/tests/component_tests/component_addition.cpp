@@ -4,6 +4,8 @@
 #include <coment/managers/EntityManager.h>
 #include <coment/managers/ComponentManager.h>
 
+#include <stdexcept>
+
 using namespace coment;
 
 struct Position
@@ -35,7 +37,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
         {
             THEN("there should be an exception")
             {
-                REQUIRE_THROWS(cm.addComponent<Position>(e));
+                REQUIRE_THROWS_AS(cm.addComponent<Position>(e), std::invalid_argument);
             }
         }
     }
@@ -53,7 +55,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
         {
             THEN("there should be an exception")
             {
-                REQUIRE_THROWS(cm.addComponent<Position>(e));
+                REQUIRE_THROWS_AS(cm.addComponent<Position>(e), std::invalid_argument);
             }
         }
     }

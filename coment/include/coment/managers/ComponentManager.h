@@ -8,6 +8,7 @@
 #include "coment/util/dynamic_bitset.h"
 
 #include <vector>
+#include <stdexcept>
 
 namespace coment
 {
@@ -82,8 +83,11 @@ namespace coment
         template <typename T1, typename T2, typename... ComponentTypes>
         dynamic_bitset<> getComponentTypes();
 
-        /** Check if an entity is valid */
+        /** Get if an entity is valid */
         bool isEntityAlive(Entity e) const;
+
+        /** Check if an entity is valid and throw an exception otherwise */
+        void checkEntityAlive(Entity e) const;
 
         /** A type enumerator for mapping types to ascending integer IDs */
         TypeEnumerator mTypeEnumerator;
@@ -104,11 +108,7 @@ namespace coment
     T* ComponentManager::addComponent(Entity e, Args... args)
     {
         // Check if entity is valid and alive
-        if (!isEntityAlive(e))
-        {
-            // TODO: add proper exception types
-            throw 42;
-        }
+        checkEntityAlive(e);
 
         // Get type ID for type
         unsigned int typeId = getComponentTypeId<T>();
@@ -143,11 +143,7 @@ namespace coment
     T* ComponentManager::getComponent(Entity e)
     {
         // Check if entity is valid and alive
-        if (!isEntityAlive(e))
-        {
-            // TODO: add proper exception types
-            throw 42;
-        }
+        checkEntityAlive(e);
 
         // Get component array for type
         std::vector<T>& componentArray = *getComponentArray<T>();
@@ -161,11 +157,7 @@ namespace coment
     void ComponentManager::removeComponent(Entity e)
     {
         // Check if entity is valid and alive
-        if (!isEntityAlive(e))
-        {
-            // TODO: add proper exception types
-            throw 42;
-        }
+        checkEntityAlive(e);
 
         // Get type id for type
         unsigned int typeId = getComponentTypeId<T>();
@@ -325,5 +317,14 @@ namespace coment
         // This entity definitely refers to mEntityInfo[e.mId],
         // so check that the entity is alive
         return mEntityInfo[e.getId()].alive;
+    }
+
+    /** Check if an entity is valid and throw an exception otherwise */
+    inline void ComponentManager::checkEntityAlive(Entity e) const
+    {
+        if (!isEntityAlive(e))
+        {
+            throw std::invalid_argument("Passed entity is uninitialised or has been destroyed");
+        }
     }
 }

@@ -1,5 +1,7 @@
 #include "coment/managers/EntityManager.h"
 
+#include <stdexcept>
+
 namespace coment
 {
 
@@ -61,7 +63,7 @@ namespace coment
     {
         // Check this entity is valid
         if (!isLiving(e))
-            throw 42;
+            throw std::invalid_argument("Passed entity is uninitialised or has been destroyed");
 
         // Check this entity isn't already waiting for death
         auto waitingIter = std::find(mEntitiesAwaitingDeath.begin(),
@@ -69,7 +71,7 @@ namespace coment
 
         // TODO: make real exception types
         if (waitingIter != mEntitiesAwaitingDeath.end())
-            throw 43;
+            throw std::invalid_argument("Passed entity is already queued for destruction");
 
         // Register entity for delayed death
         mEntitiesAwaitingDeath.push_back(e);
