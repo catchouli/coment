@@ -5,6 +5,8 @@ This branch is a complete rewrite of the original 1.0 branch, which was heavily 
 
 Class documentation: http://cat.rena.so/coment/docs/html/index.html
 
+Contact me: http://irc.rena.so/
+
 <h4>The new architecture</h4>
 
 As much magic and interdependency has been removed as is possible. In particular:
