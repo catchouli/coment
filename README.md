@@ -21,7 +21,7 @@ For examples of how to use the library, check out the samples and tests. The wik
 
 <h5>The World</h5>
 
-The primary point of access to the engine is through the World class, which can be constructed simply like so:
+The primary point of access to the engine is through the World class, which can be constructed like so:
 
 ```C++
 #include <coment/World.h>
