@@ -1,11 +1,7 @@
 <h2>coment</h2>
 <h3>A C++11 component-entity system</h3>
 
-This branch is a complete rewrite of the original 1.0 branch, which is heavily influenced in design by C++03.
-
-If you are looking at an updated version for C++11, this branch may be more appropriate.
-
-This branch is still in development, and will eventually replace the master branch.
+This branch is a complete rewrite of the original 1.0 branch, which was heavily influenced in design by C++03.
 
 <h4>The new architecture<h4>
 
