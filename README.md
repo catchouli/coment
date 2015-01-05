@@ -3,7 +3,7 @@
 
 This branch is a complete rewrite of the original 1.0 branch, which was heavily influenced in design by C++03.
 
-<h4>The new architecture<h4>
+<h4>The new architecture</h4>
 
 As much magic and interdependency has been removed as is possible. In particular:
 
