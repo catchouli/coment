@@ -84,7 +84,7 @@ Entities in moverMap are guaranteed to at least have the components Position and
 
 Entity::getComponent() will return nullptr if the entity does not have a component, which can be used to check if an entity has a component of a particular type and provide a default if not. (In other words, optional components.)
 
-The pointers returned for components are temporary, and should not be stored. They may be reallocated at any time between callbacks.
+The pointers returned for components are temporary, and should not be stored. They may be reallocated at any time between callbacks when a coment API has been called.
 
 <h5>Systems</h5>
 
