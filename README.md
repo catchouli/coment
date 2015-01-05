@@ -58,7 +58,7 @@ coment::World world;
 
 coment::Entity e = world.createEntity();
 Position* p = e.addComponent<Position>(50.0f, 39.0f);
-p = e.getComponent<Position>();
+p = e.getComponent<Position>(); // unnecessary since addComponent already returns a pointer
 e.removeComponent<Position>(); // p is now invalid
 ```
 
