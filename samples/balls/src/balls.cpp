@@ -1,10 +1,23 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
 
 #include <coment/World.h>
 
-void initSDL(SDL_Window** window, SDL_Renderer** renderer);
-void deinitSDL(SDL_Window* window, SDL_Renderer* renderer);
+#include "components/Position.h"
+#include "components/Velocity.h"
+#include "components/Radius.h"
+#include "components/Color.h"
+
+#include "systems/MovementSystem.h"
+#include "systems/CircleCollisionSystem.h"
+#include "systems/RenderingSystem.h"
+
+void initSDL(SDL_Window** window, SDL_Renderer** renderer, SDL_GLContext* context);
+void deinitSDL(SDL_Window* window, SDL_Renderer* renderer, SDL_GLContext context);
+
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 
 int main(int argc, char** argv)
 {
@@ -13,12 +26,32 @@ int main(int argc, char** argv)
     // SDL stuff
     SDL_Window* window;
     SDL_Renderer* renderer;
+    SDL_GLContext context;
 
     // Initialise SDL
-    initSDL(&window, &renderer);
+    initSDL(&window, &renderer, &context);
 
-    // Entity system
+    // Entity world
     coment::World world;
+
+    // Add systems
+    world.addSystem<MovementSystem>();
+    world.addSystem<CircleCollisionSystem>(WINDOW_WIDTH, WINDOW_HEIGHT);
+    world.addSystem<RenderingSystem>(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+    // Create circles with random positions, velocities, colours and radiuses
+    srand(time(0));
+    for (int i = 0; i < 10; ++i)
+    {
+        auto randf = []() { return rand() / (float)RAND_MAX; };
+        auto randfr = [&randf](float min, float max) { return randf() * (max - min) + min; };
+
+        coment::Entity e = world.createEntity();
+        e.addComponent<Position>(randf() * WINDOW_WIDTH, randf() * WINDOW_HEIGHT);
+        e.addComponent<Radius>(randfr(0.0f, 80.0f));
+        e.addComponent<Velocity>(randfr(-350.0f, 350.0f), randfr(-350.0f, 350.0f));
+        e.addComponent<Color>(randf(), randf(), randf());
+    }
 
     // Main loop
     while (running)
@@ -37,18 +70,20 @@ int main(int argc, char** argv)
         }
 
         // Process entities
+        world.update();
 
+        // Flip buffers
+        SDL_GL_SwapWindow(window);
     }
 
     // Clean up
-    deinitSDL(window, renderer);
+    deinitSDL(window, renderer, context);
 
     return 0;
 }
 
-void initSDL(SDL_Window** window, SDL_Renderer** renderer)
+void initSDL(SDL_Window** window, SDL_Renderer** renderer, SDL_GLContext* context)
 {
-
     // Initialise SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
@@ -61,7 +96,8 @@ void initSDL(SDL_Window** window, SDL_Renderer** renderer)
         "Balls!",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        800, 600, SDL_WINDOW_SHOWN);
+        WINDOW_WIDTH, WINDOW_HEIGHT,
+        SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
     // Create a renderer
     *renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED);
@@ -70,11 +106,15 @@ void initSDL(SDL_Window** window, SDL_Renderer** renderer)
         std::cerr << "Failed to create window: " << SDL_GetError() << std::endl;
         exit(1);
     }
+
+    // Create an opengl context
+    *context = SDL_GL_CreateContext(*window);
 }
 
-void deinitSDL(SDL_Window* window, SDL_Renderer* renderer)
+void deinitSDL(SDL_Window* window, SDL_Renderer* renderer, SDL_GLContext context)
 {
     // Clean up
+    SDL_GL_DeleteContext(context);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }

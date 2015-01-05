@@ -1,10 +1,30 @@
 #include "coment/managers/ComponentManager.h"
 
+#include "coment/Entity.h"
+
 namespace coment
 {
+    /** Meta information about an entity in relation to its components */
+    struct EntityComponentInfo
+    {
+        /** Default values */
+        EntityComponentInfo() :
+            alive(false)
+        {}
+
+        /** Whether an entity has been added to this manager */
+        bool alive;
+
+        /** The reference (world, id, uniqueID) for this entity */
+        Entity ref;
+
+        /** The component bitmask of this entity */
+        dynamic_bitset<> componentBitmask;
+    };
+
     /** Add a component to an entity */
     template <typename T, typename... Args>
-    T* ComponentManager::addComponent(Entity e, Args... args)
+    T* ComponentManager::addComponent(const Entity& e, Args... args)
     {
         // Check if entity is valid and alive
         checkEntityAlive(e);
@@ -39,10 +59,21 @@ namespace coment
 
     /** Get a component from an entity */
     template <typename T>
-    T* ComponentManager::getComponent(Entity e)
+    T* ComponentManager::getComponent(const Entity& e)
     {
         // Check if entity is valid and alive
         checkEntityAlive(e);
+
+        // Check if this entity has this component type
+        // Get bitmask for this component type
+        dynamic_bitset<> componentTypeMask = getComponentTypes<T>();
+
+        // If this entity does not have this component
+        if (!componentTypeMask.is_subset_of(mEntityInfo[e.getId()].componentBitmask))
+        {
+            // Return a null pointer
+            return nullptr;
+        }
 
         // Get component array for type
         std::vector<T>& componentArray = *getComponentArray<T>();
@@ -53,7 +84,7 @@ namespace coment
 
     /** Remove a component from an entity */
     template <typename T>
-    void ComponentManager::removeComponent(Entity e)
+    void ComponentManager::removeComponent(const Entity& e)
     {
         // Check if entity is valid and alive
         checkEntityAlive(e);
@@ -203,7 +234,7 @@ namespace coment
     }
 
     /** Check if an entity is valid */
-    inline bool ComponentManager::isEntityAlive(Entity e) const
+    inline bool ComponentManager::isEntityAlive(const Entity& e) const
     {
         // Check the entity is initialised
         if (!e.isInitialised())
@@ -219,7 +250,7 @@ namespace coment
     }
 
     /** Check if an entity is valid and throw an exception otherwise */
-    inline void ComponentManager::checkEntityAlive(Entity e) const
+    inline void ComponentManager::checkEntityAlive(const Entity& e) const
     {
         if (!isEntityAlive(e))
         {

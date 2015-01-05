@@ -1,6 +1,5 @@
 #pragma once
 
-#include "coment/Entity.h"
 #include "coment/util/dynamic_bitset.h"
 #include "coment/util/TypeEnumerator.h"
 
@@ -10,6 +9,8 @@
 
 namespace coment
 {
+    class Entity;
+
     /** An entity map class that maps entities from a bitset of component types
         to a container of entities. In reality, this is just a pointer to a
         container stored in the ComponentManager that this was obtained from,

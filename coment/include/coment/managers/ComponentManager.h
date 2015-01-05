@@ -12,23 +12,10 @@
 
 namespace coment
 {
+    class Entity;
+
     /** Meta information about an entity in relation to its components */
-    struct EntityComponentInfo
-    {
-        /** Default values */
-        EntityComponentInfo() :
-            alive(false)
-        {}
-
-        /** Whether an entity has been added to this manager */
-        bool alive;
-
-        /** The reference (world, id, uniqueID) for this entity */
-        Entity ref;
-
-        /** The component bitmask of this entity */
-        dynamic_bitset<> componentBitmask;
-    };
+    struct EntityComponentInfo;
 
     /** The manager responsible for creation and storage of components */
     class ComponentManager
@@ -40,15 +27,15 @@ namespace coment
 
         /** Add a component to an entity */
         template <typename T, typename... Args>
-        T* addComponent(Entity e, Args... args);
+        T* addComponent(const Entity& e, Args... args);
 
         /** Get a component from an entity */
         template <typename T>
-        T* getComponent(Entity e);
+        T* getComponent(const Entity& e);
 
         /** Remove a component from an entity */
         template <typename T>
-        void removeComponent(Entity e);
+        void removeComponent(const Entity& e);
 
         /** Get an entity -> component map for a specific set of components */
         template <typename... ComponentTypes>
@@ -85,10 +72,10 @@ namespace coment
         dynamic_bitset<> getComponentTypes();
 
         /** Get if an entity is valid */
-        bool isEntityAlive(Entity e) const;
+        bool isEntityAlive(const Entity& e) const;
 
         /** Check if an entity is valid and throw an exception otherwise */
-        void checkEntityAlive(Entity e) const;
+        void checkEntityAlive(const Entity& e) const;
 
         /** A type enumerator for mapping types to ascending integer IDs */
         TypeEnumerator mTypeEnumerator;

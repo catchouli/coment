@@ -62,7 +62,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
     {
         Entity e = world.createEntity();
 
-        WHEN("a component is added to an entity")
+        WHEN("a position is added to an entity")
         {
             Position* p = e.addComponent<Position>();
 
@@ -75,6 +75,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
             {
                 // Check that the pointer is the same
                 REQUIRE(p == e.getComponent<Position>());
+            }
+
+            THEN("the entity should not have a velocity component")
+            {
+                REQUIRE(e.getComponent<Velocity>() == NULL);
             }
         }
     }

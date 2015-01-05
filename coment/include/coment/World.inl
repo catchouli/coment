@@ -1,5 +1,7 @@
 #include "coment/World.h"
 
+#include "coment/Entity.h"
+
 namespace coment
 {
     /* Manager/System management */
@@ -43,6 +45,10 @@ namespace coment
         // Create system
         T* ptr = mSystemMap.add<T>(args...);
 
+        // Give it a pointer to this world
+        ptr->mWorld = this;
+
+        // Return pointer
         return ptr;
     }
 

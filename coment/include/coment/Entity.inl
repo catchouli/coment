@@ -1,5 +1,7 @@
 #include "coment/Entity.h"
 
+#include "coment/managers/ComponentManager.h"
+
 namespace coment
 {
     /** Construct an entity with invalid (default) IDs */

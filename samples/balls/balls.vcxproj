@@ -57,8 +57,8 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>coment.lib;glew32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>coment.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y</Command>
@@ -79,8 +79,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>coment.lib;glew32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>coment.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y</Command>
@@ -90,6 +90,10 @@
     <ClCompile Include="src\balls.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\components\Color.h" />
+    <ClInclude Include="include\components\Position.h" />
+    <ClInclude Include="include\components\Radius.h" />
+    <ClInclude Include="include\components\Velocity.h" />
     <ClInclude Include="include\reflect\argument.h" />
     <ClInclude Include="include\reflect\cast.h" />
     <ClInclude Include="include\reflect\clean_type.h" />
@@ -131,6 +135,9 @@
     <ClInclude Include="include\reflect\utils\json\token.h" />
     <ClInclude Include="include\reflect\value.h" />
     <ClInclude Include="include\reflect\value_function.h" />
+    <ClInclude Include="include\systems\CircleCollisionSystem.h" />
+    <ClInclude Include="include\systems\MovementSystem.h" />
+    <ClInclude Include="include\systems\RenderingSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,5 +29,12 @@ namespace coment
         /** Called after the world is updated */
         virtual void postUpdate() {}
 
+    protected:
+
+        friend World;
+
+        /** A pointer to the world this system belongs to */
+        World* mWorld = nullptr;
+
     };
 }
