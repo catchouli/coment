@@ -143,8 +143,5 @@
     <ClInclude Include="include\reflect\value_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\str_macro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
