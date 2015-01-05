@@ -102,7 +102,7 @@ namespace coment
                     // Check if this bitmask has all required components
                     if (componentTypes.is_subset_of(bitmask))
                     {
-                        entityArray->push_back(Entity(i, mEntityInfo[i].uniqueId));
+                        entityArray->push_back(mEntityInfo[i].ref);
                     }
                 }
             }
@@ -210,7 +210,7 @@ namespace coment
             return false;
 
         // Check the entity hasn't been recycled
-        if (e.getUniqueId() != mEntityInfo[e.getId()].uniqueId)
+        if (e.getUniqueId() != mEntityInfo[e.getId()].ref.getUniqueId())
             return false;
 
         // This entity definitely refers to mEntityInfo[e.mId],

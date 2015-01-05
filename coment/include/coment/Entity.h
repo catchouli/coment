@@ -2,6 +2,7 @@
 
 namespace coment
 {
+    class World;
 
     /** The type to use for entity IDs */
     typedef int EntityId;
@@ -14,10 +15,10 @@ namespace coment
     public:
 
         /** Construct an entity with invalid (default) IDs */
-        Entity();
+        Entity(World* world = nullptr);
 
         /** Construct an entity of given IDs */
-        Entity(int id, int uniqueId);
+        Entity(World* world, int id, int uniqueId);
 
         /** Get the ID of this entity */
         EntityId getId() const;
@@ -31,9 +32,26 @@ namespace coment
         /** Check if two entities are the same by checking their IDs */
         bool operator==(const Entity& other);
 
+        /* ComponentManager proxy API */
+
+        /** Add a component to an entity */
+        template <typename T, typename... Args>
+        T* addComponent(Args... args);
+
+        /** Get a component from an entity */
+        template <typename T>
+        T* getComponent();
+
+        /** Remove a component from an entity */
+        template <typename T>
+        void removeComponent();
+
     private:
 
         friend class EntityManager;
+
+        /** A pointer to the world for manager proxy APIs */
+        World* mWorldPtr;
 
         /** The ID of this entity. Only one living entity will have this ID
              at any one time. */

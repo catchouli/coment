@@ -17,15 +17,14 @@ namespace coment
     {
         /** Default values */
         EntityComponentInfo() :
-            alive(false),
-            uniqueId(-1)
+            alive(false)
         {}
 
         /** Whether an entity has been added to this manager */
         bool alive;
 
-        /** The unique ID of this entity */
-        EntityId uniqueId;
+        /** The reference (world, id, uniqueID) for this entity */
+        Entity ref;
 
         /** The component bitmask of this entity */
         dynamic_bitset<> componentBitmask;
@@ -54,12 +53,6 @@ namespace coment
         /** Get an entity -> component map for a specific set of components */
         template <typename... ComponentTypes>
         EntityMap<ComponentTypes...> getEntityMap();
-
-        /* Non-typesafe API - requires component types to be registered with
-           REGISTER_COMPONENT*/
-
-        /** Add a component to an entity by component type name */
-        COMENT_API void* addComponent(Entity e, const char* typeName);
 
         /* Callbacks */
 

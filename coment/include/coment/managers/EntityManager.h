@@ -8,6 +8,8 @@
 
 namespace coment
 {
+    class World;
+
     /** Meta information about an entity */
     struct EntityInfo
     {
@@ -35,7 +37,7 @@ namespace coment
     public:
 
         /** Default constructor. Initialises members */
-        COMENT_API EntityManager();
+        COMENT_API EntityManager(World* world);
 
         /** Creates or recycles an entity */
         Entity COMENT_API createEntity();
@@ -43,11 +45,13 @@ namespace coment
         /** Destroys an entity and recycles its ID */
         void COMENT_API destroyEntity(Entity& e);
 
-        /** Handles dead entities once an update has ended */
-        void COMENT_API postUpdate() override;
-
         /** Get whether an entity is living */
         bool isLiving(Entity e) const;
+
+        /* Callbacks */
+
+        /** Handles dead entities once an update has ended */
+        void COMENT_API postUpdate() override;
 
     private:
 
@@ -65,6 +69,9 @@ namespace coment
 
         /** The next available unique entity ID */
         EntityId mNextAvailableUniqueId;
+
+        /** A pointer to the world - only for passing to entities for API purposes */
+        World* mWorldPtr;
 
     };
 }

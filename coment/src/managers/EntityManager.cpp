@@ -7,8 +7,8 @@
 namespace coment
 {
     /** Default constructor. Initialises members */
-    COMENT_API EntityManager::EntityManager()
-        : mNextAvailableUniqueId(0)
+    COMENT_API EntityManager::EntityManager(World* world)
+        : mNextAvailableUniqueId(0), mWorldPtr(world)
     {
 
     }
@@ -29,7 +29,7 @@ namespace coment
             EntityInfo entityInfo = mEntityInfo.back();
 
             // Create new Entity
-            entity = Entity(nextId, entityInfo.uniqueId);
+            entity = Entity(mWorldPtr, nextId, entityInfo.uniqueId);
         }
         else
         {

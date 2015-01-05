@@ -113,6 +113,7 @@
     <None Include="include\coment\systems\EntitySystem.inl" />
     <None Include="include\coment\util\EntityMap.inl" />
     <None Include="include\coment\util\TypeEnumerator.inl" />
+    <None Include="include\coment\World.inl" />
     <None Include="include\util\EntityMap.inl" />
     <None Include="include\util\TypeEnumerator.inl" />
   </ItemGroup>

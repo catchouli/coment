@@ -24,7 +24,7 @@ SCENARIO("managers are added to and obtained from the world", "[manager]")
 
         WHEN("a default manager is added to the world")
         {
-            EntityManager* newEm = world.addManager<EntityManager>();
+            EntityManager* newEm = world.addManager<EntityManager>(&world);
             ComponentManager* newCm = world.addManager<ComponentManager>();
 
             THEN("it should have a new pointer and the world should return a the new pointer")

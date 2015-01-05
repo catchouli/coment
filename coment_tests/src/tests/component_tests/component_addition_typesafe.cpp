@@ -26,8 +26,6 @@ struct Radius
 SCENARIO("components are added to an entity", "[entity][component]")
 {
     World world;
-    EntityManager& em = *world.getManager<EntityManager>();
-    ComponentManager& cm = *world.getManager<ComponentManager>();
 
     GIVEN("an uninitialised entity")
     {
@@ -37,36 +35,36 @@ SCENARIO("components are added to an entity", "[entity][component]")
         {
             THEN("there should be an exception")
             {
-                REQUIRE_THROWS_AS(cm.addComponent<Position>(e), std::invalid_argument);
+                REQUIRE_THROWS_AS(e.addComponent<Position>(), std::invalid_argument);
             }
         }
     }
 
     GIVEN("a dead entity")
     {
-        Entity e = em.createEntity();
+        Entity e = world.createEntity();
 
         // Copy entity so that destroyEntity() doesn't invalidate our e reference
         Entity e2 = e;
-        em.destroyEntity(e2);
+        world.destroyEntity(e2);
         world.update(); // Force update so that delayed entity destruction is performed
 
         WHEN("a component is added to the entity")
         {
             THEN("there should be an exception")
             {
-                REQUIRE_THROWS_AS(cm.addComponent<Position>(e), std::invalid_argument);
+                REQUIRE_THROWS_AS(e.addComponent<Position>(), std::invalid_argument);
             }
         }
     }
 
     GIVEN("a new entity")
     {
-        Entity e = em.createEntity();
+        Entity e = world.createEntity();
 
         WHEN("a component is added to an entity")
         {
-            Position* p = cm.addComponent<Position>(e);
+            Position* p = e.addComponent<Position>();
 
             THEN("the component pointer should not be null")
             {
@@ -76,24 +74,24 @@ SCENARIO("components are added to an entity", "[entity][component]")
             THEN("the component should be obtainable from the component manager")
             {
                 // Check that the pointer is the same
-                REQUIRE(p == cm.getComponent<Position>(e));
+                REQUIRE(p == e.getComponent<Position>());
             }
         }
     }
 
     GIVEN("position, velocity, and radius component types")
     {
-        Entity e = em.createEntity();
+        Entity e = world.createEntity();
 
-        auto positionMap = cm.getEntityMap<Position>();
-        auto velocityMap = cm.getEntityMap<Velocity>();
-        auto radiusMap = cm.getEntityMap<Radius>();
-        auto moverMap = cm.getEntityMap<Position, Velocity>();
-        auto circleMap = cm.getEntityMap<Position, Radius>();
+        auto positionMap = world.getEntityMap<Position>();
+        auto velocityMap = world.getEntityMap<Velocity>();
+        auto radiusMap = world.getEntityMap<Radius>();
+        auto moverMap = world.getEntityMap<Position, Velocity>();
+        auto circleMap = world.getEntityMap<Position, Radius>();
 
         WHEN("a position is added to the entity")
         {
-            cm.addComponent<Position>(e);
+            e.addComponent<Position>();
 
             THEN("e should be in positionMap but no others")
             {
@@ -107,7 +105,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("position is removed from the entity")
                 {
-                    cm.removeComponent<Position>(e);
+                    e.removeComponent<Position>();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -123,7 +121,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
         WHEN("a velocity is added to the entity")
         {
-            cm.addComponent<Velocity>(e);
+            e.addComponent<Velocity>();
 
             THEN("e should be in velocityMap but no others")
             {
@@ -137,7 +135,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("velocity is removed from the entity")
                 {
-                    cm.removeComponent<Velocity> (e);
+                    e.removeComponent<Velocity>();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -153,7 +151,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
         WHEN("a radius is added to the entity")
         {
-            cm.addComponent<Radius>(e);
+            e.addComponent<Radius>();
 
             THEN("e should be in radiusMap but no others")
             {
@@ -167,7 +165,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("radius is removed from the entity")
                 {
-                    cm.removeComponent<Radius>(e);
+                    e.removeComponent<Radius>();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -183,8 +181,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
         WHEN("a velocity and a radius are added to the entity")
         {
-            cm.addComponent<Velocity>(e);
-            cm.addComponent<Radius>(e);
+            e.addComponent<Velocity>();
+            e.addComponent<Radius>();
 
             THEN("e should be in velocityMap and radiusMap but no others")
             {
@@ -199,7 +197,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("velocity is removed from the entity")
                 {
-                    cm.removeComponent<Velocity>(e);
+                    e.removeComponent<Velocity>();
 
                     THEN("the entity should only be in the radiusMap")
                     {
@@ -213,7 +211,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("radius is removed from the entity")
                 {
-                    cm.removeComponent<Radius>(e);
+                    e.removeComponent<Radius>();
 
                     THEN("the entity should only be in the velocityMap")
                     {
@@ -227,8 +225,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("velocity and radius are removed from the entity")
                 {
-                    cm.removeComponent<Velocity>(e);
-                    cm.removeComponent<Radius>(e);
+                    e.removeComponent<Velocity>();
+                    e.removeComponent<Radius>();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -244,8 +242,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
         WHEN("a position and a velocity are added to the entity")
         {
-            cm.addComponent<Position>(e);
-            cm.addComponent<Velocity>(e);
+            e.addComponent<Position>();
+            e.addComponent<Velocity>();
 
             THEN("e should be in positionMap, velocityMap and moverMap")
             {
@@ -261,7 +259,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             WHEN("position is removed from the entity")
             {
-                cm.removeComponent<Position>(e);
+                e.removeComponent<Position>();
 
                 THEN("the entity should only be in the velocityMap")
                 {
@@ -275,7 +273,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             WHEN("velocity is removed from the entity")
             {
-                cm.removeComponent<Velocity>(e);
+                e.removeComponent<Velocity>();
 
                 THEN("the entity should only be in the positionMap")
                 {
@@ -289,8 +287,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             WHEN("position and velocity are removed from the entity")
             {
-                cm.removeComponent<Position>(e);
-                cm.removeComponent<Velocity>(e);
+                e.removeComponent<Position>();
+                e.removeComponent<Velocity>();
 
                 THEN("the entity should not be in any maps")
                 {
@@ -305,8 +303,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
         WHEN("a position and a radius are added to the entity")
         {
-            cm.addComponent<Position>(e);
-            cm.addComponent<Radius>(e);
+            e.addComponent<Position>();
+            e.addComponent<Radius>();
 
             THEN("e should be in positionMap, radiusMap and circleMap")
             {
@@ -321,7 +319,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("position is removed from the entity")
                 {
-                    cm.removeComponent<Position>(e);
+                    e.removeComponent<Position>();
 
                     THEN("the entity should only be in the radiusMap")
                     {
@@ -335,7 +333,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("radius is removed from the entity")
                 {
-                    cm.removeComponent<Radius>(e);
+                    e.removeComponent<Radius>();
 
                     THEN("the entity should only be in the positionMap")
                     {
@@ -349,8 +347,8 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 WHEN("position and radius are removed from the entity")
                 {
-                    cm.removeComponent<Position>(e);
-                    cm.removeComponent<Radius>(e);
+                    e.removeComponent<Position>();
+                    e.removeComponent<Radius>();
 
                     THEN("the entity should not be in any maps")
                     {

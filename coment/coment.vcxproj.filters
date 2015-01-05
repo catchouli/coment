@@ -127,5 +127,8 @@
     <None Include="include\coment\systems\EntitySystem.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="include\coment\World.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

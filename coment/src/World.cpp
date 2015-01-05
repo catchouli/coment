@@ -9,7 +9,7 @@ namespace coment
     COMENT_API World::World()
     {
         // Create default managers
-        mEntityManager = addManager<EntityManager>();
+        mEntityManager = addManager<EntityManager>(this);
         mComponentManager = addManager<ComponentManager>();
     }
 
@@ -50,5 +50,25 @@ namespace coment
         {
             system->postUpdate();
         }
+    }
+
+    /* Proxy API for EntityManager */
+
+    /** Creates or recycles an entity */
+    Entity COMENT_API World::createEntity()
+    {
+        return mEntityManager->createEntity();
+    }
+
+    /** Destroys an entity and recycles its ID */
+    void COMENT_API World::destroyEntity(Entity& e)
+    {
+        mEntityManager->destroyEntity(e);
+    }
+
+    /** Get whether an entity is living */
+    bool World::isLiving(Entity e) const
+    {
+        return mEntityManager->isLiving(e);
     }
 }
