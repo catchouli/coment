@@ -19,7 +19,7 @@ These changes should allow the library to more reliable and easier to maintain. 
 
 Entity and component managers have been implemented, as well as managed Manager and System classes, so all the fundamental requirements to use the library should be fulfilled. Additional features will be provided through new (independent) core managers. Planned features include: tags, groups, messaging, value management.
 
-For examples of how to use the library, check out the samples and tests. The wiki is currently outdated, as it refers to the master/1.0 branches.
+For examples of how to use the library, check out the samples and tests.
 
 <h4>Usage</h4>
 
