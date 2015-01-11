@@ -2,6 +2,8 @@
 
 #include "coment/Entity.h"
 
+#include <type_traits>
+
 namespace coment
 {
     /* Manager/System management */
@@ -13,9 +15,12 @@ namespace coment
         // Create manager
         T* ptr = mManagerMap.add<T>(args...);
 
+        // Add manager to set
+        mManagerSet.insert(ptr);
+
         // Give vector pointer to systems/managers for callbacks
-        ptr->mManagers = mManagerMap.getVector();
-        ptr->mSystems = mSystemMap.getVector();
+        ptr->mManagers = &mManagerSet;
+        ptr->mSystems = &mSystemSet;
 
         // Update manager pointer if it's cached
         updateManagerPointer(ptr);
@@ -33,9 +38,20 @@ namespace coment
 
     /** Remove a manager from the world */
     template <typename T>
-    void World::removeManager() const
+    void World::removeManager()
     {
+        const char* err = "Can not remove default managers";
+        static_assert(T != EntityManager, err);
+        static_assert(T != SystemManager, err);
+
+        // Get manager ptr
+        T* ptr = getManager<T>();
+        
+        // Remove manager from map
         mManagerMap.remove<T>();
+
+        // Remove manager from set
+        mManagerSet.erase(ptr);
     }
 
     /** Add a system to the world, initialised with Args... */
@@ -44,6 +60,9 @@ namespace coment
     {
         // Create system
         T* ptr = mSystemMap.add<T>(args...);
+
+        // Add system to set
+        mSystemSet.insert(ptr);
 
         // Give it a pointer to this world
         ptr->mWorld = this;
@@ -61,9 +80,16 @@ namespace coment
 
     /** Remove a system from the world */
     template <typename T>
-    void World::removeSystem() const
+    void World::removeSystem()
     {
+        // Get system ptr
+        T* ptr = getSystem<T>();
+
+        // Remove system from map
         mSystemMap.remove<T>();
+
+        // Remove system from map
+        mSystemSet.erase(ptr);
     }
 
     /* Specilisations for default managers */

@@ -23,7 +23,7 @@ public:
         float dt = (float)(time - lastUpdate) * 0.001f;
 
         // Map of circles
-        static auto mMovers = mWorld->getEntityMap<Position, Velocity>();
+        static auto mMovers = getWorld()->getEntityMap<Position, Velocity>();
 
         // Draw circles
         for (auto& mover : *mMovers.mEntities)

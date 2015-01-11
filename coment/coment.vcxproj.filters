@@ -87,6 +87,9 @@
     <ClInclude Include="include\coment\util\TypeMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\coment\util\PriorityComparator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\managers\EntityManager.cpp">
@@ -128,6 +131,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="include\coment\World.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\managers\Manager.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

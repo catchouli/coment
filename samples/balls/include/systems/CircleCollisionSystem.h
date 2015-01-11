@@ -11,9 +11,9 @@ class CircleCollisionSystem
 {
 public:
 
-    /** Initialise the window dimensions */
+    /** Initialise the window dimensions & set system priority to 1 (greater than default) */
     CircleCollisionSystem(int width, int height)
-        : mWindowWidth((float)width), mWindowHeight((float)height)
+        : System(100), mWindowWidth((float)width), mWindowHeight((float)height)
     {
     }
 
@@ -22,7 +22,7 @@ public:
     /** Allow circles to collide with the edge of the screen */
     void onUpdate() override
     {
-        static auto circles = mWorld->getEntityMap<Position, Radius, Velocity>();
+        static auto circles = getWorld()->getEntityMap<Position, Radius, Velocity>();
 
         for (auto& circle : *circles.mEntities)
         {
