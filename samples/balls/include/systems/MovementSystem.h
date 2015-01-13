@@ -26,7 +26,7 @@ public:
         static auto mMovers = getWorld()->getEntityMap<Position, Velocity>();
 
         // Draw circles
-        for (auto& mover : *mMovers.mEntities)
+        for (auto& mover : mMovers)
         {
             // Get components
             Position* position = mover.getComponent<Position>();

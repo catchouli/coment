@@ -56,7 +56,7 @@ public:
         static auto mCircles = getWorld()->getEntityMap<Position, Radius>();
 
         // Draw circles
-        for (auto& circle : *mCircles.mEntities)
+        for (auto& circle : mCircles)
         {
             const Color defaultColor(0.0f, 0.0f, 0.0f);
 

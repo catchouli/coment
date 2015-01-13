@@ -38,7 +38,7 @@ namespace coment
         virtual void onUpdate() {}
 
         /** Called after the world is updated */
-        virtual void postUpdate() { printf("%d\n", getPriority()); }
+        virtual void postUpdate() {}
 
     private:
 

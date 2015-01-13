@@ -24,7 +24,7 @@ public:
     {
         static auto circles = getWorld()->getEntityMap<Position, Radius, Velocity>();
 
-        for (auto& circle : *circles.mEntities)
+        for (auto& circle : circles)
         {
             // Get components
             Position* pos = circle.getComponent<Position>();

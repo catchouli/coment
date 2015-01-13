@@ -21,21 +21,6 @@ void deinitSDL(SDL_Window* window, SDL_Renderer* renderer, SDL_GLContext context
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-struct system_t
-{
-    system_t(int priority = 0) : priority(priority) {}
-
-    int priority;
-};
-
-struct SystemPtrComparator
-{
-    bool operator()(const system_t* lhs, const system_t* rhs)
-    {
-        return lhs->priority > rhs->priority;
-    }
-};
-
 int main(int argc, char** argv)
 {
     bool running = true;
