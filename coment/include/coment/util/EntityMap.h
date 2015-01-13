@@ -23,7 +23,25 @@ namespace coment
         /** Create a new entity map from a given bitset and container */
         EntityMap(dynamic_bitset<> componentTypes, std::shared_ptr<std::vector<Entity>> entities);
 
-    //private:
+        /** Get the entities in this map */
+        std::vector<Entity>* getEntities();
+
+        /** Get the entities in this map */
+        const std::vector<Entity>* getEntities() const;
+
+        /** begin() proxy for range based for */
+        std::vector<Entity>::iterator begin();
+
+        /** begin() proxy for range based for */
+        std::vector<Entity>::iterator begin() const;
+
+        /** end() proxy for range based for */
+        std::vector<Entity>::iterator end();
+
+        /** end() proxy for range based for */
+        std::vector<Entity>::iterator end() const;
+
+    private:
 
         /** The component types that these entities include */
         dynamic_bitset<> mComponentTypes;

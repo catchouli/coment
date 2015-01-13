@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\tests\component_tests\component_addition_typesafe.cpp" />
+    <ClCompile Include="src\tests\component_tests\component_removal_typesafe.cpp" />
     <ClCompile Include="src\tests\entity_tests\entity_creation.cpp" />
     <ClCompile Include="src\tests\manager_tests\manager_callbacks.cpp" />
     <ClCompile Include="src\tests\manager_tests\manager_creation.cpp" />

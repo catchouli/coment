@@ -11,6 +11,7 @@
 #include "coment/systems/System.h"
 #include "coment/util/TypeMap.h"
 #include "coment/util/EntityMap.h"
+#include "coment/util/PriorityComparator.h"
 
 namespace coment
 {
@@ -39,7 +40,7 @@ namespace coment
 
         /** Remove a manager from the world */
         template <typename T>
-        void removeManager() const;
+        void removeManager();
 
         /** Add a system to the world, initialised with Args... */
         template <typename T, typename... Args>
@@ -51,7 +52,7 @@ namespace coment
 
         /** Remove a system from the world */
         template <typename T>
-        void removeSystem() const;
+        void removeSystem();
 
         /* Proxy API for EntityManager */
 
@@ -84,9 +85,11 @@ namespace coment
 
         /** A map of managers */
         TypeMap<Manager> mManagerMap;
+        std::multiset<Manager*, PriorityComparator<Manager>> mManagerSet;
 
         /** A map of systems */
         TypeMap<System> mSystemMap;
+        std::multiset<System*, PriorityComparator<System>> mSystemSet;
 
     };
 }

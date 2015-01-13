@@ -100,13 +100,13 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in positionMap but no others")
             {
-                REQUIRE(positionMap.mEntities->size() == 1);
-                REQUIRE(velocityMap.mEntities->size() == 0);
-                REQUIRE(radiusMap.mEntities->size() == 0);
-                REQUIRE(moverMap.mEntities->size() == 0);
-                REQUIRE(circleMap.mEntities->size() == 0);
+                REQUIRE(positionMap.getEntities()->size() == 1);
+                REQUIRE(velocityMap.getEntities()->size() == 0);
+                REQUIRE(radiusMap.getEntities()->size() == 0);
+                REQUIRE(moverMap.getEntities()->size() == 0);
+                REQUIRE(circleMap.getEntities()->size() == 0);
 
-                REQUIRE(positionMap.mEntities->at(0) == e);
+                REQUIRE(positionMap.getEntities()->at(0) == e);
 
                 WHEN("position is removed from the entity")
                 {
@@ -114,11 +114,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should not be in any maps")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
             }
@@ -130,13 +130,13 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in velocityMap but no others")
             {
-                REQUIRE(positionMap.mEntities->size() == 0);
-                REQUIRE(velocityMap.mEntities->size() == 1);
-                REQUIRE(radiusMap.mEntities->size() == 0);
-                REQUIRE(moverMap.mEntities->size() == 0);
-                REQUIRE(circleMap.mEntities->size() == 0);
+                REQUIRE(positionMap.getEntities()->size() == 0);
+                REQUIRE(velocityMap.getEntities()->size() == 1);
+                REQUIRE(radiusMap.getEntities()->size() == 0);
+                REQUIRE(moverMap.getEntities()->size() == 0);
+                REQUIRE(circleMap.getEntities()->size() == 0);
 
-                REQUIRE(velocityMap.mEntities->at(0) == e);
+                REQUIRE(velocityMap.getEntities()->at(0) == e);
 
                 WHEN("velocity is removed from the entity")
                 {
@@ -144,11 +144,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should not be in any maps")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
             }
@@ -160,13 +160,13 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in radiusMap but no others")
             {
-                REQUIRE(positionMap.mEntities->size() == 0);
-                REQUIRE(velocityMap.mEntities->size() == 0);
-                REQUIRE(radiusMap.mEntities->size() == 1);
-                REQUIRE(moverMap.mEntities->size() == 0);
-                REQUIRE(circleMap.mEntities->size() == 0);
+                REQUIRE(positionMap.getEntities()->size() == 0);
+                REQUIRE(velocityMap.getEntities()->size() == 0);
+                REQUIRE(radiusMap.getEntities()->size() == 1);
+                REQUIRE(moverMap.getEntities()->size() == 0);
+                REQUIRE(circleMap.getEntities()->size() == 0);
 
-                REQUIRE(radiusMap.mEntities->at(0) == e);
+                REQUIRE(radiusMap.getEntities()->at(0) == e);
 
                 WHEN("radius is removed from the entity")
                 {
@@ -174,11 +174,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should not be in any maps")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
             }
@@ -191,14 +191,14 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in velocityMap and radiusMap but no others")
             {
-                REQUIRE(positionMap.mEntities->size() == 0);
-                REQUIRE(velocityMap.mEntities->size() == 1);
-                REQUIRE(radiusMap.mEntities->size() == 1);
-                REQUIRE(moverMap.mEntities->size() == 0);
-                REQUIRE(circleMap.mEntities->size() == 0);
+                REQUIRE(positionMap.getEntities()->size() == 0);
+                REQUIRE(velocityMap.getEntities()->size() == 1);
+                REQUIRE(radiusMap.getEntities()->size() == 1);
+                REQUIRE(moverMap.getEntities()->size() == 0);
+                REQUIRE(circleMap.getEntities()->size() == 0);
 
-                REQUIRE(velocityMap.mEntities->at(0) == e);
-                REQUIRE(radiusMap.mEntities->at(0) == e);
+                REQUIRE(velocityMap.getEntities()->at(0) == e);
+                REQUIRE(radiusMap.getEntities()->at(0) == e);
 
                 WHEN("velocity is removed from the entity")
                 {
@@ -206,11 +206,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should only be in the radiusMap")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 1);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 1);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
 
@@ -220,11 +220,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should only be in the velocityMap")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 1);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 1);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
 
@@ -235,11 +235,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should not be in any maps")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
             }
@@ -252,14 +252,14 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in positionMap, velocityMap and moverMap")
             {
-                REQUIRE(positionMap.mEntities->size() == 1);
-                REQUIRE(velocityMap.mEntities->size() == 1);
-                REQUIRE(radiusMap.mEntities->size() == 0);
-                REQUIRE(moverMap.mEntities->size() == 1);
-                REQUIRE(circleMap.mEntities->size() == 0);
+                REQUIRE(positionMap.getEntities()->size() == 1);
+                REQUIRE(velocityMap.getEntities()->size() == 1);
+                REQUIRE(radiusMap.getEntities()->size() == 0);
+                REQUIRE(moverMap.getEntities()->size() == 1);
+                REQUIRE(circleMap.getEntities()->size() == 0);
 
-                REQUIRE(positionMap.mEntities->at(0) == e);
-                REQUIRE(velocityMap.mEntities->at(0) == e);
+                REQUIRE(positionMap.getEntities()->at(0) == e);
+                REQUIRE(velocityMap.getEntities()->at(0) == e);
             }
 
             WHEN("position is removed from the entity")
@@ -268,11 +268,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 THEN("the entity should only be in the velocityMap")
                 {
-                    REQUIRE(positionMap.mEntities->size() == 0);
-                    REQUIRE(velocityMap.mEntities->size() == 1);
-                    REQUIRE(radiusMap.mEntities->size() == 0);
-                    REQUIRE(moverMap.mEntities->size() == 0);
-                    REQUIRE(circleMap.mEntities->size() == 0);
+                    REQUIRE(positionMap.getEntities()->size() == 0);
+                    REQUIRE(velocityMap.getEntities()->size() == 1);
+                    REQUIRE(radiusMap.getEntities()->size() == 0);
+                    REQUIRE(moverMap.getEntities()->size() == 0);
+                    REQUIRE(circleMap.getEntities()->size() == 0);
                 }
             }
 
@@ -282,11 +282,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 THEN("the entity should only be in the positionMap")
                 {
-                    REQUIRE(positionMap.mEntities->size() == 1);
-                    REQUIRE(velocityMap.mEntities->size() == 0);
-                    REQUIRE(radiusMap.mEntities->size() == 0);
-                    REQUIRE(moverMap.mEntities->size() == 0);
-                    REQUIRE(circleMap.mEntities->size() == 0);
+                    REQUIRE(positionMap.getEntities()->size() == 1);
+                    REQUIRE(velocityMap.getEntities()->size() == 0);
+                    REQUIRE(radiusMap.getEntities()->size() == 0);
+                    REQUIRE(moverMap.getEntities()->size() == 0);
+                    REQUIRE(circleMap.getEntities()->size() == 0);
                 }
             }
 
@@ -297,11 +297,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                 THEN("the entity should not be in any maps")
                 {
-                    REQUIRE(positionMap.mEntities->size() == 0);
-                    REQUIRE(velocityMap.mEntities->size() == 0);
-                    REQUIRE(radiusMap.mEntities->size() == 0);
-                    REQUIRE(moverMap.mEntities->size() == 0);
-                    REQUIRE(circleMap.mEntities->size() == 0);
+                    REQUIRE(positionMap.getEntities()->size() == 0);
+                    REQUIRE(velocityMap.getEntities()->size() == 0);
+                    REQUIRE(radiusMap.getEntities()->size() == 0);
+                    REQUIRE(moverMap.getEntities()->size() == 0);
+                    REQUIRE(circleMap.getEntities()->size() == 0);
                 }
             }
         }
@@ -313,14 +313,14 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
             THEN("e should be in positionMap, radiusMap and circleMap")
             {
-                REQUIRE(positionMap.mEntities->size() == 1);
-                REQUIRE(velocityMap.mEntities->size() == 0);
-                REQUIRE(radiusMap.mEntities->size() == 1);
-                REQUIRE(moverMap.mEntities->size() == 0);
-                REQUIRE(circleMap.mEntities->size() == 1);
+                REQUIRE(positionMap.getEntities()->size() == 1);
+                REQUIRE(velocityMap.getEntities()->size() == 0);
+                REQUIRE(radiusMap.getEntities()->size() == 1);
+                REQUIRE(moverMap.getEntities()->size() == 0);
+                REQUIRE(circleMap.getEntities()->size() == 1);
 
-                REQUIRE(positionMap.mEntities->at(0) == e);
-                REQUIRE(radiusMap.mEntities->at(0) == e);
+                REQUIRE(positionMap.getEntities()->at(0) == e);
+                REQUIRE(radiusMap.getEntities()->at(0) == e);
 
                 WHEN("position is removed from the entity")
                 {
@@ -328,11 +328,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should only be in the radiusMap")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 1);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 1);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
 
@@ -342,11 +342,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should only be in the positionMap")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 1);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 1);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
 
@@ -357,11 +357,11 @@ SCENARIO("components are added to an entity", "[entity][component]")
 
                     THEN("the entity should not be in any maps")
                     {
-                        REQUIRE(positionMap.mEntities->size() == 0);
-                        REQUIRE(velocityMap.mEntities->size() == 0);
-                        REQUIRE(radiusMap.mEntities->size() == 0);
-                        REQUIRE(moverMap.mEntities->size() == 0);
-                        REQUIRE(circleMap.mEntities->size() == 0);
+                        REQUIRE(positionMap.getEntities()->size() == 0);
+                        REQUIRE(velocityMap.getEntities()->size() == 0);
+                        REQUIRE(radiusMap.getEntities()->size() == 0);
+                        REQUIRE(moverMap.getEntities()->size() == 0);
+                        REQUIRE(circleMap.getEntities()->size() == 0);
                     }
                 }
             }

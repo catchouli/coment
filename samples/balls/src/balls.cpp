@@ -1,4 +1,6 @@
 #include <iostream>
+#include <set>
+#include <algorithm>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 

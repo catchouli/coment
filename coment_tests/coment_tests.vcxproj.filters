@@ -45,6 +45,9 @@
     <ClCompile Include="src\tests\system_tests\system_callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\component_tests\component_removal_typesafe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\tests\manager_tests\Managers.h">

@@ -21,9 +21,9 @@ class RenderingSystem
 {
 public:
 
-    /** Initialises the vertex array */
+    /** Initialises the vertex array & initialise priority to 1000 so it runs after updates */
     RenderingSystem(int width, int height, int circleVertexCount = 32)
-        : mWindowWidth(width), mWindowHeight(height)
+        : System(1000), mWindowWidth(width), mWindowHeight(height)
     {
         // Initialise vertex array
         mCircleVertexArray = createCircleVertexArray(circleVertexCount);
@@ -53,10 +53,10 @@ public:
     void onUpdate() override
     {
         // Map of circles
-        static auto mCircles = mWorld->getEntityMap<Position, Radius>();
+        static auto mCircles = getWorld()->getEntityMap<Position, Radius>();
 
         // Draw circles
-        for (auto& circle : *mCircles.mEntities)
+        for (auto& circle : mCircles)
         {
             const Color defaultColor(0.0f, 0.0f, 0.0f);
 

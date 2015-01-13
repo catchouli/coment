@@ -88,6 +88,7 @@
     <ClInclude Include="include\coment\util\combined_hash.h" />
     <ClInclude Include="include\coment\util\dynamic_bitset.h" />
     <ClInclude Include="include\coment\util\EntityMap.h" />
+    <ClInclude Include="include\coment\util\PriorityComparator.h" />
     <ClInclude Include="include\coment\util\TypeEnumerator.h" />
     <ClInclude Include="include\coment\util\TypeMap.h" />
     <ClInclude Include="include\coment\World.h" />
@@ -110,6 +111,7 @@
     <None Include="include\coment\Entity.inl" />
     <None Include="include\coment\managers\ComponentManager.inl" />
     <None Include="include\coment\managers\EntityManager.inl" />
+    <None Include="include\coment\managers\Manager.inl" />
     <None Include="include\coment\systems\EntitySystem.inl" />
     <None Include="include\coment\util\EntityMap.inl" />
     <None Include="include\coment\util\TypeEnumerator.inl" />
