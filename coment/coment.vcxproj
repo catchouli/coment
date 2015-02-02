@@ -83,6 +83,9 @@
     <ClInclude Include="include\coment\managers\Manager.h" />
     <ClInclude Include="include\coment\reflection\Macros.h" />
     <ClInclude Include="include\coment\reflection\MemberOffset.h" />
+    <ClInclude Include="include\coment\signals\Connection.h" />
+    <ClInclude Include="include\coment\signals\Observer.h" />
+    <ClInclude Include="include\coment\signals\Signal.h" />
     <ClInclude Include="include\coment\systems\EntitySystem.h" />
     <ClInclude Include="include\coment\systems\System.h" />
     <ClInclude Include="include\coment\util\combined_hash.h" />
@@ -112,6 +115,9 @@
     <None Include="include\coment\managers\ComponentManager.inl" />
     <None Include="include\coment\managers\EntityManager.inl" />
     <None Include="include\coment\managers\Manager.inl" />
+    <None Include="include\coment\signals\Connection.inl" />
+    <None Include="include\coment\signals\Observer.inl" />
+    <None Include="include\coment\signals\Signal.inl" />
     <None Include="include\coment\systems\EntitySystem.inl" />
     <None Include="include\coment\util\EntityMap.inl" />
     <None Include="include\coment\util\TypeEnumerator.inl" />

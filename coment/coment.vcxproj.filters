@@ -90,6 +90,15 @@
     <ClInclude Include="include\coment\util\PriorityComparator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\coment\signals\Connection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coment\signals\Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coment\signals\Signal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\managers\EntityManager.cpp">
@@ -134,6 +143,15 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="include\coment\managers\Manager.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\signals\Connection.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\signals\Observer.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="include\coment\signals\Signal.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
