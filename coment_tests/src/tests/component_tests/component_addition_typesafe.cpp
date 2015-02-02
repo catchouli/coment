@@ -111,6 +111,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("position is removed from the entity")
                 {
                     e.removeComponent<Position>();
+                    world.update();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -141,6 +142,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("velocity is removed from the entity")
                 {
                     e.removeComponent<Velocity>();
+                    world.update();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -171,6 +173,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("radius is removed from the entity")
                 {
                     e.removeComponent<Radius>();
+                    world.update();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -203,6 +206,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("velocity is removed from the entity")
                 {
                     e.removeComponent<Velocity>();
+                    world.update();
 
                     THEN("the entity should only be in the radiusMap")
                     {
@@ -217,6 +221,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("radius is removed from the entity")
                 {
                     e.removeComponent<Radius>();
+                    world.update();
 
                     THEN("the entity should only be in the velocityMap")
                     {
@@ -232,6 +237,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 {
                     e.removeComponent<Velocity>();
                     e.removeComponent<Radius>();
+                    world.update();
 
                     THEN("the entity should not be in any maps")
                     {
@@ -265,6 +271,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
             WHEN("position is removed from the entity")
             {
                 e.removeComponent<Position>();
+                world.update();
 
                 THEN("the entity should only be in the velocityMap")
                 {
@@ -279,6 +286,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
             WHEN("velocity is removed from the entity")
             {
                 e.removeComponent<Velocity>();
+                world.update();
 
                 THEN("the entity should only be in the positionMap")
                 {
@@ -294,6 +302,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
             {
                 e.removeComponent<Position>();
                 e.removeComponent<Velocity>();
+                world.update();
 
                 THEN("the entity should not be in any maps")
                 {
@@ -325,6 +334,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("position is removed from the entity")
                 {
                     e.removeComponent<Position>();
+                    world.update();
 
                     THEN("the entity should only be in the radiusMap")
                     {
@@ -339,6 +349,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 WHEN("radius is removed from the entity")
                 {
                     e.removeComponent<Radius>();
+                    world.update();
 
                     THEN("the entity should only be in the positionMap")
                     {
@@ -354,6 +365,7 @@ SCENARIO("components are added to an entity", "[entity][component]")
                 {
                     e.removeComponent<Position>();
                     e.removeComponent<Radius>();
+                    world.update();
 
                     THEN("the entity should not be in any maps")
                     {

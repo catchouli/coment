@@ -100,8 +100,8 @@ namespace coment
         dynamic_bitset<> oldBitmask = componentBitmask;
         componentBitmask.set(typeId, false);
 
-        // Update mEntitiesByComponentBitmask arrays
-        updateEntityMaps(e, oldBitmask, componentBitmask);
+        // Queue update for postUpdate
+        mUpdatesWaiting.push_back(std::tuple<Entity, dynamic_bitset<>, dynamic_bitset<>>(e, oldBitmask, componentBitmask));
     }
 
     /* Get an entity -> component map for a specific set of components */

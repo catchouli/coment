@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <tuple>
 
 namespace coment
 {
@@ -48,6 +49,9 @@ namespace coment
 
         /** Called when an entity is removed from the manager */
         void COMENT_API onEntityRemoved(const Entity& e) override;
+
+        /** Handles component map updates between updates */
+        void COMENT_API postUpdate() override;
 
     private:
 
@@ -89,6 +93,9 @@ namespace coment
         /** Map of component bitmasks to entity arrays */
         std::unordered_map<dynamic_bitset<>,
             std::shared_ptr<std::vector<Entity>>> mEntitiesByComponentBitmask;
+
+        /** Map updates waiting */
+        std::vector<std::tuple<Entity, dynamic_bitset<>, dynamic_bitset<>>> mUpdatesWaiting;
 
     };
 }

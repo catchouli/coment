@@ -64,4 +64,14 @@ namespace coment
         // Reset entity
         mEntityInfo[e.getId()] = EntityComponentInfo();
     }
+
+    /** Manages component map updates between updates */
+    void COMENT_API ComponentManager::postUpdate()
+    {
+        for (auto& update : mUpdatesWaiting)
+        {
+            // Update mEntitiesByComponentBitmask arrays
+            updateEntityMaps(std::get<0>(update), std::get<1>(update), std::get<2>(update));
+        }
+    }
 }
