@@ -4,7 +4,7 @@
 #include <coment/systems/System.h>
 
 class CallbackTestSystem
-    : public coment::System
+    : public coment::System<CallbackTestSystem>
 {
 public:
 

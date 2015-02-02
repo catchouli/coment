@@ -18,9 +18,11 @@ namespace coment
         // Add manager to set
         mManagerSet.insert(ptr);
 
-        // Give vector pointer to systems/managers for callbacks
-        ptr->mManagers = &mManagerSet;
-        ptr->mSystems = &mSystemSet;
+        // Give manager pointer to signals
+        ptr->mSignals = &mSignals;
+
+        // Allow manager to register callbacks
+        ptr->registerCallbacks();
 
         // Update manager pointer if it's cached
         updateManagerPointer(ptr);
@@ -63,6 +65,12 @@ namespace coment
 
         // Add system to set
         mSystemSet.insert(ptr);
+
+        // Give system pointer to signals
+        ptr->mSignals = &mSignals;
+
+        // Allow system to register callbacks
+        ptr->registerCallbacks();
 
         // Give it a pointer to this world
         ptr->mWorld = this;

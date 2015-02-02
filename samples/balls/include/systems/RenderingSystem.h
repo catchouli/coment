@@ -17,7 +17,7 @@ struct Vertex
 std::vector<Vertex> createCircleVertexArray(int circleVertexCount);
 
 class RenderingSystem
-    : public coment::System
+    : public coment::System<RenderingSystem>
 {
 public:
 

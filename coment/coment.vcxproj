@@ -83,6 +83,7 @@
     <ClInclude Include="include\coment\managers\Manager.h" />
     <ClInclude Include="include\coment\reflection\Macros.h" />
     <ClInclude Include="include\coment\reflection\MemberOffset.h" />
+    <ClInclude Include="include\coment\SignalType.h" />
     <ClInclude Include="include\coment\signals\Connection.h" />
     <ClInclude Include="include\coment\signals\Observer.h" />
     <ClInclude Include="include\coment\signals\Signal.h" />

@@ -85,4 +85,71 @@ namespace coment
             }
         }
     }
+
+    /* SignalBase proxies for type erasure */
+
+    /** Check two types are the same and throw an exception otherwise */
+    inline void checkTypes(std::type_index A, std::type_index B)
+    {
+        if (A != B)
+        {
+            throw std::exception("Wrong Args... specified for this signal");
+        }
+    }
+    
+    /** Connect a signal to an observer */
+    template <typename... Args, typename T>
+    void SignalBase::connect(T* objectPtr, typename Connection_MemberFunctionPointer<T, Args...>::PointerType fp)
+    {
+        // Check signal type
+        checkTypes(typeid(Signal<Args...>), mType);
+
+        // Get signal pointer
+        auto signal = (Signal<Args...>*)this;
+
+        // Connect signal
+        signal->connect(objectPtr, fp);
+    }
+
+    /** Disconnect a signal from an observer */
+    template <typename... Args, typename T>
+    void SignalBase::disconnect(T* objectPtr)
+    {
+        // Check signal type
+        checkTypes(typeid(Signal<Args...>), mType);
+
+        // Get signal pointer
+        auto signal = (Signal<Args...>*)this;
+
+        // Connect signal
+        signal->disconnect(objectPtr);
+    }
+
+    /** Disconnect all observers */
+    template <typename... Args>
+    void SignalBase::disconnectAll()
+    {
+        // Check signal type
+        checkTypes(typeid(Signal<Args...>), mType);
+
+        // Get signal pointer
+        auto signal = (Signal<Args...>*)this;
+
+        // Connect signal
+        signal->disconnectAll();
+    }
+
+    /** Emit a signal */
+    template <typename... Args>
+    void SignalBase::emit(Args... args)
+    {
+        // Check signal type
+        checkTypes(typeid(Signal<Args...>), mType);
+
+        // Get signal pointer
+        auto signal = (Signal<Args...>*)this;
+
+        // Connect signal
+        signal->emit(args...);
+    }
 }

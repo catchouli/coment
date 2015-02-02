@@ -19,7 +19,7 @@ namespace coment
 
     /** The manager responsible for creation and storage of components */
     class ComponentManager
-        : public Manager
+        : public Manager<ComponentManager>
     {
     public:
 

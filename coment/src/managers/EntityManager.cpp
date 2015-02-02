@@ -48,17 +48,8 @@ namespace coment
         // Make entity living
         mLivingEntities.push_back(entity);
 
-        // Manager Callback: onEntityAdded
-        for (Manager* manager : *mManagers)
-        {
-            manager->onEntityAdded(entity);
-        }
-
-        // System Callback: onEntityAdded
-        for (System* system : *mSystems)
-        {
-            system->onEntityAdded(entity);
-        }
+        // OnEntityAdded callback
+        mSignals->at(SignalType::OnEntityAdded)->emit<const Entity&>(entity);
 
         return entity;
     }
@@ -113,18 +104,8 @@ namespace coment
             // Update entity info
             mEntityInfo[ent.mId].living = false;
 
-            // Manager Callback: onEntityRemoved
-            // Notify managers that the entity should be removed
-            for (Manager* manager : *mManagers)
-            {
-                manager->onEntityRemoved(ent);
-            }
-
-            // System Callback: onEntityRemoved
-            for (System* system : *mSystems)
-            {
-                system->onEntityRemoved(ent);
-            }
+            // OnEntityRemoved callback
+            mSignals->at(SignalType::OnEntityRemoved)->emit<const Entity&>(ent);
         }
 
         // Clear waiting list

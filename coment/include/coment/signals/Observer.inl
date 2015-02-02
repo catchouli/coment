@@ -3,7 +3,7 @@
 
 namespace coment
 {
-    Observer::~Observer()
+    inline Observer::~Observer()
     {
         // Copy list so it can be modified
         auto connections = mConnections;

@@ -3,21 +3,27 @@
 #include <vector>
 #include <set>
 
+#include "coment/SignalType.h"
+#include "coment/signals/Signal.h"
+#include "coment/signals/Observer.h"
 #include "coment/util/PriorityComparator.h"
 
 namespace coment
 {
     class Entity;
-    class System;
+    class SystemBase;
 
-    class Manager
+    class ManagerBase
+        : public Observer
     {
     public:
 
         /** Allows the derived class to specify a priority for updates to the manager.
             A higher priority means that this manager will be processed first */
-        Manager(int priority = 0)
+        ManagerBase(int priority = 0)
             : mPriority(priority) {}
+
+        ~ManagerBase() {}
 
         /** Get the priority of this manager */
         int getPriority() const;
@@ -45,11 +51,30 @@ namespace coment
         /** The priority of updates to this manager */
         int mPriority;
 
-        /** All managers known by this manager's world */
-        const std::multiset<Manager*, PriorityComparator<Manager>>* mManagers;
+        /** The signals that are used to emit callbacks */
+        std::unordered_map<SignalType, SignalBase*>* mSignals;
 
-        /** All systems known by this manager's world */
-        const std::multiset<System*, PriorityComparator<System>>* mSystems;
+    };
+
+    template <typename T>
+    class Manager
+        : public ManagerBase
+    {
+    public:
+
+        /** Allows the derived class to specify a priority for updates to the manager.
+        A higher priority means that this manager will be processed first */
+        Manager(int priority = 0)
+            : ManagerBase(priority) {}
+
+        ~Manager() {}
+
+    private:
+
+        friend class World;
+
+        /** Called by the world to give the manager a chance to register callbacks */
+        void registerCallbacks();
 
     };
 }

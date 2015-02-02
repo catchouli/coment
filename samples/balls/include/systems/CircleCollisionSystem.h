@@ -7,7 +7,7 @@
 #include "components/Radius.h"
 
 class CircleCollisionSystem
-    : public coment::System
+    : public coment::System<CircleCollisionSystem>
 {
 public:
 

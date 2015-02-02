@@ -7,7 +7,7 @@
 #include "components/Velocity.h"
 
 class MovementSystem
-    : public coment::System
+    : public coment::System<MovementSystem>
 {
 public:
 

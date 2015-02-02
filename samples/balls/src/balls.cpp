@@ -15,6 +15,11 @@
 #include "systems/CircleCollisionSystem.h"
 #include "systems/RenderingSystem.h"
 
+#include "boost/tti/has_member_function.hpp"
+#include <unordered_map>
+#include <coment/SignalType.h>
+#include <coment/signals/Signal.h>
+
 void initSDL(SDL_Window** window, SDL_Renderer** renderer, SDL_GLContext* context);
 void deinitSDL(SDL_Window* window, SDL_Renderer* renderer, SDL_GLContext context);
 
@@ -43,7 +48,7 @@ int main(int argc, char** argv)
 
     // Create circles with random positions, velocities, colours and radiuses
     srand((unsigned int)time(0));
-    for (int i = 0; i < 5000; ++i)
+    for (int i = 0; i < 10; ++i)
     {
         auto randf = []() { return rand() / (float)RAND_MAX; };
         auto randfr = [&randf](float min, float max) { return randf() * (max - min) + min; };

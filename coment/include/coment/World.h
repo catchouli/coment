@@ -7,8 +7,10 @@
 #include <type_traits>
 
 #include "coment/DLL.h"
+#include "coment/SignalType.h"
 #include "coment/managers/Manager.h"
 #include "coment/systems/System.h"
+#include "coment/signals/Signal.h"
 #include "coment/util/TypeMap.h"
 #include "coment/util/EntityMap.h"
 #include "coment/util/PriorityComparator.h"
@@ -84,12 +86,22 @@ namespace coment
         ComponentManager* mComponentManager;
 
         /** A map of managers */
-        TypeMap<Manager> mManagerMap;
-        std::multiset<Manager*, PriorityComparator<Manager>> mManagerSet;
+        TypeMap<ManagerBase> mManagerMap;
+        std::multiset<ManagerBase*> mManagerSet;
 
         /** A map of systems */
-        TypeMap<System> mSystemMap;
-        std::multiset<System*, PriorityComparator<System>> mSystemSet;
+        TypeMap<SystemBase> mSystemMap;
+        std::multiset<SystemBase*> mSystemSet;
+
+        /* Signals */
+
+        Signal<const Entity&> mOnEntityAdded;
+        Signal<const Entity&> mOnEntityRemoved;
+        Signal<> mPreUpdate;
+        Signal<> mOnUpdate;
+        Signal<> mPostUpdate;
+
+        std::unordered_map<SignalType, SignalBase*> mSignals;
 
     };
 }

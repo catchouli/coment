@@ -32,7 +32,7 @@ namespace coment
 
     /** The manager responsible for creating and storing entities */
     class EntityManager
-        : public Manager
+        : public Manager<EntityManager>
     {
     public:
 

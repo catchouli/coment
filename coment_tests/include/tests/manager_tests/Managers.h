@@ -4,13 +4,13 @@
 #include <coment/managers/Manager.h>
 
 class DefaultManager
-    : public coment::Manager
+    : public coment::Manager<DefaultManager>
 {
 
 };
 
 class CallbackTestManager
-    : public coment::Manager
+    : public coment::Manager<CallbackTestManager>
 {
 public:
 
