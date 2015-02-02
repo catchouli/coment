@@ -15,34 +15,14 @@
 #include "systems/CircleCollisionSystem.h"
 #include "systems/RenderingSystem.h"
 
-#include <coment/signals/Observer.h>
-#include <coment/signals/Signal.h>
-
 void initSDL(SDL_Window** window, SDL_Renderer** renderer, SDL_GLContext* context);
 void deinitSDL(SDL_Window* window, SDL_Renderer* renderer, SDL_GLContext context);
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-class Test
-    : public coment::Observer
-{
-public:
-    void test(int i, int j)
-    {
-        printf("%d\n", i * j);
-    }
-};
-
 int main(int argc, char** argv)
 {
-    coment::Signal<int, int> sig;
-    Test test;
-
-    sig.connect(&test, &Test::test);
-
-    sig.emit(5, 6);
-
     bool running = true;
 
     // SDL stuff
@@ -62,8 +42,8 @@ int main(int argc, char** argv)
     world.addSystem<RenderingSystem>(WINDOW_WIDTH, WINDOW_HEIGHT);
 
     // Create circles with random positions, velocities, colours and radiuses
-    srand(time(0));
-    for (int i = 0; i < 10; ++i)
+    srand((unsigned int)time(0));
+    for (int i = 0; i < 5000; ++i)
     {
         auto randf = []() { return rand() / (float)RAND_MAX; };
         auto randfr = [&randf](float min, float max) { return randf() * (max - min) + min; };
