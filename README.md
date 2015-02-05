@@ -7,21 +7,9 @@ Class documentation: http://cat.rena.so/coment/docs/html/index.html
 
 Contact me (cat): http://irc.rena.so/
 
-<h4>The new architecture</h4>
-
-As much magic and interdependency has been removed as is possible. In particular:
-
-- The world is now just a collection of systems and managers, as well as proxy APIs for the default managers
-- Managers and Systems are now just managed classes that respond to callbacks, and callbacks should be preferred for sharing data over interdependency between managers and systems in all cases
-- All component management is now done by the ComponentManager class, which allows the user to obtain an EntityMap<types...> and keeps it up to date when components and entities are added or removed
-
-These changes should allow the library to more reliable and easier to maintain. Additionally, the library has been been designed using data-driven development, so test cases are already available for all implemented behaviour.
-
-Entity and component managers have been implemented, as well as managed Manager and System classes, so all the fundamental requirements to use the library should be fulfilled. Additional features will be provided through new (independent) core managers. Planned features include: tags, groups, messaging, value management.
-
-For examples of how to use the library, check out the samples and tests.
-
 <h4>Usage</h4>
+
+As of release 2.3.0, the library is now header only. To use, simply add the include directory to your project/makefile's includes and try some of the following samples. For more fully-fledged samples and examples, check out the samples directory.
 
 <h5>The World</h5>
 
@@ -127,3 +115,17 @@ Available callbacks include: onEntityAdded(e), onEntityRemoved(e), preUpdate(), 
 Managers provide the behaviour for the whole engine, and are compartmentalised into Manager classes that are synchronised through callbacks similar to System callbacks. The following default managers are provided: EntityManager, ComponentManager. The Entity and World classes provide proxy APIs for these managers. They can also be obtained directly using World::getManager<T>().
 
 Custom mamangers can also be provided in a similar way to Systems. The callbacks provided include: onEntityAdded(e), onEntityRemoved(e), preUpdate(), postUpdate().
+
+<h4>The new architecture</h4>
+
+As much magic and interdependency has been removed as is possible. In particular:
+
+- The world is now just a collection of systems and managers, as well as proxy APIs for the default managers
+- Managers and Systems are now just managed classes that respond to callbacks, and callbacks should be preferred for sharing data over interdependency between managers and systems in all cases
+- All component management is now done by the ComponentManager class, which allows the user to obtain an EntityMap<types...> and keeps it up to date when components and entities are added or removed
+
+These changes should allow the library to more reliable and easier to maintain. Additionally, the library has been been designed using data-driven development, so test cases are already available for all implemented behaviour.
+
+Entity and component managers have been implemented, as well as managed Manager and System classes, so all the fundamental requirements to use the library should be fulfilled. Additional features will be provided through new (independent) core managers. Planned features include: tags, groups, messaging, value management.
+
+For examples of how to use the library, check out the samples and tests.
