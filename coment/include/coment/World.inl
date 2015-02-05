@@ -1,6 +1,8 @@
 #include "coment/World.h"
 
 #include "coment/Entity.h"
+#include "coment/managers/EntityManager.h"
+#include "coment/managers/ComponentManager.h"
 
 #include <type_traits>
 
@@ -142,5 +144,51 @@ namespace coment
     inline void World::updateManagerPointer(ComponentManager* ptr)
     {
         mComponentManager = ptr;
+    }
+
+    /* Non-template implementations */
+
+    /** Create default managers and initialise the world */
+    inline World::World()
+    {
+        // Store signals in map
+        mSignals[SignalType::OnEntityAdded] = &mOnEntityAdded;
+        mSignals[SignalType::OnEntityRemoved] = &mOnEntityRemoved;
+        mSignals[SignalType::PreUpdate] = &mPreUpdate;
+        mSignals[SignalType::OnUpdate] = &mOnUpdate;
+        mSignals[SignalType::PostUpdate] = &mPostUpdate;
+
+        // Create default managers
+        mEntityManager = addManager<EntityManager>(this);
+        mComponentManager = addManager<ComponentManager>();
+    }
+
+    /** Update all systems and managers */
+    inline void World::update()
+    {
+        // Preupdate signal
+        mPreUpdate.emit();
+        mOnUpdate.emit();
+        mPostUpdate.emit();
+    }
+
+    /* Proxy API for EntityManager */
+
+    /** Creates or recycles an entity */
+    inline Entity World::createEntity()
+    {
+        return mEntityManager->createEntity();
+    }
+
+    /** Destroys an entity and recycles its ID */
+    inline void World::destroyEntity(Entity& e)
+    {
+        mEntityManager->destroyEntity(e);
+    }
+
+    /** Get whether an entity is living */
+    inline bool World::isLiving(Entity e) const
+    {
+        return mEntityManager->isLiving(e);
     }
 }

@@ -25,10 +25,10 @@ namespace coment
     public:
 
         /** Create default managers and initialise the world */
-        COMENT_API World();
+        World();
 
         /** Update all systems and managers */
-        void COMENT_API update();
+        void update();
 
         /* Manager management */
 
@@ -59,10 +59,10 @@ namespace coment
         /* Proxy API for EntityManager */
 
         /** Creates or recycles an entity */
-        Entity COMENT_API createEntity();
+        Entity createEntity();
 
         /** Destroys an entity and recycles its ID */
-        void COMENT_API destroyEntity(Entity& e);
+        void destroyEntity(Entity& e);
 
         /** Get whether an entity is living */
         bool isLiving(Entity e) const;

@@ -45,18 +45,18 @@ namespace coment
         /* Callbacks */
 
         /** Called when an entity is added to the manager */
-        void COMENT_API onEntityAdded(const Entity& e) override;
+        void onEntityAdded(const Entity& e) override;
 
         /** Called when an entity is removed from the manager */
-        void COMENT_API onEntityRemoved(const Entity& e) override;
+        void onEntityRemoved(const Entity& e) override;
 
         /** Handles component map updates between updates */
-        void COMENT_API postUpdate() override;
+        void postUpdate() override;
 
     private:
 
         /** Update entity maps (mEntitiesByComponentBitmask) with a modified component bitmask */
-        void COMENT_API updateEntityMaps(Entity e, const dynamic_bitset<>& oldBitmask,
+        void updateEntityMaps(Entity e, const dynamic_bitset<>& oldBitmask,
             const dynamic_bitset<>& newBitmask);
 
         /** Get a type ID for a specific component type */

@@ -37,13 +37,13 @@ namespace coment
     public:
 
         /** Default constructor. Initialises members */
-        COMENT_API EntityManager(World* world);
+        EntityManager(World* world);
 
         /** Creates or recycles an entity */
-        Entity COMENT_API createEntity();
+        Entity createEntity();
 
         /** Destroys an entity and recycles its ID */
-        void COMENT_API destroyEntity(Entity& e);
+        void destroyEntity(Entity& e);
 
         /** Get whether an entity is living */
         bool isLiving(Entity e) const;
@@ -51,7 +51,7 @@ namespace coment
         /* Callbacks */
 
         /** Handles dead entities once an update has ended */
-        void COMENT_API postUpdate() override;
+        void postUpdate() override;
 
     private:
 
