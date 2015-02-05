@@ -1,7 +1,5 @@
 #include "coment/managers/ComponentManager.h"
 
-#include "coment/reflection/TypeRegistry.h"
-
 namespace coment
 {
 

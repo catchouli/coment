@@ -69,18 +69,6 @@
     <ClInclude Include="include\coment\systems\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\coment\systems\EntitySystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coment\reflection\TypeRegistry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coment\reflection\Macros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coment\reflection\MemberOffset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\coment\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,9 +101,6 @@
     <ClCompile Include="src\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\reflection\TypeRegistry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\util\EntityMap.inl">
@@ -137,9 +122,6 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="include\coment\Entity.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="include\coment\systems\EntitySystem.inl">
       <Filter>Header Files</Filter>
     </None>
     <None Include="include\coment\World.inl">
