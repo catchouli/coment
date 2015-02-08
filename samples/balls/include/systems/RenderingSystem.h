@@ -43,7 +43,7 @@ public:
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.0, (double)mWindowWidth, 0.0, (double)mWindowHeight, 0.0f, 1.0f);
+        glOrtho(0.0, static_cast<double>(mWindowWidth), 0.0, static_cast<double>(mWindowHeight), 0.0f, 1.0f);
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
@@ -118,10 +118,10 @@ inline std::vector<Vertex> createCircleVertexArray(int circleVertexCount)
     for (int i = 0; i < circleVertexCount - 2; ++i)
     {
         // How far we are around the circle in radians
-        float angle = 2.0f * (float)M_PI * (float)i / (float)(circleVertexCount - 2);
+        double angle = 2.0 * M_PI * (i / circleVertexCount - 2);
 
         // Set the circle's vertices
-        circleVertexArray[i] = { sin(angle), cos(angle) };
+        circleVertexArray[i] = { static_cast<float>(sin(angle)), static_cast<float>(cos(angle)) };
     }
 
     // The final vertex should loop back around
