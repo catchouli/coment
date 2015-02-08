@@ -3,10 +3,10 @@
 // This allows our type to access the private members of dynamic_bitset
 // As a result, this header must be included before or instead of the real dynamic_bitset
 // headers, or before any other headers that might include it
-#include <boost/dynamic_bitset/config.hpp>
+#include "boost/dynamic_bitset/config.hpp"
 #undef BOOST_DYNAMIC_BITSET_PRIVATE
 #define BOOST_DYNAMIC_BITSET_PRIVATE public
-#include <boost/dynamic_bitset.hpp>
+#include "boost/dynamic_bitset.hpp"
 
 #include "coment/util/combined_hash.h"
 
@@ -41,7 +41,7 @@ namespace coment
         size_t cumulative_hash = 0;
 
         // Create hash from block hashes
-        for (auto& block : m_bits)
+        for (auto& block : this->m_bits)
         {
             hash_combine(cumulative_hash, block);
 
@@ -67,12 +67,12 @@ namespace coment
         size_t longestBlockLen;
 
         // Order bitsets
-        if (m_bits.size() <= other.m_bits.size())
+        if (this->m_bits.size() <= other.m_bits.size())
         {
             shortest = this;
             longest = &other;
 
-            shortestBlockLen = m_bits.size();
+            shortestBlockLen = this->m_bits.size();
             longestBlockLen = other.m_bits.size();
         }
         else
@@ -81,13 +81,13 @@ namespace coment
             longest = this;
 
             shortestBlockLen = other.m_bits.size();
-            longestBlockLen = m_bits.size();
+            longestBlockLen = this->m_bits.size();
         }
 
         // Compare up to guaranteed (shortest) length
         for (unsigned int i = 0; i < shortestBlockLen; ++i)
         {
-            const auto& a = m_bits[i];
+            const auto& a = this->m_bits[i];
             const auto& b = other.m_bits[i];
 
             if (a != b)
@@ -119,20 +119,21 @@ namespace coment
     bool dynamic_bitset<Block, Allocator>::
         is_subset_of(const dynamic_bitset<Block, Allocator>& a) const
     {
-        size_t fewestBlocks = std::min(num_blocks(), a.num_blocks());
+        size_t fewestBlocks = std::min(this->num_blocks(), a.num_blocks());
 
         // Default check - check up to common length
-        for (size_type i = 0; i < fewestBlocks; ++i)
-            if (m_bits[i] & ~a.m_bits[i])
+        // TODO: size_type?
+        for (size_t i = 0; i < fewestBlocks; ++i)
+            if (this->m_bits[i] & ~a.m_bits[i])
                 return false;
 
         // Check the rest of this is all zero if it's longer,
         // or it might still not be a subset
-        if (num_blocks() > a.num_blocks())
+        if (this->num_blocks() > a.num_blocks())
         {
-            for (size_t i = a.num_blocks(); i < num_blocks(); ++i)
+            for (size_t i = a.num_blocks(); i < this->num_blocks(); ++i)
             {
-                const auto& block = m_bits[i];
+                const auto& block = this->m_bits[i];
 
                 if (block != 0)
                     return false;

@@ -208,6 +208,15 @@ namespace coment
         return componentTypes;
     }
 
+    template <typename T>
+    void combine(T& a, const T& b)
+    {
+      if (a.size() < b.size())
+        a.resize(b.size());
+
+      a |= b;
+    }
+
     /** Decompose a variadic type pack into a list of integer ids */
     template <typename T1, typename T2, typename... ComponentTypes>
     dynamic_bitset<> ComponentManager::getComponentTypes()
@@ -216,13 +225,13 @@ namespace coment
         dynamic_bitset<> componentTypes;
 
         // resize a to be at least as long as b, and then a |= b
-        auto combine = [](dynamic_bitset<>& a, dynamic_bitset<>& b)
-        {
-            if (a.size() < b.size())
-                a.resize(b.size());
-
-            a |= b;
-        };
+        //auto combine = [](coment::dynamic_bitset<>& a, coment::dynamic_bitset<>& b)
+        //{
+        //    if (a.size() < b.size())
+        //        a.resize(b.size());
+        //
+        //    a |= b;
+        //};
 
         // Get bit for T1 and add it to componentTypes bitmask
         combine(componentTypes, getComponentTypes<T1>());

@@ -1,4 +1,5 @@
 #include "coment/signals/Connection.h"
+#include "coment/signals/Observer.h"
 
 namespace coment
 {
@@ -31,7 +32,7 @@ namespace coment
         // Remove connection from signal
         auto it = mSignal->mConnections.find(connection);
         if (it == mSignal->mConnections.end())
-            throw std::exception("Internal error (FATAL): Connection not found in signal");
+            throw "Internal error (FATAL): Connection not found in signal";
 
         // This will cause destruction of this connection, so it must be done last
         std::shared_ptr<Connection<Args...>> sharedPtr = it->second;

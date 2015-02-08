@@ -1,5 +1,6 @@
 #include "coment/Entity.h"
 
+#include "coment/World.h"
 #include "coment/managers/ComponentManager.h"
 
 namespace coment

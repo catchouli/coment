@@ -93,7 +93,7 @@ namespace coment
     {
         if (A != B)
         {
-            throw std::exception("Wrong Args... specified for this signal");
+            throw "Wrong Args... specified for this signal";
         }
     }
     

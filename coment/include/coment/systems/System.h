@@ -9,6 +9,7 @@
 namespace coment
 {
     class Entity;
+    class World;
 
     class SystemBase
         : public Observer

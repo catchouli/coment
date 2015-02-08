@@ -83,7 +83,7 @@ namespace coment
     private:
 
         // This is bad, but the purpose of this library is to prevent things like this :3
-        template <typename T, typename... Args>
+        template <typename, typename...>
         friend class Connection_MemberFunctionPointer;
 
         /** The observers connected to this signal, and their connections */

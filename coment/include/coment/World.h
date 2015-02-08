@@ -8,17 +8,18 @@
 
 #include "coment/DLL.h"
 #include "coment/SignalType.h"
-#include "coment/managers/Manager.h"
-#include "coment/systems/System.h"
 #include "coment/signals/Signal.h"
 #include "coment/util/TypeMap.h"
-#include "coment/util/EntityMap.h"
 #include "coment/util/PriorityComparator.h"
+#include "coment/util/EntityMap.h"
 
 namespace coment
 {
     class EntityManager;
     class ComponentManager;
+
+    class ManagerBase;
+    class SystemBase;
 
     class World
     {

@@ -3,6 +3,8 @@
 #include "coment/Entity.h"
 #include "coment/managers/EntityManager.h"
 #include "coment/managers/ComponentManager.h"
+#include "coment/managers/Manager.h"
+#include "coment/systems/System.h"
 
 #include <type_traits>
 
@@ -45,8 +47,8 @@ namespace coment
     void World::removeManager()
     {
         const char* err = "Can not remove default managers";
-        static_assert(T != EntityManager, err);
-        static_assert(T != SystemManager, err);
+        static_assert(!std::is_same<T, class EntityManager>::value, "Can not remove default managers");
+        static_assert(!std::is_same<T, class SystemManager>::value, "Can not remove default managers");
 
         // Get manager ptr
         T* ptr = getManager<T>();
