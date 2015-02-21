@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -52,6 +52,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep/include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -65,6 +66,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../dep/include;$(SolutionDir)dep/include;$(SolutionDir)../../coment/include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,12 +75,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\util\SDLInit.cpp" />
+    <ClCompile Include="src\util\MemoryLeakDetection.cpp" />
+    <ClCompile Include="src\util\SDLWindow.cpp" />
+    <ClCompile Include="src\gl\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\gl\Texture.h" />
     <ClInclude Include="include\util\ComputeShader.h" />
     <ClInclude Include="include\util\FileIO.h" />
-    <ClInclude Include="include\util\SDLInit.h" />
+    <ClInclude Include="include\util\MemoryLeakDetection.h" />
+    <ClInclude Include="include\util\SDLWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

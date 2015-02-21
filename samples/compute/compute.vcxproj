@@ -24,13 +24,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -53,15 +52,17 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;include/reflection;$(SolutionDir)../../dep/include;$(SolutionDir)dep/include;$(SolutionDir)../../coment/include;$(SolutionDir)../../samples/common/include</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)\%(RelativeDir)\%(Filename)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>common.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>common.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y</Command>
+      <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y /s
+xcopy "dist\*.*" "$(OutDir)*" /D /Y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,21 +74,24 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;include/reflection;$(SolutionDir)../../dep/include;$(SolutionDir)dep/include;$(SolutionDir)../../coment/include;$(SolutionDir)../../samples/common/include</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)\%(RelativeDir)\%(Filename)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>common.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>common.lib;glew32.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y</Command>
+      <Command>xcopy "$(SolutionDir)dep\bin\$(Platform)\*.*" "$(OutDir)*" /D /Y /s
+xcopy "dist\*.*" "$(OutDir)*" /D /Y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\compute.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\reflect\argument.h" />
@@ -133,6 +137,5 @@
     <ClInclude Include="include\reflect\value_function.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -15,18 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\util\SDLInit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\util\ComputeShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\util\FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\util\MemoryLeakDetection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\SDLWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gl\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\util\SDLInit.cpp">
+    <ClCompile Include="src\util\MemoryLeakDetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\SDLWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
