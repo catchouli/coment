@@ -2,6 +2,7 @@ layout (local_size_x = 32, local_size_y = 32) in;
 
 layout(binding = 0, rgba32f) uniform writeonly image2D out_tex;
 layout(binding = 0) uniform sampler1D in_spheres;
+layout(binding = 1) uniform sampler1D in_mesh;
 
 uniform vec3 eye_position;
 uniform mat4 eye_rotation;
@@ -24,9 +25,20 @@ void main()
     vec3 ray_pos = eye_position;
     vec3 ray_dir = vec3(normalize(vec4(pix_normalised * vec2(1.0, 1.0 / aspect), -1.0, 0.0)) * eye_rotation);
 
-    RaycastHit hit_info = traceSpheres(ray_pos, ray_dir, in_spheres);
+    // Trace spheres
+    RaycastHit sphere_hit_info = castSpheres(ray_pos, ray_dir, in_spheres);
 
-    vec3 dir = ray_dir;
+    // Trace mesh
+    int polygon_count = textureSize(in_mesh, 0) / 3;
+    RaycastHit polygon_hit_info = castMesh(ray_pos, ray_dir, in_mesh, polygon_count);
+
+    // Get closest hit
+    RaycastHit hit_info;
+
+    if (polygon_hit_info.hit_t < sphere_hit_info.hit_t)
+        hit_info = polygon_hit_info;
+    else
+        hit_info = sphere_hit_info;
 
     // Colour of output pixel
     vec4 col = vec4(ray_dir, 0.0) * 0.4;

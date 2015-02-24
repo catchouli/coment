@@ -9,11 +9,14 @@
 #include "util/SDLWindow.h"
 #include "util/ComputeShader.h"
 #include "util/MemoryLeakDetection.h"
+#include "resources/Mesh.h"
 
 //#include <assimp/Importer.hpp>
 
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
+
+const float ASPECT = (float)WINDOW_HEIGHT / (float)WINDOW_WIDTH;
 
 const int LOCAL_BLOCK_WIDTH = 32;
 
@@ -25,7 +28,7 @@ bool checkGlError();
 int entry(int argc, char** argv)
 {
     bool running = true;
-    int sphereCount = 30;
+    int sphereCount = 0;
     
     // Seed RNG
     srand((unsigned int)time(0));
@@ -39,11 +42,17 @@ int entry(int argc, char** argv)
     // Capture mouse
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
+    // Load mesh
+    coment::Mesh mesh("miku.md2");
+    const coment::SubMesh* miku = mesh.getSubMesh(0);
+
     // Allocate textures
     coment::Texture2D renderTexture(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA32F);
 
     coment::Texture1D sphereTex;
     coment::Texture1D velocityTex;
+
+    coment::Texture1D meshTex(miku->vertices.size() * 2, GL_RGBA32F, GL_RGBA, GL_FLOAT, (void*)miku->vertices.data());
 
     // Load shaders
     coment::ComputeShader cs({
@@ -51,6 +60,7 @@ int entry(int argc, char** argv)
         "shaders/constants.glsl",
         "shaders/raycast.glsl",
         "shaders/raycast_spheres.glsl",
+        "shaders/raycast_mesh.glsl",
         "shaders/render.cs.glsl"
     });
 
@@ -68,8 +78,7 @@ int entry(int argc, char** argv)
     GLuint eyePosLoc = glGetUniformLocation(cs.shaderProgram.get(), "eye_position");
     GLuint eyeRotationLoc = glGetUniformLocation(cs.shaderProgram.get(), "eye_rotation");
 
-    glm::vec3 eyePos(-50, 70, 320);
-    glm::vec3 eyeRot(0.25f, 0.15f, 0);
+    glm::vec3 eyePos(72, 0, 17), eyeRot(0.15f, -1.0f, 0);
 
     glm::mat4 eyeRotation;
 
@@ -183,6 +192,10 @@ int entry(int argc, char** argv)
         if (keyState[SDL_SCANCODE_E])
             eyePos += eyeUp * deltaTime * MOVE_SPEED;
 
+        // Update mesh position
+        mesh.transform(glm::rotate(currentTime / 1000.0f, glm::vec3(0, 1, 0)));
+        meshTex.create(miku->vertices.size() * 2, GL_RGBA32F, GL_RGBA, GL_FLOAT, (void*)miku->vertices.data());
+ 
         // Update sphere positions
         glBindImageTexture(0, sphereTex, 0, false, 0, GL_READ_WRITE, GL_RGBA32F);
         glActiveTexture(GL_TEXTURE0);
@@ -190,7 +203,7 @@ int entry(int argc, char** argv)
         glUseProgram(movement.shaderProgram.get());
 
         // Set time
-        glUniform1f(0, SDL_GetTicks() / 1000.0f);
+        glUniform1f(0, deltaTime);
 
         // Update movement
         glDispatchCompute(sphereCount, 1, 1);
@@ -201,16 +214,17 @@ int entry(int argc, char** argv)
         glUseProgram(gravity.shaderProgram.get());
 
         // Set time
-        glUniform1f(0, SDL_GetTicks() / 1000.0f);
+        glUniform1f(0, deltaTime);
 
         // Update - iterate intersections and gravity
-        for (int i = 0; i < 10; ++i)
-            glDispatchCompute(sphereCount, sphereCount, 1);
+        glDispatchCompute(sphereCount, sphereCount, 1);
 
         // Render
         glUseProgram(cs.shaderProgram.get());
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_1D, sphereTex);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_1D, meshTex);
         glBindImageTexture(0, renderTexture, 0, false, 0, GL_WRITE_ONLY, GL_RGBA32F);
         glUniform3fv(eyePosLoc, 1, (float*)&eyePos);
         glUniformMatrix4fv(eyeRotationLoc, 1, GL_FALSE, (float*)&eyeRotation);
@@ -221,9 +235,12 @@ int entry(int argc, char** argv)
             1);
 
         // Render full screen quad
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
         glUseProgram(0);
-        glEnable(GL_TEXTURE_2D);
         glActiveTexture(GL_TEXTURE0);
+        glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, renderTexture);
 
         const float FULLSCREEN_QUAD[] =
@@ -241,6 +258,18 @@ int entry(int argc, char** argv)
         glVertexPointer(2, GL_FLOAT, 4 * sizeof(float), FULLSCREEN_QUAD);
         glTexCoordPointer(2, GL_FLOAT, 4 * sizeof(float), &FULLSCREEN_QUAD[2]);
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+        //// Render triangle
+        //glMatrixMode(GL_PROJECTION);
+        //glm::mat4 proj = glm::infinitePerspective(1.5f, ASPECT, 1.0f);
+        //glLoadMatrixf((float*)&proj);
+
+        //glDisable(GL_TEXTURE_2D);
+        //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+        //glColor3f(1.0f, 1.0f, 1.0f);
+        //glVertexPointer(3, GL_FLOAT, 4 * sizeof(float), meshVertices.data());
+        //glDrawArrays(GL_TRIANGLES, 0, 3);
 
         // Flip buffers
         SDL_GL_SwapWindow(sdlWindow.getSDLWindow());

@@ -18,7 +18,7 @@ void main()
 
     if (sphereIdA != sphereIdB)
     {
-        const float G = 0.001;
+        const float G = 1000.0;
 
         vec4 diff = vec4(vec3(sphereA - sphereB), 0.0);
         vec4 dir = normalize(diff);
@@ -38,7 +38,7 @@ void main()
         float a_magnitude = F / sphereA.w;
         vec4 a_diff = dir * -a_magnitude;
 
-        velocityA += 0.1 * a_diff * delta_time;
+        velocityA += a_diff * delta_time;
 
         // Write back values
         imageStore(in_out_spheres, sphereIdA, sphereA);

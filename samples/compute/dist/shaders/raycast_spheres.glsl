@@ -1,4 +1,4 @@
-RaycastHit traceSpheres(vec3 ray_pos, vec3 ray_dir, sampler1D spheres)
+RaycastHit castSpheres(vec3 ray_pos, vec3 ray_dir, sampler1D spheres)
 {
     // Trace ray
     RaycastHit hit_info;
@@ -33,7 +33,6 @@ RaycastHit traceSpheres(vec3 ray_pos, vec3 ray_dir, sampler1D spheres)
                 if (t0 < hit_info.hit_t)
                 {
                     hit_info.hit_t = t0;
-                    hit_info.hit_idx = i;
                     hit_info.hit_pos = ray_pos + ray_dir * hit_info.hit_t;
                     hit_info.hit_normal = normalize(hit_info.hit_pos - pos);
                 }
