@@ -5,11 +5,15 @@ This branch is a complete rewrite of the original 1.0 branch, which was heavily 
 
 Class documentation: http://cat.rena.so/coment/docs/html/index.html
 
-Contact me (cat): http://irc.rena.so/
+The library is header only. To use, simply add the include directory to your project/makefile's includes and try some of the following samples. For more fully-fledged samples and examples, check out the samples directory.
+
+Contact me (cat): (leave an issue)
+
+<h4>Samples</h4>
+
+The 'balls' sample is the simplest place to get started. For windows, the dependencies are included. On other platforms, SDL2 and opengl are required.
 
 <h4>Usage</h4>
-
-As of release 2.3.0, the library is now header only. To use, simply add the include directory to your project/makefile's includes and try some of the following samples. For more fully-fledged samples and examples, check out the samples directory.
 
 <h5>The World</h5>
 
