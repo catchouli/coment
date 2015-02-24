@@ -1,1 +1,0 @@
-const float INFINITY = 1e20;
