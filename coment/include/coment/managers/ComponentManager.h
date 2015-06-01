@@ -40,7 +40,7 @@ namespace coment
 
         /** Get an entity -> component map for a specific set of components */
         template <typename... ComponentTypes>
-        EntityMap<ComponentTypes...> getEntityMap();
+        EntityMap getEntityMap();
 
         /* Callbacks */
 

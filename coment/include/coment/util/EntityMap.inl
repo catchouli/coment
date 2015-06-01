@@ -2,8 +2,7 @@
 
 namespace coment
 {
-    template <typename... ComponentTypes>
-    EntityMap<ComponentTypes...>::EntityMap(dynamic_bitset<> componentTypes,
+    inline EntityMap::EntityMap(dynamic_bitset<> componentTypes,
         std::shared_ptr<std::vector<Entity>> entities)
         : mComponentTypes(componentTypes), mEntities(entities)
     {
@@ -11,43 +10,37 @@ namespace coment
     }
 
     /** Get the entities in this map */
-    template <typename... ComponentTypes>
-    std::vector<Entity>* EntityMap<ComponentTypes...>::getEntities()
+    inline std::vector<Entity>* EntityMap::getEntities()
     {
         return mEntities.get();
     }
 
     /** Get the entities in this map */
-    template <typename... ComponentTypes>
-    const std::vector<Entity>* EntityMap<ComponentTypes...>::getEntities() const
+    inline const std::vector<Entity>* EntityMap::getEntities() const
     {
         return mEntities.get();
     }
 
     /** begin() proxy for range based for */
-    template <typename... ComponentTypes>
-    std::vector<Entity>::iterator EntityMap<ComponentTypes...>::begin()
+    inline std::vector<Entity>::iterator EntityMap::begin()
     {
         return mEntities->begin();
     }
 
     /** begin() proxy for range based for */
-    template <typename... ComponentTypes>
-    std::vector<Entity>::iterator EntityMap<ComponentTypes...>::begin() const
+    inline std::vector<Entity>::iterator EntityMap::begin() const
     {
         return mEntities->begin();
     }
 
     /** end() proxy for range based for */
-    template <typename... ComponentTypes>
-    std::vector<Entity>::iterator EntityMap<ComponentTypes...>::end()
+    inline std::vector<Entity>::iterator EntityMap::end()
     {
         return mEntities->end();
     }
 
     /** end() proxy for range based for */
-    template <typename... ComponentTypes>
-    std::vector<Entity>::iterator EntityMap<ComponentTypes...>::end() const
+    inline std::vector<Entity>::iterator EntityMap::end() const
     {
         return mEntities->end();
     }
