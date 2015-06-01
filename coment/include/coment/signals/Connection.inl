@@ -37,6 +37,12 @@ namespace coment
         // This will cause destruction of this connection, so it must be done last
         std::shared_ptr<Connection<Args...>> sharedPtr = it->second;
         mSignal->mConnections.erase(connection);
-        mSignal->mObservers.at(observer).erase(sharedPtr);
+
+        auto& obs_connections = mSignal->mObservers.at(observer);
+        obs_connections.erase(sharedPtr);
+
+        // If this is the signal's last connection to the observer, remove the observer
+        if (obs_connections.size() == 0)
+            mSignal->mObservers.erase(observer);
     }
 }
