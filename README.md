@@ -15,6 +15,14 @@ Contact me (cat): (leave an issue)
 
 The 'balls' sample is the simplest place to get started. For windows, the dependencies are included. On other platforms, SDL2 and opengl are required.
 
+<h4>Scripting</h4>
+
+This library works well with the swig wrapper generator for embedded languages.
+
+If all you want is the ability to use native components/systemms, just include the coment headers in your interfaces (or write your own simple wrappers), and then use %template to instantiatate World::addComponent, World::getComponent and World::removeComponent templates for your component types, and World::addSystem and world::removeSystem templates for your system types.
+
+If you want the ability to use scriptable components/systems some modification is required. [This project](https://github.com/Catchouli/webdraw) contains a [modified version of coment](https://github.com/Catchouli/webdraw/tree/master/engine/public/coment) and a set of interfaces and helpers [[1]](https://github.com/Catchouli/webdraw/tree/master/engine/interfaces/interfaces) [[2]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/typemaps.i) [[3]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/components.i) [[4]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/systems.i) which support the registration of lua components and systems, which could be modified to support other scripting languages by providing alternate types to replace LuaTable, (which allows managed lua table references to be passed to c++ as arguments.)
+
 <h4>Usage</h4>
 
 <h5>The World</h5>
