@@ -106,7 +106,7 @@ namespace coment
 
     /* Get an entity -> component map for a specific set of components */
     template <typename... ComponentTypes>
-    EntityMap<ComponentTypes...> ComponentManager::getEntityMap()
+    EntityMap ComponentManager::getEntityMap()
     {
         dynamic_bitset<> componentTypes = getComponentTypes<ComponentTypes...>();
 
@@ -143,7 +143,7 @@ namespace coment
             entityArray = it->second;
         }
 
-        return EntityMap<ComponentTypes...>(componentTypes, entityArray);
+        return EntityMap(componentTypes, entityArray);
     }
 
     /** Get a type ID for a specific component type */

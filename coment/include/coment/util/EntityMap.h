@@ -15,7 +15,6 @@ namespace coment
         to a container of entities. In reality, this is just a pointer to a
         container stored in the ComponentManager that this was obtained from,
         and not really a map */
-    template <typename... ComponentTypes>
     class EntityMap
     {
     public:

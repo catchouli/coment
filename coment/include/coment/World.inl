@@ -122,7 +122,7 @@ namespace coment
 
     /** Get an entity -> component map for a specific set of components */
     template <typename... ComponentTypes>
-    EntityMap<ComponentTypes...> World::getEntityMap()
+    EntityMap World::getEntityMap()
     {
         return mComponentManager->getEntityMap<ComponentTypes...>();
     }
