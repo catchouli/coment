@@ -39,12 +39,26 @@ SCENARIO("managers are added to and obtained from the world", "[manager]")
     {
         WHEN("a manager is added to the world")
         {
-            DefaultManager* defMgr =  world.addManager<DefaultManager>();
+            DefaultManager* defMgr = world.addManager<DefaultManager>();
 
             THEN("it should have a valid pointer")
             {
                 REQUIRE(defMgr != NULL);
             }
+        }
+
+        WHEN("a manager is added to the world")
+        {
+            struct TestManager
+                : public coment::Manager<TestManager>
+            {
+                TestManager(coment::World* rightWorld)
+                {
+                    REQUIRE(rightWorld == getWorld());
+                }
+            };
+
+            world.addManager<TestManager>(&world);
         }
 
         WHEN("a manager is obtained from the world")

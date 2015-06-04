@@ -69,5 +69,26 @@ SCENARIO("a system is added to the world", "[manager]")
                 REQUIRE(system->onEntityRemovedCalls == 1);
             }
         }
+
+        WHEN("a system's constructor runs")
+        {
+            THEN("getWorld() should be valid")
+            {
+                struct MySystem
+                    : public coment::System<MySystem>
+                {
+                public:
+
+                    MySystem(coment::World* rightWorld)
+                    {
+                        auto* world = getWorld();
+
+                        REQUIRE(world == rightWorld);
+                    }
+                };
+
+                world.addSystem<MySystem>(&world);
+            }
+        }
     }
 }

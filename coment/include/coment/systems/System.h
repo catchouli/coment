@@ -11,6 +11,14 @@ namespace coment
     class Entity;
     class World;
 
+    namespace impl
+    {
+        namespace
+        {
+            class World* SYSTEM_INIT_WORLD = nullptr;
+        }
+    }
+
     class SystemBase
         : public Observer
     {
@@ -19,7 +27,7 @@ namespace coment
         /** Create a system with a given priority. Higher priority causes
         the system to execute earlier */
         SystemBase(int priority = 0)
-            : mPriority(priority) {}
+            : mPriority(priority), mWorld(impl::SYSTEM_INIT_WORLD) {}
 
         virtual ~SystemBase() {}
 
@@ -56,6 +64,9 @@ namespace coment
     private:
 
         friend class World;
+
+        /** The current world - only used during initialisation */
+        static class World* INITIALISATION_WORLD;
 
         /** The world this system belongs to */
         World* mWorld;

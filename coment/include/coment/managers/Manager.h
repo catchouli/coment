@@ -13,6 +13,14 @@ namespace coment
     class Entity;
     class SystemBase;
 
+    namespace impl
+    {
+        namespace
+        {
+            class World* MANAGER_INIT_WORLD = nullptr;
+        }
+    }
+
     class ManagerBase
         : public Observer
     {
@@ -21,9 +29,12 @@ namespace coment
         /** Allows the derived class to specify a priority for updates to the manager.
             A higher priority means that this manager will be processed first */
         ManagerBase(int priority = 0)
-            : mPriority(priority) {}
+            : mPriority(priority), mWorld(impl::MANAGER_INIT_WORLD) {}
 
         ~ManagerBase() {}
+
+        /** Get the world this system belongs to */
+        World* getWorld() const;
 
         /** Get the priority of this manager */
         int getPriority() const;
@@ -46,13 +57,18 @@ namespace coment
 
     protected:
 
+        /** The signals that are used to emit callbacks */
+        std::unordered_map<SignalType, SignalBase*>* mSignals;
+
+    private:
+
         friend class World;
+
+        /** The world this manager belongs to */
+        class World* mWorld;
 
         /** The priority of updates to this manager */
         int mPriority;
-
-        /** The signals that are used to emit callbacks */
-        std::unordered_map<SignalType, SignalBase*>* mSignals;
 
     };
 

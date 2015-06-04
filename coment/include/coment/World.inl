@@ -10,12 +10,23 @@
 
 namespace coment
 {
+    template <typename T>
+    void checkManagerType()
+    {
+        static_assert(std::is_base_of<Manager<T>, T>::value, "base class for manager T must be coment::Manager<T>");
+    }
+
     /* Manager/System management */
 
     /** Add a manager to the world, initialised with args... */
     template <typename T, typename... Args>
     T* World::addManager(Args... args)
     {
+        checkManagerType<T>();
+
+        // Set global for manager initialisation
+        impl::MANAGER_INIT_WORLD = this;
+
         // Create manager
         T* ptr = mManagerMap.add<T>(args...);
 
@@ -39,6 +50,8 @@ namespace coment
     template <typename T>
     T* World::getManager() const
     {
+        checkManagerType<T>();
+
         return mManagerMap.get<T>();
     }
 
@@ -46,7 +59,8 @@ namespace coment
     template <typename T>
     void World::removeManager()
     {
-        const char* err = "Can not remove default managers";
+        checkManagerType<T>();
+
         static_assert(!std::is_same<T, class EntityManager>::value, "Can not remove default managers");
         static_assert(!std::is_same<T, class SystemManager>::value, "Can not remove default managers");
 
@@ -60,10 +74,21 @@ namespace coment
         mManagerSet.erase(ptr);
     }
 
+    template <typename T>
+    void checkSystemType()
+    {
+        static_assert(std::is_base_of<System<T>, T>::value, "base class for system T must be coment::System<T>");
+    }
+
     /** Add a system to the world, initialised with Args... */
     template <typename T, typename... Args>
     T* World::addSystem(Args... args)
     {
+        checkSystemType<T>();
+
+        // Set global for system initialisation
+        impl::SYSTEM_INIT_WORLD = this;
+
         // Create system
         T* ptr = mSystemMap.add<T>(args...);
 
@@ -87,6 +112,8 @@ namespace coment
     template <typename T>
     T* World::getSystem() const
     {
+        checkSystemType<T>();
+
         return mSystemMap.get<T>();
     }
 
@@ -94,6 +121,8 @@ namespace coment
     template <typename T>
     void World::removeSystem()
     {
+        checkSystemType<T>();
+
         // Get system ptr
         T* ptr = getSystem<T>();
 

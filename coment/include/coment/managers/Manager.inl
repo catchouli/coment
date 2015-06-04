@@ -18,6 +18,12 @@ namespace coment
             mSignals->at(SignalType::PostUpdate)->connect<>((T*)this, &T::postUpdate);
     }
 
+    /** Get the world this system belongs to */
+    inline World* ManagerBase::getWorld() const
+    {
+        return mWorld;
+    }
+
     /** Get the priority of this manager */
     inline int ManagerBase::getPriority() const
     {
