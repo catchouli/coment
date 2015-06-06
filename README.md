@@ -7,7 +7,7 @@ Class documentation: http://cat.rena.so/coment/docs/html/index.html
 
 The library is header only. To use, simply add the include directory to your project/makefile's includes and try some of the following samples. For more fully-fledged samples and examples, check out the samples directory.
 
-If your project uses boost, delete the boost directory from coment\include to prevent mixing boost versions. The included boost headers are from header-only libraries, so are standalone if you don't use boost.
+If your project uses boost, delete the boost directory from coment/include to prevent mixing boost versions. The included boost headers are from header-only libraries, so are standalone if you don't use boost.
 
 Contact me (cat): (leave an issue)
 
@@ -19,7 +19,7 @@ The 'balls' sample is the simplest place to get started. For windows, the depend
 
 This library works well with the swig wrapper generator for embedded languages.
 
-If all you want is the ability to use native components/systemms, just include the coment headers in your interfaces (or write your own simple wrappers), and then use %template to instantiatate World::addComponent, World::getComponent and World::removeComponent templates for your component types, and World::addSystem and world::removeSystem templates for your system types.
+If all you want is the ability to use native components/systems, just include the coment headers in your interfaces (or write your own simple wrappers), and then use %template to instantiatate World::addComponent, World::getComponent and World::removeComponent templates for your component types, and World::addSystem and world::removeSystem templates for your system types.
 
 If you want the ability to use scriptable components/systems some modification is required. [This project](https://github.com/Catchouli/webdraw) contains a [modified version of coment](https://github.com/Catchouli/webdraw/tree/master/engine/public/coment) and a set of interfaces and helpers [[1]](https://github.com/Catchouli/webdraw/tree/master/engine/interfaces/interfaces) [[2]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/typemaps.i) [[3]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/components.i) [[4]](https://github.com/Catchouli/webdraw/blob/master/engine/interfaces/interfaces/systems.i) which support the registration of lua components and systems, which could be modified to support other scripting languages by providing alternate types to replace LuaTable, (which allows managed lua table references to be passed to c++ as arguments.)
 
