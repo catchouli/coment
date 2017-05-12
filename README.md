@@ -3,8 +3,6 @@
 
 This branch is a complete rewrite of the original 1.0 branch, which was heavily influenced in design by C++03.
 
-Class documentation: http://cat.rena.so/coment/docs/html/index.html
-
 The library is header only. To use, simply add the include directory to your project/makefile's includes and try some of the following samples. For more fully-fledged samples and examples, check out the samples directory.
 
 If your project uses boost, delete the boost directory from coment/include to prevent mixing boost versions. The included boost headers are from header-only libraries, so are standalone if you don't use boost.
